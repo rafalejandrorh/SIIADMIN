@@ -54,9 +54,9 @@
                 <tbody>
                   <?php
                     require_once "../models/empleados_model.php";
-                    require_once "../controllers/empleados.php";
+                    require_once "../controllers/horarios_obtener.php";
 
-                    foreach($data as $row)
+                    foreach($obtener as $row)
                     {
                       echo "
                         <tr>

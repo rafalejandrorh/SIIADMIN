@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Agregar Cargo</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="cargos_add.php">
+            	<form class="form-horizontal" method="POST" action="https://localhost/Sistema-MVC/controllers/cargos_insertar.php">
           		  <div class="form-group">
                   	<label for="title" class="col-sm-3 control-label">Nombre Cargo</label>
 
@@ -43,7 +43,7 @@
             	<h4 class="modal-title"><b>Actualizar Cargo</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="cargos_edit.php">
+            	<form class="form-horizontal" method="POST" action="https://localhost/Sistema-MVC/controllers/cargos_editar.php">
 				<div class="form-group">
                   	<div class="col-sm-9">
                     	<input type="hidden" class="form-control" id="edit_posid" name="id" required>
@@ -83,7 +83,7 @@
             	<h4 class="modal-title"><b>Eliminando...</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="cargos_delete.php">
+            	<form class="form-horizontal" method="POST" action="https://localhost/Sistema-MVC/controllers/cargos_eliminar.php">
 				<div class="form-group">
                   	<div class="col-sm-9">
                     	<input type="hidden" class="form-control" id="del_posid" name="id" required>

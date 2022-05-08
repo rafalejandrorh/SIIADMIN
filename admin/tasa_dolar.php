@@ -49,19 +49,15 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT * FROM tasa_dolar";
-                    $query = $conn->query($sql);
+                    require_once "../models/tasadolar_model.php";
+                    require_once "../controllers/tasadolar_obtener.php";
 
-                    //$string = file_get_contents("https://s3.amazonaws.com/dolartoday/data.json");
-                    //$dolarbcv = json_decode($string, true);
-                    //$dolarbcv[USD][promedio_real]//
-
-                    while($dolarbcv = $query->fetch_assoc()){
+                    foreach($obtener as $row){
                       echo "
                         <tr>
                           <td class='hidden'></td>
-                          <td>".'$ 1.00'." = ".'Bs '.$dolarbcv["rate_dolar"]."</td> 
-                          <td><button class='btn btn-success btn-sm edit btn-flat' data-id='".$dolarbcv['id']."'><i class='fa fa-edit'></i> Editar</button></td>
+                          <td>".'$ 1.00'." = ".'Bs '.$row["rate_dolar"]."</td> 
+                          <td><button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Editar</button></td>
                         </tr>
                       ";
                     }

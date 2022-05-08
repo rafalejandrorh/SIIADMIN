@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Agregar Asistencia</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="asistencia_add.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/asistencia_insertar.php">
           		  <div class="form-group">
                   	<label for="employee" class="col-sm-3 control-label">ID Empleado</label>
 
@@ -63,7 +63,7 @@
             	<h4 class="modal-title"><b><span id="employee_name"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="asistencia_edit.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/asistencia_editar.php">
             		<input type="hidden" id="attid" name="id">
                 <div class="form-group">
                     <label for="datepicker_edit" class="col-sm-3 control-label">Fecha</label>
@@ -112,7 +112,7 @@
             	<h4 class="modal-title"><b><span id="attendance_date"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="asistencia_delete.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/asistencia_eliminar.php">
             		<input type="hidden" id="del_attid" name="id">
             		<div class="text-center">
 	                	<p>ELIMINAR EMPLEADO</p>

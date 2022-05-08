@@ -47,7 +47,7 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th>Cédula de Identidad</th>
+                  <th>C.I</th>
                   <th>Foto</th>
                   <th>Nombre</th>
                   <th>Cargo</th>
@@ -57,10 +57,9 @@
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../models/empleados_model.php";
-                    require_once "../controllers/empleados.php";
+                    require_once "../controllers/empleados_obtener.php";
 
-                    foreach($data as $row)
+                    foreach($obtener as $row)
                     {
                       ?>
                         <tr>
@@ -71,8 +70,8 @@
                           <td><?php echo date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out'])); ?></td>
                           <td><?php echo date('M d, Y', strtotime($row['created_on'])) ?></td>
                           <td>
-                            <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['empid']; ?>"><i class="fa fa-edit"></i> Editar</button>
-                            <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['empid']; ?>"><i class="fa fa-trash"></i> Eliminar</button>
+                            <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-edit"></i> Editar</button>
+                            <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-trash"></i> Eliminar</button>
                           </td>
                         </tr>
                       <?php

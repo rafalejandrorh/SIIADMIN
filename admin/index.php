@@ -17,7 +17,7 @@
   	<div class="login-box-body">
     	<h4 class="login-box-msg">Ingresa tus credenciales para iniciar sesión</h4>
 
-    	<form action="login.php" method="POST">
+    	<form action="http://localhost/Sistema-MVC/controllers/login.php" method="POST">
       		<div class="form-group has-feedback">
         		<input type="text" class="form-control" name="username" placeholder="Ingresa Usuario de Administrador" required autofocus>
         		<span class="glyphicon glyphicon-user form-control-feedback"></span>

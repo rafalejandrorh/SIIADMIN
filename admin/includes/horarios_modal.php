@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Agregar Horario</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="horarios_add.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/horarios_insertar.php">
           		  <div class="form-group">
                   	<label for="time_in" class="col-sm-3 control-label">Hora de Entrada</label>
 
@@ -47,8 +47,7 @@
             	<h4 class="modal-title"><b>Actualizar Horario</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="horarios_edit.php">
-            		<input type="hidden" id="timeid" name="id">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/horarios_editar.php">
 					
 				<div class="form-group">
                   	<div class="col-sm-9">
@@ -93,7 +92,7 @@
             	<h4 class="modal-title"><b>Eliminando Horario</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="horarios_delete.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/horarios_eliminar.php">
 				<div class="form-group">
 
                   	<div class="col-sm-9">

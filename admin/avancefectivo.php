@@ -56,9 +56,10 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT *, avancefectivo.id AS caid, empleados.employee_id AS empid FROM avancefectivo LEFT JOIN empleados ON empleados.id=avancefectivo.employee_id";
-                    $query = $conn->query($sql);
-                    while($row = $query->fetch_assoc()){
+                    require_once "../models/avancefectivo_model.php";
+                    require_once "../controllers/avancefectivo_obtener.php";
+
+                    foreach($obtener as $row){
                       echo "
                         <tr>
                           <td class='hidden'></td>

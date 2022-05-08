@@ -55,9 +55,11 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT * FROM cargos";
-                    $query = $conn->query($sql);
-                    while($row = $query->fetch_assoc()){
+                    require_once "../models/cargos_model.php";
+                    require_once "../controllers/cargos_obtener.php";
+
+                    foreach($obtener as $row)
+                    {
                       echo "
                         <tr>
                           <td>".$row['description']."</td>

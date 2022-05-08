@@ -61,17 +61,17 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT *, tiempoextra.id AS otid, empleados.employee_id AS empid FROM tiempoextra LEFT JOIN empleados ON empleados.id=tiempoextra.employee_id";
-                    $query = $conn->query($sql);
-                    while($row = $query->fetch_assoc()){
-                      $gross = $row['rate'] * $row['hours'];
-                      $net = $gross;
+                    require_once "../models/tiempoextra_model.php";
+                    require_once "../controllers/tiempoextra_obtener.php";
 
+                    foreach($obtener as $row)
+                    {
+                      $gross = $row['rate'] * $row['hours'];
                       echo "
                         <tr>
                           <td class='hidden'></td>
                           <td>".date('M d, Y', strtotime($row['date_overtime']))."</td>
-                          <td>".$row['empid']."</td>
+                          <td>".$row['employee_id']."</td>
                           <td>".$row['firstname'].' '.$row['lastname']."</td>
                           <td>".$row['hours']."</td>
                           <td>".'$ '.$row['rate']."</td>
