@@ -46,7 +46,7 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th>ID Empleado</th>
+                  <th>C.I</th>
                   <th>Nombre</th>
                   <th>Cargo</th>
                   <th>Sueldo por hora</th>
@@ -54,9 +54,11 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT *, empleados.id AS empid FROM empleados LEFT JOIN horarios ON horarios.schedule_id=empleados.schedule_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id";
-                    $query = $conn->query($sql);
-                    while($row = $query->fetch_assoc()){
+                    require_once "../models/empleados_model.php";
+                    require_once "../controllers/empleados_obtener.php";
+
+                    foreach($obtener as $row)
+                    {
                       echo "
                         <tr>
                           <td>".$row['employee_id']."</td>

@@ -54,9 +54,11 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT * FROM deducciones";
-                    $query = $conn->query($sql);
-                    while($row = $query->fetch_assoc()){
+                    require_once "../models/deducciones_model.php";
+                    require_once "../controllers/deducciones_obtener.php";
+
+                    foreach($obtener as $row)
+                    {
                       echo "
                         <tr>
                           <td>".$row['description']."</td>
@@ -91,9 +93,11 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT * FROM deducciones2";
-                    $query = $conn->query($sql);
-                    while($row = $query->fetch_assoc()){
+                    require_once "../models/deducciones_model.php";
+                    require_once "../controllers/deducciones_obtener.php";
+
+                    foreach($obtener2 as $row)
+                    {
                       echo "
                         <tr>
                           <td>".$row['description']."</td>

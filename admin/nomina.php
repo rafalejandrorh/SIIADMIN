@@ -98,7 +98,6 @@
                     $sql = "SELECT *, SUM(num_hr) AS total_hr, asistencia.employee_id AS empid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' GROUP BY asistencia.employee_id ORDER BY empleados.lastname ASC, empleados.firstname ASC";
 
                     $query = $conn->query($sql);
-                    $total = 0;
                     while($row = $query->fetch_assoc()){
                       $empid = $row['empid'];
                       

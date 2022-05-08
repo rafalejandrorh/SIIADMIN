@@ -72,9 +72,11 @@
                       <select class="form-control" name="position" id="position" required>
                         <option value="" selected>- Seleccionar -</option>
                         <?php
-                          $sql = "SELECT * FROM cargos";
-                          $query = $conn->query($sql);
-                          while($prow = $query->fetch_assoc()){
+                          require_once "../models/cargos_model.php";
+                          require_once "../controllers/cargos_obtener.php";
+      
+                          foreach($obtener as $row)
+                          {
                             echo "
                               <option value='".$prow['position_id']."'>".$prow['description']."</option>
                             ";
@@ -179,8 +181,8 @@
                     <div class="col-sm-9"> 
                       <select class="form-control" name="gender" id="edit_gender">
                         <option selected id="gender_val"></option>
-                        <option value="Male">Hombre</option>
-                        <option value="Female">Mujer</option>
+                        <option value="Hombre">Hombre</option>
+                        <option value="Mujer">Mujer</option>
                       </select>
                     </div>
                 </div>
@@ -191,9 +193,11 @@
                       <select class="form-control" name="position" id="edit_position">
                         <option selected id="position_val"></option>
                         <?php
-                          $sql = "SELECT * FROM cargos";
-                          $query = $conn->query($sql);
-                          while($prow = $query->fetch_assoc()){
+                          require_once "../models/cargos_model.php";
+                          require_once "../controllers/cargos_obtener.php";
+      
+                          foreach($obtener as $prow)
+                          {
                             echo "
                               <option value='".$prow['position_id']."'>".$prow['description']."</option>
                             ";
@@ -209,9 +213,11 @@
                       <select class="form-control" id="edit_schedule" name="schedule">
                         <option selected id="schedule_val"></option>
                         <?php
-                          $sql = "SELECT * FROM horarios";
-                          $query = $conn->query($sql);
-                          while($srow = $query->fetch_assoc()){
+                          require_once "../models/horarios_model.php";
+                          require_once "../controllers/horarios_obtener.php";
+      
+                          foreach($obtener as $srow)
+                          {
                             echo "
                               <option value='".$srow['schedule_id']."'>".$srow['time_in'].' - '.$srow['time_out']."</option>
                             ";

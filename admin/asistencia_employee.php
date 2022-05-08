@@ -47,24 +47,28 @@
               <table id="example1" class="table table-bordered">
                 <thead>
                   <th>Fecha</th>
-                  <th>Horario</th>
-                  <th>ID Empleado</th>
+                  <th>C.I</th>
                   <th>Nombre</th>
+                  <th>Hora Entrada</th>
+                  <th>Hora de Salida</th>
                   <th>Cargo</th>
                 </thead>
                 <tbody>
                   <?php
 
-                    $sql = "SELECT *, empleados.employee_id AS empid, asistencia.id AS attid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id ORDER BY asistencia.date DESC, asistencia.time_in DESC";
-                    $query = $conn->query($sql);
-                    while($row = $query->fetch_assoc()){
+                      require_once "../models/asistencia_model.php";
+                      require_once "../controllers/asistencia_obtener.php";
+
+                      foreach($obtener as $row)
+                      {
                       $status = ($row['status'])?'<span class="label label-warning pull-right">a tiempo</span>':'<span class="label label-danger pull-right">tarde</span>';
                       echo "
                         <tr>
                           <td>".date('M d, Y', strtotime($row['date']))."</td>
-                          <td>".date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out'])).$status."</td>                        
-                          <td>".$row['employee_id']."</td>
+                          <td>".$row['empid']."</td>
                           <td>".$row['firstname'].' '.$row['lastname']."</td>
+                          <td>".date('h:i A', strtotime($row['time_in'])).$status."</td>
+                          <td>".date('h:i A', strtotime($row['time_out']))."</td>
                           <td>".$row['description']."</td>
                         </tr>
                       ";

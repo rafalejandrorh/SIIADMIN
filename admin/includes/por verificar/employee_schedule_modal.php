@@ -17,9 +17,11 @@
                       <select class="form-control" id="edit_schedule" name="schedule">
                         <option selected id="schedule_val"></option>
                         <?php
-                          $sql = "SELECT * FROM horarios";
-                          $query = $conn->query($sql);
-                          while($srow = $query->fetch_assoc()){
+                          require_once "../models/horarios_model.php";
+                          require_once "../controllers/horarios_obtener.php";
+      
+                          foreach($obtener as $srow)
+                          {
                             echo "
                               <option value='".$srow['id']."'>".$srow['time_in'].' - '.$srow['time_out']."</option>
                             ";

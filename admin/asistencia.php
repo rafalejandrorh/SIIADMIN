@@ -52,7 +52,7 @@
                 <thead>
                   <th class="hidden"></th>
                   <th class="">Fecha</th>
-                  <th class="">Cédula de Identidad</th>
+                  <th class="">C.I</th>
                   <th class="">Nombre</th>
                   <th class="">Hora Entrada</th>
                   <th class="">Hora Salida</th>

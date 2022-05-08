@@ -20,10 +20,11 @@ class asistencia_model
     public function obtener_asistencia()
     {
 
-        $sql = "SELECT *, empleados.employee_id AS empid, asistencia.id AS attid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id ORDER BY asistencia.date DESC, asistencia.time_in DESC";
+        $sql = "SELECT *, empleados.employee_id AS empid, asistencia.id AS attid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id LEFT JOIN horarios ON horarios.schedule_id=empleados.schedule_id ORDER BY asistencia.date DESC, asistencia.time_in DESC";
         $query = $this->db->query($sql);
         while($row = $query->fetch_assoc())
         {
+			
             $this->asistencia[] = $row;
 
         }
