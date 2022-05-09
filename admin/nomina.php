@@ -141,6 +141,8 @@
                       // $net = Representación del monto neto a pagar para cada empleado en $
                       // $bs = Representación del monto neto a pagar para cada empleado en Bs.D
 
+                      //Prueba
+
                       echo "
                         <tr>
                           <td>".$row['lastname'].", ".$row['firstname']."</td>
