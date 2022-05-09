@@ -8,7 +8,6 @@ class asistencia_model
 
     private $db;
     private $asistencia;
-	private $horario;
 
     public function __construct()
     {
