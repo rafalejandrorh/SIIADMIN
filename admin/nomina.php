@@ -132,6 +132,17 @@
                       $net = $gross - $total_deduction;
                       $bs = $dolarbcv * $net; 
 
+
+                      // $row = Nombres, apellidos y cédula de empleado
+                      // $gross = Valor del Sueldo calculado (Horas laboradas x pago por hora)
+                      // $deductionley = Sumatoria de las deducciones por FAOV e IVSS
+                      // $cashadvance = Avance de Efectivo realizado y se descontará del sueldo al empleado
+                      // $dolarbcv = Tasa del Dolar con respecto al Bolivar por el cual se calculará la nómina en dólares
+                      // $net = Representación del monto neto a pagar para cada empleado en $
+                      // $bs = Representación del monto neto a pagar para cada empleado en Bs.D
+
+                      //Prueba
+
                       echo "
                         <tr>
                           <td>".$row['lastname'].", ".$row['firstname']."</td>
@@ -141,7 +152,7 @@
                           <td>".'$ '.number_format($cashadvance, 2)."</td>
                           <td>".'$ '.number_format(1,2)." = ".'Bs '.number_format($dolarbcv,2)."</td>
                           <td>".'$ '.number_format($net, 2)."</td>
-                          <td>".'Bs '.number_format($bs, 2)."</td> 
+                          <td>".'Bs.D '.number_format($bs, 2)."</td> 
                         </tr>
                       ";
                     }
