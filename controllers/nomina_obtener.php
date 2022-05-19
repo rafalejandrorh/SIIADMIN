@@ -13,5 +13,4 @@
         }
 
         $obtener = $nomina-> obtener_nomina();
-  
 ?>

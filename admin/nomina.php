@@ -75,7 +75,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    $sql = "SELECT *, SUM(amount) as total_amount FROM deducciones";
+                    /*$sql = "SELECT *, SUM(amount) as total_amount FROM deducciones";
                     $query = $conn->query($sql);
                     $drow = $query->fetch_assoc();
                     $deduction = $drow['total_amount'];
@@ -109,9 +109,9 @@
                       $dolarbcv = $rate_dolar['rate_dolar'];
 
 
-                      /*$string = file_get_contents("https://s3.amazonaws.com/dolartoday/data.json");
+                      $string = file_get_contents("https://s3.amazonaws.com/dolartoday/data.json");
                       $json = json_decode($string, true);
-                      $dolarbcv = $json["USD"]["promedio_real"];*/
+                      $dolarbcv = $json["USD"]["promedio_real"];
 
                       
                       $caquery = $conn->query($casql);
@@ -130,7 +130,7 @@
 
                       $total_deduction =  $deductionley + $cashadvance;
                       $net = $gross - $total_deduction;
-                      $bs = $dolarbcv * $net; 
+                      $bs = $dolarbcv * $net; */
 
 
                       // $row = Nombres, apellidos y cédula de empleado
@@ -142,6 +142,11 @@
                       // $bs = Representación del monto neto a pagar para cada empleado en Bs.D
 
                       //Prueba
+                      include '../controllers/nomina_obtener.php';
+                      print_r($obtener);
+
+                      while ($i<count($obtener)) {
+
 
                       echo "
                         <tr>
