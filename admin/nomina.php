@@ -143,23 +143,23 @@
 
                       //Prueba
                       include '../controllers/nomina_obtener.php';
-                      print_r($obtener);
-
+                      print_r($obtener[0]);
+                      $i=0;
                       while ($i<count($obtener)) {
-
 
                       echo "
                         <tr>
-                          <td>".$row['lastname'].", ".$row['firstname']."</td>
-                          <td>".$row['employee_id']."</td>
-                          <td>".'$ '.number_format($gross, 2)."</td>
-                          <td>".'$ '.number_format($deductionley, 2)."</td>
-                          <td>".'$ '.number_format($cashadvance, 2)."</td>
-                          <td>".'$ '.number_format(1,2)." = ".'Bs '.number_format($dolarbcv,2)."</td>
-                          <td>".'$ '.number_format($net, 2)."</td>
-                          <td>".'Bs.D '.number_format($bs, 2)."</td> 
+                          <td>".$obtener[$i]['lastname'].", ".$obtener[$i]['firstname']."</td>
+                          <td>".$prueba."</td>
+                          <td>".'$ '.number_format($obtener[$i]['total_hr'] * $obtener[$i]['rate'], 2)."</td>
+                          <td>".'$ '.number_format(@$deductionley, 2)."</td>
+                          <td>".'$ '.number_format(@$cashadvance, 2)."</td>
+                          <td>".'$ '.number_format(1,2)." = ".'Bs '.number_format(@$dolarbcv,2)."</td>
+                          <td>".'$ '.number_format(@$net, 2)."</td>
+                          <td>".'Bs.D '.number_format(@$bs, 2)."</td> 
                         </tr>
                       ";
+                      $i++;
                     }
                   ?>
                 </tbody>

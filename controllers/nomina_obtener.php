@@ -12,5 +12,15 @@
         $to = date('Y-m-d', strtotime($ex[1]));
         }
 
-        $obtener = $nomina-> obtener_nomina();
+
+        $obtener = $nomina->obtener_nomina();
+
+        $cedula = $obtener['id'];
+
+        $avancefectivo = $nomina->avancefectivo();
+
+        $prueba = 'hola mundo';
+        // $avancefectivo = $nomina->obtener_efectivo($cedula);
+
+
 ?>
