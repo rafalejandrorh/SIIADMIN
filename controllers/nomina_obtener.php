@@ -13,9 +13,13 @@
         }
 
 
-        $obtener = $nomina->obtener_nomina();
+        $obtener = $nomina->obtener_nomina($from, $to);
 
-        $cedula = $obtener['id'];
+        $count = count($obtener);
+        for ($x=0; $x<$count; $x++){
+        $obtener;
+        }
+        print_r($obtener[1]);
 
         $avancefectivo = $nomina->avancefectivo();
 

@@ -16,19 +16,19 @@ class nomina_model
         $this->nomina = array();
     }
 
-    public function obtener_nomina()
+    public function obtener_nomina($from, $to)
     {
 
-        $sql = "SELECT *, SUM(num_hr) AS total_hr, asistencia.employee_id AS empid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '2022-04-01' AND '2022-04-30' GROUP BY asistencia.employee_id ORDER BY empleados.lastname ASC, empleados.firstname ASC";
+        $sql = "SELECT *, SUM(num_hr) AS total_hr, asistencia.employee_id AS empid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' GROUP BY asistencia.employee_id ORDER BY empleados.lastname ASC, empleados.firstname ASC";
         $query = $this->db->query($sql);
         while($row = $query->fetch_assoc())
         {
 
-            $nomina[] = $row;
+            $this->nomina[] = $row;
 
         }
 
-        return $nomina;
+        return $this->nomina;
 
 }
 
@@ -36,7 +36,7 @@ public function avancefectivo()
     {
 
         $sql = "SELECT *, SUM(num_hr) AS total_hr, asistencia.employee_id AS empid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '2022-04-01' AND '2022-04-30' GROUP BY asistencia.employee_id ORDER BY empleados.lastname ASC, empleados.firstname ASC";
-        $obtener = $this->db->obtener_nomina();
+        
         $query = $this->db->query($sql);
         while($row = $query->fetch_assoc())
         {
@@ -45,11 +45,11 @@ public function avancefectivo()
 
             $casql = "SELECT *, SUM(amount) AS cashamount FROM avancefectivo WHERE employee_id='$empid' AND date_advance BETWEEN '2022-04-01' AND '2022-04-30'";
 
-            $nomina[] = $row;
+            
 
         }
 
-        return $nomina;
+        return;
 
 }
 
@@ -79,11 +79,11 @@ public function deducciones()
             $rate_dolar = $rquery->fetch_assoc();
             $dolarbcv = $rate_dolar['rate_dolar'];
 
-            $nomina[] = $row;
+            
 
         }
 
-        return $nomina;
+        return;
 
 }
 

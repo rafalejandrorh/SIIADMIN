@@ -143,7 +143,7 @@
 
                       //Prueba
                       include '../controllers/nomina_obtener.php';
-                      print_r($obtener[0]);
+                      
                       $i=0;
                       while ($i<count($obtener)) {
 
