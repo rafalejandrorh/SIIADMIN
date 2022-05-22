@@ -1,10 +1,10 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
+<?php include '../session.php'; ?>
+<?php include '../header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <?php include 'includes/navbar.php'; ?>
-  <?php include 'includes/menubar.php'; ?>
+  <?php include '../navbar.php'; ?>
+  <?php include '../menubar.php'; ?>
 
 
   <div class="content-wrapper">
@@ -60,8 +60,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../models/asistencia_model.php";
-                    require_once "../controllers/asistencia_obtener.php";
+                    require_once "../../controllers/asistencia_obtener.php";
 
                     foreach($obtener as $row)
                     {
@@ -91,10 +90,10 @@
     </section>   
   </div>
     
-  <?php include 'includes/footer.php'; ?>
-  <?php include 'includes/asistencia_modal.php'; ?>
+  <?php include '../footer.php'; ?>
+  <?php include 'asistencia_modal.php'; ?>
 </div>
-<?php include 'includes/scripts.php'; ?>
+<?php include '../scripts.php'; ?>
 <script>
 $(function(){
   $('.edit').click(function(e){
@@ -109,11 +108,6 @@ $(function(){
     $('#delete').modal('show');
     var id = $(this).data('id');
     getRow(id);
-  });
-
-  $("#reservation").on('change', function(){
-    var range = encodeURI($(this).val());
-    window.location = 'nomina.php?range='+range;
   });
 
 });

@@ -2,7 +2,7 @@
     <section class="sidebar">
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo (!empty($user['photo'])) ? '../images/'.$user['photo'] : '../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
+          <img src="<?php echo (!empty($user['photo'])) ? 'http://localhost/Sistema-MVC/images/'.$user['photo'] : 'http://localhost/Sistema-MVC/images/profile.jpg'; ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?php echo $user['firstname'].' '.$user['lastname']; ?></p>
