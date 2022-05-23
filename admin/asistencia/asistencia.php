@@ -1,10 +1,10 @@
-<?php include '../session.php'; ?>
-<?php include '../header.php'; ?>
+<?php include '../includes/session.php'; ?>
+<?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <?php include '../navbar.php'; ?>
-  <?php include '../menubar.php'; ?>
+  <?php include '../includes/navbar.php'; ?>
+  <?php include '../includes/menubar.php'; ?>
 
 
   <div class="content-wrapper">
@@ -23,7 +23,7 @@
           echo "
             <div class='alert alert-danger alert-dismissible'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4><i class='icon fa fa-warning'></i> Error!</h4>
+              <h4><i class='icon fa fa-warning'></i>¡Error!</h4>
               ".$_SESSION['error']."
             </div>
           ";
@@ -60,7 +60,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../../controllers/asistencia_obtener.php";
+                    require_once "../../controllers/asistencia/asistencia_obtener.php";
 
                     foreach($obtener as $row)
                     {
@@ -90,10 +90,10 @@
     </section>   
   </div>
     
-  <?php include '../footer.php'; ?>
+  <?php include '../includes/footer.php'; ?>
   <?php include 'asistencia_modal.php'; ?>
 </div>
-<?php include '../scripts.php'; ?>
+<?php include '../includes/scripts.php'; ?>
 <script>
 $(function(){
   $('.edit').click(function(e){

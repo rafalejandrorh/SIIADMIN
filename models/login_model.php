@@ -1,7 +1,5 @@
 <?php 
 
-require_once "../config/conn.php";
-
 class login_model 
 {
 
@@ -21,21 +19,29 @@ class login_model
         $query = $this->db->query($sql);
 
         if($query->num_rows < 1){
+
             $_SESSION['error'] = 'No se encontró una cuenta con ese Usuario';
+
         }
         else{
             $row = $query->fetch_assoc();
+
             if(password_verify($password, $row['password'])){
+
                 $_SESSION['admin'] = $row['id'];
+
             }
             else{
+
                 $_SESSION['error'] = 'Contraseña Incorrecta';
+
             }
         }
-        return $_SESSION;
+
+        return $this->$_SESSION;
 
     }
     
-    }
+}
 
 ?>

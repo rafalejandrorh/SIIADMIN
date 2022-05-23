@@ -15,7 +15,7 @@
         <li class=""><a href="home.php"><i class="fa fa-dashboard"></i> <span>Panel de Control</span></a></li>
         
         <li class="header">ADMINISTRACIÓN</li>
-        <li><a href="asistencia.php"><i class="fa fa-calendar"></i> <span>Asistencia</span></a></li>
+        <li><a href="http://localhost/Sistema-MVC/admin/asistencia/asistencia.php"><i class="fa fa-calendar"></i> <span>Asistencia</span></a></li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-users"></i>
@@ -25,10 +25,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="empleados.php"><i class="fa fa-circle-o"></i> Lista de Empleados</a></li>
-            <li><a href="horarios.php"><i class="fa fa-circle-o"></i> Horarios</a></li>
-            <li><a href="tiempoextra.php"><i class="fa fa-circle-o"></i> Tiempo Extra</a></li>
-            <li><a href="avancefectivo.php"><i class="fa fa-circle-o"></i> Avance Efectivo</a></li>
+            <li><a href="http://localhost/Sistema-MVC/admin/empleados/empleados.php"><i class="fa fa-circle-o"></i> Lista de Empleados</a></li>
+            <li><a href="http://localhost/Sistema-MVC/admin/horarios/horarios.php"><i class="fa fa-circle-o"></i> Horarios</a></li>
+            <li><a href="http://localhost/Sistema-MVC/admin/tiempoextra/tiempoextra.php"><i class="fa fa-circle-o"></i> Tiempo Extra</a></li>
+            <li><a href="http://localhost/Sistema-MVC/admin/avancefectivo/avancefectivo.php"><i class="fa fa-circle-o"></i> Avance Efectivo</a></li>
           </ul>
         </li>
         <li><a href="tasa_dolar.php"><i class="fa fa-files-o"></i> <span>Tasa del Dolar</span></a></li>

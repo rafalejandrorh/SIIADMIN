@@ -1,8 +1,5 @@
 <?php 
 
-require_once "../config/conn.php";
-
-
 class empleados_model 
 {
 

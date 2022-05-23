@@ -1,6 +1,6 @@
 <?php 
-        require_once "../config/conn.php";
-        require_once "../models/asistencia_model.php";
+        require_once "../../config/conn.php";
+        require_once "../../models/asistencia_model.php";
         $asistencia = new asistencia_model();
                 
         if(isset($_POST['add'])){
@@ -11,7 +11,7 @@
             $time_out = $_POST['time_out'];
             $time_out = date('H:i:s', strtotime($time_out));
                     
-            $buscarempleado = $asistencia -> insertar_asistencia($employee, $date, $time_in, $time_out); 
+            $buscarempleado = $asistencia-> insertar_asistencia($employee, $date, $time_in, $time_out);
 
             if(isset($_SESSION['error'])){
 
@@ -29,6 +29,6 @@
             
         }
             
-            header('location: http://localhost/Sistema-MVC/admin/asistencia/asistencia.php');        
+            header('location: ../../admin/asistencia/asistencia.php');        
 
 ?>

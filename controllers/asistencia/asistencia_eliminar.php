@@ -1,5 +1,6 @@
 <?php 
-                require_once "../models/asistencia_model.php";
+                require_once "../../config/conn.php";
+                require_once "../../models/asistencia_model.php";
                 $asistencia = new asistencia_model();
                 
                 if(isset($_POST['delete'])){
@@ -22,5 +23,5 @@
                     $_SESSION['error'] = 'Seleccione la asistencia que desea eliminar';
                 }
             
-                header('location: ../admin/asistencia.php');
+                header('location: ../../admin/asistencia/asistencia.php');
 ?>

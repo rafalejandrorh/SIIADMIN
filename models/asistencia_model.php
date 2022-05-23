@@ -16,7 +16,7 @@ class asistencia_model
 
     public function obtener_asistencia()
     {
-
+		
         $sql = "SELECT *, empleados.employee_id AS empid, asistencia.id AS attid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id ORDER BY asistencia.date DESC, asistencia.time_in DESC";
         $query = $this->db->query($sql);
         while($row = $query->fetch_assoc())
@@ -32,6 +32,9 @@ class asistencia_model
 
 	public function insertar_asistencia_empleado($employee, $status)
     {
+
+		include '../timezone.php';
+
 		$sql = "SELECT * FROM empleados WHERE employee_id = '$employee'";
 		$query = $this->db->query($sql);
 
@@ -45,8 +48,7 @@ class asistencia_model
 				$sql = "SELECT * FROM asistencia WHERE employee_id = '$id' AND date = '$date_now' AND time_in IS NOT NULL";
 				$query = $this->db->query($sql);
 				if($query->num_rows > 0){
-					$output['error'] = true;
-					$output['message'] = 'Has registrado tu entrada por hoy';
+					$_SESSION['messages'] = 'Ya registraste tu entrada hoy';
 				}
 				else{
 					
@@ -59,11 +61,10 @@ class asistencia_model
 					
 					$sql = "INSERT INTO asistencia (employee_id, date, time_in, status) VALUES ('$id', '$date_now', NOW(), '$logstatus')";
 					if($this->db->query($sql)){
-						$output['message'] = 'Llegada: '.$row['firstname'].' '.$row['lastname'];
+						$_SESSION['messages'] = 'Llegada: '.$row['firstname'].' '.$row['lastname'];
 					}
 					else{
-						$output['error'] = true;
-						$output['message'] = $this->db->error;
+						$_SESSION['error'] = 'error 1';
 					}
 				}
 			}
@@ -71,20 +72,18 @@ class asistencia_model
 				$sql = "SELECT *, asistencia.id AS aid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id WHERE asistencia.employee_id = '$id' AND date = '$date_now'";
 				$query = $this->db->query($sql);
 				if($query->num_rows < 1){
-					$output['error'] = true;
-					$output['message'] = 'No se puede registrar tu salida, sin previamente registrar tu entrada.';
+					$_SESSION['error'] = 'No se puede registrar tu salida, sin previamente registrar tu entrada.';
 				}
 				else{
 					$row = $query->fetch_assoc();
 					if($row['time_out'] != '00:00:00'){
-						$output['error'] = true;
-						$output['message'] = 'Has registrado tu salida satisfactoriamente por el día de hoy';
+						$_SESSION['messages'] = 'Has registrado tu salida satisfactoriamente por el día de hoy';
 					}
 					else{
 						
 						$sql = "UPDATE asistencia SET time_out = NOW() WHERE id = '".$row['aid']."'";
 						if($this->db->query($sql)){
-							$output['message'] = 'Salida: '.$row['firstname'].' '.$row['lastname'];
+							$_SESSION['messages'] = 'Salida: '.$row['firstname'].' '.$row['lastname'];
 
 							$sql = "SELECT * FROM asistencia WHERE id = '".$row['aid']."'";
 							$query = $this->db->query($sql);
@@ -120,13 +119,22 @@ class asistencia_model
 							$this->db->query($sql);
 						}
 						else{
-							$output['error'] = true;
-							$output['message'] = $this->db->error;
+
+							$_SESSION['error'] = 'error 2';
+
 						}
 					}
 				}
 			}
+
+		}else{
+
+			$_SESSION['error'] = 'ID de empleado no encontrado';
+
 		}
+
+		return $this->$_SESSION;
+
 	}
 
     public function insertar_asistencia($employee, $date, $time_in, $time_out)
@@ -208,7 +216,7 @@ class asistencia_model
         $sql = "UPDATE asistencia SET date = '$date', time_in = '$time_in', time_out = '$time_out' WHERE id = '$id'";
 
         if($this->db->query($sql)){
-			$_SESSION['success'] = 'Asistencia actualizada satisfactoriamente';
+			$_SESSION['messages'] = 'Asistencia actualizada satisfactoriamente';
 
 			$sql = "SELECT * FROM asistencia WHERE id = '$id'";
 			$query = $this->db->query($sql);
@@ -259,7 +267,7 @@ class asistencia_model
         $sql = "DELETE FROM asistencia WHERE id = '$id'";
 
         if($this->db->query($sql)){
-			$_SESSION['success'] = 'Asistencia eliminada satisfactoriamente';
+			$_SESSION['messages'] = 'Asistencia eliminada satisfactoriamente';
 		}
 		else{
 			$_SESSION['error'] = $this->db->error;

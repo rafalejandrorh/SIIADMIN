@@ -29,7 +29,7 @@
                   <a href="#profile" data-toggle="modal" class="btn btn-default btn-flat" id="admin_profile">Actualizar</a>
                 </div>
                 <div class="pull-right">
-                  <a href="../logout.php" class="btn btn-default btn-flat">Cerrar Sesión</a>
+                  <a href="http://localhost/Sistema-MVC/admin/includes/logout.php" class="btn btn-default btn-flat">Cerrar Sesión</a>
                 </div>
               </li>
             </ul>

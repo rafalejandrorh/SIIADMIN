@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Agregar Empleado</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados_insertar.php" enctype="multipart/form-data">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados/empleados_insertar.php" enctype="multipart/form-data">
               <div class="form-group">
                     <label for="edit_firstname" class="col-sm-3 control-label">Cédula de Identidad</label>
 
@@ -72,8 +72,7 @@
                       <select class="form-control" name="position" id="position" required>
                         <option value="" selected>- Seleccionar -</option>
                         <?php
-                          require_once "../models/cargos_model.php";
-                          require_once "../controllers/cargos_obtener.php";
+                          require_once "../../controllers/cargos/cargos_obtener.php";
       
                           foreach($obtener as $row)
                           {
@@ -92,9 +91,9 @@
                       <select class="form-control" id="schedule" name="schedule" required>
                         <option value="" selected>- Seleccionar -</option>
                         <?php
-                          $sql = "SELECT * FROM horarios";
-                          $query = $conn->query($sql);
-                          while($srow = $query->fetch_assoc()){
+                          require_once "../../controllers/cargos/horarios_obtener.php";
+                          foreach($obtener as $row)
+                          {
                             echo "
                               <option value='".$srow['schedule_id']."'>".$srow['time_in'].' - '.$srow['time_out']."</option>
                             ";
@@ -130,7 +129,7 @@
             	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados_editar.php">     		
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados/empleados_editar.php">     		
 
                 <div class="form-group">
                     <label for="edit_firstname" class="col-sm-3 control-label">Cédula</label>
@@ -193,8 +192,7 @@
                       <select class="form-control" name="position" id="edit_position">
                         <option selected id="position_val"></option>
                         <?php
-                          require_once "../models/cargos_model.php";
-                          require_once "../controllers/cargos_obtener.php";
+                          require_once "../../controllers/cargos/cargos_obtener.php";
       
                           foreach($obtener as $prow)
                           {
@@ -213,8 +211,7 @@
                       <select class="form-control" id="edit_schedule" name="schedule">
                         <option selected id="schedule_val"></option>
                         <?php
-                          require_once "../models/horarios_model.php";
-                          require_once "../controllers/horarios_obtener.php";
+                          require_once "../../controllers/horarios/horarios_obtener.php";
       
                           foreach($obtener as $srow)
                           {
@@ -246,7 +243,7 @@
             	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados_eliminar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados/empleados_eliminar.php">
             	
               <div class="form-group">
                     <div class="col-sm-9">
@@ -278,7 +275,7 @@
               <h4 class="modal-title"><b><span class="del_employee_name"></span></b></h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados_editar_foto.php" enctype="multipart/form-data">
+              <form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados/empleados_editar_foto.php" enctype="multipart/form-data">
               <div class="form-group">
                     <div class="col-sm-9">
                     <input type="hidden" class="form-control" name="id" id="photo_employee_id">
