@@ -36,7 +36,7 @@ class empleados_model
 
             $this->empleados[] = $row;
 
-        }
+        }   
 
         return $this->empleados;
 
