@@ -1,10 +1,10 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
+<?php include '../includes/session.php'; ?>
+<?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <?php include 'includes/navbar.php'; ?>
-  <?php include 'includes/menubar.php'; ?>
+  <?php include '../includes/navbar.php'; ?>
+  <?php include '../includes/menubar.php'; ?>
 
   <div class="content-wrapper">
     <section class="content-header">
@@ -54,8 +54,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../models/deducciones_model.php";
-                    require_once "../controllers/deducciones_obtener.php";
+                    require_once "../../controllers/deducciones/deducciones_obtener.php";
 
                     foreach($obtener as $row)
                     {
@@ -85,7 +84,7 @@
               <a href="#addnew2" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
             </div>
             <div class="box-body">
-              <table id="example1" class="table table-bordered">
+              <table id="example2" class="table table-bordered">
                 <thead>
                   <th>Descripción</th>
                   <th>Monto</th>
@@ -93,8 +92,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../models/deducciones_model.php";
-                    require_once "../controllers/deducciones_obtener.php";
+                    require_once "../../controllers/deducciones/deducciones_obtener.php";
 
                     foreach($obtener2 as $row)
                     {
@@ -119,10 +117,10 @@
     </section>   
   </div>
     
-  <?php include 'includes/footer.php'; ?>
-  <?php include 'includes/deducciones_modal.php'; ?>
+  <?php include '../includes/footer.php'; ?>
+  <?php include 'deducciones_modal.php'; ?>
 </div>
-<?php include 'includes/scripts.php'; ?>
+<?php include '../includes/scripts.php'; ?>
 <script>
 $(function(){
   $('.edit1').click(function(e){

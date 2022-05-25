@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Agregar Deducciones</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/deducciones_insertar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/deducciones/deducciones_insertar.php">
           		  <div class="form-group">
                   	<label for="description" class="col-sm-3 control-label">Descripción</label>
 
@@ -43,7 +43,7 @@
             	<h4 class="modal-title"><b>Agregar Deducciones</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/deducciones2_insertar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/deducciones/deducciones2_insertar.php">
           		  <div class="form-group">
                   	<label for="description" class="col-sm-3 control-label">Descripción</label>
 
@@ -78,7 +78,7 @@
             	<h4 class="modal-title"><b>Actualizar Deducción</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/deducciones_editar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/deducciones/deducciones_editar.php">
 				<div class="form-group">
                   	<div class="col-sm-9">
                     	<input type="hidden" class="form-control" id="edit_decid" name="id" required>
@@ -118,7 +118,7 @@
             	<h4 class="modal-title"><b>Actualizar Deducción</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/deducciones2_editar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/deducciones/deducciones2_editar.php">
 				<div class="form-group">
                   	<div class="col-sm-9">
                     	<input type="hidden" class="form-control" id="edit_decid2" name="id" required>
@@ -158,7 +158,7 @@
             	<h4 class="modal-title"><b>Eliminando...</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/deducciones_eliminar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/deducciones/deducciones_eliminar.php">
 				<div class="form-group">
                   	<div class="col-sm-9">
                     	<input type="hidden" class="form-control" id="del_decid" name="id" required>
@@ -188,7 +188,7 @@
             	<h4 class="modal-title"><b>Eliminando...</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/deducciones2_eliminar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/deducciones/deducciones2_eliminar.php">
 				<div class="form-group">
                   	<div class="col-sm-9">
                     	<input type="hidden" class="form-control" id="del_decid2" name="id" required>

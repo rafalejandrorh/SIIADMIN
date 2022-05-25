@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Agregar Tiempo Extra</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/tiempoextra_insertar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/tiempoextra/tiempoextra_insertar.php">
           		  <div class="form-group">
                   	<label for="employee" class="col-sm-3 control-label">Cédula de Identidad</label>
 
@@ -59,7 +59,7 @@
             	<h4 class="modal-title"><b><span class="employee_name"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/tiempoextra_editar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/tiempoextra/tiempoextra_editar.php">
 				<div class="form-group">
                   	<div class="col-sm-9">
                     	<input type="hidden" class="form-control" id="edit_otid" name="id" required>
@@ -108,7 +108,7 @@
             	<h4 class="modal-title"><b><span id="overtime_date"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/tiempoextra_eliminar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/tiempoextra/tiempoextra_eliminar.php">
 				<div class="form-group">
                   	<div class="col-sm-9">
                     	<input type="hidden" class="form-control" id="del_otid" name="id">

@@ -1,10 +1,10 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
+<?php include '../includes/session.php'; ?>
+<?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <?php include 'includes/navbar.php'; ?>
-  <?php include 'includes/menubar.php'; ?>
+  <?php include '../includes/navbar.php'; ?>
+  <?php include '../includes/menubar.php'; ?>
 
   <div class="content-wrapper">
     <section class="content-header">
@@ -54,8 +54,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../models/empleados_model.php";
-                    require_once "../controllers/empleados_obtener.php";
+                    require_once "../../controllers/empleados/empleados_obtener.php";
 
                     foreach($obtener as $row)
                     {
@@ -79,10 +78,9 @@
     </section>   
   </div>
     
-  <?php include 'includes/footer.php'; ?>
-  <?php include 'includes/employee_schedule_modal.php'; ?>
+  <?php include '../includes/footer.php'; ?>
 </div>
-<?php include 'includes/scripts.php'; ?>
+<?php include '../includes/scripts.php'; ?>
 <script>
 $(function(){
   $('.edit').click(function(e){

@@ -1,10 +1,10 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
+<?php include '../includes/session.php'; ?>
+<?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <?php include 'includes/navbar.php'; ?>
-  <?php include 'includes/menubar.php'; ?>
+  <?php include '../includes/navbar.php'; ?>
+  <?php include '../includes/menubar.php'; ?>
 
   <div class="content-wrapper">
     <section class="content-header">
@@ -49,8 +49,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../models/tasadolar_model.php";
-                    require_once "../controllers/tasadolar_obtener.php";
+                    require_once "../../controllers/tasadolar/tasadolar_obtener.php";
 
                     foreach($obtener as $row){
                       echo "
@@ -71,10 +70,10 @@
     </section>   
   </div>
     
-  <?php include 'includes/footer.php'; ?>
-  <?php include 'includes/tasa_dolar_modal.php'; ?>
+  <?php include '../includes/footer.php'; ?>
+  <?php include 'tasa_dolar_modal.php'; ?>
 </div>
-<?php include 'includes/scripts.php'; ?>
+<?php include '../includes/scripts.php'; ?>
 <script>
 $(function(){
   $('.edit').click(function(e){

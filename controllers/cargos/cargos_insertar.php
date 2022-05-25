@@ -1,6 +1,6 @@
 <?php 
-        include "../admin/includes/session.php";
-        require_once "../models/cargos_model.php";
+        include "../../config/conn.php";
+        require_once "../../models/cargos_model.php";
         $cargos = new cargos_model();
                 
         if(isset($_POST['add'])){
@@ -25,6 +25,6 @@
             
         }
             
-            header('location: ../admin/cargos.php');        
+            header('location: ../../admin/cargos/cargos.php');        
 
 ?>

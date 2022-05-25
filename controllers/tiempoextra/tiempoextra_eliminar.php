@@ -1,6 +1,6 @@
 <?php 
-                include "../admin/includes/session.php";
-                require_once "../models/tiempoextra_model.php";
+                include "../../config/conn.php";
+                require_once "../../models/tiempoextra_model.php";
                 $tiempoextra = new tiempoextra_model();
                 
                 if(isset($_POST['delete'])){
@@ -23,5 +23,5 @@
                     $_SESSION['error'] = 'Error, intenta nuevamente';
                 }
             
-                header('location: ../admin/tiempoextra.php');
+                header('location: ../../admin/tiempoextra/tiempoextra.php');
 ?>

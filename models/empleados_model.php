@@ -14,6 +14,18 @@ class empleados_model
 
     }
 
+    public function obtener_total_empleados()
+    {
+
+        $sql = "SELECT * FROM empleados";
+        $query = $this->db->query($sql);
+
+        $this->empleados[] = $query;
+
+        return $this->empleados;
+
+    }
+
     public function obtener_empleados()
     {
 

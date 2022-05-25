@@ -1,7 +1,5 @@
 <?php 
 
-require_once "../config/conn.php";
-
 class deducciones_model 
 {
 

@@ -1,7 +1,6 @@
 <?php include 'includes/session.php'; ?>
 <?php 
-  include '../timezone.php'; 
-  $today = date('Y-m-d');
+  include 'includes/timezone.php'; 
   $year = date('Y');
   if(isset($_GET['year'])){
     $year = $_GET['year'];
@@ -51,10 +50,12 @@
           <div class="small-box bg-blue">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM empleados";
-                $query = $conn->query($sql);
+                require_once "../controllers/home/reportes_empleados.php";
+                foreach($obtener as $row){
 
-                echo "<h3>".$query->num_rows."</h3>";
+                echo "<h3>".$row->num_rows."</h3>";
+
+              }
               ?>
 
               <p>Total de Empleados</p>
@@ -62,20 +63,24 @@
             <div class="icon">
               <i class="ion ion-person-stalker"></i>
             </div>
-            <a href="empleados.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="http://localhost/Sistema-MVC/admin/empleados/empleados.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-orange">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM asistencia";
-                $query = $conn->query($sql);
-                $total = $query->num_rows;
+                foreach($asistentes_atiempo as $brow){
 
-                $sql = "SELECT * FROM asistencia WHERE status = 1";
-                $query = $conn->query($sql);
-                $early = $query->num_rows;
+                $total= $brow->num_rows;
+
+                }
+
+                foreach($asistentes_tarde as $crow){
+
+                $early = $crow->num_rows;
+
+                }
                 
                 $percentage = ($early/$total)*100;
 
@@ -87,17 +92,18 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="asistencia.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="http://localhost/Sistema-MVC/admin/asistencia/asistencia.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-green">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM asistencia WHERE date = '$today' AND status = 1";
-                $query = $conn->query($sql);
+                foreach($asistentes_atiempo_hoy as $drow){
 
-                echo "<h3>".$query->num_rows."</h3>"
+                echo "<h3>".$drow->num_rows."</h3>";
+
+              }
               ?>
              
               <p>A tiempo hoy</p>
@@ -105,17 +111,18 @@
             <div class="icon">
               <i class="ion ion-clock"></i>
             </div>
-            <a href="asistencia.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="http://localhost/Sistema-MVC/admin/asistencia/asistencia.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-red">
             <div class="inner">
               <?php
-                $sql = "SELECT * FROM asistencia WHERE date = '$today' AND status = 0";
-                $query = $conn->query($sql);
+                foreach($asistentes_tarde_hoy as $erow){
 
-                echo "<h3>".$query->num_rows."</h3>"
+                echo "<h3>".$erow->num_rows."</h3>";
+
+              }
               ?>
 
               <p>Tarde hoy</p>
@@ -123,7 +130,7 @@
             <div class="icon">
               <i class="ion ion-alert-circled"></i>
             </div>
-            <a href="asistencia.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="http://localhost/Sistema-MVC/admin/asistencia/asistencia.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>

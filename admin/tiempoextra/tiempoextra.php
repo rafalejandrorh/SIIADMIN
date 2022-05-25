@@ -1,10 +1,10 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
+<?php include '../includes/session.php'; ?>
+<?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <?php include 'includes/navbar.php'; ?>
-  <?php include 'includes/menubar.php'; ?>
+  <?php include '../includes/navbar.php'; ?>
+  <?php include '../includes/menubar.php'; ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -61,8 +61,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../models/tiempoextra_model.php";
-                    require_once "../controllers/tiempoextra_obtener.php";
+                    require_once "../../controllers/tiempoextra/tiempoextra_obtener.php";
 
                     foreach($obtener as $row)
                     {
@@ -93,10 +92,10 @@
     </section>   
   </div>
     
-  <?php include 'includes/footer.php'; ?>
-  <?php include 'includes/tiempoextra_modal.php'; ?>
+  <?php include '../includes/footer.php'; ?>
+  <?php include 'tiempoextra_modal.php'; ?>
 </div>
-<?php include 'includes/scripts.php'; ?>
+<?php include '../includes/scripts.php'; ?>
 <script>
 $(function(){
   $('.edit').click(function(e){

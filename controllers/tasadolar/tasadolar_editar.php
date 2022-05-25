@@ -1,6 +1,6 @@
 <?php 
-                include "../admin/includes/session.php";
-                require_once "../models/tasadolar_model.php";
+                include "../../config/conn.php";
+                require_once "../../models/tasadolar_model.php";
                 $tasadolar = new tasadolar_model();
                 
                 if(isset($_POST['edit'])){
@@ -24,5 +24,5 @@
                     $_SESSION['error'] = 'Verifique que el monto sea correcto y vuelva a intentarlo';
                 }
             
-                header('location: ../admin/tasa_dolar.php');
+                header('location: ../../admin/tasadolar/tasa_dolar.php');
 ?>

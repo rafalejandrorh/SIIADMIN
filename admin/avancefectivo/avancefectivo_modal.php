@@ -8,7 +8,7 @@
             	<h4 class="modal-title"><b>Agregar Adelanto de Efectivo</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/avancefectivo_insertar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/avancefectivo/avancefectivo_insertar.php">
           		  <div class="form-group">
                   	<label for="employee" class="col-sm-3 control-label">Cédula de Identidad</label>
 
@@ -43,7 +43,7 @@
             	<h4 class="modal-title"><b><span class="date"></span> - <span class="employee_name"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/avancefectivo_editar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/avancefectivo/avancefectivo_editar.php">
 
 				<div class="form-group">
                     <div class="col-sm-9">
@@ -78,7 +78,7 @@
             	<h4 class="modal-title"><b><span class="date"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/avancefectivo_eliminar.php">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/avancefectivo/avancefectivo_eliminar.php">
 				<div class="form-group">
                     <div class="col-sm-9">
                     <input type="hidden" class="form-control" name="id" id="del_caid">

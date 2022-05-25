@@ -74,10 +74,10 @@
                         <?php
                           require_once "../../controllers/cargos/cargos_obtener.php";
       
-                          foreach($obtener as $row)
+                          foreach($obtener as $qrow)
                           {
                             echo "
-                              <option value='".$prow['position_id']."'>".$prow['description']."</option>
+                              <option value='".$qrow['position_id']."'>".$qrow['description']."</option>
                             ";
                           }
                         ?>
@@ -91,11 +91,11 @@
                       <select class="form-control" id="schedule" name="schedule" required>
                         <option value="" selected>- Seleccionar -</option>
                         <?php
-                          require_once "../../controllers/cargos/horarios_obtener.php";
-                          foreach($obtener as $row)
+                          require_once "../../controllers/horarios/horarios_obtener.php";
+                          foreach($obtener as $rrow)
                           {
                             echo "
-                              <option value='".$srow['schedule_id']."'>".$srow['time_in'].' - '.$srow['time_out']."</option>
+                              <option value='".$rrow['schedule_id']."'>".$rrow['time_in'].' - '.$rrow['time_out']."</option>
                             ";
                           }
                         ?>

@@ -1,6 +1,6 @@
 <?php 
-                include "../admin/includes/session.php";
-                require_once "../models/deducciones_model.php";
+                include "../../config/conn.php";
+                require_once "../../models/deducciones_model.php";
                 $deducciones = new deducciones_model();
                 
                 if(isset($_POST['edit'])){
@@ -25,5 +25,5 @@
                     $_SESSION['error'] = 'Error, Intenta actualizar la deducción nuevamente';
                 }
             
-                header('location: ../admin/deducciones.php');
+                header('location: ../../admin/deducciones/deducciones.php');
 ?>

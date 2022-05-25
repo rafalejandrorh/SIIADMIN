@@ -14,6 +14,59 @@ class asistencia_model
 
     }
 
+	public function asistentes_atiempo_hoy()
+    {
+		include "../admin/includes/timezone.php";
+		$today = date('Y-m-d');
+
+		$sql = "SELECT * FROM asistencia WHERE date = '$today' AND status = 1";
+        $query = $this->db->query($sql);
+
+        $this->asistentes_atiempo_hoy[] = $query;
+
+        return $this->asistentes_atiempo_hoy;
+
+    }
+
+	public function asistentes_tarde_hoy()
+    {
+		include "../admin/includes/timezone.php";
+		$today = date('Y-m-d');
+		
+		$sql = "SELECT * FROM asistencia WHERE date = '$today' AND status = 0";
+        $query = $this->db->query($sql);
+
+        $this->asistentes_tarde_hoy[] = $query;
+
+        return $this->asistentes_tarde_hoy;
+
+    }
+
+	public function asistentes_atiempo()
+    {
+		
+        $sql = "SELECT * FROM asistencia";
+        $query = $this->db->query($sql);
+
+        $this->asistentes_atiempo[] = $query;
+
+        return $this->asistentes_atiempo;
+
+    }
+
+	public function asistentes_tarde()
+    {
+
+		$sql = "SELECT * FROM asistencia WHERE status = 1";
+		$query = $this->db->query($sql);
+
+        $this->asistentes_tarde[] = $query;
+
+        return $this->asistentes_tarde;
+
+    }
+
+
     public function obtener_asistencia()
     {
 		

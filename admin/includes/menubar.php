@@ -12,7 +12,7 @@
       <ul class="sidebar-menu" data-widget="tree">
 
         <li class="header">REPORTES</li>
-        <li class=""><a href="home.php"><i class="fa fa-dashboard"></i> <span>Panel de Control</span></a></li>
+        <li class=""><a href="http://localhost/Sistema-MVC/admin/home.php"><i class="fa fa-dashboard"></i> <span>Panel de Control</span></a></li>
         
         <li class="header">ADMINISTRACIÓN</li>
         <li><a href="http://localhost/Sistema-MVC/admin/asistencia/asistencia.php"><i class="fa fa-calendar"></i> <span>Asistencia</span></a></li>
@@ -31,9 +31,9 @@
             <li><a href="http://localhost/Sistema-MVC/admin/avancefectivo/avancefectivo.php"><i class="fa fa-circle-o"></i> Avance Efectivo</a></li>
           </ul>
         </li>
-        <li><a href="tasa_dolar.php"><i class="fa fa-files-o"></i> <span>Tasa del Dolar</span></a></li>
-        <li><a href="cargos.php"><i class="fa fa-suitcase"></i> <span>Cargos</span></a></li>
-        <li><a href="deducciones.php"><i class="fa fa-file-text"></i> <span>Deducciones</span></a></li>
+        <li><a href="http://localhost/Sistema-MVC/admin/tasadolar/tasa_dolar.php"><i class="fa fa-files-o"></i> <span>Tasa del Dolar</span></a></li>
+        <li><a href="http://localhost/Sistema-MVC/admin/cargos/cargos.php"><i class="fa fa-suitcase"></i> <span>Cargos</span></a></li>
+        <li><a href="http://localhost/Sistema-MVC/admin/deducciones/deducciones.php"><i class="fa fa-file-text"></i> <span>Deducciones</span></a></li>
         
         <li class="header">IMPRESIÓN</li>
         <li class="treeview">
@@ -45,9 +45,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-        <li><a href="asistencia_employee.php"><i class="fa fa-files-o"></i> <span>Asistencia</span></a></li>
-        <li><a href="horarios_employee.php"><i class="fa fa-files-o"></i> <span>Empleados</span></a></li>
-        <li><a href="nomina.php"><i class="fa fa-files-o"></i> <span>Nómina</span></a></li>
+        <li><a href="http://localhost/Sistema-MVC/admin/pdf/asistencia_employee.php"><i class="fa fa-files-o"></i> <span>Asistencia</span></a></li>
+        <li><a href="http://localhost/Sistema-MVC/admin/pdf/horarios_employee.php"><i class="fa fa-files-o"></i> <span>Empleados</span></a></li>
+        <li><a href="http://localhost/Sistema-MVC/admin/pdf/nomina.php"><i class="fa fa-files-o"></i> <span>Nómina</span></a></li>
 
       </ul>
 </li>

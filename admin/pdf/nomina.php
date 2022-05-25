@@ -1,15 +1,15 @@
-<?php include 'includes/session.php'; ?>
+<?php include '../includes/session.php'; ?>
 <?php
-  include '../timezone.php';
+  include '../includes/timezone.php';
   $range_to = date('m/d/Y');
   $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
 ?>
-<?php include 'includes/header.php'; ?>
+<?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <?php include 'includes/navbar.php'; ?>
-  <?php include 'includes/menubar.php'; ?>
+  <?php include '../includes/navbar.php'; ?>
+  <?php include '../includes/menubar.php'; ?>
 
   <div class="content-wrapper">
  
@@ -142,7 +142,7 @@
                       // $bs = Representación del monto neto a pagar para cada empleado en Bs.D
 
                       //Prueba
-                      include '../controllers/nomina_obtener.php';
+                      include '../../controllers/nomina/nomina_obtener.php';
                       
                       $i=0;
                       while ($i<count($obtener)) {
@@ -171,9 +171,9 @@
     </section>   
   </div>
     
-  <?php include 'includes/footer.php'; ?>
+  <?php include '../includes/footer.php'; ?>
 </div>
-<?php include 'includes/scripts.php'; ?> 
+<?php include '../includes/scripts.php'; ?> 
 <script>
 $(function(){
   $('.edit').click(function(e){

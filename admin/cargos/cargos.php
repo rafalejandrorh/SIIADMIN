@@ -1,10 +1,10 @@
-<?php include 'includes/session.php'; ?>
-<?php include 'includes/header.php'; ?>
+<?php include '../includes/session.php'; ?>
+<?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <?php include 'includes/navbar.php'; ?>
-  <?php include 'includes/menubar.php'; ?>
+  <?php include '../includes/navbar.php'; ?>
+  <?php include '../includes/menubar.php'; ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -55,8 +55,7 @@
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../models/cargos_model.php";
-                    require_once "../controllers/cargos_obtener.php";
+                    require_once "../../controllers/cargos/cargos_obtener.php";
 
                     foreach($obtener as $row)
                     {
@@ -81,10 +80,10 @@
     </section>   
   </div>
     
-  <?php include 'includes/footer.php'; ?>
-  <?php include 'includes/cargos_modal.php'; ?>
+  <?php include '../includes/footer.php'; ?>
+  <?php include 'cargos_modal.php'; ?>
 </div>
-<?php include 'includes/scripts.php'; ?>
+<?php include '../includes/scripts.php'; ?>
 <script>
 $(function(){
   $('.edit').click(function(e){

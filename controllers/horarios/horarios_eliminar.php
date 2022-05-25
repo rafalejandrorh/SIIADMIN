@@ -1,6 +1,6 @@
 <?php 
-        include "../admin/includes/session.php";
-        require_once "../models/horarios_model.php";
+        require_once "../../config/conn.php";
+        require_once "../../models/horarios_model.php";
         $horarios = new horarios_model();
 
         if(isset($_POST['delete'])){
@@ -23,6 +23,6 @@
                 $_SESSION['error'] = 'Intenta eliminar el horario nuevamente';
         }
 
-        header('location: ../admin/horarios.php');
+        header('location: ../../admin/horarios/horarios.php');
 
 ?>
