@@ -54,6 +54,7 @@
                 </thead>
                 <tbody>
                   <?php
+                    require_once "../../config/conn.php";
                     require_once "../../controllers/empleados/empleados_obtener.php";
 
                     foreach($obtener as $row)

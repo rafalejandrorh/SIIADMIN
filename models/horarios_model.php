@@ -17,7 +17,7 @@ class horarios_model
     public function obtener_horarios()
     {
 
-        $sql = "SELECT * FROM horarios";
+        $sql = "SELECT * FROM horarios ORDER BY schedule_id ASC";
         $query = $this->db->query($sql);
         while($row = $query->fetch_assoc())
         {
