@@ -78,12 +78,12 @@
                     /*$sql = "SELECT *, SUM(amount) as total_amount FROM deducciones";
                     $query = $conn->query($sql);
                     $drow = $query->fetch_assoc();
-                    $deduction = $drow['total_amount'];
+                  **$deduction = $drow['total_amount'];
 
                     $sql2 = "SELECT *, SUM(amount) as total_amount2 FROM deducciones2";
                     $query2 = $conn->query($sql2);
                     $drow2 = $query2->fetch_assoc();
-                    $deduction2 = $drow2['total_amount2']; 
+                  **$deduction2 = $drow2['total_amount2']; 
                     
                     $to = date('Y-m-d');
                     $from = date('Y-m-d', strtotime('-30 day', strtotime($to)));
@@ -95,7 +95,7 @@
                       $to = date('Y-m-d', strtotime($ex[1]));
                     }
 
-                    $sql = "SELECT *, SUM(num_hr) AS total_hr, asistencia.employee_id AS empid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' GROUP BY asistencia.employee_id ORDER BY empleados.lastname ASC, empleados.firstname ASC";
+                    LISTO $sql = "SELECT *, SUM(num_hr) AS total_hr, asistencia.employee_id AS empid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' GROUP BY asistencia.employee_id ORDER BY empleados.lastname ASC, empleados.firstname ASC";
 
                     $query = $conn->query($sql);
                     while($row = $query->fetch_assoc()){
@@ -106,7 +106,7 @@
                       $rsql = "SELECT *, rate_dolar FROM tasa_dolar";
                       $rquery = $conn->query($rsql);
                       $rate_dolar = $rquery->fetch_assoc();
-                      $dolarbcv = $rate_dolar['rate_dolar'];
+                    **$dolarbcv = $rate_dolar['rate_dolar'];
 
 
                       $string = file_get_contents("https://s3.amazonaws.com/dolartoday/data.json");
@@ -115,8 +115,8 @@
 
                       
                       $caquery = $conn->query($casql);
-                      $carow = $caquery->fetch_assoc();
-                      $cashadvance = $carow['cashamount'];
+      LISTO HASTA ACA $carow = $caquery->fetch_assoc();
+                  **  $cashadvance = $carow['cashamount'];
 
                       $gross = $row['rate'] * $row['total_hr'];
                       $mensualgross = ($gross * 12)/52;
@@ -142,25 +142,21 @@
                       // $bs = Representación del monto neto a pagar para cada empleado en Bs.D
 
                       //Prueba
-                      include '../../controllers/nomina/nomina_obtener.php';
-                      
-                      $i=0;
-                      while ($i<count($obtener)) {
+                      require_once "../../controllers/pdf/nomina_obtener.php";
 
                       echo "
                         <tr>
-                          <td>".$obtener[$i]['lastname'].", ".$obtener[$i]['firstname']."</td>
-                          <td>".$prueba."</td>
-                          <td>".'$ '.number_format($obtener[$i]['total_hr'] * $obtener[$i]['rate'], 2)."</td>
-                          <td>".'$ '.number_format(@$deductionley, 2)."</td>
-                          <td>".'$ '.number_format(@$cashadvance, 2)."</td>
-                          <td>".'$ '.number_format(1,2)." = ".'Bs '.number_format(@$dolarbcv,2)."</td>
-                          <td>".'$ '.number_format(@$net, 2)."</td>
-                          <td>".'Bs.D '.number_format(@$bs, 2)."</td> 
+                          <td>".$row['lastname'].", ".$row['firstname']."</td>
+                          <td>".$row['employee_id']."</td>
+                          <td>".'$ '.number_format($gross, 2)."</td>
+                          <td>".'$ '.number_format($deductionley, 2)."</td>
+                          <td>".'$ '.number_format($deductionefectivo, 2)."</td>
+                          <td>".'$ '.number_format(1,2)." = ".'Bs '.number_format($dolarbcv,2)."</td>
+                          <td>".'$ '.number_format($net, 2)."</td>
+                          <td>".'Bs.D '.number_format($bs, 2)."</td> 
                         </tr>
                       ";
-                      $i++;
-                    }
+                    
                   ?>
                 </tbody>
               </table>

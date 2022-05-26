@@ -6,7 +6,9 @@
   <?php include '../includes/navbar.php'; ?>
   <?php include '../includes/menubar.php'; ?>
 
+
   <div class="content-wrapper">
+
     <section class="content-header">
     <h1><b>Lista de Empleados</b></h1>
       <ol class="breadcrumb">
@@ -14,13 +16,14 @@
         <li class="active">Lista de Empleados</li>
       </ol>
     </section>
+
     <section class="content">
       <?php
         if(isset($_SESSION['error'])){
           echo "
             <div class='alert alert-danger alert-dismissible'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4><i class='icon fa fa-warning'></i> Error!</h4>
+              <h4><i class='icon fa fa-warning'></i>¡Error!</h4>
               ".$_SESSION['error']."
             </div>
           ";
@@ -40,46 +43,41 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header with-border">
-               <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
+            <div class="box-header with-border">   
+              <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
                   <th>C.I</th>
-                  <th>Nombres</th>
-                  <th>Residencia</th>
-                  <th>Teléfonos</th>
+                  <th>Nombre</th>
                   <th>Cargo</th>
                   <th>Horarios</th>
+                  <th>Miembro Desde</th>
                   <th>Foto</th>
                   <th>Acción</th>
-                  <th>Más</th>
                 </thead>
                 <tbody>
                   <?php
                     require_once "../../controllers/empleados/empleados_obtener.php";
                     print_r($obtener);
                     foreach($obtener as $row)
-                    { 
-                      ?>
+                    {
+                      echo "
                         <tr>
-                          <td><?php echo $row['employee_id']; ?></td>
-                          <td><?php echo $row['firstname'].' '.$row['lastname']; ?></td>
-                          <td><?php echo $row['address']?></td>
-                          <td><?php echo $row['contact_info']?></td>
-                          <td><?php echo $row['description']; ?></td>
-                          <td><?php echo date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out'])); ?></td>
-                          <td><img src="<?php echo (!empty($row['photo']))? '../../images/'.$row['photo']:'../../images/profile.jpg'; ?>" width="30px" height="30px"> <a href="#edit_photo" data-toggle="modal" class="pull-right photo" data-id="<?php echo $row['id']; ?>"><span class="fa fa-edit"></span></a></td>
-                          <td>
-                            <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></button>
-                            <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button>
-                          </td>
-                          <td>
-                            <button class="btn btn-sm show btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-plus"></i></button>
+                          <td class='hidden'></td>
+                          <td>".$row['employee_id']."</td>
+                          <td>".$row['firstname'].' '.$row['lastname']."</td>
+                          <td>".$row['description']."</td>
+                          <td>".date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out']))."</td>
+                          <td>".date('M d, Y', strtotime($row['created_on']))."</td>
+                          <td><img src=".(!empty($row['photo']))? '../../images/'.$row['photo']:'../../images/profile.jpg'."</td> width='30px' height='30px'> <a href='#edit_photo' data-toggle='modal' class='pull-right photo' data-id=".$row['id']."><span class='fa fa-edit'></span></a></td>
+                          <td class='text-center'>
+                            <button class='btn btn-success btn-sm btn-flat edit' data-id='".$row['id']."'><i class='fa fa-edit'></i> Editar</button>
+                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['id']."'><i class='fa fa-trash'></i> Eliminar</button>
                           </td>
                         </tr>
-                      <?php
+                      ";
                     }
                   ?>
                 </tbody>
@@ -97,14 +95,6 @@
 <?php include '../includes/scripts.php'; ?>
 <script>
 $(function(){
-
-  $('.show').click(function(e){
-    e.preventDefault();
-    $('#show').modal('show');
-    var id = $(this).data('id');
-    getRow(id);
-  });
-
   $('.edit').click(function(e){
     e.preventDefault();
     $('#edit').modal('show');
@@ -119,12 +109,6 @@ $(function(){
     getRow(id);
   });
 
-  $('.photo').click(function(e){
-    e.preventDefault();
-    var id = $(this).data('id');
-    getRow(id);
-  });
-
 });
 
 function getRow(id){
@@ -134,20 +118,14 @@ function getRow(id){
     data: {id:id},
     dataType: 'json',
     success: function(response){
-      $('#id').val(response.id);
-      $('.del_employee_name').html(response.firstname+' '+response.lastname);
-      $('#employee_id').val(response.employee_id);
-      $('#del_employee_id').val(response.employee_id);
-      $('#photo_employee_id').val(response.employee_id);
+      $('#datepicker_edit').val(response.date);
+      $('#attendance_date').html(response.date);
+      $('#edit_time_in').val(response.time_in);
+      $('#edit_time_out').val(response.time_out);
+      $('#attid').val(response.attid);
       $('#employee_name').html(response.firstname+' '+response.lastname);
-      $('#edit_firstname').val(response.firstname);
-      $('#edit_lastname').val(response.lastname);
-      $('#edit_address').val(response.address);
-      $('#datepicker_edit').val(response.birthdate);
-      $('#edit_contact').val(response.contact_info);
-      $('#gender_val').html(response.gender);
-      $('#position_val').val(response.position_id).html(response.description);
-      $('#schedule_val').val(response.schedule_id).html(response.time_in+' - '+response.time_out);
+      $('#del_attid').val(response.attid);
+      $('#del_employee_name').html(response.firstname+' '+response.lastname);
     }
   });
 }

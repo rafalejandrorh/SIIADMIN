@@ -119,6 +119,92 @@
     </div>
 </div>
 
+<!-- MOSTRAR -->
+<div class="modal fade" id="edit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          	<div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              		<span aria-hidden="true">&times;</span></button>
+            	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
+          	</div>
+          	<div class="modal-body">
+            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados/empleados_editar.php">     		
+
+                <div class="form-group">
+                    <label for="edit_firstname" class="col-sm-3 control-label">Cédula</label>
+                    <div class="col-sm-9">                    
+                    <input type="text" class="form-control" name="id" id="employee_id" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit_firstname" class="col-sm-3 control-label">Nombre</label>
+
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="edit_firstname" name="firstname" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit_lastname" class="col-sm-3 control-label">Apellido</label>
+
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="edit_lastname" name="lastname" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit_address" class="col-sm-3 control-label">Dirección</label>
+
+                    <div class="col-sm-9">
+                      <textarea class="form-control" name="address" id="edit_address" readonly></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="datepicker_edit" class="col-sm-3 control-label">Fecha de Nacimiento</label>
+
+                    <div class="col-sm-9"> 
+                      <div class="date">
+                        <input type="text" class="form-control" id="datepicker_edit" name="birthdate" readonly>
+                      </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit_contact" class="col-sm-3 control-label">Información de Contacto</label>
+
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="edit_contact" name="contact" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit_gender" class="col-sm-3 control-label">Género</label>
+
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="edit_contact" name="gender" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit_position" class="col-sm-3 control-label">Cargo</label>
+
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="edit_contact" name="position" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit_schedule" class="col-sm-3 control-label">Horario</label>
+
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="edit_contact" name="schedule" readonly>
+                    </div>
+                </div>
+          	</div>
+          	<div class="modal-footer">
+            	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
+            	</form>
+          	</div>
+        </div>
+    </div>
+</div>
+
+
 <!-- EDITAR -->
 <div class="modal fade" id="edit">
     <div class="modal-dialog">

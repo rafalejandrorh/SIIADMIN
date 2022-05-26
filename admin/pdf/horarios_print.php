@@ -1,18 +1,15 @@
 <?php
-	include 'includes/session.php';
+	include '../includes/session.php';
 
-	function generateRow($conn){
+	function generateRow(){
 		$contents = '';
-		
-		$sql = "SELECT *, empleados.id AS empid FROM empleados LEFT JOIN horarios ON horarios.schedule_id=empleados.schedule_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id";
+		require_once "../../controllers/empleados/empleados_obtener.php";
+    foreach($obtener as $row){
 
-		$query = $conn->query($sql);
-		$total = 0;
-		while($row = $query->fetch_assoc()){
 			$contents .= "
 			<tr>
+        <td>".$row['employee_id']."</td>
 				<td>".$row['lastname'].", ".$row['firstname']."</td>
-				<td>".$row['employee_id']."</td>
         <td>".$row['description']."</td>
         <td>".'$ '.number_format($row['rate'], 2)."</td>
 				<td>".date('h:i A', strtotime($row['time_in'])).' - '. date('h:i A', strtotime($row['time_out']))."</td>
@@ -23,7 +20,7 @@
 		return $contents;
 	}
 
-	require_once('../tcpdf_min/tcpdf.php');  
+	require_once('../../tcpdf_min/tcpdf.php');  
     $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
     $pdf->SetCreator(PDF_CREATOR);  
     $pdf->SetTitle('Lista de Empleados');  
@@ -43,9 +40,9 @@
       	<h2 align="center">Lista de Empleados</h2>
         <h3 align="center">Horarios y Cargos</h3>
       	<table border="1" cellspacing="0" cellpadding="3">  
-           <tr>  
+           <tr>
+              <th width="20%" align="center"><b>Cédula de Identidad</b></th>  
            		<th width="20%" align="center"><b>Nombre Empleado</b></th>
-              <th width="20%" align="center"><b>Cédula de Identidad</b></th>
               <th width="20%" align="center"><b>Cargo</b></th>
               <th width="20%" align="center"><b>Sueldo por Hora</b></th>
 				      <th width="20%" align="center"><b>Horario</b></th> 

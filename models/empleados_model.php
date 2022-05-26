@@ -29,7 +29,7 @@ class empleados_model
     public function obtener_empleados()
     {
 
-        $sql = "SELECT *, empleados.id AS empid FROM empleados LEFT JOIN cargos ON cargos.position_id=empleados.position_id LEFT JOIN horarios ON horarios.schedule_id=empleados.schedule_id";
+        $sql = "SELECT * FROM empleados LEFT JOIN cargos ON cargos.position_id=empleados.position_id LEFT JOIN horarios ON horarios.schedule_id=empleados.schedule_id";
         $query = $this->db->query($sql);
         while($row = $query->fetch_assoc())
         {
