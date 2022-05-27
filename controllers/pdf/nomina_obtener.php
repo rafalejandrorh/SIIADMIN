@@ -14,6 +14,7 @@
         }
 
 
+        
         $horas_trabajadas = $nomina->obtener_nomina($from, $to);
         foreach($horas_trabajadas as $row){
 
@@ -22,6 +23,7 @@
                 
         
         };
+
 
 
         $avancefectivo = $nomina->avancefectivo($from, $to, $empid);
@@ -77,7 +79,16 @@
 
         print_r($horas_trabajadas);
 
+        /*$i=0;
 
+        while($i<count($horas_trabajadas)){
+
+
+                        $gross = $horas_trabajadas[$i]['rate'] * $horas_trabajadas[$i]['total_hr'];
+                        $empid = $horas_trabajadas[$i]['id'];
+                        
+                
+}*/
         // $avancefectivo = $nomina->obtener_efectivo($cedula);
 
 

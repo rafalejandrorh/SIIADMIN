@@ -58,9 +58,11 @@
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../../controllers/empleados/empleados_obtener.php";
-                    print_r($obtener);
-                    foreach($obtener as $row)
+                  require_once "../../config/conn.php";
+                  require_once "../../controllers/empleados/empleados_obtener.php";
+                  require_once "../../controllers/empleados/empleados_modal.php";
+
+                  foreach($obtener as $row)
                     { 
                       ?>
                         <tr>
@@ -148,6 +150,15 @@ function getRow(id){
       $('#gender_val').html(response.gender);
       $('#position_val').val(response.position_id).html(response.description);
       $('#schedule_val').val(response.schedule_id).html(response.time_in+' - '+response.time_out);
+      $('#show_id').val(response.employee_id);
+      $('#show_firstname').val(response.firstname);
+      $('#show_lastname').val(response.lastname);
+      $('#show_address').val(response.address);
+      $('#show_birthdate').val(response.birthdate);
+      $('#show_contact').val(response.contact_info);
+      $('#show_gender').val(response.gender);
+      $('#show_position').val(response.description);
+      $('#show_schedule').val(response.time_in+' - '+response.time_out);
     }
   });
 }

@@ -1,3 +1,4 @@
+<?php //include_once "../../controllers/empleados/empleados_modal_cargos.php"; ?>
 <!-- AÑADIR -->
 <div class="modal fade" id="addnew">
     <div class="modal-dialog">
@@ -64,17 +65,16 @@
                         <option value="Female">Mujer</option>
                       </select>
                     </div>
-                </div>
+                  </div>
                 <div class="form-group">
-                    <label for="position" class="col-sm-3 control-label">Cargo</label>
+                  <label for="position" class="col-sm-3 control-label">Cargo</label>
 
-                    <div class="col-sm-9">
-                      <select class="form-control" name="position" id="position" required>
-                        <option value="" selected>- Seleccionar -</option>
-                        <?php
-                          require_once "../../controllers/cargos/cargos_obtener.php";
+                  <div class="col-sm-9">
+                    <select class="form-control" name="position" id="position" required>
+                      <option value="" selected>- Seleccionar -</option>
+                      <?php
       
-                          foreach($obtener as $qrow)
+                          foreach($cargos as $qrow)
                           {
                             echo "
                               <option value='".$qrow['position_id']."'>".$qrow['description']."</option>
@@ -91,8 +91,7 @@
                       <select class="form-control" id="schedule" name="schedule" required>
                         <option value="" selected>- Seleccionar -</option>
                         <?php
-                          require_once "../../controllers/horarios/horarios_obtener.php";
-                          foreach($obtener as $rrow)
+                          foreach($horarios as $rrow)
                           {
                             echo "
                               <option value='".$rrow['schedule_id']."'>".$rrow['time_in'].' - '.$rrow['time_out']."</option>
@@ -120,7 +119,7 @@
 </div>
 
 <!-- MOSTRAR -->
-<div class="modal fade" id="edit">
+<div class="modal fade" id="show">
     <div class="modal-dialog">
         <div class="modal-content">
           	<div class="modal-header">
@@ -134,28 +133,28 @@
                 <div class="form-group">
                     <label for="edit_firstname" class="col-sm-3 control-label">Cédula</label>
                     <div class="col-sm-9">                    
-                    <input type="text" class="form-control" name="id" id="employee_id" readonly>
+                    <input type="text" class="form-control" id="show_id" readonly>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_firstname" class="col-sm-3 control-label">Nombre</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_firstname" name="firstname" readonly>
+                      <input type="text" class="form-control" id="show_firstname" readonly>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_lastname" class="col-sm-3 control-label">Apellido</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_lastname" name="lastname" readonly>
+                      <input type="text" class="form-control" id="show_lastname"  readonly>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_address" class="col-sm-3 control-label">Dirección</label>
 
                     <div class="col-sm-9">
-                      <textarea class="form-control" name="address" id="edit_address" readonly></textarea>
+                      <textarea class="form-control" id="show_address" readonly></textarea>
                     </div>
                 </div>
                 <div class="form-group">
@@ -163,7 +162,7 @@
 
                     <div class="col-sm-9"> 
                       <div class="date">
-                        <input type="text" class="form-control" id="datepicker_edit" name="birthdate" readonly>
+                        <input type="text" class="form-control" id="show_birthdate" readonly>
                       </div>
                     </div>
                 </div>
@@ -171,28 +170,28 @@
                     <label for="edit_contact" class="col-sm-3 control-label">Información de Contacto</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_contact" name="contact" readonly>
+                      <input type="text" class="form-control" id="show_contact" readonly>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_gender" class="col-sm-3 control-label">Género</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_contact" name="gender" readonly>
+                      <input type="text" class="form-control" id="show_gender" readonly>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_position" class="col-sm-3 control-label">Cargo</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_contact" name="position" readonly>
+                      <input type="text" class="form-control" id="show_position" readonly>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_schedule" class="col-sm-3 control-label">Horario</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_contact" name="schedule" readonly>
+                      <input type="text" class="form-control" id="show_schedule" readonly>
                     </div>
                 </div>
           	</div>
@@ -278,9 +277,8 @@
                       <select class="form-control" name="position" id="edit_position">
                         <option selected id="position_val"></option>
                         <?php
-                          require_once "../../controllers/cargos/cargos_obtener.php";
       
-                          foreach($obtener as $prow)
+                          foreach($cargos as $prow)
                           {
                             echo "
                               <option value='".$prow['position_id']."'>".$prow['description']."</option>
@@ -297,9 +295,8 @@
                       <select class="form-control" id="edit_schedule" name="schedule">
                         <option selected id="schedule_val"></option>
                         <?php
-                          require_once "../../controllers/horarios/horarios_obtener.php";
       
-                          foreach($obtener as $srow)
+                          foreach($horarios as $srow)
                           {
                             echo "
                               <option value='".$srow['schedule_id']."'>".$srow['time_in'].' - '.$srow['time_out']."</option>
