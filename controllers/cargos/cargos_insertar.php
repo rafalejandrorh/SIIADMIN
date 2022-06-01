@@ -25,6 +25,6 @@
             
         }
             
-            header('location: ../../admin/cargos/cargos.php');        
+            header('location: ../../admin/cargos/index.php');        
 
 ?>

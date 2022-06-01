@@ -27,6 +27,6 @@
 		$_SESSION['error'] = 'Intenta actualizar los horarios nuevamente';
 	}
 
-        header('location: ../../admin/horarios/horarios.php');
+        header('location: ../../admin/horarios/index.php');
 
 ?>

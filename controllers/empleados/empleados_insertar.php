@@ -51,6 +51,6 @@
 
                 }
             
-                header('location: ../../admin/empleados/empleados.php');
+                header('location: ../../admin/empleados/index.php');
                 
 ?>

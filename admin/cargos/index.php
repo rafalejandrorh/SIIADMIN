@@ -6,24 +6,24 @@
   <?php include '../includes/navbar.php'; ?>
   <?php include '../includes/menubar.php'; ?>
 
-
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-
+    <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1><b>Asistencia</b></h1>
+    <h1><b>Cargos</b></h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class=""></i> Administración</a></li>
-        <li class="active">Asistencia</li>
+        <li class="active">Cargos</li>
       </ol>
     </section>
-
+    <!-- Main content -->
     <section class="content">
       <?php
         if(isset($_SESSION['error'])){
           echo "
             <div class='alert alert-danger alert-dismissible'>
               <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4><i class='icon fa fa-warning'></i>¡Error!</h4>
+              <h4><i class='icon fa fa-warning'></i> Error!</h4>
               ".$_SESSION['error']."
             </div>
           ";
@@ -43,38 +43,30 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header with-border">   
+            <div class="box-header with-border">
               <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th class="hidden"></th>
-                  <th class="">Fecha</th>
-                  <th class="">C.I</th>
-                  <th class="">Nombre</th>
-                  <th class="">Hora Entrada</th>
-                  <th class="">Hora Salida</th>
-                  <th class="text-center">Acción</th>
+                  <th>Título del Cargo</th>
+                  <th>Sueldo por hora</th>
+                  <th>Acción</th>
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../../controllers/asistencia/asistencia_obtener.php";
+                    require_once "../../config/conn.php";
+                    require_once "../../controllers/cargos/cargos_obtener.php";
 
-                    foreach($obtener as $row)
+                    foreach($cargos as $row)
                     {
-                      $status = ($row['status'])?'<span class="label label-warning pull-right">a tiempo</span>':'<span class="label label-danger pull-right">tarde</span>';
                       echo "
                         <tr>
-                          <td class='hidden'></td>
-                          <td>".date('M d, Y', strtotime($row['date']))."</td>
-                          <td>".$row['empid']."</td>
-                          <td>".$row['firstname'].' '.$row['lastname']."</td>
-                          <td>".date('h:i A', strtotime($row['time_in'])).$status."</td>
-                          <td>".date('h:i A', strtotime($row['time_out']))."</td>
-                          <td class='text-center'>
-                            <button class='btn btn-success btn-sm btn-flat edit' data-id='".$row['attid']."'><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['attid']."'><i class='fa fa-trash'></i> Eliminar</button>
+                          <td>".$row['description']."</td>
+                          <td>".'$ '.number_format($row['rate'], 2)."</td>
+                          <td>
+                            <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['position_id']."'><i class='fa fa-edit'></i> Editar</button>
+                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['position_id']."'><i class='fa fa-trash'></i> Eliminar</button>
                           </td>
                         </tr>
                       ";
@@ -90,7 +82,7 @@
   </div>
     
   <?php include '../includes/footer.php'; ?>
-  <?php include 'asistencia_modal.php'; ?>
+  <?php include 'cargos_modal.php'; ?>
 </div>
 <?php include '../includes/scripts.php'; ?>
 <script>
@@ -108,24 +100,21 @@ $(function(){
     var id = $(this).data('id');
     getRow(id);
   });
-
 });
 
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'asistencia_row.php',
+    url: 'cargos_row.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){
-      $('#datepicker_edit').val(response.date);
-      $('#attendance_date').html(response.date);
-      $('#edit_time_in').val(response.time_in);
-      $('#edit_time_out').val(response.time_out);
-      $('#attid').val(response.attid);
-      $('#employee_name').html(response.firstname+' '+response.lastname);
-      $('#del_attid').val(response.attid);
-      $('#del_employee_name').html(response.firstname+' '+response.lastname);
+      $('#posid').val(response.position_id);
+      $('#edit_title').val(response.description);
+      $('#edit_rate').val(response.rate);
+      $('#edit_posid').val(response.position_id);
+      $('#del_posid').val(response.position_id);
+      $('#del_position').html(response.description);
     }
   });
 }

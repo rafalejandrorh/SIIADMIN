@@ -24,5 +24,5 @@
                     $_SESSION['error'] = 'Error, Intenta actualizar el tiempo extra nuevamente';
                 }
             
-                header('location: ../../admin/avancefectivo/avancefectivo.php');
+                header('location: ../../admin/avancefectivo/index.php');
 ?>

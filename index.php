@@ -13,7 +13,7 @@ include 'header.php'; ?>
   	<div class="login-box-body">
     	<h4 class="login-box-msg">Ingresa tu hora de entrada/salida</h4>
 
-    	<form action="http://localhost/Sistema-MVC/controllers/asistencia_empleado_insertar.php">
+    	<form action="http://localhost/Sistema-MVC/controllers/asistencia/asistencia_empleado_insertar.php">
           <div class="form-group">
             <select class="form-control" name="status">
               <option value="in">Hora de Entrada</option>

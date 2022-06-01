@@ -23,6 +23,6 @@
                 $_SESSION['error'] = 'Intenta eliminar el horario nuevamente';
         }
 
-        header('location: ../../admin/horarios/horarios.php');
+        header('location: ../../admin/horarios/index.php');
 
 ?>

@@ -44,7 +44,7 @@
           unset($_SESSION['success']);
         }
       ?>
-      <!--<div class="row">
+      <div class="row">
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
@@ -142,7 +142,7 @@
                       // $bs = Representación del monto neto a pagar para cada empleado en Bs.D
 
                       //Prueba
-                      require_once "../../controllers/pdf/nomina_obtener.php";
+                      require_once "../../controllers/nomina/nomina_obtener.php";
 
                       echo "
                         <tr>

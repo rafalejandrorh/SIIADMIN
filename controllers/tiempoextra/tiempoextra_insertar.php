@@ -27,6 +27,6 @@
             
         }
             
-            header('location: ../../admin/tiempoextra/tiempoextra.php');        
+            header('location: ../../admin/tiempoextra/index.php');        
 
 ?>

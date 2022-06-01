@@ -25,5 +25,5 @@
                     $_SESSION['error'] = 'Error, Intenta actualizar el cargo nuevamente';
                 }
             
-                header('location: ../../admin/cargos/cargos.php');
+                header('location: ../../admin/cargos/index.php');
 ?>

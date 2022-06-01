@@ -23,5 +23,5 @@
                     $_SESSION['error'] = 'Error, intenta nuevamente';
                 }
             
-                header('location: ../../admin/deducciones/deducciones.php');
+                header('location: ../../admin/deducciones/index.php');
 ?>

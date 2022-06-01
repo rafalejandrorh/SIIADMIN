@@ -23,5 +23,5 @@
                     $_SESSION['error'] = 'Seleccione la asistencia que desea eliminar';
                 }
             
-                header('location: ../../admin/asistencia/asistencia.php');
+                header('location: ../../admin/asistencia/index.php');
 ?>

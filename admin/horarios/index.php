@@ -8,10 +8,11 @@
 
   <div class="content-wrapper">
     <section class="content-header">
-    <h1><b>Empleados</b></h1>
+    <h1><b>Horarios</b></h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class=""></i> PDF</a></li>
-        <li class="active">Empleados</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li>Empleados</li>
+        <li class="active">Horarios</li>
       </ol>
     </section>
     <section class="content">
@@ -41,31 +42,30 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
-              <a href="horarios_print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+              <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th>C.I</th>
-                  <th>Nombre</th>
-                  <th>Cargo</th>
-                  <th>Sueldo por hora</th>
-                  <th>Horarios</th>
+                  <th>Hora de Entrada</th>
+                  <th>Hora de Salida</th>
+                  <th>Acción</th>
                 </thead>
                 <tbody>
                   <?php
                     require_once "../../config/conn.php";
-                    require_once "../../controllers/empleados/empleados_obtener.php";
+                    require_once "../../controllers/horarios/horarios_obtener.php";
 
-                    foreach($obtener as $row)
+                    foreach($horarios as $row)
                     {
                       echo "
                         <tr>
-                          <td>".$row['employee_id']."</td>
-                          <td>".$row['firstname'].' '.$row['lastname']."</td>
-                          <td>".$row['description']."</td>
-                          <td>".'$ '.number_format($row['rate'], 2)."</td>
-                          <td>".date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out']))."</td>
+                          <td>".date('h:i A', strtotime($row['time_in']))."</td>
+                          <td>".date('h:i A', strtotime($row['time_out']))."</td>
+                          <td>
+                            <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['schedule_id']."'><i class='fa fa-edit'></i> Editar</button>
+                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['schedule_id']."'><i class='fa fa-trash'></i> Eliminar</button>
+                          </td>
                         </tr>
                       ";
                     }
@@ -80,6 +80,7 @@
   </div>
     
   <?php include '../includes/footer.php'; ?>
+  <?php include 'horarios_modal.php'; ?>
 </div>
 <?php include '../includes/scripts.php'; ?>
 <script>
@@ -90,19 +91,27 @@ $(function(){
     var id = $(this).data('id');
     getRow(id);
   });
+
+  $('.delete').click(function(e){
+    e.preventDefault();
+    $('#delete').modal('show');
+    var id = $(this).data('id');
+    getRow(id);
+  });
 });
 
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'horarios_employee_row.php',
+    url: 'horarios_row.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){
-      $('.employee_name').html(response.firstname+' '+response.lastname);
-      $('#schedule_val').val(response.schedule_id);
-      $('#schedule_val').html(response.time_in+' '+response.time_out);
-      $('#empid').val(response.empid);
+      $('#edit_time_in').val(response.time_in);
+      $('#edit_time_out').val(response.time_out);
+      $('#edit_timeid').val(response.schedule_id);
+      $('#del_timeid').val(response.schedule_id);
+      $('#del_schedule').html(response.time_in+' - '+response.time_out);
     }
   });
 }

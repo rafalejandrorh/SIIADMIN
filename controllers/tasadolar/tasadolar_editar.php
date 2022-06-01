@@ -24,5 +24,5 @@
                     $_SESSION['error'] = 'Verifique que el monto sea correcto y vuelva a intentarlo';
                 }
             
-                header('location: ../../admin/tasadolar/tasa_dolar.php');
+                header('location: ../../admin/tasadolar/index.php');
 ?>

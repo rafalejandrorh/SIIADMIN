@@ -23,5 +23,5 @@
                     $_SESSION['error'] = 'Error, intenta nuevamente';
                 }
             
-                header('location: ../../admin/avancefectivo/avancefectivo.php');
+                header('location: ../../admin/avancefectivo/index.php');
 ?>

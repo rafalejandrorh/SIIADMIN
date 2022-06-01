@@ -25,5 +25,5 @@
                     $_SESSION['error'] = 'Error, Intenta actualizar la deducción nuevamente';
                 }
             
-                header('location: ../../admin/deducciones/deducciones.php');
+                header('location: ../../admin/deducciones/index.php');
 ?>

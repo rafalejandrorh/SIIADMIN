@@ -23,5 +23,5 @@
                     $_SESSION['error'] = 'Error, intenta eliminar el cargo nuevamente';
                 }
             
-                header('location: ../../admin/cargos/cargos.php');
+                header('location: ../../admin/cargos/index.php');
 ?>

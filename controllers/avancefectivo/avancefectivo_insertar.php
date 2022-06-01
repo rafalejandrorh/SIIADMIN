@@ -25,6 +25,6 @@
             
         }
             
-            header('location: ../../admin/avancefectivo/avancefectivo.php');        
+            header('location: ../../admin/avancefectivo/index.php');        
 
 ?>

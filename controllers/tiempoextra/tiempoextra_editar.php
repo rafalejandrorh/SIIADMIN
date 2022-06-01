@@ -26,5 +26,5 @@
                     $_SESSION['error'] = 'Error, Intenta actualizar el tiempo extra nuevamente';
                 }
             
-                header('location: ../../admin/tiempoextra/tiempoextra.php');
+                header('location: ../../admin/tiempoextra/index.php');
 ?>

@@ -29,5 +29,5 @@
                     
                 }
             
-          header('location: ../../admin/asistencia/asistencia.php');
+          header('location: ../../admin/asistencia/index.php');
 ?>

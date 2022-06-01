@@ -42,25 +42,30 @@
           <div class="box">
             <div class="box-header with-border">
                <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
+            <div class="pull-right">
+               <a href="../pdf/horarios_print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
             </div>
+              </div>
+          <div class="table-responsive">
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
                   <th>C.I</th>
-                  <th>Nombres</th>
-                  <th>Residencia</th>
-                  <th>Teléfonos</th>
+                  <th>Nombre Completo</th>
                   <th>Cargo</th>
-                  <th>Horarios</th>
+                  <th>Sueldo por Hora</th>
+                  <th>Horario</th>
+                  <th>Residencia</th>
+                  <th>Teléfono</th>
                   <th>Foto</th>
                   <th>Acción</th>
-                  <th>Más</th>
                 </thead>
                 <tbody>
                   <?php
                   require_once "../../config/conn.php";
                   require_once "../../controllers/empleados/empleados_obtener.php";
-                  require_once "../../controllers/empleados/empleados_modal.php";
+                  require_once "../../controllers/cargos/cargos_obtener.php";
+                  require_once "../../controllers/horarios/horarios_obtener.php";
 
                   foreach($obtener as $row)
                     { 
@@ -68,17 +73,15 @@
                         <tr>
                           <td><?php echo $row['employee_id']; ?></td>
                           <td><?php echo $row['firstname'].' '.$row['lastname']; ?></td>
-                          <td><?php echo $row['address']?></td>
-                          <td><?php echo $row['contact_info']?></td>
                           <td><?php echo $row['description']; ?></td>
+                          <td><?php echo '$'.number_format($row['rate'], 2)?></td>
                           <td><?php echo date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out'])); ?></td>
+                          <td><?php echo $row['address']; ?></td>
+                          <td><?php echo $row['contact_info']; ?></td>
                           <td><img src="<?php echo (!empty($row['photo']))? '../../images/'.$row['photo']:'../../images/profile.jpg'; ?>" width="30px" height="30px"> <a href="#edit_photo" data-toggle="modal" class="pull-right photo" data-id="<?php echo $row['id']; ?>"><span class="fa fa-edit"></span></a></td>
                           <td>
                             <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></button>
                             <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button>
-                          </td>
-                          <td>
-                            <button class="btn btn-sm show btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-plus"></i></button>
                           </td>
                         </tr>
                       <?php
@@ -87,6 +90,7 @@
                 </tbody>
               </table>
             </div>
+          </div>
           </div>
         </div>
       </div>

@@ -23,5 +23,5 @@
                     $_SESSION['error'] = 'Error, intenta nuevamente';
                 }
             
-                header('location: ../../admin/tiempoextra/tiempoextra.php');
+                header('location: ../../admin/tiempoextra/index.php');
 ?>

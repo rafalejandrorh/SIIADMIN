@@ -31,5 +31,5 @@
                     $_SESSION['error'] = 'Error, intenta nuevamente';
                 }
             
-                header('location: ../../admin/empleados/empleados.php');
+                header('location: ../../admin/empleados/index.php');
 ?>

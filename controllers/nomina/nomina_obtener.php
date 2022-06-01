@@ -14,28 +14,25 @@
         }
 
 
-        
+        //Obtiene los Empleados, sus horas trabajadas y el monto a cobrar
+        //por esas horas
         $horas_trabajadas = $nomina->obtener_nomina($from, $to);
         foreach($horas_trabajadas as $row){
 
                 $gross = $row['rate'] * $row['total_hr'];
-                $empid = $row['id'];
-                
-        
+                $empid = $row['id'];   
         };
 
 
-
+        //Obtiene el efectivo prestado al empleado
         $avancefectivo = $nomina->avancefectivo($from, $to, $empid);
         foreach($avancefectivo as $deducrow){
 
-                $deductionefectivo = $deducrow['cashamount'];
-                
+                $deductionefectivo = $deducrow['cashamount'];    
         };
 
 
-
-
+        //Se obtiene el monto para calcular la deduccion a cada sueldo
         $deducciones = $nomina->deducciones();
         foreach($deducciones as $drow){
 
@@ -47,7 +44,7 @@
         $faovsso = $percentdeduction * 5;
 
 
-
+        //Se obtiene el monto para calcular la deduccion a cada sueldo
         $deducciones2 = $nomina->deducciones2();
         foreach($deducciones2 as $drow2){
 
@@ -55,7 +52,6 @@
         };
         //Cálculo de Paro Forzoso
         $paroforzoso = $gross * $deduction2;
-
 
 
         //Suma de deducciones por ley
@@ -68,7 +64,7 @@
         $net = $gross - $total_deduction;
 
 
-        
+        //Se obtiene la tasa del dolar para calcular el sueldo en Bs.D
         $tasadolar = $nomina->tasadolar();
         foreach($tasadolar as $dolrow){
 
@@ -78,18 +74,6 @@
         $bs = $dolarbcv * $net;
 
         print_r($horas_trabajadas);
-
-        /*$i=0;
-
-        while($i<count($horas_trabajadas)){
-
-
-                        $gross = $horas_trabajadas[$i]['rate'] * $horas_trabajadas[$i]['total_hr'];
-                        $empid = $horas_trabajadas[$i]['id'];
-                        
-                
-}*/
-        // $avancefectivo = $nomina->obtener_efectivo($cedula);
 
 
 ?>

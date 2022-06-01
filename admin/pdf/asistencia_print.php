@@ -13,8 +13,8 @@
         <td>".date('M d, Y', strtotime($row['date']))."</td>
         <td>".$row['employee_id']."</td>
 				<td>".$row['lastname'].", ".$row['firstname']."</td>
-        <td>".date('h:i A', strtotime($row['time_in'])).' - '. date('h:i A', strtotime($row['time_out'])).$status."</td>
         <td>".$row['description']."</td>
+        <td>".date('h:i A', strtotime($row['time_in'])).' - '. date('h:i A', strtotime($row['time_out'])).$status."</td>
 			</tr>
     ";
 		}
@@ -45,10 +45,8 @@
                 <th width="20%" align="center"><b>Fecha</b></th>
            		  <th width="20%" align="center"><b>Cédula de Identidad</b></th>
                 <th width="20%" align="center"><b>Nombre Empleado</b></th>
-                <th width="20%" align="center"><b>Hora de Asistencia</b></th>
                 <th width="20%" align="center"><b>Cargo</b></th> 
-                
-				        
+                <th width="20%" align="center"><b>Hora de Asistencia</b></th>  
            </tr>
       ';  
     $content .= generateRow($conn); 

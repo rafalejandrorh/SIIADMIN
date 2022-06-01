@@ -61,8 +61,8 @@
                     <div class="col-sm-9"> 
                       <select class="form-control" name="gender" id="gender" required>
                         <option value="" selected>- Seleccionar -</option>
-                        <option value="Male">Hombre</option>
-                        <option value="Female">Mujer</option>
+                        <option value="Masculino">Hombre</option>
+                        <option value="Femenino">Mujer</option>
                       </select>
                     </div>
                   </div>
@@ -73,7 +73,6 @@
                     <select class="form-control" name="position" id="position" required>
                       <option value="" selected>- Seleccionar -</option>
                       <?php
-      
                           foreach($cargos as $qrow)
                           {
                             echo "
@@ -265,8 +264,8 @@
                     <div class="col-sm-9"> 
                       <select class="form-control" name="gender" id="edit_gender">
                         <option selected id="gender_val"></option>
-                        <option value="Hombre">Hombre</option>
-                        <option value="Mujer">Mujer</option>
+                        <option value="Masculino">Hombre</option>
+                        <option value="Femenino">Mujer</option>
                       </select>
                     </div>
                 </div>

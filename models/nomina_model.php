@@ -27,7 +27,7 @@ class nomina_model
 
         return $this->nomina;
 
-}
+    }
 
 public function avancefectivo($from, $to, $empid)
     {
@@ -40,7 +40,7 @@ public function avancefectivo($from, $to, $empid)
 
             return $this->avancefectivo;
 
-}
+    }
 
 public function deducciones()
     {
@@ -53,7 +53,7 @@ public function deducciones()
 
         return $this->deducciones;
 
-}
+    }
 
 public function deducciones2()
     {
@@ -68,7 +68,7 @@ public function deducciones2()
 
         return $this->deducciones2;
 
-}
+    }
 
 public function tasadolar()
     {
@@ -81,7 +81,7 @@ public function tasadolar()
 
         return $this->tasadolar;
 
-}
+    }
 
 }
 ?>
