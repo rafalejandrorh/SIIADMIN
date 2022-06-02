@@ -3,14 +3,19 @@
 
 	function generateRow(){
 		$contents = '';
-    require_once "../../config/conn.php";
-		require_once "../../controllers/horarios/horarios_obtener.php";
-    foreach($horarios as $row){
-
+		require_once "../../controllers/tiempoextra/tiempoextra_obtener.php";
+    foreach($obtener as $row)
+    {
+      $gross = $row['rate'] * $row['hours'];
+      
 			$contents .= "
 			<tr>
-        <td>".date('h:i A', strtotime($row['time_in']))."</td>
-        <td>".date('h:i A', strtotime($row['time_out']))."</td>
+        <td>".date('M d, Y', strtotime($row['date_overtime']))."</td>
+        <td>".$row['employee_id']."</td>
+        <td>".$row['firstname'].' '.$row['lastname']."</td>
+        <td>".$row['hours']."</td>
+        <td>".'$ '.$row['rate']."</td>
+        <td>".'$ '.number_format($gross, 2)."</td>
 			</tr>
 			";
 		}
@@ -35,16 +40,20 @@
     $pdf->AddPage();  
     $content = '';  
     $content .= '
-      	<h2 align="center">Horarios</h2>
+      	<h2 align="center">Tiempo Extra de Empleados</h2>
       	<table border="1" cellspacing="0" cellpadding="3">  
            <tr>
-            <th>Hora de Entrada</th>
-            <th>Hora de Salida</th>
+              <th width="16%">Fecha</th>
+              <th width="16%">Cédula de Identidad</th>
+              <th width="16%">Nombre</th>
+              <th width="16%">No. de Horas</th>
+              <th width="16%">Monto de Hora</th>
+              <th width="16%">Pago Total de Horas extra</th>
            </tr>  
       ';  
     $content .= generateRow($conn); 
     $content .= '</table>';  
     $pdf->writeHTML($content);  
-    $pdf->Output('Horarios.pdf', 'I');
+    $pdf->Output('Tiempo Extra de Empleados.pdf', 'I');
 
 ?>

@@ -13,7 +13,7 @@ include 'header.php'; ?>
   	<div class="login-box-body">
     	<h4 class="login-box-msg">Ingresa tu hora de entrada/salida</h4>
 
-    	<form action="http://localhost/Sistema-MVC/controllers/asistencia/asistencia_empleado_insertar.php">
+    	<form id="attendance">
           <div class="form-group">
             <select class="form-control" name="status">
               <option value="in">Hora de Entrada</option>
@@ -32,13 +32,13 @@ include 'header.php'; ?>
         		</div>
 
             <div class="col-xs-6">
-            <a href="admin/index.php"><button type="button" class="btn btn-primary btn-block btn-flat" name="signin"><i class="fa fa-user"></i> Administrador</button></a>
+            <a href="admin/index.php"><button type="button" class="btn btn-primary btn-block btn-flat"><i class="fa fa-user"></i> Administrador</button></a>
         		</div>
           </div>
             </form>		
         </div>
       <?php
-        if(isset($_SESSION['error'])){
+        /*if(isset($_SESSION['error'])){
           echo "
             <div class='callout callout-danger text-center mt20'>
               <p>".$_SESSION['error']."</p>
@@ -53,8 +53,18 @@ include 'header.php'; ?>
             </div>
           ";
           unset($_SESSION['messages']);
-        }
-      ?>
+        }*/
+        ?>
+
+        <div class="alert alert-success alert-dismissible mt20 text-center" style="display:none;">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <span class="result"><i class="icon fa fa-check"></i> <span class="message"></span></span>
+    </div>
+		<div class="alert alert-danger alert-dismissible mt20 text-center" style="display:none;">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <span class="result"><i class="icon fa fa-warning"></i> <span class="message"></span></span>
+    </div>
+      
 	
 <?php include 'scripts.php' ?>
 
@@ -65,7 +75,32 @@ $(function() {
     $('#date').html(momentNow.format('dddd').substring(0,3).toUpperCase() + ' - ' + momentNow.format('MMMM DD, YYYY'));  
     $('#time').html(momentNow.format('hh:mm:ss A'));
   }, 100);
-    
+  
+$('#attendance').submit(function(e){
+    e.preventDefault();
+    var attendance = $(this).serialize();
+    $.ajax({
+      type: 'POST',
+      url: 'asistencia_empleado_insertar.php',
+      data: attendance,
+      dataType: 'json',
+      success: function(response){
+        if(response.error){
+          $('.alert').hide();
+          $('.alert-danger').show();
+          $('.message').html(response.message);
+        }
+        else{
+          $('.alert').hide();
+          $('.alert-success').show();
+          $('.message').html(response.message);
+          $('#employee').val('');
+          
+        }
+      }
+    });
+  });
+
 });
 </script>
 

@@ -42,9 +42,9 @@
           <div class="box">
             <div class="box-header with-border">
                <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
-            <div class="pull-right">
-               <a href="../pdf/horarios_print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
-            </div>
+              <div class="pull-right">
+                <a href="../pdf/empleados_print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+              </div>
               </div>
           <div class="table-responsive">
             <div class="box-body">
@@ -84,9 +84,7 @@
                             <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button>
                           </td>
                         </tr>
-                      <?php
-                    }
-                  ?>
+                      <?php } ?>
                 </tbody>
               </table>
             </div>

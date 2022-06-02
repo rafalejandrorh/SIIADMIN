@@ -52,15 +52,13 @@
                     require_once "../../controllers/tasadolar/tasadolar_obtener.php";
 
                     foreach($obtener as $row){
-                      echo "
+                      ?>
                         <tr>
                           <td class='hidden'></td>
-                          <td>".'$ 1.00'." = ".'Bs '.$row["rate_dolar"]."</td> 
+                          <td><?php echo '$ 1.00'." = ".'Bs '.$row["rate_dolar"]?></td> 
                           <td><button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Editar</button></td>
                         </tr>
-                      ";
-                    }
-                  ?>
+                      <?php }?>
                 </tbody>
               </table>
             </div>

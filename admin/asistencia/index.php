@@ -1,14 +1,18 @@
-<?php include '../includes/session.php'; ?>
-<?php include '../includes/header.php'; ?>
+<?php include '../includes/session.php'; 
+      include '../includes/header.php'; 
+?>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  <?php include '../includes/navbar.php'; ?>
-  <?php include '../includes/menubar.php'; ?>
-
+<?php include '../includes/navbar.php'; 
+      include '../includes/menubar.php'; 
+      include '../includes/timezone.php';
+  $range_to = date('m/d/Y');
+  $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
+?>
 
   <div class="content-wrapper">
-
     <section class="content-header">
       <h1><b>Asistencia</b></h1>
       <ol class="breadcrumb">
@@ -46,7 +50,15 @@
             <div class="box-header with-border">   
               <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
               <div class="pull-right">
-              <a href="../pdf/asistencia_print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+              <form method="POST" class="form-inline" id="asistForm">
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                      <i class="fa fa-calendar"></i>
+                    </div>
+                    <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range" value="<?php echo (isset($_GET['range'])) ? $_GET['range'] : $range_from.' - '.$range_to; ?>">
+                  </div>
+                    <a href="../pdf/asistencia_print.php" class="btn btn-success btn-sm btn-flat" id="asistencia"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+              </form>
               </div>
             </div>
             <div class="box-body">
@@ -59,6 +71,7 @@
                   <th class="">Cargo</th>
                   <th class="">Hora Entrada</th>
                   <th class="">Hora Salida</th>
+                  <th class="">Horas Trabajadas</th>
                   <th class="text-center">Acción</th>
                 </thead>
                 <tbody>
@@ -68,23 +81,22 @@
                     foreach($obtener as $row)
                     {
                       $status = ($row['status'])?'<span class="label label-warning pull-right">a tiempo</span>':'<span class="label label-danger pull-right">tarde</span>';
-                      echo "
+                      ?>
                         <tr>
                           <td class='hidden'></td>
-                          <td>".date('M d, Y', strtotime($row['date']))."</td>
-                          <td>".$row['empid']."</td>
-                          <td>".$row['firstname'].' '.$row['lastname']."</td>
-                          <td>".$row['description']."</td>
-                          <td>".date('h:i A', strtotime($row['time_in'])).$status."</td>
-                          <td>".date('h:i A', strtotime($row['time_out']))."</td>
+                          <td><?php echo date('M d, Y', strtotime($row['date']))?></td>
+                          <td><?php echo $row['empid']?></td>
+                          <td><?php echo $row['firstname'].' '.$row['lastname']?></td>
+                          <td><?php echo $row['description']?></td>
+                          <td><?php echo date('h:i A', strtotime($row['time_in'])).$status?></td>
+                          <td><?php echo date('h:i A', strtotime($row['time_out']))?></td>
+                          <td><?php echo number_format($row['num_hr'],1)?></td>
                           <td class='text-center'>
-                            <button class='btn btn-success btn-sm btn-flat edit' data-id='".$row['attid']."'><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='".$row['attid']."'><i class='fa fa-trash'></i> Eliminar</button>
+                            <button class='btn btn-success btn-sm btn-flat edit' data-id='<?php echo $row['attid']?>'><i class='fa fa-edit'></i> Editar</button>
+                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='<?php echo $row['attid']?>'><i class='fa fa-trash'></i> Eliminar</button>
                           </td>
                         </tr>
-                      ";
-                    }
-                  ?>
+                      <?php } ?>
                 </tbody>
               </table>
             </div>
@@ -112,6 +124,17 @@ $(function(){
     $('#delete').modal('show');
     var id = $(this).data('id');
     getRow(id);
+  });
+
+  $("#reservation").on('change', function(){
+    var range = encodeURI($(this).val());
+    window.location = 'index.php?range='+range;
+  });
+
+  $('#asistencia').click(function(e){
+    e.preventDefault();
+    $('#asistForm').attr('action', 'asistencia_print.php');
+    $('#asistForm').submit();
   });
 
 });

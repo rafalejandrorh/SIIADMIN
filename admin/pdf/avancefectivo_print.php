@@ -3,14 +3,15 @@
 
 	function generateRow(){
 		$contents = '';
-    require_once "../../config/conn.php";
-		require_once "../../controllers/horarios/horarios_obtener.php";
-    foreach($horarios as $row){
+		require_once "../../controllers/avancefectivo/avancefectivo_obtener.php";
+    foreach($obtener as $row){
 
 			$contents .= "
 			<tr>
-        <td>".date('h:i A', strtotime($row['time_in']))."</td>
-        <td>".date('h:i A', strtotime($row['time_out']))."</td>
+        <td>".date('M d, Y', strtotime($row['date_advance']))."</td>
+        <td>".$row['empid']."</td> 
+        <td>".$row['firstname'].' '.$row['lastname']."</td> 
+        <td>".'$ '.number_format($row['amount'], 2)."</td>
 			</tr>
 			";
 		}
@@ -35,16 +36,18 @@
     $pdf->AddPage();  
     $content = '';  
     $content .= '
-      	<h2 align="center">Horarios</h2>
+      	<h2 align="center">Lista de Empleados</h2>
       	<table border="1" cellspacing="0" cellpadding="3">  
            <tr>
-            <th>Hora de Entrada</th>
-            <th>Hora de Salida</th>
+            <th width="25%">Fecha</th>
+            <th width="25%">Cédula de Identidad</th>
+            <th width="25%">Nombre</th>
+            <th width="25%">Monto</th>
            </tr>  
       ';  
     $content .= generateRow($conn); 
     $content .= '</table>';  
     $pdf->writeHTML($content);  
-    $pdf->Output('Horarios.pdf', 'I');
+    $pdf->Output('Horario de Empleados.pdf', 'I');
 
 ?>

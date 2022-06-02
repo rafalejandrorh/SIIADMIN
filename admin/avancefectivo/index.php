@@ -43,6 +43,9 @@
           <div class="box">
             <div class="box-header with-border">
               <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
+              <div class="pull-right">
+               <a href="../pdf/avancefectivo_print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+            </div>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered">
@@ -59,21 +62,19 @@
                     require_once "../../controllers/avancefectivo/avancefectivo_obtener.php";
 
                     foreach($obtener as $row){
-                      echo "
+                      ?>
                         <tr>
                           <td class='hidden'></td>
-                          <td>".date('M d, Y', strtotime($row['date_advance']))."</td>
-                          <td>".$row['empid']."</td>
-                          <td>".$row['firstname'].' '.$row['lastname']."</td>
-                          <td>".'$ '.number_format($row['amount'], 2)."</td>
+                          <td><?php echo date('M d, Y', strtotime($row['date_advance']))?></td>
+                          <td><?php echo $row['empid']?></td>
+                          <td><?php echo $row['firstname'].' '.$row['lastname']?></td>
+                          <td><?php echo '$ '.number_format($row['amount'], 2)?></td>
                           <td>
-                            <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['caid']."'><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['caid']."'><i class='fa fa-trash'></i> Eliminar</button>
+                            <button class='btn btn-success btn-sm edit btn-flat' data-id='<?php echo $row['caid']?>'><i class='fa fa-edit'></i> Editar</button>
+                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='<?php echo $row['caid']?>'><i class='fa fa-trash'></i> Eliminar</button>
                           </td>
                         </tr>
-                      ";
-                    }
-                  ?>
+                      <?php } ?>
                 </tbody>
               </table>
             </div>

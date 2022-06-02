@@ -3,15 +3,20 @@
         require_once "../../models/nomina_model.php";
         $nomina = new nomina_model();
 
-        $to = date('Y-m-d');
-        $from = date('Y-m-d', strtotime('-30 day', strtotime($to)));
+        $row = ['firstname' => 'Sin Registros', 'lastname' => '', 'employee_id' => 'N/A'];
+        $horas_trabajadas = [];
+        $gross = 0;
+        $deductionley = 0;
+        $deductionefectivo = 0;
+        $dolarbcv = 0;
+        $net = 0;
+        $bs = 0;
 
         if(isset($_GET['range'])){
         $range = $_GET['range'];
         $ex = explode(' - ', $range);
         $from = date('Y-m-d', strtotime($ex[0]));
         $to = date('Y-m-d', strtotime($ex[1]));
-        }
 
 
         //Obtiene los Empleados, sus horas trabajadas y el monto a cobrar
@@ -73,7 +78,7 @@
         //Cálculo de Sueldo en Dólares
         $bs = $dolarbcv * $net;
 
+}
+
         print_r($horas_trabajadas);
-
-
 ?>

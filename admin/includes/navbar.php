@@ -1,5 +1,5 @@
 <header class="main-header">
-    <a href="home.php" class="logo">
+    <a href="http://localhost/Sistema-MVC/admin/home.php" class="logo">
       <span class="logo-mini"><b>AN</b></span>
       <span class="logo-lg"><b>Asistencia y Nómina</b></span>
     </a>

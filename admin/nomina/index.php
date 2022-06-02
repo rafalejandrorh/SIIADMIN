@@ -144,20 +144,18 @@
                       //Prueba
                       require_once "../../controllers/nomina/nomina_obtener.php";
 
-                      echo "
+                      ?>
                         <tr>
-                          <td>".$row['lastname'].", ".$row['firstname']."</td>
-                          <td>".$row['employee_id']."</td>
-                          <td>".'$ '.number_format($gross, 2)."</td>
-                          <td>".'$ '.number_format($deductionley, 2)."</td>
-                          <td>".'$ '.number_format($deductionefectivo, 2)."</td>
-                          <td>".'$ '.number_format(1,2)." = ".'Bs '.number_format($dolarbcv,2)."</td>
-                          <td>".'$ '.number_format($net, 2)."</td>
-                          <td>".'Bs.D '.number_format($bs, 2)."</td> 
+                          <td><?php echo $row['lastname']." ".$row['firstname']?></td>
+                          <td><?php echo $row['employee_id']?></td>
+                          <td><?php echo '$ '.number_format($gross, 2)?></td>
+                          <td><?php echo '$ '.number_format($deductionley, 2)?></td>
+                          <td><?php echo '$ '.number_format($deductionefectivo, 2)?></td>
+                          <td><?php echo '$ '.number_format(1,2)." = Bs ".number_format($dolarbcv,2)?></td>
+                          <td><?php echo '$ '.number_format($net, 2)?></td>
+                          <td><?php echo 'Bs.D '.number_format($bs, 2)?></td> 
                         </tr>
-                      ";
-                    
-                  ?>
+                      <?php ?>
                 </tbody>
               </table>
             </div>
@@ -188,7 +186,7 @@ $(function(){
 
   $("#reservation").on('change', function(){
     var range = encodeURI($(this).val());
-    window.location = 'nomina.php?range='+range;
+    window.location = 'index.php?range='+range;
   });
 
   $('#payroll').click(function(e){
@@ -204,23 +202,6 @@ $(function(){
   });
 
 });
-
-function getRow(id){
-  $.ajax({
-    type: 'POST',
-    url: 'cargos_row.php',
-    data: {id:id},
-    dataType: 'json',
-    success: function(response){
-      $('#posid').val(response.id);
-      $('#edit_title').val(response.description);
-      $('#edit_rate').val(response.rate);
-      $('#del_posid').val(response.id);
-      $('#del_position').html(response.description);
-    }
-  });
-}
-
 
 </script>
 </body>

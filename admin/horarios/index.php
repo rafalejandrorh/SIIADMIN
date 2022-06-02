@@ -43,6 +43,9 @@
           <div class="box">
             <div class="box-header with-border">
               <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
+              <div class="pull-right">
+               <a href="../pdf/horarios_print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+            </div>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered">
@@ -58,18 +61,16 @@
 
                     foreach($horarios as $row)
                     {
-                      echo "
+                      ?>
                         <tr>
-                          <td>".date('h:i A', strtotime($row['time_in']))."</td>
-                          <td>".date('h:i A', strtotime($row['time_out']))."</td>
+                          <td><?php echo date('h:i A', strtotime($row['time_in']))?></td>
+                          <td><?php echo date('h:i A', strtotime($row['time_out']))?></td>
                           <td>
-                            <button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['schedule_id']."'><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='".$row['schedule_id']."'><i class='fa fa-trash'></i> Eliminar</button>
+                            <button class='btn btn-success btn-sm edit btn-flat' data-id='<?php echo $row['schedule_id']?>'><i class='fa fa-edit'></i> Editar</button>
+                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='<?php echo $row['schedule_id']?>'><i class='fa fa-trash'></i> Eliminar</button>
                           </td>
                         </tr>
-                      ";
-                    }
-                  ?>
+                      <?php } ?>
                 </tbody>
               </table>
             </div>

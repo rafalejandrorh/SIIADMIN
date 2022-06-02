@@ -11,7 +11,7 @@
             $time_out = $_POST['time_out'];
             $time_out = date('H:i:s', strtotime($time_out));
                     
-            $buscarempleado = $asistencia-> insertar_asistencia($employee, $date, $time_in, $time_out);
+            $buscarempleado = $asistencia->insertar_asistencia($employee, $date, $time_in, $time_out);
 
             if(isset($_SESSION['error'])){
 

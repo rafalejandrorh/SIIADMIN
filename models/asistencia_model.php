@@ -1,5 +1,6 @@
 <?php 
 
+
 class asistencia_model 
 {
 
@@ -67,10 +68,10 @@ class asistencia_model
     }
 
 
-    public function obtener_asistencia()
+    public function obtener_asistencia($from, $to)
     {
 		
-        $sql = "SELECT *, empleados.employee_id AS empid, asistencia.id AS attid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id ORDER BY asistencia.date DESC, asistencia.time_in DESC";
+        $sql = "SELECT *, empleados.employee_id AS empid, asistencia.id AS attid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' GROUP BY asistencia.employee_id ORDER BY asistencia.date DESC, asistencia.time_in DESC";
         $query = $this->db->query($sql);
         while($row = $query->fetch_assoc())
         {
@@ -83,10 +84,8 @@ class asistencia_model
 
     }
 
-	public function insertar_asistencia_empleado($employee, $status)
+	public function insertar_asistencia_empleado($employee, $status, $date_now)
     {
-
-		include '../timezone.php';
 
 		$sql = "SELECT * FROM empleados WHERE employee_id = '$employee'";
 		$query = $this->db->query($sql);
@@ -95,13 +94,11 @@ class asistencia_model
 			$row = $query->fetch_assoc();
 			$id = $row['id'];
 
-			$date_now = date('Y-m-d');
-
 			if($status == 'in'){
 				$sql = "SELECT * FROM asistencia WHERE employee_id = '$id' AND date = '$date_now' AND time_in IS NOT NULL";
 				$query = $this->db->query($sql);
 				if($query->num_rows > 0){
-					$_SESSION['messages'] = 'Ya registraste tu entrada hoy';
+					$_SESSION['success'] = 'Ya registraste tu entrada hoy';
 				}
 				else{
 					
@@ -114,7 +111,7 @@ class asistencia_model
 					
 					$sql = "INSERT INTO asistencia (employee_id, date, time_in, status) VALUES ('$id', '$date_now', NOW(), '$logstatus')";
 					if($this->db->query($sql)){
-						$_SESSION['messages'] = 'Llegada: '.$row['firstname'].' '.$row['lastname'];
+						$_SESSION['success'] = 'Llegada: '.$row['firstname'].' '.$row['lastname'];
 					}
 					else{
 						$_SESSION['error'] = 'error 1';
@@ -130,13 +127,13 @@ class asistencia_model
 				else{
 					$row = $query->fetch_assoc();
 					if($row['time_out'] != '00:00:00'){
-						$_SESSION['messages'] = 'Has registrado tu salida satisfactoriamente por el día de hoy';
+						$_SESSION['success'] = 'Has registrado tu salida satisfactoriamente por el día de hoy';
 					}
 					else{
 						
 						$sql = "UPDATE asistencia SET time_out = NOW() WHERE id = '".$row['aid']."'";
 						if($this->db->query($sql)){
-							$_SESSION['messages'] = 'Salida: '.$row['firstname'].' '.$row['lastname'];
+							$_SESSION['success'] = 'Salida: '.$row['firstname'].' '.$row['lastname'];
 
 							$sql = "SELECT * FROM asistencia WHERE id = '".$row['aid']."'";
 							$query = $this->db->query($sql);
@@ -269,7 +266,7 @@ class asistencia_model
         $sql = "UPDATE asistencia SET date = '$date', time_in = '$time_in', time_out = '$time_out' WHERE id = '$id'";
 
         if($this->db->query($sql)){
-			$_SESSION['messages'] = 'Asistencia actualizada satisfactoriamente';
+			$_SESSION['success'] = 'Asistencia actualizada satisfactoriamente';
 
 			$sql = "SELECT * FROM asistencia WHERE id = '$id'";
 			$query = $this->db->query($sql);
@@ -280,9 +277,7 @@ class asistencia_model
 			$query = $this->db->query($sql);
 			$srow = $query->fetch_assoc();
 
-			//updates
 			$logstatus = ($time_in > $srow['time_in']) ? 0 : 1;
-			//
 
 			if($srow['time_in'] > $time_in){
 				$time_in = $srow['time_in'];
@@ -320,7 +315,7 @@ class asistencia_model
         $sql = "DELETE FROM asistencia WHERE id = '$id'";
 
         if($this->db->query($sql)){
-			$_SESSION['messages'] = 'Asistencia eliminada satisfactoriamente';
+			$_SESSION['success'] = 'Asistencia eliminada satisfactoriamente';
 		}
 		else{
 			$_SESSION['error'] = $this->db->error;
