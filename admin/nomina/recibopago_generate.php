@@ -1,25 +1,34 @@
 <?php
-	include 'includes/session.php';
-	
+	include '../includes/session.php';
+	require_once "../../config/conn.php";
+    require_once "../../models/nomina_model.php";
+
+    $nomina = new nomina_model();
+
 	$range = $_POST['date_range'];
 	$ex = explode(' - ', $range);
 	$from = date('Y-m-d', strtotime($ex[0]));
 	$to = date('Y-m-d', strtotime($ex[1]));
 
-	$sql = "SELECT *, SUM(amount) as total_amount FROM deducciones";
-                    $query = $conn->query($sql);
-                    $drow = $query->fetch_assoc();
-                    $deduction = $drow['total_amount'];
+	//Se obtiene el monto para calcular la deduccion a cada sueldo
+	$deducciones = $nomina->deducciones();
+	foreach($deducciones as $drow){
 
-                    $sql2 = "SELECT *, SUM(amount) as total_amount2 FROM deducciones2";
-                    $query2 = $conn->query($sql2);
-                    $drow2 = $query2->fetch_assoc();
-                    $deduction2 = $drow2['total_amount2'];
+			$deduction = $drow['total_amount'];
+	};
+
+
+	//Se obtiene el monto para calcular la deduccion a cada sueldo
+	$deducciones2 = $nomina->deducciones2();
+	foreach($deducciones2 as $drow2){
+
+			$deduction2 = $drow2['total_amount2'];
+	};
 
 	$from_title = date('M d, Y', strtotime($ex[0]));
 	$to_title = date('M d, Y', strtotime($ex[1]));
 
-	require_once('../tcpdf_min/tcpdf.php');  
+	require_once('../../tcpdf_min/tcpdf.php');  
     $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
     $pdf->SetCreator(PDF_CREATOR);  
     $pdf->SetTitle('Recibo de Sueldo: '.$from_title.' - '.$to_title);  
@@ -36,41 +45,50 @@
     $pdf->AddPage(); 
     $contents = '';
 
-	$sql = "SELECT *, SUM(num_hr) AS total_hr, asistencia.employee_id AS empid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' GROUP BY asistencia.employee_id ORDER BY empleados.lastname ASC, empleados.firstname ASC";
+	//Obtiene los Empleados, sus horas trabajadas y el monto a cobrar
+	//por esas horas
+	$horas_trabajadas = $nomina->obtener_nomina($from, $to);
+	foreach($horas_trabajadas as $row){
 
-                    $query = $conn->query($sql);
-                    $total = 0;
-                    while($row = $query->fetch_assoc()){
-                      $empid = $row['empid'];
-                      
-                      $casql = "SELECT *, SUM(amount) AS cashamount FROM avancefectivo WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to'";
-                      
-                      $rsql = "SELECT *, rate_dolar FROM tasa_dolar";
-                      $rquery = $conn->query($rsql);
-                      $rate_dolar = $rquery->fetch_assoc();
-                      $dolarbcv = $rate_dolar['rate_dolar'];
+			$gross = $row['rate'] * $row['total_hr'];
+			$empid = $row['id'];   
+	
 
-					  //$string = file_get_contents("https://s3.amazonaws.com/dolartoday/data.json");
-                      //$json = json_decode($string, true);
-                      //$dolarbcv = $json["USD"]["promedio_real"];
+	//Obtiene el efectivo prestado al empleado
+	$avancefectivo = $nomina->avancefectivo($from, $to, $empid);
+	foreach($avancefectivo as $deducrow){
 
-                      $caquery = $conn->query($casql);
-                      $carow = $caquery->fetch_assoc();
-                      $cashadvance = $carow['cashamount'];
+			$deductionefectivo = $deducrow['cashamount'];    
+	};
 
-                      $gross = $row['rate'] * $row['total_hr'];
-                      $mensualgross = ($gross * 12)/52;
-                      $percentdeduction = $deduction * $mensualgross;
-                      $faovsso = $percentdeduction * 5;
 
-                      $gross2 = $row['rate'] * $row['total_hr'];
-                      $paroforzoso = $gross2 * $deduction2;
+	//Cálculo de FAOV e IVSS
+	$mensualgross = ($gross * 12)/52;
+	$percentdeduction = $deduction * $mensualgross;
+	$faovsso = $percentdeduction * 5;
 
-                      $deductionley = $faovsso + $paroforzoso;
+	//Cálculo de Paro Forzoso
+	$paroforzoso = $gross * $deduction2;
 
-                      $total_deduction =  $deductionley + $cashadvance;
-                      $net = $gross - $total_deduction;
-                      $bs = $dolarbcv * $net; 
+	//Suma de deducciones por ley
+	$deductionley = $faovsso + $paroforzoso;
+
+	//Suma de Deducciones por ley y Avance de Efectivo para descontar
+	$total_deduction = $deductionley + $deductionefectivo;
+
+	//Cálculo de Sueldo a cobrar, restando el total de deducciones al sueldo neto
+	$net = $gross - $total_deduction;
+
+	//Se obtiene la tasa del dolar para calcular el sueldo en Bs.D
+	$tasadolar = $nomina->tasadolar();
+	foreach($tasadolar as $dolrow){
+
+			$dolarbcv = $dolrow['rate_dolar'];
+	};
+
+	
+	//Cálculo de Sueldo en Dólares
+	$bs = $dolarbcv * $net;
 
 		$contents .= '
 			<h2 align="center">Recibo de Pago</h2>
@@ -92,7 +110,7 @@
 					<td width="25%" align="right">Tasa Dólar BCV: </td>
 					<td width="25%"><b>'.'$ '.number_format($dolarbcv, 2).'</b></td> 
 				 	<td width="25%" align="right">Avance de Efectivo: </td>
-				 	<td width="25%" align="right">'.'$ '.number_format($cashadvance, 2).'</td> 
+				 	<td width="25%" align="right">'.'$ '.number_format($deductionefectivo, 2).'</td> 
     	    	</tr>
 
     	    	<tr> 

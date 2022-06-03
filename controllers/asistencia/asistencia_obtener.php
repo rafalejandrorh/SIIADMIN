@@ -13,10 +13,6 @@
 
         $obtener = $asistencia-> obtener_asistencia($from, $to);
 
-        print_r($obtener);
-
 }
-
-        
 
 ?>

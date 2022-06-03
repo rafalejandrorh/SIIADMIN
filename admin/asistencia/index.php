@@ -57,7 +57,7 @@
                     </div>
                     <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range" value="<?php echo (isset($_GET['range'])) ? $_GET['range'] : $range_from.' - '.$range_to; ?>">
                   </div>
-                    <a href="../pdf/asistencia_print.php" class="btn btn-success btn-sm btn-flat" id="asistencia"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+                    <button type="button" class="btn btn-success btn-sm btn-flat" id="asistencia"><span class="glyphicon glyphicon-print"></span> Imprimir</button>
               </form>
               </div>
             </div>
