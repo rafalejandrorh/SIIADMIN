@@ -1,28 +1,29 @@
-<?php 
-                include "../../config/conn.php";
-                require_once "../../models/avancefectivo_model.php";
-                $avancefectivo = new avancefectivo_model();
+<?php
+        include '../../admin/includes/session.php';
+        include "../../config/conn.php";
+        require_once "../../models/avancefectivo_model.php";
+        $avancefectivo = new avancefectivo_model();
                 
-                if(isset($_POST['edit'])){
-                    $id = $_POST['id'];
-                    $amount = $_POST['amount'];
+        if(isset($_POST['edit'])){
+            $id = $_POST['id'];
+            $amount = $_POST['amount'];
                      
-                    $editar = $avancefectivo-> editar_avancefectivo($amount, $id); 
+            $editar = $avancefectivo-> editar_avancefectivo($amount, $id); 
 
-                    if(isset($_SESSION['error'])){
+            if(isset($_SESSION['error'])){
 
-                        echo $_SESSION['error'];
+                echo $_SESSION['error'];
         
-                    }else{
+            }else{
                   
-                        echo $_SESSION['success'];
+                echo $_SESSION['success'];
                     
-                    }
+            }
             
-                }
-                else{
-                    $_SESSION['error'] = 'Error, Intenta actualizar el tiempo extra nuevamente';
-                }
+        }
+        else{
+            $_SESSION['error'] = 'Error, Intenta actualizar el tiempo extra nuevamente';
+         }
             
-                header('location: ../../admin/avancefectivo/index.php');
+        header('location: ../../admin/avancefectivo/index.php');
 ?>

@@ -1,4 +1,5 @@
 <?php 
+        include '../../admin/includes/session.php';
         include "../../config/conn.php";
         require_once "../../models/deducciones_model.php";
         $deducciones = new deducciones_model();

@@ -1,27 +1,28 @@
 <?php 
-                include "../../config/conn.php";
-                require_once "../../models/tiempoextra_model.php";
-                $tiempoextra = new tiempoextra_model();
+        include '../../admin/includes/session.php';
+        include "../../config/conn.php";
+        require_once "../../models/tiempoextra_model.php";
+        $tiempoextra = new tiempoextra_model();
                 
-                if(isset($_POST['delete'])){
-                    $id = $_POST['id'];
+        if(isset($_POST['delete'])){
+            $id = $_POST['id'];
                      
-                    $eliminar = $tiempoextra-> eliminar_tiempoextra($id); 
+            $eliminar = $tiempoextra-> eliminar_tiempoextra($id); 
 
-                    if(isset($_SESSION['error'])){
+            if(isset($_SESSION['error'])){
 
-                        echo $_SESSION['error'];
+                echo $_SESSION['error'];
         
-                    }else{
+            }else{
                   
-                        echo $_SESSION['success'];
+                echo $_SESSION['success'];
                     
-                    }
+            }
             
-                }
-                else{
-                    $_SESSION['error'] = 'Error, intenta nuevamente';
-                }
+        }
+        else{
+            $_SESSION['error'] = 'Error, intenta nuevamente';
+        }
             
-                header('location: ../../admin/tiempoextra/index.php');
+        header('location: ../../admin/tiempoextra/index.php');
 ?>

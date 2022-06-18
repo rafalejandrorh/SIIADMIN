@@ -1,4 +1,5 @@
 <?php 
+          include '../../admin/includes/session.php';
           require_once "../../config/conn.php";
           require_once "../../models/asistencia_model.php";
           $asistencia = new asistencia_model();

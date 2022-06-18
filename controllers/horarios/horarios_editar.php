@@ -1,5 +1,6 @@
 <?php 
-        require_once "../../config/conn.php";
+        include '../../admin/includes/session.php';
+		require_once "../../config/conn.php";
         require_once "../../models/horarios_model.php";
         $horarios = new horarios_model();
 

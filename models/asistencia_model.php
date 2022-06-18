@@ -71,7 +71,7 @@ class asistencia_model
     public function obtener_asistencia($from, $to)
     {
 		
-        $sql = "SELECT *, empleados.employee_id AS empid, asistencia.id AS attid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' GROUP BY asistencia.employee_id ORDER BY asistencia.date DESC, asistencia.time_in DESC";
+        $sql = "SELECT *, empleados.employee_id AS empid, asistencia.id AS attid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' ORDER BY asistencia.date DESC, asistencia.time_in DESC";
         $query = $this->db->query($sql);
         while($row = $query->fetch_assoc())
         {
@@ -191,49 +191,37 @@ class asistencia_model
     {
 
         $sql = "SELECT * FROM empleados WHERE employee_id = '$employee'";
-        $query = $this->db->query($sql);
+		$query = $this->db->query($sql);
 
-        if($query->num_rows < 1){
+		if($query->num_rows < 1){
 			$_SESSION['error'] = 'Empleado no encontrado';
 		}
 		else{
+			$row = $query->fetch_assoc();
+			$emp = $row['id'];
 
-        $row = $query->fetch_assoc();
-	    $emp = $row['id'];
+			$sql = "SELECT * FROM asistencia WHERE employee_id = '$emp' AND date = '$date'";
+			$query = $this->db->query($sql);
 
-        $sql2 = "SELECT * FROM asistencia WHERE employee_id = '$emp' AND date = '$date'";
-        $query2 = $this->db->query($sql2);
+			if($query->num_rows > 0){
+				$_SESSION['error'] = 'No existe registro de este empleado en el día indicado.';
+			}
+			else{
+			
+				$sched = $row['schedule_id'];
+				$sql = "SELECT * FROM horarios WHERE schedule_id = '$sched'";
+				$squery = $this->db->query($sql);
+				$scherow = $squery->fetch_assoc();
+				$logstatus = ($time_in > $scherow['time_in']) ? 0 : 1;
+			
+				$sql = "INSERT INTO asistencia (employee_id, date, time_in, time_out, status) VALUES ('$emp', '$date', '$time_in', '$time_out', '$logstatus')";
+				if($this->db->query($sql)){
+					$_SESSION['success'] = 'Asistencia añadida satisfactoriamente';
+					$id = $this->db->insert_id;
 
-        if($query2->num_rows > 0){
-            $_SESSION['error'] = 'Ya existe registro de este empleado en el día indicado.';
-        }
-        else{
-
-        $sched = $row['schedule_id'];
-
-        $sql3 = "SELECT * FROM horarios WHERE schedule_id = '$sched'";
-        $query3 = $this->db->query($sql3);
-		$scherow = $query3->fetch_assoc();
-		$logstatus = ($time_in > $scherow['time_in']) ? 0 : 1;
-
-        $sql4 = "INSERT INTO asistencia (employee_id, date, time_in, time_out, status) VALUES ('$emp', '$date', '$time_in', '$time_out', '$logstatus')";
-
-        if($this->db->query($sql4)){
-            $_SESSION['success'] = 'Asistencia añadida satisfactoriamente';
-
-            $id = $this->db->insert_id;
-
-					$sql5 = "SELECT * FROM empleados LEFT JOIN horarios ON horarios.schedule_id=empleados.schedule_id WHERE empleados.id = '$emp'";
-					$query5 = $this->db->query($sql5);
-					$srow = $query5->fetch_assoc();
-
-					if($srow['time_in'] > $time_in){
-						$time_in = $srow['time_in'];
-					}
-
-					if($srow['time_out'] < $time_out){
-						$time_out = $srow['time_out'];
-					}
+					$sql = "SELECT * FROM empleados LEFT JOIN horarios ON horarios.schedule_id=empleados.schedule_id WHERE empleados.id = '$emp'";
+					$query = $this->db->query($sql);
+					$srow = $query->fetch_assoc();
 
 					$time_in = new DateTime($time_in);
 					$time_out = new DateTime($time_out);
@@ -246,8 +234,8 @@ class asistencia_model
 						$int = $int - 1;
 					}
 
-					$sql6 = "UPDATE asistencia SET num_hr = '$int' WHERE id = '$id'";
-					$this->db->query($sql6);
+					$sql = "UPDATE asistencia SET num_hr = '$int' WHERE id = '$id'";
+					$this->db->query($sql);
 
 				}
 				else{

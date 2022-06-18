@@ -1,27 +1,28 @@
-<?php 
-                require_once "../../config/conn.php";
-                require_once "../../models/asistencia_model.php";
-                $asistencia = new asistencia_model();
+<?php
+        include '../../admin/includes/session.php'; 
+        require_once "../../config/conn.php";
+        require_once "../../models/asistencia_model.php";
+        $asistencia = new asistencia_model();
                 
-                if(isset($_POST['delete'])){
-                    $id = $_POST['id'];
+        if(isset($_POST['delete'])){
+            $id = $_POST['id'];
                      
-                    $eliminar = $asistencia-> eliminar_asistencia($id); 
+            $eliminar = $asistencia-> eliminar_asistencia($id); 
 
-                    if(isset($_SESSION['error'])){
+            if(isset($_SESSION['error'])){
 
-                        echo $_SESSION['error'];
+                echo $_SESSION['error'];
         
-                    }else{
+            }else{
                   
-                        echo $_SESSION['success'];
+                echo $_SESSION['success'];
                     
-                    }
+            }
             
-                }
-                else{
-                    $_SESSION['error'] = 'Seleccione la asistencia que desea eliminar';
-                }
+        }
+        else{
+            $_SESSION['error'] = 'Seleccione la asistencia que desea eliminar';
+        }
             
-                header('location: ../../admin/asistencia/index.php');
+        header('location: ../../admin/asistencia/index.php');
 ?>

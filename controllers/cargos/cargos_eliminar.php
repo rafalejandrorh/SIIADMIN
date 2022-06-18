@@ -1,27 +1,28 @@
 <?php 
-                include "../../config/conn.php";
-                require_once "../../models/cargos_model.php";
-                $cargos = new cargos_model();
+        include '../../admin/includes/session.php';
+        include "../../config/conn.php";
+        require_once "../../models/cargos_model.php";
+        $cargos = new cargos_model();
                 
-                if(isset($_POST['delete'])){
-                    $id = $_POST['id'];
+        if(isset($_POST['delete'])){
+            $id = $_POST['id'];
                      
-                    $eliminar = $cargos-> eliminar_cargos($id); 
+            $eliminar = $cargos-> eliminar_cargos($id); 
 
-                    if(isset($_SESSION['error'])){
+            if(isset($_SESSION['error'])){
 
-                        echo $_SESSION['error'];
+                echo $_SESSION['error'];
         
-                    }else{
+            }else{
                   
-                        echo $_SESSION['success'];
+                echo $_SESSION['success'];
                     
-                    }
+            }
             
-                }
-                else{
-                    $_SESSION['error'] = 'Error, intenta eliminar el cargo nuevamente';
-                }
+        }
+        else{
+            $_SESSION['error'] = 'Error, intenta eliminar el cargo nuevamente';
+        }
             
-                header('location: ../../admin/cargos/index.php');
+        header('location: ../../admin/cargos/index.php');
 ?>

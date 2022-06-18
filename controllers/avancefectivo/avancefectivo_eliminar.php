@@ -1,27 +1,28 @@
-<?php 
-                include "../../config/conn.php";
-                require_once "../../models/avancefectivo_model.php";
-                $avancefectivo = new avancefectivo_model();
+<?php
+        include '../../admin/includes/session.php'; 
+        include "../../config/conn.php";
+        require_once "../../models/avancefectivo_model.php";
+        $avancefectivo = new avancefectivo_model();
                 
-                if(isset($_POST['delete'])){
-                    $id = $_POST['id'];
+        if(isset($_POST['delete'])){
+            $id = $_POST['id'];
                      
-                    $eliminar = $avancefectivo-> eliminar_avancefectivo($id); 
+            $eliminar = $avancefectivo-> eliminar_avancefectivo($id); 
 
-                    if(isset($_SESSION['error'])){
+            if(isset($_SESSION['error'])){
 
-                        echo $_SESSION['error'];
+                echo $_SESSION['error'];
         
-                    }else{
+            }else{
                   
-                        echo $_SESSION['success'];
+                echo $_SESSION['success'];
                     
-                    }
+            }
             
-                }
-                else{
-                    $_SESSION['error'] = 'Error, intenta nuevamente';
-                }
+        }
+        else{
+            $_SESSION['error'] = 'Error, intenta nuevamente';
+        }
             
-                header('location: ../../admin/avancefectivo/index.php');
+        header('location: ../../admin/avancefectivo/index.php');
 ?>

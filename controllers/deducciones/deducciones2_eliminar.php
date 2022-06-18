@@ -1,27 +1,28 @@
 <?php 
-                include "../../config/conn.php";
-                require_once "../../models/deducciones_model.php";
-                $deducciones = new deducciones_model();
+        include '../../admin/includes/session.php'; 
+        include "../../config/conn.php";
+        require_once "../../models/deducciones_model.php";
+        $deducciones = new deducciones_model();
                 
-                if(isset($_POST['delete'])){
-                    $id = $_POST['id'];
+        if(isset($_POST['delete'])){
+            $id = $_POST['id'];
                      
-                    $eliminar = $deducciones-> eliminar_deducciones2($id); 
+            $eliminar = $deducciones-> eliminar_deducciones2($id); 
 
-                    if(isset($_SESSION['error'])){
+            if(isset($_SESSION['error'])){
 
-                        echo $_SESSION['error'];
+                echo $_SESSION['error'];
         
-                    }else{
+            }else{
                   
-                        echo $_SESSION['success'];
+                echo $_SESSION['success'];
                     
-                    }
+            }
             
-                }
-                else{
-                    $_SESSION['error'] = 'Error, intenta nuevamente';
-                }
+        }
+        else{
+            $_SESSION['error'] = 'Error, intenta nuevamente';
+        }
             
-                header('location: ../../admin/deducciones/ndex.php');
+        header('location: ../../admin/deducciones/ndex.php');
 ?>

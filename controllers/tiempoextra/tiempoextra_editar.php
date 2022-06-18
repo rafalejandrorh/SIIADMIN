@@ -1,30 +1,31 @@
 <?php 
-                include "../../config/conn.php";
-                require_once "../../models/tiempoextra_model.php";
-                $tiempoextra = new tiempoextra_model();
+        include '../../admin/includes/session.php';
+        include "../../config/conn.php";
+        require_once "../../models/tiempoextra_model.php";
+        $tiempoextra = new tiempoextra_model();
                 
-                if(isset($_POST['edit'])){
-                    $id = $_POST['id'];
-                    $date = $_POST['date'];
-                    $hours = $_POST['hours'];
-                    $rate = $_POST['rate'];
+        if(isset($_POST['edit'])){
+            $id = $_POST['id'];
+            $date = $_POST['date'];
+            $hours = $_POST['hours'];
+            $rate = $_POST['rate'];
                     
-                    $editar = $tiempoextra-> editar_tiempoextra($date, $hours, $rate, $id); 
+            $editar = $tiempoextra-> editar_tiempoextra($date, $hours, $rate, $id); 
 
-                    if(isset($_SESSION['error'])){
+            if(isset($_SESSION['error'])){
 
-                        echo $_SESSION['error'];
+                echo $_SESSION['error'];
         
-                    }else{
+            }else{
                   
-                        echo $_SESSION['success'];
+                echo $_SESSION['success'];
                     
-                    }
+            }
             
-                }
-                else{
-                    $_SESSION['error'] = 'Error, Intenta actualizar el tiempo extra nuevamente';
-                }
+        }
+        else{
+            $_SESSION['error'] = 'Error, Intenta actualizar el tiempo extra nuevamente';
+        }
             
-                header('location: ../../admin/tiempoextra/index.php');
+        header('location: ../../admin/tiempoextra/index.php');
 ?>
