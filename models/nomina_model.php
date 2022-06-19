@@ -13,7 +13,7 @@ class nomina_model
         $this->nomina = array();
     }
 
-public function obtener_nomina($from, $to)
+public function consulta_obtener_nomina($from, $to)
     {
 
         $sql = "SELECT *, SUM(num_hr) AS total_hr, asistencia.employee_id AS empid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' GROUP BY asistencia.employee_id ORDER BY empleados.lastname ASC, empleados.firstname ASC";
@@ -29,7 +29,7 @@ public function obtener_nomina($from, $to)
 
     }
 
-public function avancefectivo($from, $to, $empid)
+public function consulta_avancefectivo($from, $to, $empid)
     {
 
             $casql = "SELECT *, SUM(amount) AS cashamount FROM avancefectivo WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to'";
@@ -42,7 +42,7 @@ public function avancefectivo($from, $to, $empid)
 
     }
 
-public function deducciones()
+public function consulta_deducciones()
     {
 
             $sql = "SELECT SUM(amount) as total_amount FROM deducciones";
@@ -55,7 +55,7 @@ public function deducciones()
 
     }
 
-public function deducciones2()
+public function consulta_deducciones2()
     {
 
             $sql2 = "SELECT amount as total_amount2 FROM deducciones2";
@@ -70,7 +70,7 @@ public function deducciones2()
 
     }
 
-public function tasadolar()
+public function consulta_tasadolar()
     {
                       
             $rsql = "SELECT *, rate_dolar FROM tasa_dolar";
@@ -81,6 +81,15 @@ public function tasadolar()
 
         return $this->tasadolar;
 
+    }
+
+public function calcular_deducciones($gross, $deduction)
+    {
+        $mensualgross = ($gross * 12)/52;
+        $percentdeduction = $deduction * $mensualgross;
+        $faovsso = $percentdeduction * 5;
+        $this->faovs[] = $faovsso;
+        return $this->faovs;
     }
 
 }
