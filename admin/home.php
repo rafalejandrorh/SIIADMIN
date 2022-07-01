@@ -134,6 +134,7 @@
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -161,7 +162,7 @@
               <div class="chart">
                 <br>
                 <div id="legend" class="text-center"></div>
-                <canvas id="barChart" style="height:350px"></canvas>
+                <canvas id="barChart" style="height:500px"></canvas>
               </div>
             </div>
           </div>
