@@ -183,6 +183,8 @@ class asistencia_model
 
 		}
 
+		//$this->SESION[] = $_SESSION;
+
 		return $this->$_SESSION;
 
 	}
@@ -204,7 +206,7 @@ class asistencia_model
 			$query = $this->db->query($sql);
 
 			if($query->num_rows > 0){
-				$_SESSION['error'] = 'No existe registro de este empleado en el día indicado.';
+				$_SESSION['error'] = 'Ya existe registro de este empleado en el día indicado.';
 			}
 			else{
 			

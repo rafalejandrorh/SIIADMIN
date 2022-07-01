@@ -14,8 +14,6 @@
                     
             $buscarempleado = $asistencia->insertar_asistencia($employee, $date, $time_in, $time_out);
 
-            print_r($buscarempleado);
-
             if(isset($_SESSION['error'])){
 
                 echo $_SESSION['error'];

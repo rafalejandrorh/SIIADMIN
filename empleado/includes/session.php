@@ -3,7 +3,7 @@
 	include 'conn.php';
 
 	if(!isset($_SESSION['admin']) || trim($_SESSION['admin']) == ''){
-		header('location: http://localhost/Sistema-MVC/admin/home.php');
+		header('location: http://localhost/Sistema-MVC/empleado/asistencia/index.php');
 	}
 
 	$sql = "SELECT * FROM admin WHERE id = '".$_SESSION['admin']."'";

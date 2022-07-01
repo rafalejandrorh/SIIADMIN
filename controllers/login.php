@@ -9,7 +9,7 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $iniciar = $login-> iniciar_login($username, $password); 
+            $iniciar = $login->iniciar_login($username, $password); 
 
             if(isset($_SESSION['error'])){
 

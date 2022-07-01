@@ -1,5 +1,6 @@
-<?php include '../includes/session.php'; 
-      include '../includes/header.php'; 
+<?php 
+    include '../includes/header.php'; 
+    include '../includes/session.php';
 ?>
 
 <body class="hold-transition skin-blue sidebar-mini">
