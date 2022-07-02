@@ -16,7 +16,7 @@ $buscarempleado = [];
   	<div class="login-box-body">
     	<h4 class="login-box-msg">Ingresa tu hora de entrada/salida</h4>
 
-    	<form action="http://localhost/Sistema-MVC/controllers/asistencia/asistencia_empleado_insertar_nosirve.php" method="POST">
+    	<form action="http://localhost/Sistema-MVC/controllers/asistencia/asistencia_empleado_insertar.php" method="POST">
           <div class="form-group">
             <select class="form-control" name="status">
               <option value="in">Hora de Entrada</option>
