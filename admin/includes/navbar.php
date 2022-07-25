@@ -1,5 +1,5 @@
 <header class="main-header">
-    <a href="http://localhost/Sistema-MVC/admin/home.php" class="logo">
+    <a href="../home/index.php" class="logo">
       <span class="logo-mini"><b>AN</b></span>
       <span class="logo-lg"><b>Asistencia y Nómina</b></span>
     </a>
@@ -12,12 +12,12 @@
           <li class="dropdown user user-menu">
           
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo (!empty($user['photo'])) ? 'http://localhost/Sistema-MVC/images/'.$user['photo'] : 'http://localhost/Sistema-MVC/images/profile.jpg'; ?>" class="user-image" alt="User Image">
+              <img src="<?php echo (!empty($user['photo'])) ? '../../images/'.$user['photo'] : '../../images/profile.jpg'; ?>" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo $user['firstname'].' '.$user['lastname']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
-                <img src="<?php echo (!empty($user['photo'])) ? 'http://localhost/Sistema-MVC/images/'.$user['photo'] : 'http://localhost/Sistema-MVC/images/profile.jpg'; ?>" class="img-circle" alt="User Image">
+                <img src="<?php echo (!empty($user['photo'])) ? '../../images/'.$user['photo'] : '../../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
 
                 <p>
                   <?php echo $user['firstname'].' '.$user['lastname']; ?>
@@ -29,7 +29,7 @@
                   <a href="#profile" data-toggle="modal" class="btn btn-default btn-flat" id="admin_profile">Actualizar</a>
                 </div>
                 <div class="pull-right">
-                  <a href="http://localhost/Sistema-MVC/admin/includes/logout.php" class="btn btn-default btn-flat">Cerrar Sesión</a>
+                  <a href="../../controllers/sesion/logout.php" class="btn btn-default btn-flat">Cerrar Sesión</a>
                 </div>
               </li>
             </ul>

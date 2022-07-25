@@ -6,19 +6,8 @@
                 
         if(isset($_POST['delete'])){
             $id = $_POST['id'];
-                     
-            $eliminar = $deducciones-> eliminar_deducciones($id); 
-
-            if(isset($_SESSION['error'])){
-
-                echo $_SESSION['error'];
-        
-            }else{
-                  
-                echo $_SESSION['success'];
-                    
-            }
-            
+            $tabla = $_POST['tabla'];   
+            $eliminar = $deducciones-> eliminar_deducciones($id, $tabla); 
         }
         else{
             $_SESSION['error'] = 'Error, intenta nuevamente';

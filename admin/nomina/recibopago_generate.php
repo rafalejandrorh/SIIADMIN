@@ -11,7 +11,7 @@
 	$to = date('Y-m-d', strtotime($ex[1]));
 
 	//Se obtiene el monto para calcular la deduccion a cada sueldo
-	$deducciones = $nomina->deducciones();
+	$deducciones = $nomina->consulta_deducciones();
 	foreach($deducciones as $drow){
 
 			$deduction = $drow['total_amount'];
@@ -19,7 +19,7 @@
 
 
 	//Se obtiene el monto para calcular la deduccion a cada sueldo
-	$deducciones2 = $nomina->deducciones2();
+	$deducciones2 = $nomina->consulta_deducciones2();
 	foreach($deducciones2 as $drow2){
 
 			$deduction2 = $drow2['total_amount2'];
@@ -47,7 +47,7 @@
 
 	//Obtiene los Empleados, sus horas trabajadas y el monto a cobrar
 	//por esas horas
-	$horas_trabajadas = $nomina->obtener_nomina($from, $to);
+	$horas_trabajadas = $nomina->consulta_obtener_nomina($from, $to);
 	foreach($horas_trabajadas as $row){
 
 			$gross = $row['rate'] * $row['total_hr'];
@@ -55,7 +55,7 @@
 	
 
 	//Obtiene el efectivo prestado al empleado
-	$avancefectivo = $nomina->avancefectivo($from, $to, $empid);
+	$avancefectivo = $nomina->consulta_avancefectivo($from, $to, $empid);
 	foreach($avancefectivo as $deducrow){
 
 			$deductionefectivo = $deducrow['cashamount'];    
@@ -80,7 +80,7 @@
 	$net = $gross - $total_deduction;
 
 	//Se obtiene la tasa del dolar para calcular el sueldo en Bs.D
-	$tasadolar = $nomina->tasadolar();
+	$tasadolar = $nomina->consulta_tasadolar();
 	foreach($tasadolar as $dolrow){
 
 			$dolarbcv = $dolrow['rate_dolar'];

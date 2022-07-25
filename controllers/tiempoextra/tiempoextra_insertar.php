@@ -9,19 +9,8 @@
             $date = $_POST['date'];
             $hours = $_POST['hours'];
             $rate = $_POST['rate'];
-                    
-            $insertar = $tiempoextra -> insertar_tiempoextra($employee, $date, $hours, $rate); 
-
-            if(isset($_SESSION['error'])){
-
-                echo $_SESSION['error'];
-
-            }else{
-          
-                echo $_SESSION['success'];
             
-            }
-      
+            $insertar = $tiempoextra ->insertar_tiempoextra($employee, $date, $hours, $rate); 
         }else{
 
             $_SESSION['error'] = 'Error, Intenta agregar el tiempo extra nuevamente';

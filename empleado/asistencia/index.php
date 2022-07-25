@@ -16,7 +16,7 @@ $buscarempleado = [];
   	<div class="login-box-body">
     	<h4 class="login-box-msg">Ingresa tu hora de entrada/salida</h4>
 
-    	<form action="http://localhost/Sistema-MVC/controllers/asistencia/asistencia_empleado_insertar.php" method="POST">
+    	<form action="../../controllers/asistencia/asistencia_empleado_insertar.php" method="POST">
           <div class="form-group">
             <select class="form-control" name="status">
               <option value="in">Hora de Entrada</option>
@@ -35,7 +35,7 @@ $buscarempleado = [];
         		</div>
 
             <div class="col-xs-6">
-            <a href="../../admin/index.php"><button type="button" class="btn btn-primary btn-block btn-flat"><i class="fa fa-user"></i> Administrador</button></a>
+            <a href="../../admin/login/index.php"><button type="button" class="btn btn-primary btn-block btn-flat"><i class="fa fa-user"></i> Administrador</button></a>
         		</div>
           </div>
             </form>		

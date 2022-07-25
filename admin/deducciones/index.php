@@ -56,26 +56,25 @@
                   <?php
                     require_once "../../controllers/deducciones/deducciones_obtener.php";
 
-                    foreach($obtener as $row)
+                    foreach($obtener_ivss as $row)
                     {
-                      echo "
+                      ?>
                         <tr>
-                          <td>".$row['description']."</td>
-                          <td>".$row['amount']."</td>
+                          <td><?php echo $row['description'] ?></td>
+                          <td><?php echo $row['amount'] ?></td>
                           <td>
-                            <button class='btn btn-success btn-sm edit1 btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm delete1 btn-flat' data-id='".$row['id']."'><i class='fa fa-trash'></i> Eliminar</button>
+                            <button class='btn btn-success btn-sm edit1 btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-edit'></i> Editar</button>
+                            <button class='btn btn-danger btn-sm delete1 btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-trash'></i> Eliminar</button>
                           </td>
                         </tr>
-                      ";
-                    }
-                  ?>
+                      <?php } ?>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -92,17 +91,15 @@
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../../controllers/deducciones/deducciones_obtener.php";
-
-                    foreach($obtener2 as $row)
+                    foreach($obtener_faov as $row)
                     {
                       ?>
                         <tr>
                           <td><?php echo $row['description']?></td>
                           <td><?php echo $row['amount']?></td>
                           <td>
-                            <button class='btn btn-success btn-sm edit2 btn-flat' data-id='".$row['id']?>'><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm delete2 btn-flat' data-id='".$row['id']?>'><i class='fa fa-trash'></i> Eliminar</button>
+                            <button class='btn btn-success btn-sm edit2 btn-flat' data-id="<?php echo $row['id']?>"><i class='fa fa-edit'></i> Editar</button>
+                            <button class='btn btn-danger btn-sm delete2 btn-flat' data-id="<?php echo $row['id']?>"><i class='fa fa-trash'></i> Eliminar</button>
                           </td>
                         </tr>
                       <?php } ?>

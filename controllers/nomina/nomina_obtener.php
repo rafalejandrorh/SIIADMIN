@@ -35,7 +35,7 @@
         foreach($consulta_horas_trabajadas as $row){
 
                 $gross = $row['rate'] * $row['total_hr'];
-                $empid = $row['id'];   
+                $empid = $row['empid'];   
         
 
         //Obtiene el efectivo prestado al empleado
@@ -77,7 +77,7 @@
 ?>
         <tr>            
                 <td><?php echo $row['lastname']." ".$row['firstname']?></td>
-                <td><?php echo $row['employee_id']?></td>
+                <td><?php echo $row['ci']?></td>
                 <td><?php echo '$ '.number_format($gross, 2)?></td>
                 <td><?php echo '$ '.number_format($deductionley, 2)?></td>
                 <td><?php echo '$ '.number_format($deductionefectivo, 2)?></td>

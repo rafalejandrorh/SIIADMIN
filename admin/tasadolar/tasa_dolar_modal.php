@@ -9,7 +9,7 @@
             	<h4 class="modal-title"><b><span id="employee_name"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/tasadolar/tasadolar_editar.php">
+            	<form class="form-horizontal" method="POST" action="../../controllers/tasadolar/tasadolar_editar.php">
             		
                 <div class="form-group">
                     <div class="col-sm-9"> 

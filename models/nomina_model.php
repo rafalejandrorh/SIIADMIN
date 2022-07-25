@@ -5,91 +5,59 @@ class nomina_model
 
     private $db;
     private $nomina;
+    public $conexion;
 
     public function __construct()
     {
         
-        $this->db = Conectar::conexion();
+        $this->db = Conexion::DB_mySQL();
+		$this->conexion = new Conexion;
         $this->nomina = array();
     }
 
-public function consulta_obtener_nomina($from, $to)
+    public function consulta_obtener_nomina($from, $to)
     {
 
-        $sql = "SELECT *, SUM(num_hr) AS total_hr, asistencia.employee_id AS empid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' GROUP BY asistencia.employee_id ORDER BY empleados.lastname ASC, empleados.firstname ASC";
-        $query = $this->db->query($sql);
-        while($row = $query->fetch_assoc())
-        {
-
-            $this->nomina[] = $row;
-
-        }
-
-        return $this->nomina;
+        $sql = "SELECT firstname, lastname, cargos.rate, SUM(num_hr) AS total_hr, asistencia.employee_id AS empid, empleados.employee_id AS ci FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' GROUP BY asistencia.employee_id ORDER BY empleados.lastname ASC, empleados.firstname ASC";
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
-public function consulta_avancefectivo($from, $to, $empid)
+    public function consulta_avancefectivo($from, $to, $empid)
     {
 
-            $casql = "SELECT *, SUM(amount) AS cashamount FROM avancefectivo WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to'";
-            $caquery = $this->db->query($casql);
-            $carow = $caquery->fetch_assoc();
-
-            $this->avancefectivo[] = $carow;
-
-            return $this->avancefectivo;
+        $sql = "SELECT *, SUM(amount) AS cashamount FROM avancefectivo WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to'";
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
-public function consulta_deducciones()
+    public function consulta_deducciones()
     {
 
-            $sql = "SELECT SUM(amount) as total_amount FROM deducciones";
-            $query = $this->db->query($sql);
-            $drow = $query->fetch_assoc();
-
-            $this->deducciones[] = $drow;
-
-        return $this->deducciones;
+        $sql = "SELECT SUM(amount) as total_amount FROM deducciones";
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
-public function consulta_deducciones2()
+    public function consulta_deducciones2()
     {
 
-            $sql2 = "SELECT amount as total_amount2 FROM deducciones2";
-            $query2 = $this->db->query($sql2);
-            $drow2 = $query2->fetch_assoc();
-            
-            $this->deducciones2[] = $drow2;
-
-            $this->deducciones2;
-
-        return $this->deducciones2;
+        $sql = "SELECT amount as total_amount2 FROM deducciones2";
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
-public function consulta_tasadolar()
+    public function consulta_tasadolar()
     {
                       
-            $rsql = "SELECT *, rate_dolar FROM tasa_dolar";
-            $rquery = $this->db->query($rsql);
-            $rate_dolar = $rquery->fetch_assoc();
+        $sql = "SELECT *, rate_dolar FROM tasa_dolar";
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
 
-            $this->tasadolar[] = $rate_dolar;
-
-        return $this->tasadolar;
-
-    }
-
-public function calcular_deducciones($gross, $deduction)
-    {
-        $mensualgross = ($gross * 12)/52;
-        $percentdeduction = $deduction * $mensualgross;
-        $faovsso = $percentdeduction * 5;
-        $this->faovs[] = $faovsso;
-        return $this->faovs;
     }
 
 }

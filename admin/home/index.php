@@ -1,17 +1,17 @@
-<?php include 'includes/session.php'; ?>
+<?php include '../includes/session.php'; ?>
 <?php 
-  include 'includes/timezone.php'; 
+  include '../includes/timezone.php'; 
   $year = date('Y');
   if(isset($_GET['year'])){
     $year = $_GET['year'];
   }
 ?>
-<?php include 'includes/header.php'; ?>
+<?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-  	<?php include 'includes/navbar.php'; ?>
-  	<?php include 'includes/menubar.php'; ?>
+  	<?php include '../includes/navbar.php'; ?>
+  	<?php include '../includes/menubar.php'; ?>
 
   <div class="content-wrapper">
     <section class="content-header">
@@ -24,25 +24,31 @@
 
     <section class="content">
       <?php
-        if(isset($_SESSION['error'])){
-          echo "
-            <div class='alert alert-danger alert-dismissible'>
-              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4><i class='icon fa fa-warning'></i> Error!</h4>
-              ".$_SESSION['error']."
-            </div>
-          ";
+        if(isset($_SESSION['error']))
+        {
+          echo "<div class='alert alert-danger alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                <h4><i class='icon fa fa-warning'></i> Error!</h4>
+                ".$_SESSION['error']."
+                </div>";
           unset($_SESSION['error']);
         }
-        if(isset($_SESSION['success'])){
-          echo "
-            <div class='alert alert-success alert-dismissible'>
-              <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
-              <h4><i class='icon fa fa-check'></i>¡Proceso Exitoso!</h4>
-              ".$_SESSION['success']."
-            </div>
-          ";
+        if(isset($_SESSION['success']))
+        {
+          echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                <h4><i class='icon fa fa-check'></i>¡Proceso Exitoso!</h4>
+                ".$_SESSION['success']."
+                </div>";
           unset($_SESSION['success']);
+        }
+        if(isset($_SESSION['login_exitoso']))
+        {
+          echo "<div class='alert alert-success alert-dismissible'>
+                <button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>
+                <h4><i class='icon fa fa-check'></i>¡Inicio de Sesión Exitoso!</h4>
+                </div>";
+          unset($_SESSION['login_exitoso']);
         }
       ?>
       <div class="row">
@@ -50,12 +56,9 @@
           <div class="small-box bg-blue">
             <div class="inner">
               <?php
-                require_once "../controllers/home/reportes_empleados.php";
-                foreach($obtener as $row){
+                require_once "../../controllers/home/reportes_empleados.php";
 
-                echo "<h3>".$row->num_rows."</h3>";
-
-              }
+                echo "<h3>".$total_empleados->rowCount()."</h3>"
               ?>
 
               <p>Total de Empleados</p>
@@ -63,24 +66,18 @@
             <div class="icon">
               <i class="ion ion-person-stalker"></i>
             </div>
-            <a href="http://localhost/Sistema-MVC/admin/empleados/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="empleados/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-orange">
             <div class="inner">
               <?php
-                foreach($asistentes_atiempo as $brow){
 
-                $total= $brow->num_rows;
+                $total= $asistentes_atiempo->rowCount();
 
-                }
 
-                foreach($asistentes_tarde as $crow){
-
-                $early = $crow->num_rows;
-
-                }
+                $early = $asistentes_tarde->rowCount();
                 
                 $percentage = ($early/$total)*100;
 
@@ -92,45 +89,35 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="http://localhost/Sistema-MVC/admin/asistencia/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="asistencia/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-green">
             <div class="inner">
               <?php
-                foreach($asistentes_atiempo_hoy as $drow){
-
-                echo "<h3>".$drow->num_rows."</h3>";
-
-              }
+                echo "<h3>".$asistentes_atiempo_hoy->rowCount()."</h3>"
               ?>
-             
               <p>A tiempo hoy</p>
             </div>
             <div class="icon">
               <i class="ion ion-clock"></i>
             </div>
-            <a href="http://localhost/Sistema-MVC/admin/asistencia/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="asistencia/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-red">
             <div class="inner">
               <?php
-                foreach($asistentes_tarde_hoy as $erow){
-
-                echo "<h3>".$erow->num_rows."</h3>";
-
-              }
+                echo "<h3>".$asistentes_tarde_hoy->rowCount()."</h3>"
               ?>
-
               <p>Tarde hoy</p>
             </div>
             <div class="icon">
               <i class="ion ion-alert-circled"></i>
             </div>
-            <a href="http://localhost/Sistema-MVC/admin/asistencia/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="asistencia/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>
@@ -171,7 +158,7 @@
 
       </section>
     </div>
-  	<?php include 'includes/footer.php'; ?>
+  	<?php include '../includes/footer.php'; ?>
 
 </div>
 
@@ -199,7 +186,7 @@
   $ontime = json_encode($ontime);
 
 ?>
-<?php include 'includes/scripts.php'; ?>
+<?php include '../includes/scripts.php'; ?>
 <script>
 $(function(){
   var barChartCanvas = $('#barChart').get(0).getContext('2d')

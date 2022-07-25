@@ -1,15 +1,19 @@
 <?php 
 
+require_once('../../config/conn.php');
+
 class cargos_model 
 {
 
     private $db;
     private $cargos;
+    public $conexion;
 
     public function __construct()
     {
         
-        $this->db = Conectar::conexion();
+        $this->db = Conexion::DB_mySQL();
+		$this->conexion = new Conexion;
         $this->cargos = array();
 
     }
@@ -17,20 +21,9 @@ class cargos_model
     public function obtener_cargos()
     {
 
-        //preguntar a Ing. cual sería la alternativa en este caso
-
         $sql = "SELECT * FROM cargos";
-        $query = $this->db->query($sql);
-        while($row = $query->fetch_assoc())
-            
-        {
-            
-            $this->cargos[] = $row;
-            
-
-        }
-                    
-        return $this->cargos;
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
@@ -38,15 +31,14 @@ class cargos_model
     {
 
         $sql = "INSERT INTO cargos (description, rate) VALUES ('$title', '$rate')";
-
-		if($this->db->query($sql)){
+		if($this->conexion->query($sql))
+        {
 			$_SESSION['success'] = 'Cargo añadido satisfactoriamente';
 		}
 		else{
-			$_SESSION['error'] = $this->db->error;
+			$_SESSION['error'] = $this->conexion->error;
 		}
-
-        return $this->$_SESSION;
+        return $_SESSION;
 
     }
 
@@ -54,15 +46,14 @@ class cargos_model
     {
 
         $sql = "UPDATE cargos SET description = '$title', rate = '$rate' WHERE position_id = '$id'";
-
-        if($this->db->query($sql)){
+        if($this->conexion->query($sql))
+        {
 			$_SESSION['success'] = 'Cargo Actualizado Satisfactoriamente';
 		}
 		else{
 			$_SESSION['error'] = $this->dberror;
 		}
-
-        return $this->$_SESSION;
+        return $_SESSION;
 
     }
     
@@ -70,15 +61,14 @@ class cargos_model
     {
 
         $sql = "DELETE FROM cargos WHERE position_id = '$id'";
-
-        if($this->db->query($sql)){
+        if($this->conexion->query($sql))
+        {
 			$_SESSION['success'] = 'Cargo eliminado satisfactoriamente';
 		}
 		else{
-			$_SESSION['error'] = $this->db->error;
+			$_SESSION['error'] = $this->conexion->error;
 		}
-
-        return $this->$_SESSION;
+        return $_SESSION;
 
     }
 }

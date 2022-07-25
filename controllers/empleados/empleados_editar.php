@@ -16,17 +16,10 @@
             $schedule = $_POST['schedule'];
                      
             $editar = $empleados-> editar_empleados($empid, $firstname, $lastname, $address, $birthdate, $contact, $gender, $position, $schedule); 
-
-            if(isset($_SESSION['error'])){
-
-                echo $_SESSION['error'];
-        
-            }else{
-                  
-                echo $_SESSION['success'];
-                    
+            if(isset($_SESSION['success']))
+            {
+                header('location: ../../admin/empleados/index.php');
             }
-            
         }
         else{
             $_SESSION['error'] = 'Error, intenta nuevamente';

@@ -1,15 +1,19 @@
 <?php 
 
+require_once('../../config/conn.php');
+
 class tasadolar_model 
 {
 
     private $db;
     private $tasadolar;
+    public $conexion;
 
     public function __construct()
     {
         
-        $this->db = Conectar::conexion();
+        $this->db = Conexion::DB_mySQL();
+		$this->conexion = new Conexion;
         $this->tasadolar = array();
 
     }
@@ -17,25 +21,12 @@ class tasadolar_model
     public function obtener_tasadolar()
     {
 
-        //preguntar a Ing. cual sería la alternativa en este caso
-
         $sql = "SELECT * FROM tasa_dolar";
-        $query = $this->db->query($sql);
-
+        $query = $this->conexion->query($sql);
         //$string = file_get_contents("https://s3.amazonaws.com/dolartoday/data.json");
         //$dolarbcv = json_decode($string, true);
         //$dolarbcv[USD][promedio_real]//
-
-        while($dolarbcv = $query->fetch_assoc())
-            
-        {
-            
-            $this->tasadolar[] = $dolarbcv;
-            
-
-        }
-                    
-        return $this->tasadolar;
+        return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
@@ -43,18 +34,16 @@ class tasadolar_model
     {
 
         $sql = "UPDATE tasa_dolar SET rate_dolar = '$rate_dolar' WHERE id = '$id'";
-
-        if($this->db->query($sql)){
+        if($this->conexion->query($sql)){
 			$_SESSION['success'] = 'Tasa del dólar modificada satisfactoriamente';
 		}
 		else{
 			$_SESSION['error'] = $this->dberror;
 		}
-
-        return $this->$_SESSION;
+        return $_SESSION;
 
     }
     
-    }
+}
 
 ?>

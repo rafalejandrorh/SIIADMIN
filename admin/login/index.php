@@ -1,10 +1,10 @@
 <?php
   session_start();
   if(isset($_SESSION['admin'])){
-    header('location:home.php');
+    header('location:../home/index.php');
   }
-?>
-<?php include 'includes/header.php'; ?>
+  include '../../controllers/sesion/login.php';
+  include '../includes/header.php'; ?>
 <html>
 <body class="hold-transition login-page">
 <div class="login-box">
@@ -17,7 +17,7 @@
   	<div class="login-box-body">
     	<h4 class="login-box-msg">Ingresa tus credenciales para iniciar sesión</h4>
 
-    	<form action="http://localhost/Sistema-MVC/controllers/login.php" method="POST">
+    	<form action="#" method="POST">
       		<div class="form-group has-feedback">
         		<input type="text" class="form-control" name="username" placeholder="Ingresa Usuario de Administrador" required autofocus>
         		<span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -32,24 +32,23 @@
         		</div>
 
 				  <div class="col-xs-7">
-                <a href="../index.php"><button type="button" class="btn btn-primary btn-block btn-flat" name="login"><i class="fa fa-calendar"></i> Registrar Asistencia</button></a>
+                <a href="../../empleado/asistencia/index.php"><button type="button" class="btn btn-primary btn-block btn-flat" name="login"><i class="fa fa-calendar"></i> Registrar Asistencia</button></a>
         		</div>
       		</div>
     	</form>
   	</div>
   	<?php
-  		if(isset($_SESSION['error'])){
-  			echo "
-  				<div class='callout callout-danger text-center mt20'>
-			  		<p>".$_SESSION['error']."</p> 
-			  	</div>
-  			";
+  		if(isset($_SESSION['error']))
+		{
+  			echo "<div class='callout callout-danger text-center mt20'>
+			  	  <p>".$_SESSION['error']."</p> 
+			  	  </div>";
   			unset($_SESSION['error']);
   		}
   	?>
 </div>
 	
-<?php include 'includes/scripts.php' ?>
+<?php include '../includes/scripts.php' ?>
 </body>
 </html>
 

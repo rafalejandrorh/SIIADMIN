@@ -8,16 +8,6 @@
             $id = $_POST['id'];
                      
             $eliminar = $empleados-> eliminar_empleados($id); 
-
-            if(isset($_SESSION['error'])){
-
-                echo $_SESSION['error'];
-        
-            }else{
-                  
-                echo $_SESSION['success'];
-                    
-            }
             
         }
         else{

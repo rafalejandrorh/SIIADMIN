@@ -1,44 +1,39 @@
 <?php 
 
+require_once('../../config/conn.php');
+
 class login_model 
 {
 
     private $db;
+    public $conexion;
 
     public function __construct()
     {
-        
-        $this->db = Conectar::conexion();
-
+        $this->db = Conexion::DB_mySQL();
+		$this->conexion = new Conexion;
     }
 
     public function iniciar_login($username, $password)
     {
 
         $sql = "SELECT * FROM admin WHERE username = '$username'";
-        $query = $this->db->query($sql);
+        $query = $this->conexion->query($sql);
 
-        if($query->num_rows < 1){
-
+        if($query->rowCount() < 1)
+        {
             $_SESSION['error'] = 'No se encontró una cuenta con ese Usuario';
-
-        }
-        else{
-            $row = $query->fetch_assoc();
-
-            if(password_verify($password, $row['password'])){
-
+        }else{
+            $row = $query->fetch();
+            if(password_verify($password, $row['password']))
+            {
                 $_SESSION['admin'] = $row['id'];
-
-            }
-            else{
-
+                $_SESSION['login_exitoso'] = 'Inicio de Sesión Exitoso';
+            }else{
                 $_SESSION['error'] = 'Contraseña Incorrecta';
-
             }
         }
-
-        return $this->$_SESSION;
+        return $_SESSION;
 
     }
     

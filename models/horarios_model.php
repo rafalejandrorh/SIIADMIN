@@ -1,15 +1,19 @@
 <?php 
 
+require_once('../../config/conn.php');
+
 class horarios_model 
 {
 
     private $db;
     private $horarios;
+    public $conexion;
 
     public function __construct()
     {
         
-        $this->db = Conectar::conexion();
+        $this->db = Conexion::DB_mySQL();
+		$this->conexion = new Conexion;
         $this->horarios = array();
 
     }
@@ -18,15 +22,8 @@ class horarios_model
     {
 
         $sql = "SELECT * FROM horarios ORDER BY schedule_id ASC";
-        $query = $this->db->query($sql);
-        while($row = $query->fetch_assoc())
-        {
-
-            $this->horarios[] = $row;
-
-        }
-
-        return $this->horarios;
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
@@ -34,16 +31,13 @@ class horarios_model
     {
 
         $sql = "INSERT INTO horarios (time_in, time_out) VALUES ('$time_in', '$time_out')";
-        $query = $this->db->query($sql);
-
-        if($query >=1){
+        if($this->conexion->query($sql)){
             $_SESSION['success'] = 'Horarios añadidos satisfactoriamente';
-    }
-    else{
-            $_SESSION['error'] = $this->db->error;
-    }
-
-        return $this->$_SESSION;
+        }
+        else{
+            $_SESSION['error'] = $this->conexion->error;
+        }
+        return $_SESSION;
 
     }
 
@@ -51,16 +45,13 @@ class horarios_model
     {
 
         $sql = "UPDATE horarios SET time_in = '$time_in', time_out = '$time_out' WHERE schedule_id = '$id'";
-        $query = $this->db->query($sql);
-
-        if($query >= 1){
+        if($this->conexion->query($sql)){
             $_SESSION['success'] = 'Horarios actualizados satisfactoriamente';
-    }
-    else{
-        $_SESSION['error'] = $this->db->error;
-    }
-
-        return $this->$_SESSION;
+        }
+        else{
+        $_SESSION['error'] = $this->conexion->error;
+        }
+        return $_SESSION;
 
     }
 
@@ -68,16 +59,13 @@ class horarios_model
     {
 
         $sql = "DELETE FROM horarios WHERE schedule_id = '$id'";
-        $query = $this->db->query($sql);
-
-        if($query >=1){
+        if($this->conexion->query($sql)){
             $_SESSION['success'] = 'Horario eliminado exitosamente';
-    }
-    else{
-            $_SESSION['error'] = $this->db->error;
         }
-
-        return $this->$_SESSION;
+        else{
+            $_SESSION['error'] = $this->conexion->error;
+        }
+        return $_SESSION;
 
     }
 }

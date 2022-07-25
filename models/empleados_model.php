@@ -1,15 +1,19 @@
 <?php 
 
+require_once('../../config/conn.php');
+
 class empleados_model 
 {
 
     private $db;
     private $empleados;
+    public $conexion;
 
     public function __construct()
     {
         
-        $this->db = Conectar::conexion();
+        $this->db = Conexion::DB_mySQL();
+		$this->conexion = new Conexion;
         $this->empleados = array();
 
     }
@@ -18,11 +22,7 @@ class empleados_model
     {
 
         $sql = "SELECT * FROM empleados";
-        $query = $this->db->query($sql);
-
-        $this->empleados[] = $query;
-
-        return $this->empleados;
+        return $this->conexion->query($sql);
 
     }
 
@@ -30,15 +30,8 @@ class empleados_model
     {
 
         $sql = "SELECT * FROM empleados LEFT JOIN cargos ON cargos.position_id=empleados.position_id LEFT JOIN horarios ON horarios.schedule_id=empleados.schedule_id";
-        $query = $this->db->query($sql);
-        while($row = $query->fetch_assoc())
-        {
-
-            $this->empleados[] = $row;
-
-        }   
-
-        return $this->empleados;
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
@@ -46,16 +39,13 @@ class empleados_model
     {
 
         $sql = "INSERT INTO empleados (employee_id, firstname, lastname, address, birthdate, contact_info, gender, position_id, schedule_id, photo, created_on) VALUES ('$employee_id', '$firstname', '$lastname', '$address', '$birthdate', '$contact', '$gender', '$position', '$schedule', '$filename', NOW())";
-        $query = $this->db->query($sql);
-
-        if($query >= 1){
+        if($this->conexion->query($sql)){
             $_SESSION['success'] = 'Empleado añadido satisfactoriamente';
         }
         else{
-            $_SESSION['error'] = $this->db->error;
+            $_SESSION['error'] = $this->conexion->error;
         }
-
-        return $this->$_SESSION;
+        return $_SESSION;
 
     }
 
@@ -63,16 +53,13 @@ class empleados_model
     {
 
         $sql = "UPDATE empleados SET firstname = '$firstname', lastname = '$lastname', address = '$address', birthdate = '$birthdate', contact_info = '$contact', gender = '$gender', position_id = '$position', schedule_id = '$schedule' WHERE employee_id = '$empid'";
-        $query = $this->db->query($sql);
-
-        if($query >= 1){
+        if($this->conexion->query($sql)){
             $_SESSION['success'] = 'Empleado actualizado con éxito';
         }
         else{
-            $_SESSION['error'] = $this->db->error;
+            $_SESSION['error'] = $this->conexion->error;
         }
-
-        return $this->$_SESSION;
+        return $_SESSION;
 
     }
 
@@ -80,15 +67,13 @@ class empleados_model
     {
 
         $sql = "DELETE FROM empleados WHERE employee_id = '$id'";
-        $query = $this->db->query($sql);
-
-        if($query >= 1){
+        if($this->conexion->query($sql)){
             $_SESSION['success'] = 'Empleado eliminado con éxito';
         }
         else{
-            $_SESSION['error'] = $this->db->error;
+            $_SESSION['error'] = $this->conexion->error;
         }
-        return $this->$_SESSION;
+        return $_SESSION;
 
     }
 
@@ -96,16 +81,13 @@ class empleados_model
     {
 
         $sql = "UPDATE empleados SET photo = '$filename' WHERE employee_id = '$empid'";
-        $query = $this->db->query($sql);
-
-        if($query >= 1){
+        if($this->conexion->query($sql)){
             $_SESSION['success'] = 'La foto de tu empleado fue actualizada satisfactoriamente';
         }
         else{
-            $_SESSION['error'] = $this->db->error;
+            $_SESSION['error'] = $this->conexion->error;
         }
-
-        return $this->$_SESSION;
+        return $_SESSION;
 
     }
 }

@@ -9,7 +9,7 @@
             	<h4 class="modal-title"><b>Agregar Empleado</b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados/empleados_insertar.php" enctype="multipart/form-data">
+            	<form class="form-horizontal" method="POST" action="../../controllers/empleados/empleados_insertar.php" enctype="multipart/form-data">
               <div class="form-group">
                     <label for="edit_firstname" class="col-sm-3 control-label">Cédula de Identidad</label>
 
@@ -127,7 +127,7 @@
             	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados/empleados_editar.php">     		
+            	<form class="form-horizontal" method="POST" action="../../controllers/empleados/empleados_editar.php">     		
 
                 <div class="form-group">
                     <label for="edit_firstname" class="col-sm-3 control-label">Cédula</label>
@@ -213,7 +213,7 @@
             	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados/empleados_editar.php">     		
+            	<form class="form-horizontal" method="POST" action="../../controllers/empleados/empleados_editar.php">     		
 
                 <div class="form-group">
                     <label for="edit_firstname" class="col-sm-3 control-label">Cédula</label>
@@ -325,7 +325,7 @@
             	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
           	</div>
           	<div class="modal-body">
-            	<form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados/empleados_eliminar.php">
+            	<form class="form-horizontal" method="POST" action="../../controllers/empleados/empleados_eliminar.php">
             	
               <div class="form-group">
                     <div class="col-sm-9">
@@ -357,7 +357,7 @@
               <h4 class="modal-title"><b><span class="del_employee_name"></span></b></h4>
             </div>
             <div class="modal-body">
-              <form class="form-horizontal" method="POST" action="http://localhost/Sistema-MVC/controllers/empleados/empleados_editar_foto.php" enctype="multipart/form-data">
+              <form class="form-horizontal" method="POST" action="../../controllers/empleados/empleados_editar_foto.php" enctype="multipart/form-data">
               <div class="form-group">
                     <div class="col-sm-9">
                     <input type="hidden" class="form-control" name="id" id="photo_employee_id">
