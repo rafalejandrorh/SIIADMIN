@@ -40,36 +40,39 @@
       ?>
       <div class="row">
         <div class="col-xs-12">
+        <div class="table-responsive">
           <div class="box">
             <div class="box-body">
-              <table id="example1" class="table table-bordered">
+              <table id="example2" class="table table-bordered">
                 <thead>
-                  <th class="hidden"></th>
-                  <th>Tasa del Dolar</th>
+                        <th>Dólar a Bolívar</th>
+                        <th>Observaciones</th>
+                        <th>Acciones</th>
                 </thead>
                 <tbody>
                   <?php
                     require_once "../../controllers/tasadolar/tasadolar_obtener.php";
 
                     foreach($obtener as $row){
-                      ?>
+                  ?>
                         <tr>
-                          <td class='hidden'></td>
-                          <td><?php echo '$ 1.00'." = ".'Bs '.$row["rate_dolar"]?></td> 
-                          <td><button class='btn btn-success btn-sm edit btn-flat' data-id='".$row['id']."'><i class='fa fa-edit'></i> Editar</button></td>
+                          <td><?php echo '$ 1.00'." = ".'Bs '.$row['rate_dolar']?></td>
+                          <td><?php echo $row['observaciones']?></td> 
+                          <td><button class='btn btn-success btn-sm edit btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-edit'></i></button></td>
                         </tr>
-                      <?php }?>
+                  <?php } ?>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
+        </div>
       </div>
     </section>   
   </div>
     
-  <?php include '../includes/footer.php'; ?>
-  <?php include 'tasa_dolar_modal.php'; ?>
+<?php include '../includes/footer.php'; ?>
+<?php include 'tasa_dolar_modal.php'; ?>
 </div>
 <?php include '../includes/scripts.php'; ?>
 <script>

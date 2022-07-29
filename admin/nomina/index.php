@@ -64,7 +64,7 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th>Nombre Empleado</th>
+                  <th>Nombre Completo</th>
                   <th>Cédula de Identidad</th>
                   <th>Sueldo</th>
                   <th>Deducciones</th>

@@ -8,24 +8,14 @@
             $employee = $_POST['employee'];
             $amount = $_POST['amount'];
                     
-            $insertar = $avancefectivo -> insertar_avancefectivo($employee, $amount); 
-
-            if(isset($_SESSION['error'])){
-
-                echo $_SESSION['error'];
-
-            }else{
-          
-                echo $_SESSION['success'];
-            
-            }
+            $insertar = $avancefectivo->insertar_avancefectivo($employee, $amount); 
       
         }else{
 
             $_SESSION['error'] = 'Error, Intenta añadir el avance de efectivo nuevamente';
             
         }
-            
+        
             header('location: ../../admin/avancefectivo/index.php');        
 
 ?>

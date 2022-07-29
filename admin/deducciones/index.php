@@ -46,7 +46,7 @@
               <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
             </div>
             <div class="box-body">
-              <table id="example1" class="table table-bordered">
+              <table id="" class="table table-bordered">
                 <thead>
                   <th>Descripción</th>
                   <th>Monto</th>
@@ -63,8 +63,8 @@
                           <td><?php echo $row['description'] ?></td>
                           <td><?php echo $row['amount'] ?></td>
                           <td>
-                            <button class='btn btn-success btn-sm edit1 btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm delete1 btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-trash'></i> Eliminar</button>
+                            <button class='btn btn-success btn-sm edit1 btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-edit'></i></button>
+                            <button class='btn btn-danger btn-sm delete1 btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-trash'></i></button>
                           </td>
                         </tr>
                       <?php } ?>
@@ -83,7 +83,7 @@
               <a href="#addnew2" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
             </div>
             <div class="box-body">
-              <table id="example2" class="table table-bordered">
+              <table id="" class="table table-bordered">
                 <thead>
                   <th>Descripción</th>
                   <th>Monto</th>
@@ -98,8 +98,8 @@
                           <td><?php echo $row['description']?></td>
                           <td><?php echo $row['amount']?></td>
                           <td>
-                            <button class='btn btn-success btn-sm edit2 btn-flat' data-id="<?php echo $row['id']?>"><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm delete2 btn-flat' data-id="<?php echo $row['id']?>"><i class='fa fa-trash'></i> Eliminar</button>
+                            <button class='btn btn-success btn-sm edit2 btn-flat' data-id="<?php echo $row['id']?>"><i class='fa fa-edit'></i></button>
+                            <button class='btn btn-danger btn-sm delete2 btn-flat' data-id="<?php echo $row['id']?>"><i class='fa fa-trash'></i></button>
                           </td>
                         </tr>
                       <?php } ?>

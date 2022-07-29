@@ -4,14 +4,16 @@
         require_once "../../models/empleados_model.php";
         $empleados = new empleados_model();
                 
-        if(isset($_POST['delete'])){
+        if(isset($_POST['delete']))
+        {
             $id = $_POST['id'];
                      
-            $eliminar = $empleados-> eliminar_empleados($id); 
+            $eliminar = $empleados->eliminar_empleados($id); 
             
-        }
-        else{
+        }else{
+
             $_SESSION['error'] = 'Error, intenta nuevamente';
+
         }
             
         header('location: ../../admin/empleados/index.php');

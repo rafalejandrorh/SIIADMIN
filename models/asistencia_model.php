@@ -293,7 +293,6 @@ class asistencia_model
     {
 
         $sql = "DELETE FROM asistencia WHERE id = '$id'";
-
         if($this->db->query($sql))
 		{
 			$_SESSION['success'] = 'Asistencia eliminada satisfactoriamente';

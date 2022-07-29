@@ -45,11 +45,17 @@
 <script>
   $(function () {
     $('#example1').DataTable({
-      responsive: true
+      'responsive'  : true
     })
     $('#example2').DataTable({
       'paging'      : true,
       'lengthChange': true,
+      'searching'   : true,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : true
+    })
+    $('#example3').DataTable({
       'searching'   : true,
       'ordering'    : true,
       'info'        : true,

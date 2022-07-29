@@ -4,7 +4,8 @@
         require_once "../../models/empleados_model.php";
         $empleados = new empleados_model();
                 
-        if(isset($_POST['edit'])){
+        if(isset($_POST['edit']))
+        {
             $empid = $_POST['id'];
             $firstname = $_POST['firstname'];
             $lastname = $_POST['lastname'];
@@ -15,14 +16,12 @@
             $position = $_POST['position'];
             $schedule = $_POST['schedule'];
                      
-            $editar = $empleados-> editar_empleados($empid, $firstname, $lastname, $address, $birthdate, $contact, $gender, $position, $schedule); 
-            if(isset($_SESSION['success']))
-            {
-                header('location: ../../admin/empleados/index.php');
-            }
-        }
-        else{
+            $editar = $empleados->editar_empleados($empid, $firstname, $lastname, $address, $birthdate, $contact, $gender, $position, $schedule); 
+
+        }else{
+
             $_SESSION['error'] = 'Error, intenta nuevamente';
+
         }
             
         header('location: ../../admin/empleados/index.php');

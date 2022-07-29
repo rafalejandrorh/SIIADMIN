@@ -56,11 +56,11 @@
                   <th class="hidden"></th>
                   <th>Fecha</th>
                   <th>Cédula de Identidad</th>
-                  <th>Nombre</th>
-                  <th>No. de Horas</th>
+                  <th>Nombre Completo</th>
+                  <th>Número de Horas</th>
                   <th>Monto de Hora</th>
                   <th>Pago Total de Horas extra</th>
-                  <th>Acción</th>
+                  <th>Acciones</th>
                 </thead>
                 <tbody>
                   <?php
@@ -78,8 +78,8 @@
                           <td><?php echo '$ '.$row['rate']?></td>
                           <td><?php echo '$ '.number_format($gross, 2)?></td>
                           <td>
-                            <button class='btn btn-success btn-sm btn-flat edit' data-id='<?php echo $row['otid']?>'><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='<?php echo $row['otid']?>'><i class='fa fa-trash'></i> Eliminar</button>
+                            <button class='btn btn-success btn-sm btn-flat edit' data-id='<?php echo $row['otid']?>'><i class='fa fa-edit'></i></button>
+                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='<?php echo $row['otid']?>'><i class='fa fa-trash'></i></button>
                           </td>
                         </tr>
                       <?php

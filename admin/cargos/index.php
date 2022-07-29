@@ -50,11 +50,11 @@
               </div>
             </div>
             <div class="box-body">
-              <table id="example1" class="table table-bordered">
+              <table id="example3" class="table table-bordered">
                 <thead>
                   <th>Título del Cargo</th>
                   <th>Sueldo por hora</th>
-                  <th>Acción</th>
+                  <th>Acciones</th>
                 </thead>
                 <tbody>
                   <?php
@@ -68,8 +68,8 @@
                           <td><?php echo $row['description']?></td>
                           <td><?php echo '$ '.number_format($row['rate'], 2)?></td>
                           <td>
-                            <button class='btn btn-success btn-sm edit btn-flat' data-id='<?php echo $row['position_id']?>'><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='<?php echo $row['position_id']?>'><i class='fa fa-trash'></i> Eliminar</button>
+                            <button class='btn btn-success btn-sm edit btn-flat' data-id='<?php echo $row['position_id']?>'><i class='fa fa-edit'></i></button>
+                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='<?php echo $row['position_id']?>'><i class='fa fa-trash'></i></button>
                           </td>
                         </tr>
                       <?php } ?>

@@ -5,14 +5,14 @@
 
         $obtener = [];
 
-        if(isset($_GET['range'])){
-        $range = $_GET['range'];
-        $ex = explode(' - ', $range);
-        $from = date('Y-m-d', strtotime($ex[0]));
-        $to = date('Y-m-d', strtotime($ex[1]));
+        if(isset($_GET['range']))
+        {
+                $range = $_GET['range'];
+                $ex = explode(' - ', $range);
+                $from = date('Y-m-d', strtotime($ex[0]));
+                $to = date('Y-m-d', strtotime($ex[1]));
 
-        $obtener = $asistencia-> obtener_asistencia($from, $to);
-
-}
+                $obtener = $asistencia->obtener_asistencia($from, $to);
+        }
 
 ?>

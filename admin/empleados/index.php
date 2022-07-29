@@ -48,9 +48,9 @@
               </div>
           <div class="table-responsive">
             <div class="box-body">
-              <table id="example1" class="table table-bordered">
+              <table id="example2" class="table table-bordered">
                 <thead>
-                  <th>C.I</th>
+                  <th>Cédula de Identidad</th>
                   <th>Nombre Completo</th>
                   <th>Cargo</th>
                   <th>Sueldo por Hora</th>
@@ -58,7 +58,7 @@
                   <th>Residencia</th>
                   <th>Teléfono</th>
                   <th>Foto</th>
-                  <th>Acción</th>
+                  <th>Acciones</th>
                 </thead>
                 <tbody>
                   <?php

@@ -65,15 +65,14 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th class="hidden"></th>
                   <th class="">Fecha</th>
-                  <th class="">C.I</th>
-                  <th class="">Nombre</th>
+                  <th class="">Cédula de Identidad</th>
+                  <th class="">Nombre Completo</th>
                   <th class="">Cargo</th>
-                  <th class="">Hora Entrada</th>
-                  <th class="">Hora Salida</th>
-                  <th class="">Horas Trabajadas</th>
-                  <th class="text-center">Acción</th>
+                  <th class="">Hora de Entrada</th>
+                  <th class="">Hora de Salida</th>
+                  <th class="">Horas Laboradas</th>
+                  <th class="">Acciones</th>
                 </thead>
                 <tbody>
                   <?php
@@ -84,7 +83,6 @@
                       $status = ($row['status'])?'<span class="label label-warning pull-right">a tiempo</span>':'<span class="label label-danger pull-right">tarde</span>';
                       ?>
                         <tr>
-                          <td class='hidden'></td>
                           <td><?php echo date('M d, Y', strtotime($row['date']))?></td>
                           <td><?php echo $row['empid']?></td>
                           <td><?php echo $row['firstname'].' '.$row['lastname']?></td>
@@ -93,8 +91,8 @@
                           <td><?php echo date('h:i A', strtotime($row['time_out']))?></td>
                           <td><?php echo number_format($row['num_hr'],1)?></td>
                           <td class='text-center'>
-                            <button class='btn btn-success btn-sm btn-flat edit' data-id='<?php echo $row['attid']?>'><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='<?php echo $row['attid']?>'><i class='fa fa-trash'></i> Eliminar</button>
+                            <button class='btn btn-success btn-sm btn-flat edit' data-id='<?php echo $row['attid']?>'><i class='fa fa-edit'></i></button>
+                            <button class='btn btn-danger btn-sm btn-flat delete' data-id='<?php echo $row['attid']?>'><i class='fa fa-trash'></i></button>
                           </td>
                         </tr>
                       <?php } ?>

@@ -9,21 +9,12 @@
             $title = $_POST['title'];
             $rate = $_POST['rate'];
                      
-            $editar = $cargos-> editar_cargos($title, $rate, $id); 
-
-            if(isset($_SESSION['error'])){
-
-                echo $_SESSION['error'];
-        
-            }else{
-                  
-                echo $_SESSION['success'];
-                    
-            }
+            $editar = $cargos->editar_cargos($title, $rate, $id); 
             
-        }
-        else{
+        }else{
+
             $_SESSION['error'] = 'Error, Intenta actualizar el cargo nuevamente';
+
         }
             
         header('location: ../../admin/cargos/index.php');

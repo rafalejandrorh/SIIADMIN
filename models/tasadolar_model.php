@@ -30,10 +30,10 @@ class tasadolar_model
 
     }
 
-    public function editar_tasadolar($rate_dolar, $id)
+    public function editar_tasadolar($rate_dolar, $observaciones, $id)
     {
 
-        $sql = "UPDATE tasa_dolar SET rate_dolar = '$rate_dolar' WHERE id = '$id'";
+        $sql = "UPDATE tasa_dolar SET rate_dolar = '$rate_dolar', observaciones = '$observaciones' WHERE id = '$id'";
         if($this->conexion->query($sql)){
 			$_SESSION['success'] = 'Tasa del dólar modificada satisfactoriamente';
 		}

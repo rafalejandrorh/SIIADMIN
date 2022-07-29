@@ -11,9 +11,11 @@
             $amount = $_POST['amount'];
             $tabla = $_POST['tabla'];
             $editar = $deducciones->editar_deducciones($description, $amount, $id, $tabla); 
-        }
-        else{
+
+        }else{
+
             $_SESSION['error'] = 'Error, Intenta actualizar la deducción nuevamente';
+            
         }
             
         header('location: ../../admin/deducciones/index.php');

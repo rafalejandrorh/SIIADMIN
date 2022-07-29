@@ -8,17 +8,7 @@
             $title = $_POST['title'];
             $rate = $_POST['rate'];
                     
-            $insertar = $cargos -> insertar_cargos($title, $rate); 
-
-            if(isset($_SESSION['error'])){
-
-                echo $_SESSION['error'];
-
-            }else{
-          
-                echo $_SESSION['success'];
-            
-            }
+            $insertar = $cargos->insertar_cargos($title, $rate); 
       
         }else{
 

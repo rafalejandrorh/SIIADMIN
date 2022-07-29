@@ -51,11 +51,11 @@
               <table id="example1" class="table table-bordered">
                 <thead>
                   <th class="hidden"></th>
-                  <th>Fecha</th>
+                  <th>Fecha del Avance</th>
                   <th>Cédula de Identidad</th>
-                  <th>Nombre</th>
-                  <th>Monto</th>
-                  <th>Acción</th>
+                  <th>Nombre Completo</th>
+                  <th>Monto del Avance</th>
+                  <th>Acciones</th>
                 </thead>
                 <tbody>
                   <?php
@@ -70,8 +70,8 @@
                           <td><?php echo $row['firstname'].' '.$row['lastname']?></td>
                           <td><?php echo '$ '.number_format($row['amount'], 2)?></td>
                           <td>
-                            <button class='btn btn-success btn-sm edit btn-flat' data-id='<?php echo $row['caid']?>'><i class='fa fa-edit'></i> Editar</button>
-                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='<?php echo $row['caid']?>'><i class='fa fa-trash'></i> Eliminar</button>
+                            <button class='btn btn-success btn-sm edit btn-flat' data-id='<?php echo $row['caid']?>'><i class='fa fa-edit'></i></button>
+                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='<?php echo $row['caid']?>'><i class='fa fa-trash'></i></button>
                           </td>
                         </tr>
                       <?php } ?>
