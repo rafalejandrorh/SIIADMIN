@@ -1,7 +1,7 @@
 <header class="main-header">
     <a href="../home/index.php" class="logo">
-      <span class="logo-mini"><b>AN</b></span>
-      <span class="logo-lg"><b>Asistencia y Nómina</b></span>
+      <span class="logo-mini"><b>SIIAD</b></span>
+      <span class="logo-lg"><b>SIIADMIN</b></span>
     </a>
     <nav class="navbar navbar-static-top" style="background-color:#222d32;">
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">

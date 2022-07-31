@@ -1,12 +1,10 @@
-<?php include '../includes/session.php'; ?>
 <?php 
+
+  include '../includes/session.php';
   include '../includes/timezone.php'; 
-  $year = date('Y');
-  if(isset($_GET['year'])){
-    $year = $_GET['year'];
-  }
-?>
-<?php include '../includes/header.php'; ?>
+  require_once '../../controllers/home/graficos_empleados.php';
+  include '../includes/header.php'; ?>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -17,8 +15,8 @@
     <section class="content-header">
       <h1><b>Panel de Control</b></h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Panel de Control</li>
+        <li><a href="#"> Reportes</a></li>
+        <li class="active"><i class="fa fa-dashboard"></i> Panel de Control</li>
       </ol>
     </section>
 
@@ -133,7 +131,7 @@
                     <label>Seleccionar Año: </label>
                     <select class="form-control input-sm" id="select_year">
                       <?php
-                        for($i=1990; $i<=2100; $i++){
+                        for($i=1990; $i<=2070; $i++){
                           $selected = ($i==$year)?'selected':'';
                           echo "
                             <option value='".$i."' ".$selected.">".$i."</option>
@@ -162,30 +160,6 @@
 
 </div>
 
-<?php
-  $and = 'AND YEAR(date) = '.$year;
-  $months = array();
-  $ontime = array();
-  $late = array();
-  for( $m = 1; $m <= 12; $m++ ) {
-    $sql = "SELECT * FROM asistencia WHERE MONTH(date) = '$m' AND status = 1 $and";
-    $oquery = $conn->query($sql);
-    array_push($ontime, $oquery->num_rows);
-
-    $sql = "SELECT * FROM asistencia WHERE MONTH(date) = '$m' AND status = 0 $and";
-    $lquery = $conn->query($sql);
-    array_push($late, $lquery->num_rows);
-
-    $num = str_pad( $m, 2, 0, STR_PAD_LEFT );
-    $month =  date('M', mktime(0, 0, 0, $m, 1));
-    array_push($months, $month);
-  }
-
-  $months = json_encode($months);
-  $late = json_encode($late);
-  $ontime = json_encode($ontime);
-
-?>
 <?php include '../includes/scripts.php'; ?>
 <script>
 $(function(){
@@ -255,7 +229,7 @@ $(function(){
 <script>
 $(function(){
   $('#select_year').change(function(){
-    window.location.href = 'home.php?year='+$(this).val();
+    window.location.href = 'index.php?year='+$(this).val();
   });
 });
 </script>

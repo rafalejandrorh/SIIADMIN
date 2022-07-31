@@ -13,7 +13,7 @@
     <h1><b>Cargos</b></h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class=""></i> Administración</a></li>
-        <li class="active">Cargos</li>
+        <li class="active"><i class="fa fa-suitcase"></i> Cargos</li>
       </ol>
     </section>
     <!-- Main content -->

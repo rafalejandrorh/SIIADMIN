@@ -18,7 +18,7 @@
       <h1><b>Asistencia</b></h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class=""></i> Administración</a></li>
-        <li class="active">Asistencia</li>
+        <li class="active"><i class="fa fa-calendar"></i> Asistencia</li>
       </ol>
     </section>
 
@@ -80,7 +80,7 @@
 
                     foreach($obtener as $row)
                     {
-                      $status = ($row['status'])?'<span class="label label-warning pull-right">a tiempo</span>':'<span class="label label-danger pull-right">tarde</span>';
+                      $status = ($row['status'])?'<span class="label label-warning pull-right">A tiempo</span>':'<span class="label label-danger pull-right">Tarde</span>';
                       ?>
                         <tr>
                           <td><?php echo date('M d, Y', strtotime($row['date']))?></td>

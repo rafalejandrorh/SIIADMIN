@@ -16,7 +16,23 @@
         
         <li class="header">ADMINISTRACIÓN</li>
         <li><a href="../asistencia/index.php"><i class="fa fa-calendar"></i> <span>Asistencia</span></a></li>
-        <li class="treeview">
+        <li><a href="../empleados/index.php"><i class="fa fa-users"></i> <span>Empleados</span></a></li>
+        <li><a href="../horarios/index.php"><i class="fa fa-clock-o"></i> <span>Horarios</span></a></li>
+        <li><a href="../cargos/index.php"><i class="fa fa-suitcase"></i> <span>Cargos</span></a></li>
+
+        <li class="header">FINANZAS</li>
+        <li><a href="../nomina/index.php"><i class="fa fa-calculator"></i> <span>Nómina</span></a></li>
+        <li><a href="../deducciones/index.php"><i class="fa fa-percent"></i> <span>Deducciones</span></a></li>
+        <li><a href="../tasadolar/index.php"><i class="fa fa-dollar"></i> <span>Tasa del Dolar</span></a></li>
+        <li><a href="../tiempoextra/index.php"><i class="fa fa-hourglass-1"></i> <span>Tiempo Extra</span></a></li>
+        <li><a href="../avancefectivo/index.php"><i class="fa fa-money"></i> <span>Avance de Efectivo</span></a></li>
+
+      </ul>  
+    </section>
+  </aside>
+
+
+  <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-users"></i>
             <span>Empleados</span>
@@ -27,13 +43,5 @@
           <ul class="treeview-menu">
             <li><a href="../empleados/index.php"><i class="fa fa-circle-o"></i> Lista de Empleados</a></li>
             <li><a href="../horarios/index.php"><i class="fa fa-circle-o"></i> Horarios</a></li>
-            <li><a href="../tiempoextra/index.php"><i class="fa fa-circle-o"></i> Tiempo Extra</a></li>
-            <li><a href="../avancefectivo/index.php"><i class="fa fa-circle-o"></i> Avance Efectivo</a></li>
           </ul>
-        </li>
-        <li><a href="../tasadolar/index.php"><i class="fa fa-files-o"></i> <span>Tasa del Dolar</span></a></li>
-        <li><a href="../cargos/index.php"><i class="fa fa-suitcase"></i> <span>Cargos</span></a></li>
-        <li><a href="../deducciones/index.php"><i class="fa fa-file-text"></i> <span>Deducciones</span></a></li>
-        <li><a href="../nomina/index.php"><i class="fa fa-money"></i> <span>Nómina</span></a></li>
-    </section>
-  </aside>
+   </li> -->

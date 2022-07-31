@@ -10,8 +10,8 @@
     <section class="content-header">
       <h1><b>Deducciones</b></h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class=""></i> Administración</a></li>
-        <li class="active">Deducciones</li>
+        <li><a href="#"><i class=""></i> Finanzas</a></li>
+        <li class="active"><i class="fa fa-percent"></i> Deducciones</li>
       </ol>
     </section>
  

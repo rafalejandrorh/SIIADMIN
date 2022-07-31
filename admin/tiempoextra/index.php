@@ -12,9 +12,8 @@
     <section class="content-header">
     <h1><b>Tiempo Extra</b></h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li>Empleados</li>
-        <li class="active">Tiempo Extra</li>
+        <li><a href="#"><i class=""></i> Finanzas</a></li>
+        <li class="active"><i class="fa fa-hourglass-1"></i> Tiempo Extra</li>
       </ol>
     </section>
     <!-- Main content -->

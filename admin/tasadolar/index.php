@@ -10,8 +10,8 @@
     <section class="content-header">
       <h1><b>Tasa del Dolar</b></h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class=""></i> Administración</a></li>
-        <li class="active">Tasa del Dolar</li>
+        <li><a href="#"><i class=""></i> Finanzas</a></li>
+        <li class="active"><i class="fa fa-dollar"></i> Tasa del Dólar</li>
       </ol>
     </section>
 
@@ -45,9 +45,9 @@
             <div class="box-body">
               <table id="example2" class="table table-bordered">
                 <thead>
-                        <th>Dólar a Bolívar</th>
-                        <th>Observaciones</th>
-                        <th>Acciones</th>
+                    <th>Dólar a Bolívar</th>
+                    <th>Observaciones</th>
+                    <th>Acciones</th>
                 </thead>
                 <tbody>
                   <?php
@@ -55,11 +55,11 @@
 
                     foreach($obtener as $row){
                   ?>
-                        <tr>
-                          <td><?php echo '$ 1.00'." = ".'Bs '.$row['rate_dolar']?></td>
-                          <td><?php echo $row['observaciones']?></td> 
-                          <td><button class='btn btn-success btn-sm edit btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-edit'></i></button></td>
-                        </tr>
+                      <tr>
+                        <td><?php echo '$ 1.00'." = ".'Bs '.$row['rate_dolar']?></td>
+                        <td><?php echo $row['observaciones']?></td> 
+                        <td><button class='btn btn-success btn-sm edit btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-edit'></i></button></td>
+                      </tr>
                   <?php } ?>
                 </tbody>
               </table>

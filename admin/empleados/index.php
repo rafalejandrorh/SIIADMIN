@@ -10,8 +10,8 @@
     <section class="content-header">
     <h1><b>Lista de Empleados</b></h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Empleados</a></li>
-        <li class="active">Lista de Empleados</li>
+        <li><a href="#"> Administración</a></li>
+        <li class="active"><i class="fa fa-users"></i> Empleados</li>
       </ol>
     </section>
     <section class="content">

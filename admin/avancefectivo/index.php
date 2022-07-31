@@ -10,9 +10,8 @@
     <section class="content-header">
     <h1><b>Avance Efectivo</b></h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li>Empleados</li>
-        <li class="active">Avance de Efectivo</li>
+        <li><a href="#"><i class=""></i> Finanzas</a></li>
+        <li class="active"><i class="fa fa-money"></i> Avance de Efectivo</li>
       </ol>
     </section>
     <section class="content">
