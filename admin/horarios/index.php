@@ -1,4 +1,4 @@
-<?php include '../includes/session.php'; ?>
+<?php include '../../controllers/sesion/session.php'; ?>
 <?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -62,11 +62,11 @@
                     {
                       ?>
                         <tr>
-                          <td><?php echo date('h:i A', strtotime($row['time_in']))?></td>
-                          <td><?php echo date('h:i A', strtotime($row['time_out']))?></td>
+                          <td><?php echo date('h:i A', strtotime($row['hora_llegada']))?></td>
+                          <td><?php echo date('h:i A', strtotime($row['hora_salida']))?></td>
                           <td>
-                            <button class='btn btn-success btn-sm edit btn-flat' data-id='<?php echo $row['schedule_id']?>'><i class='fa fa-edit'></i></button>
-                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='<?php echo $row['schedule_id']?>'><i class='fa fa-trash'></i></button>
+                            <button class='btn btn-success btn-sm edit btn-flat' data-id='<?php echo $row['id_horarios']?>'><i class='fa fa-edit'></i></button>
+                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='<?php echo $row['id_horarios']?>'><i class='fa fa-trash'></i></button>
                           </td>
                         </tr>
                       <?php } ?>
@@ -107,11 +107,11 @@ function getRow(id){
     data: {id:id},
     dataType: 'json',
     success: function(response){
-      $('#edit_time_in').val(response.time_in);
-      $('#edit_time_out').val(response.time_out);
-      $('#edit_timeid').val(response.schedule_id);
-      $('#del_timeid').val(response.schedule_id);
-      $('#del_schedule').html(response.time_in+' - '+response.time_out);
+      $('#edit_hora_llegada').val(response.hora_llegada);
+      $('#edit_hora_salida').val(response.hora_salida);
+      $('#edit_id_horarios').val(response.id_horarios);
+      $('#del_id_horarios').val(response.id_horarios);
+      $('#del_horarios').html(response.hora_llegada+' - '+response.hora_salida);
     }
   });
 }

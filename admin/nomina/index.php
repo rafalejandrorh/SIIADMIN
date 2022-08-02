@@ -1,4 +1,4 @@
-<?php include '../includes/session.php';?>
+<?php include '../../controllers/sesion/session.php';?>
 <?php
   include '../includes/timezone.php';
   $range_to = date('m/d/Y');
@@ -77,21 +77,21 @@
                   <?php 
                     require_once "../../controllers/nomina/nomina_obtener.php";
                     foreach($consulta_horas_trabajadas as $row){
-                    $gross = $row['rate'] * $row['total_hr'];
-                    $empid = $row['empid'];   
+                    $gross = $row['sueldo'] * $row['total_horas'];
+                    $id_empleado = $row['empid'];   
     
                     //Obtiene el efectivo prestado al empleado
-                    $consulta_avancefectivo = $nomina->consulta_avancefectivo($from, $to, $empid);
+                    $consulta_avancefectivo = $nomina->consulta_avancefectivo($from, $to, $id_empleado);
                     //Realiza el Cálculo de la Nomina. Retorna: El total de las deducciones y el Total del Pago Neto en Bs y Dólares
-                    $calculo_nomina = $nomina->calculo_nomina($gross, $deduction, $deduction2, $consulta_avancefectivo[0]['cashamount'], $dolar);
+                    $calculo_nomina = $nomina->calculo_nomina($gross, $deduction, $deduction2, $consulta_avancefectivo[0]['efectivo'], $dolar);
 
                   ?>
                   <tr>            
-                    <td><?php echo $row['lastname']." ".$row['firstname']?></td>
+                    <td><?php echo $row['apellidos']." ".$row['nombres']?></td>
                     <td><?php echo $row['ci']?></td>
                     <td><?php echo '$ '.number_format($gross, 2)?></td>
                     <td><?php echo '$ '.number_format($calculo_nomina['deductionley'], 2)?></td>
-                    <td><?php echo '$ '.number_format($consulta_avancefectivo[0]['cashamount'], 2)?></td>
+                    <td><?php echo '$ '.number_format($consulta_avancefectivo[0]['efectivo'], 2)?></td>
                     <td><?php echo '$ '.number_format(1,2)." = Bs ".number_format($dolar,2)?></td>
                     <td><?php echo '$ '.number_format($calculo_nomina['net'], 2)?></td>
                     <td><?php echo 'Bs.D '.number_format($calculo_nomina['bs'], 2)?></td> 

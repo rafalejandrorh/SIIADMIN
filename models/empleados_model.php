@@ -29,67 +29,87 @@ class empleados_model
     public function obtener_empleados()
     {
 
-        $sql = "SELECT * FROM empleados LEFT JOIN cargos ON cargos.position_id=empleados.position_id LEFT JOIN horarios ON horarios.schedule_id=empleados.schedule_id";
+        $sql = "SELECT personas.cedula, personas.nombres, personas.apellidos, cargos.cargo, cargos.sueldo, horarios.hora_llegada, 
+        horarios.hora_salida, personas.direccion, personas.numero_contacto, personas.foto, empleados.id_empleado AS id
+        FROM empleados 
+        LEFT JOIN personas ON empleados.id_persona = personas.id_persona 
+        LEFT JOIN cargos ON empleados.id_cargo = cargos.id_cargo 
+        LEFT JOIN horarios ON horarios.id_horarios = empleados.id_horarios
+        WHERE estatus = 1";
         $query = $this->conexion->query($sql);
         return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
-    public function insertar_empleados($employee_id, $firstname, $lastname, $address, $birthdate, $contact, $gender, $position, $schedule, $filename)
+    public function obtener_empleado($id_persona)
     {
 
-        $sql = "INSERT INTO empleados (employee_id, firstname, lastname, address, birthdate, contact_info, gender, position_id, schedule_id, photo, created_on) VALUES ('$employee_id', '$firstname', '$lastname', '$address', '$birthdate', '$contact', '$gender', '$position', '$schedule', '$filename', NOW())";
-        if($this->conexion->query($sql)){
+		$sql = "SELECT empleados.id_empleado FROM empleados WHERE empleados.id_persona = '$id_persona'";
+		$query = $this->conexion->query($sql);
+        if($query->rowCount() >= 1)
+        {
+            $dato = $query->fetch();
+            return $dato['id_empleado'];
+        }else{
+            $_SESSION['error'] = 'Error, la Persona indicada no está registrada como Empleado.';
+            return 0;
+        }    
+
+    }
+
+    public function insertar_empleado($id_persona, $id_cargo, $id_horarios)
+    {
+
+        $sql = "INSERT INTO empleados (id_persona, id_cargo, id_horarios, estatus) VALUES ('$id_persona', '$id_cargo', '$id_horarios', 1)";
+        $query = $this->conexion->query($sql);
+        if($query->rowCount() >= 1){
             $_SESSION['success'] = 'Empleado añadido satisfactoriamente';
-        }
-        else{
-            $_SESSION['error'] = $this->conexion->error;
-        }
-        return $_SESSION;
-
-    }
-
-    public function editar_empleados($empid, $firstname, $lastname, $address, $birthdate, $contact, $gender, $position, $schedule)
-    {
-
-        $sql = "UPDATE empleados SET firstname = '$firstname', lastname = '$lastname', address = '$address', birthdate = '$birthdate', contact_info = '$contact', gender = '$gender', position_id = '$position', schedule_id = '$schedule' WHERE employee_id = '$empid'";
-        if($this->conexion->query($sql)){
-            $_SESSION['success'] = 'Empleado actualizado con éxito';
-        }
-        else{
-            $_SESSION['error'] = $this->conexion->error;
+        }else{
+            $_SESSION['error'] = 'Error al Ingresar el Cargo y el Horario del Empleado, intente más tarde.';
         }
         return $_SESSION;
 
     }
 
-    public function eliminar_empleados($id)
+    public function editar_empleado($id_empleado, $id_cargo, $id_horario)
     {
 
-        $sql = "DELETE FROM empleados WHERE employee_id = '$id'";
-        if($this->conexion->query($sql)){
-            $_SESSION['success'] = 'Empleado eliminado con éxito';
-        }
-        else{
-            $_SESSION['error'] = $this->conexion->error;
-        }
-        return $_SESSION;
+            $sql = "UPDATE empleados SET id_cargo = $id_cargo, id_horarios = $id_horario WHERE id_empleado = $id_empleado";
+            $query = $this->conexion->query($sql);
+            $_SESSION['success'] = 'Datos del Empleado actualizados con éxito';
 
     }
 
-    public function editar_foto_empleados($empid, $filename)
+    public function editar_foto_empleados($id_persona, $foto)
     {
 
-        $sql = "UPDATE empleados SET photo = '$filename' WHERE employee_id = '$empid'";
-        if($this->conexion->query($sql)){
+        $sql = "UPDATE personas SET foto = '$foto' WHERE id_persona = '$id_persona'";
+        $query = $this->conexion->query($sql);
+        if($query->rowCount() >= 1){
             $_SESSION['success'] = 'La foto de tu empleado fue actualizada satisfactoriamente';
-        }
-        else{
+            return $query->rowCount();
+        }else{
             $_SESSION['error'] = $this->conexion->error;
+            return $query->rowCount();
         }
-        return $_SESSION;
 
     }
+
+    public function inactivar_empleado($id_empleado)
+    {
+
+        $sql = "UPDATE empleados SET estatus = 0 WHERE id_empleado = '$id_empleado'";
+        $query = $this->conexion->query($sql);
+        if($query->rowCount() >= 1){
+            $_SESSION['success'] = 'Empleado eliminado con éxito';
+            return $query->rowCount();
+        }else{
+            $_SESSION['error'] = $this->conexion->error;
+            return $query->rowCount();
+        }
+
+    }
+
 }
 
 ?>

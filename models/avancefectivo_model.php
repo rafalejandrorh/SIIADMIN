@@ -19,49 +19,32 @@ class avancefectivo_model
     public function obtener_avancefectivo()
     {
 
-        $sql = "SELECT *, avancefectivo.id AS caid, empleados.employee_id AS empid FROM avancefectivo LEFT JOIN empleados ON empleados.id=avancefectivo.employee_id";
+        $sql = "SELECT *, avancefectivo.id AS caid, personas.cedula AS ci FROM avancefectivo LEFT JOIN empleados ON empleados.id_empleado=avancefectivo.id_empleado LEFT JOIN personas ON empleados.id_persona = personas.id_persona";
         $query = $this->conexion->query($sql);
         return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
-    public function insertar_avancefectivo($employee, $amount)
+    public function insertar_avancefectivo($id_empleado, $monto)
     {
 
-        $sql = "SELECT * FROM empleados WHERE employee_id = '$employee'";
+		$sql = "INSERT INTO avancefectivo (id_empleado, fecha, monto) VALUES ('$id_empleado', NOW(), '$monto')";
 		$query = $this->conexion->query($sql);
-		if($query->rowCount() < 1)
+        if($query->rowCount() >= 1)
         {
-			$_SESSION['error'] = 'Empleado no encontrado';
+			$_SESSION['success'] = 'Avance de Efectivo añadido satisfactoriamente';
+		}else{
+			$_SESSION['error'] = 'Error al intentar Insertar el avance de efectivo, intente más tarde.';
 		}
-		else{
-			$row = $query->fetch();
-			$employee_id = $row['id'];
-			$sql = "INSERT INTO avancefectivo (employee_id, date_advance, amount) VALUES ('$employee_id', NOW(), '$amount')";
-			if($this->conexion->query($sql))
-            {
-				$_SESSION['success'] = 'Avance de Efectivo añadido satisfactoriamente';
-			}
-			else{
-				$_SESSION['error'] = $this->conexion->error;
-			}
-        }
-        return $_SESSION;
 
     }
 
-    public function editar_avancefectivo($amount, $id)
+    public function editar_avancefectivo($monto, $id)
     {
 
-        $sql = "UPDATE avancefectivo SET amount = '$amount' WHERE id = '$id'";
-        if($this->conexion->query($sql))
-        {
-			$_SESSION['success'] = 'Avance de Efectivo actualizado satisfactoriamente';
-		}
-		else{
-			$_SESSION['error'] = $this->dberror;
-		}
-        return $_SESSION;
+        $sql = "UPDATE avancefectivo SET monto = '$monto' WHERE id = '$id'";
+        $query = $this->conexion->query($sql);
+		$_SESSION['success'] = 'Avance de Efectivo actualizado satisfactoriamente';
 
     }
     
@@ -72,11 +55,9 @@ class avancefectivo_model
         if($this->conexion->query($sql))
         {
 			$_SESSION['success'] = 'Adelanto de efectivo eliminado con éxito';
+		}else{
+			$_SESSION['error'] = 'Error al intentar Eliminar el avance de efectivo, intente más tarde.';
 		}
-		else{
-			$_SESSION['error'] = $this->conexion->error;
-		}
-        return $_SESSION;
 
     }
 }

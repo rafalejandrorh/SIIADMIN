@@ -1,4 +1,4 @@
-<?php include '../includes/session.php'; ?>
+<?php include '../../controllers/sesion/session.php'; ?>
 <?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -62,6 +62,7 @@
                 </thead>
                 <tbody>
                   <?php
+                  print_r($_SESSION);
                   require_once "../../config/conn.php";
                   require_once "../../controllers/empleados/empleados_obtener.php";
                   require_once "../../controllers/cargos/cargos_obtener.php";
@@ -71,14 +72,14 @@
                     { 
                       ?>
                         <tr>
-                          <td><?php echo $row['employee_id']; ?></td>
-                          <td><?php echo $row['firstname'].' '.$row['lastname']; ?></td>
-                          <td><?php echo $row['description']; ?></td>
-                          <td><?php echo '$'.number_format($row['rate'], 2)?></td>
-                          <td><?php echo date('h:i A', strtotime($row['time_in'])).' - '.date('h:i A', strtotime($row['time_out'])); ?></td>
-                          <td><?php echo $row['address']; ?></td>
-                          <td><?php echo $row['contact_info']; ?></td>
-                          <td><img src="<?php echo (!empty($row['photo']))? '../../images/'.$row['photo']:'../../images/profile.jpg'; ?>" width="30px" height="30px"> <a href="#edit_photo" data-toggle="modal" class="pull-right photo" data-id="<?php echo $row['id']; ?>"><span class="fa fa-edit"></span></a></td>
+                          <td><?php echo $row['cedula']; ?></td>
+                          <td><?php echo $row['nombres'].' '.$row['apellidos']; ?></td>
+                          <td><?php echo $row['cargo']; ?></td>
+                          <td><?php echo '$'.number_format($row['sueldo'], 2)?></td>
+                          <td><?php echo date('h:i A', strtotime($row['hora_llegada'])).' - '.date('h:i A', strtotime($row['hora_salida'])); ?></td>
+                          <td><?php echo $row['direccion']; ?></td>
+                          <td><?php echo $row['numero_contacto']; ?></td>
+                          <td><img src="<?php echo (!empty($row['foto']))? '../../images/'.$row['foto']:'../../images/profile.jpg'; ?>" width="30px" height="30px"> <a href="#edit_photo" data-toggle="modal" class="pull-right photo" data-id="<?php echo $row['id']; ?>"><span class="fa fa-edit"></span></a></td>
                           <td>
                             <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></button>
                             <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button>
@@ -138,29 +139,29 @@ function getRow(id){
     data: {id:id},
     dataType: 'json',
     success: function(response){
-      $('#id').val(response.id);
-      $('.del_employee_name').html(response.firstname+' '+response.lastname);
-      $('#employee_id').val(response.employee_id);
-      $('#del_employee_id').val(response.employee_id);
-      $('#photo_employee_id').val(response.employee_id);
-      $('#employee_name').html(response.firstname+' '+response.lastname);
-      $('#edit_firstname').val(response.firstname);
-      $('#edit_lastname').val(response.lastname);
-      $('#edit_address').val(response.address);
-      $('#datepicker_edit').val(response.birthdate);
-      $('#edit_contact').val(response.contact_info);
-      $('#gender_val').html(response.gender);
-      $('#position_val').val(response.position_id).html(response.description);
-      $('#schedule_val').val(response.schedule_id).html(response.time_in+' - '+response.time_out);
-      $('#show_id').val(response.employee_id);
-      $('#show_firstname').val(response.firstname);
-      $('#show_lastname').val(response.lastname);
-      $('#show_address').val(response.address);
-      $('#show_birthdate').val(response.birthdate);
-      $('#show_contact').val(response.contact_info);
-      $('#show_gender').val(response.gender);
-      $('#show_position').val(response.description);
-      $('#show_schedule').val(response.time_in+' - '+response.time_out);
+      $('#del_employee_name').html(response.nombres+' '+response.apellidos);
+      $('#del_id_empleado').val(response.id_empleado);
+      $('#edit_id_empleado').val(response.id_empleado);
+      $('#edit_cedula').val(response.cedula);
+      $('#edit_nombres').val(response.nombres);
+      $('#edit_apellidos').val(response.apellidos);
+      $('#edit_direccion').val(response.direccion);
+      $('#fecha_nacimiento_edit').val(response.fecha_nacimiento);
+      $('#edit_contacto').val(response.numero_contacto);
+      $('#edit_genero').val(response.genero);
+      $('#edit_cargo').val(response.id_cargo).html(response.cargo);
+      $('#edit_horario').val(response.id_horarios).html(response.hora_llegada+' - '+response.hora_salida);
+      $('#edit_foto').val(response.foto);
+      $('#foto_id_empleado').val(response.id_empleado);
+      $('#show_cedula').val(response.cedula);
+      $('#show_nombres').val(response.nombres);
+      $('#show_apellidos').val(response.apellidos);
+      $('#show_direccion').val(response.direccion);
+      $('#show_fecha_nacimiento').val(response.fecha_nacimiento);
+      $('#show_contacto').val(response.numero_contacto);
+      $('#show_genero').val(response.genero);
+      $('#show_cargo').val(response.cargo);
+      $('#show_horario').val(response.hora_llegada+' - '+response.hora_salida);
     }
   });
 }

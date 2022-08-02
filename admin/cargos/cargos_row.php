@@ -1,9 +1,9 @@
 <?php 
-	include '../includes/session.php';
+	include '../../controllers/sesion/session.php';
 
 	if(isset($_POST['id'])){
 		$id = $_POST['id'];
-		$sql = "SELECT * FROM cargos WHERE position_id = '$id'";
+		$sql = "SELECT * FROM cargos WHERE id_cargo = '$id'";
 		$query = $conn->query($sql);
 		$row = $query->fetch_assoc();
 

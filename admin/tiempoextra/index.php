@@ -1,4 +1,4 @@
-<?php include '../includes/session.php'; ?>
+<?php include '../../controllers/sesion/session.php';?>
 <?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -67,14 +67,14 @@
 
                     foreach($obtener as $row)
                     {
-                      $gross = $row['rate'] * $row['hours'];?>
+                      $gross = $row['monto'] * $row['horas'];?>
                         <tr>
                           <td class='hidden'></td>
-                          <td><?php echo date('M d, Y', strtotime($row['date_overtime']))?></td>
-                          <td><?php echo $row['employee_id']?></td>
-                          <td><?php echo $row['firstname'].' '.$row['lastname']?></td>
-                          <td><?php echo $row['hours']?></td>
-                          <td><?php echo '$ '.$row['rate']?></td>
+                          <td><?php echo date('M d, Y', strtotime($row['fecha']))?></td>
+                          <td><?php echo $row['cedula']?></td>
+                          <td><?php echo $row['nombres'].' '.$row['apellidos']?></td>
+                          <td><?php echo $row['horas']?></td>
+                          <td><?php echo '$ '.$row['monto']?></td>
                           <td><?php echo '$ '.number_format($gross, 2)?></td>
                           <td>
                             <button class='btn btn-success btn-sm btn-flat edit' data-id='<?php echo $row['otid']?>'><i class='fa fa-edit'></i></button>
@@ -122,13 +122,13 @@ function getRow(id){
     dataType: 'json',
     success: function(response){
 
-      $('.employee_name').html(response.firstname+' '+response.lastname);
+      $('#nombres').html(response.nombres+' '+response.apellidos);
       $('#del_otid').val(response.otid);
       $('#edit_otid').val(response.otid);
-      $('#datepicker_edit').val(response.date_overtime);
-      $('#overtime_date').html(response.date_overtime);
-      $('#hours_edit').val(response.hours);
-      $('#rate_edit').val(response.rate);
+      $('#fecha_edit').val(response.fecha);
+      $('#fecha').html(response.fecha);
+      $('#horas_edit').val(response.horas);
+      $('#monto_edit').val(response.monto);
     }
   });
 }

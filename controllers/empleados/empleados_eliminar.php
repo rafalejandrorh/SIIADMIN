@@ -1,14 +1,19 @@
 <?php 
-        include '../../admin/includes/session.php';
+        include '../../controllers/sesion/session.php';
         require_once "../../config/conn.php";
         require_once "../../models/empleados_model.php";
         $empleados = new empleados_model();
                 
-        if(isset($_POST['delete']))
+        if(isset($_POST['eliminar']))
         {
-            $id = $_POST['id'];
+            $id_empleado = $_POST['id_empleado'];
                      
-            $eliminar = $empleados->eliminar_empleados($id); 
+            $eliminar = $empleados->inactivar_empleado($id_empleado); 
+
+            if($eliminar == 0)
+            {
+                $_SESSION['error'] = 'Error al Eliminar al Empleado, intente más tarde.';
+            }
             
         }else{
 

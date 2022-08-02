@@ -1,10 +1,10 @@
 <?php 
-        include '../../admin/includes/session.php';
+        include '../../controllers/sesion/session.php';
         include "../../config/conn.php";
         require_once "../../models/deducciones_model.php";
         $deducciones = new deducciones_model();
                 
-        if(isset($_POST['delete']))
+        if(isset($_POST['eliminar']))
         {
             $id = $_POST['id'];
             $tabla = $_POST['tabla'];   

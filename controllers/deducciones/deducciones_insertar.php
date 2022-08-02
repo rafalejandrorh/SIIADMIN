@@ -1,15 +1,15 @@
 <?php 
-        include '../../admin/includes/session.php';
+        include '../../controllers/sesion/session.php';
         include "../../config/conn.php";
         require_once "../../models/deducciones_model.php";
         $deducciones = new deducciones_model();
                 
-        if(isset($_POST['add']))
+        if(isset($_POST['guardar']))
         {
-            $description = $_POST['description'];
-            $amount = $_POST['amount'];
+            $descripcion = $_POST['descripcion'];
+            $monto = $_POST['monto'];
             $tabla = $_POST['tabla'];
-            $insertar = $deducciones->insertar_deducciones($description, $amount, $tabla); 
+            $insertar = $deducciones->insertar_deducciones($descripcion, $monto, $tabla); 
       
         }else{
 

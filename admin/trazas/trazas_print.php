@@ -3,15 +3,19 @@
 
 	function generateRow(){
 		$contents = '';
-		require_once "../../controllers/avancefectivo/avancefectivo_obtener.php";
+    require_once "../../config/conn.php";
+		require_once "../../controllers/empleados/empleados_obtener.php";
     foreach($obtener as $row){
 
 			$contents .= "
 			<tr>
-        <td>".date('M d, Y', strtotime($row['date_advance']))."</td>
-        <td>".$row['empid']."</td> 
-        <td>".$row['firstname'].' '.$row['lastname']."</td> 
-        <td>".'$ '.number_format($row['amount'], 2)."</td>
+        <td>".$row['employee_id']."</td>
+				<td>".$row['firstname'].", ".$row['lastname']."</td>
+        <td>".$row['description']."</td>
+        <td>".'$ '.number_format($row['rate'], 2)."</td>
+				<td>".date('h:i A', strtotime($row['time_in'])).' - '. date('h:i A', strtotime($row['time_out']))."</td>
+        <td>".$row['address']."</td>
+        <td>".$row['contact_info']."</td>
 			</tr>
 			";
 		}
@@ -39,15 +43,18 @@
       	<h2 align="center">Lista de Empleados</h2>
       	<table border="1" cellspacing="0" cellpadding="3">  
            <tr>
-            <th width="25%">Fecha</th>
-            <th width="25%">Cédula de Identidad</th>
-            <th width="25%">Nombre</th>
-            <th width="25%">Monto</th>
+              <th width="14%" align="center"><b>Cédula de Identidad</b></th>  
+           		<th width="14%" align="center"><b>Nombre Empleado</b></th>
+              <th width="14%" align="center"><b>Cargo</b></th>
+              <th width="14%" align="center"><b>Sueldo por Hora</b></th>
+				      <th width="14%" align="center"><b>Horario</b></th> 
+              <th width="14%" align="center"><b>Residencia</b></th>
+              <th width="14%" align="center"><b>Teléfono</b></th>
            </tr>  
       ';  
     $content .= generateRow($conn); 
     $content .= '</table>';  
     $pdf->writeHTML($content);  
-    $pdf->Output('Horario de Empleados.pdf', 'I');
+    $pdf->Output('Lista de Empleados.pdf', 'I');
 
 ?>

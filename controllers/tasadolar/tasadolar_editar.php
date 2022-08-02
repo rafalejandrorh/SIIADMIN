@@ -1,16 +1,15 @@
 <?php 
-        include '../../admin/includes/session.php';
+        include '../../controllers/sesion/session.php';
         include "../../config/conn.php";
         require_once "../../models/tasadolar_model.php";
         $tasadolar = new tasadolar_model();
                 
-        if(isset($_POST['edit']))
+        if(isset($_POST['editar']))
         {
             $id = $_POST['id'];
-            $rate_dolar = $_POST['rate_dolar'];
-            $observaciones = $_POST['observaciones'];
+            $tasa_dolar = $_POST['tasa_dolar'];
                      
-            $editar = $tasadolar->editar_tasadolar($rate_dolar, $id, $observaciones); 
+            $editar = $tasadolar->editar_tasadolar($tasa_dolar, $id); 
             
         }else{
 

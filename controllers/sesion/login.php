@@ -1,8 +1,8 @@
 <?php 
         require_once "../../config/conn.php";  
-        require_once "../../models/login_model.php";
+        require_once "../../models/sesion_model.php";
 
-        $login = new login_model();
+        $login = new sesion_model();
 
         if(isset($_POST['login']))
         {

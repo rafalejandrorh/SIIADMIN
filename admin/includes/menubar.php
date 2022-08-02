@@ -2,10 +2,10 @@
     <section class="sidebar">
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo (!empty($user['photo'])) ? '../../images/'.$user['photo'] : '../../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
+          <img src="<?php echo (!empty($_SESSION['foto'])) ? '../../images/'.$_SESSION['foto'] : '../../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><?php echo $user['firstname'].' '.$user['lastname']; ?></p>
+          <p><?php echo $_SESSION['nombres'].' '.$_SESSION['apellidos']; ?></p>
           <a><i class="fa fa-circle text-success"></i> En Línea</a>
         </div>
       </div>
@@ -27,6 +27,8 @@
         <li><a href="../tiempoextra/index.php"><i class="fa fa-hourglass-1"></i> <span>Tiempo Extra</span></a></li>
         <li><a href="../avancefectivo/index.php"><i class="fa fa-money"></i> <span>Avance de Efectivo</span></a></li>
 
+        <li class="header">SEGURIDAD</li>
+        <li><a href="../trazas/index.php"><i class="fa fa-save"></i> <span>Trazas</span></a></li>
       </ul>  
     </section>
   </aside>

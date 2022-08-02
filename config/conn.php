@@ -24,7 +24,7 @@ require_once('config.php');
     
         public static function DB_mySQL()
         {
-           $conn = new mysqli('localhost', 'root', '', 'asistencia_nomina');
+           $conn = new mysqli('localhost', 'root', '', 'siiadmin');
            return $conn; 
         }
 

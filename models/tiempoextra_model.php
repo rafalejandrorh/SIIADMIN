@@ -21,47 +21,32 @@ class tiempoextra_model
     public function obtener_tiempoextra()
     {
 
-        $sql = "SELECT *, tiempoextra.id AS otid FROM tiempoextra LEFT JOIN empleados ON empleados.id=tiempoextra.employee_id";
+        $sql = "SELECT *, tiempoextra.id AS otid FROM tiempoextra LEFT JOIN empleados ON empleados.id_empleado=tiempoextra.id_empleado LEFT JOIN personas ON empleados.id_persona = personas.id_persona";
         $query = $this->conexion->query($sql);
         return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
-    public function insertar_tiempoextra($employee, $date, $hours, $rate)
+    public function insertar_tiempoextra($id_empleado, $fecha, $horas, $monto)
     {
 
-        $sql = "SELECT * FROM empleados WHERE employee_id = '$employee'";
+        $sql = "INSERT INTO tiempoextra (id_empleado, fecha, horas, monto) VALUES ('$id_empleado', '$fecha', '$horas', '$monto')";
         $query = $this->conexion->query($sql);
-
-        if($query->rowCount() < 1)
+        if($query->rowCount() >= 1)
         {
-			$_SESSION['error'] = 'Empleado no encontrado';
-		}else{
-        $row = $query->fetch();
-	    $employee_id = $row['id'];
-        $sql2 = "INSERT INTO tiempoextra (employee_id, date_overtime, hours, rate) VALUES ('$employee_id', '$date', '$hours', '$rate')";
-            if($this->conexion->query($sql2)){
                 $_SESSION['success'] = 'Tiempo extra añadido satisfactoriamente';
-            }
-            else{
-                $_SESSION['error'] = $this->conexion->error;
-            }
+        }else{
+                $_SESSION['error'] = 'Error al insertar el Tiempo extra, intente más tarde.';
         }
-        return $_SESSION;
 
     }
 
-    public function editar_tiempoextra($date, $hours, $rate, $id)
+    public function editar_tiempoextra($fecha, $horas, $monto, $id)
     {
 
-        $sql = "UPDATE tiempoextra SET hours = '$hours', rate = '$rate', date_overtime = '$date' WHERE id = '$id'";
-        if($this->conexion->query($sql))
-        {
-			$_SESSION['success'] = 'Tiempo extra actualizado satisfactoriamente';
-		}else{
-			$_SESSION['error'] = $this->conexion->error;
-		}
-        return $_SESSION;
+        $sql = "UPDATE tiempoextra SET horas = '$horas', monto = '$monto', fecha = '$fecha' WHERE id = '$id'";
+        $query = $this->conexion->query($sql);
+		$_SESSION['success'] = 'Tiempo extra actualizado satisfactoriamente';
 
     }
     
@@ -69,11 +54,11 @@ class tiempoextra_model
     {
 
         $sql = "DELETE FROM tiempoextra WHERE id = '$id'";
-        if($this->conexion->query($sql)){
+        if($this->conexion->query($sql))
+        {
 			$_SESSION['success'] = 'El tiempo extra se eliminó correctamente';
-		}
-		else{
-			$_SESSION['error'] = $this->conexion->error;
+		}else{
+			$_SESSION['error'] = 'Error al Eliminar el tiempo extra, intente más tarde.';
 		}
         return $_SESSION;
 

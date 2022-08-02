@@ -1,5 +1,5 @@
 <?php 
-	include '../includes/session.php';
+	include '../../controllers/sesion/session.php';
 
 	if(isset($_POST['id']))
 	{

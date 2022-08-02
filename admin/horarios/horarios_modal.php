@@ -14,7 +14,7 @@
 
                   	<div class="col-sm-9">
                       <div class="bootstrap-timepicker">
-                    	 <input type="text" class="form-control timepicker" id="time_in" name="time_in" required>
+                    	 <input type="text" class="form-control timepicker" id="time_in" name="hora_llegada" required>
                       </div>
                   	</div>
                 </div>
@@ -23,14 +23,14 @@
 
                     <div class="col-sm-9">
                       <div class="bootstrap-timepicker">
-                        <input type="text" class="form-control timepicker" id="time_out" name="time_out" required>
+                        <input type="text" class="form-control timepicker" id="time_out" name="hora_salida" required>
                       </div>
                     </div>
                 </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Guardar</button>
+            	<button type="submit" class="btn btn-primary btn-flat" name="guardar"><i class="fa fa-save"></i> Guardar</button>
             	</form>
           	</div>
         </div>
@@ -51,7 +51,7 @@
 					
 				<div class="form-group">
                   	<div class="col-sm-9">
-                    	<input type="hidden" class="form-control" id="edit_timeid" name="id" required>
+                    	<input type="hidden" class="form-control" id="edit_id_horarios" name="id" required>
                   	</div>
                 </div>
                 <div class="form-group">
@@ -59,7 +59,7 @@
 
                     <div class="col-sm-9">
                       <div class="bootstrap-timepicker">
-                        <input type="text" class="form-control timepicker" id="edit_time_in" name="time_in">
+                        <input type="text" class="form-control timepicker" id="edit_hora_llegada" name="hora_llegada">
                       </div>
                     </div>
                 </div>
@@ -68,14 +68,14 @@
 
                     <div class="col-sm-9">
                       <div class="bootstrap-timepicker">
-                        <input type="text" class="form-control timepicker" id="edit_time_out" name="time_out">
+                        <input type="text" class="form-control timepicker" id="edit_hora_salida" name="hora_salida">
                       </div>
                     </div>
                 </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-success btn-flat" name="edit"><i class="fa fa-check-square-o"></i> Actualizar</button>
+            	<button type="submit" class="btn btn-success btn-flat" name="editar"><i class="fa fa-check-square-o"></i> Actualizar</button>
             	</form>
           	</div>
         </div>
@@ -96,17 +96,17 @@
 				<div class="form-group">
 
                   	<div class="col-sm-9">
-                    	<input type="hidden" class="form-control" id="del_timeid" name="id" required>
+                    	<input type="hidden" class="form-control" id="del_id_horarios" name="id" required>
                   	</div>
                 </div>
             		<div class="text-center">
 	                	<p>Borrar Horario</p>
-	                	<h2 id="del_schedule" class="bold"></h2>
+	                	<h2 id="del_horarios" class="bold"></h2>
 	            	</div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-danger btn-flat" name="delete"><i class="fa fa-trash"></i> Eliminar</button>
+            	<button type="submit" class="btn btn-danger btn-flat" name="eliminar"><i class="fa fa-trash"></i> Eliminar</button>
             	</form>
           	</div>
         </div>

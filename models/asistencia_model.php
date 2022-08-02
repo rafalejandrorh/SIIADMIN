@@ -21,7 +21,7 @@ class asistencia_model
 		include "../../admin/includes/timezone.php";
 		$today = date('Y-m-d');
 
-		$sql = "SELECT * FROM asistencia WHERE date = '$today' AND status = 1";
+		$sql = "SELECT * FROM asistencia WHERE fecha = '$today' AND estatus_llegada = 1";
 		return $this->conexion->query($sql);
 
     }
@@ -30,7 +30,7 @@ class asistencia_model
     {
 		include "../../admin/includes/timezone.php";
 		$today = date('Y-m-d');
-		$sql = "SELECT * FROM asistencia WHERE date = '$today' AND status = 0";
+		$sql = "SELECT * FROM asistencia WHERE fecha = '$today' AND estatus_llegada = 0";
 		return $this->conexion->query($sql);
 
     }
@@ -46,7 +46,7 @@ class asistencia_model
 	public function asistentes_tarde()
     {
 
-		$sql = "SELECT * FROM asistencia WHERE status = 1";
+		$sql = "SELECT * FROM asistencia WHERE estatus_llegada = 1";
 		return $this->conexion->query($sql);
 
     }
@@ -55,16 +55,16 @@ class asistencia_model
     public function obtener_asistencia($from, $to)
     {
 		
-        $sql = "SELECT *, empleados.employee_id AS empid, asistencia.id AS attid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' ORDER BY asistencia.date DESC, asistencia.time_in DESC";
+        $sql = "SELECT *, empleados.id_empleado, asistencia.id AS attid FROM asistencia LEFT JOIN empleados ON empleados.id_empleado=asistencia.id_empleado LEFT JOIN cargos ON cargos.id_cargo=empleados.id_cargo LEFT JOIN personas ON personas.id_persona = empleados.id_persona WHERE asistencia.fecha BETWEEN '$from' AND '$to' ORDER BY asistencia.fecha DESC, asistencia.hora_llegada DESC";
         $query = $this->conexion->query($sql);
         return $query->fetchAll(PDO::FETCH_ASSOC);
 
     }
 
-	public function insertar_asistencia_empleado($employee, $status, $date_now)
+	public function insertar_asistencia_empleado($cedula, $status, $fecha)
     {
 
-		$sql = "SELECT * FROM empleados WHERE employee_id = '$employee'";
+		$sql = "SELECT id_empleado, id_horario, nombres, apellidos  FROM personas LEFT JOIN empleados ON personas.id_persona = empleados.id_personas WHERE cedula = '$cedula'";
 		//$query = $this->db->query($sql);
 		$query = $this->conexion->query($sql);
 		
@@ -72,11 +72,11 @@ class asistencia_model
 		{
 			//$row = $query->fetch_assoc();
 			$row = $query->fetch();
-			$id = $row['id'];
+			$id_empleado = $row['id_empleado'];
 
 			if($status == 'in')
 			{
-				$sql = "SELECT * FROM asistencia WHERE employee_id = '$id' AND date = '$date_now' AND time_in IS NOT NULL";
+				$sql = "SELECT * FROM asistencia WHERE id_empleado = '$id_empleado' AND date = '$fecha' AND hora_llegada IS NOT NULL";
 				$query = $this->conexion->query($sql);
 				if($query->rowCount() > 0)
 				{
@@ -84,67 +84,64 @@ class asistencia_model
 				}
 				else{
 					
-					$sched = $row['schedule_id'];
+					$id_horarios = $row['id_horarios'];
 					$lognow = date('H:i:s');
-					$sql = "SELECT * FROM horarios WHERE schedule_id = '$sched'";
+					$sql = "SELECT * FROM horarios WHERE id_horarios = '$id_horarios'";
 					$squery = $this->conexion->query($sql);
 					$srow = $squery->fetch(PDO::FETCH_ASSOC);
-					$logstatus = ($lognow > $srow['time_in']) ? 0 : 1;
+					$logstatus = ($lognow > $srow['hora_llegada']) ? 0 : 1;
 					
-					$sql = "INSERT INTO asistencia (employee_id, date, time_in, status) VALUES ('$id', '$date_now', NOW(), '$logstatus')";
+					$sql = "INSERT INTO asistencia (id_empleado, fecha, hora_llegada, estatus_llegada) VALUES ('$id_empleado', '$fecha', NOW(), '$logstatus')";
 					if($this->conexion->query($sql))
 					{
-						$_SESSION['success'] = 'Llegada: '.$row['firstname'].' '.$row['lastname'];
+						$_SESSION['success'] = 'Llegada: '.$row['nombres'].' '.$row['apellidos'];
 					}
 					else{
 						$_SESSION['error'] = 'error 1';
 					}
 				}
-			}
-			else{
-				$sql = "SELECT *, asistencia.id AS aid FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id WHERE asistencia.employee_id = '$id' AND date = '$date_now'";
+			}else{
+				$sql = "SELECT *, asistencia.id AS aid FROM asistencia LEFT JOIN empleados ON empleados.id_empleado=asistencia.id_empleado WHERE asistencia.id_empleado = '$id_empleado' AND date = '$fecha'";
 				$query = $this->conexion->query($sql);
 				if($query->rowCount() < 1)
 				{
 					$_SESSION['error'] = 'No se puede registrar tu salida, sin previamente registrar tu entrada.';
-				}
-				else{
+				}else{
 					$row = $query->fetch();
-					if($row['time_out'] != '00:00:00')
+					if($row['hora_salida'] != '00:00:00')
 					{
 						$_SESSION['success'] = 'Has registrado tu salida satisfactoriamente por el día de hoy';
-					}
-					else{
+					}else{
 						
-						$sql = "UPDATE asistencia SET time_out = NOW() WHERE id = '".$row['aid']."'";
+						$sql = "UPDATE asistencia SET hora_salida = NOW() WHERE id = '".$row['aid']."'";
 						if($this->conexion->query($sql))
 						{
-							$_SESSION['success'] = 'Salida: '.$row['firstname'].' '.$row['lastname'];
+							$_SESSION['success'] = 'Salida: '.$row['nombres'].' '.$row['apelldos'];
 
 							$sql = "SELECT * FROM asistencia WHERE id = '".$row['aid']."'";
 							$query = $this->conexion->query($sql);
 							$urow = $query->fetch();
 
-							$time_in = $urow['time_in'];
-							$time_out = $urow['time_out'];
+							$hora_llegada = $urow['hora_llegada'];
+							$hora_salida = $urow['hora_salida'];
 
-							$sql = "SELECT * FROM empleados LEFT JOIN horarios ON horarios.schedule_id=empleados.schedule_id WHERE empleados.id = '$id'";
+							$sql = "SELECT * FROM empleados LEFT JOIN horarios ON horarios.id_horarios=empleados.id_horarios WHERE empleados.id_empleado = '$id'";
 							$query = $this->conexion->query($sql);
 							$srow = $query->fetch();
 
-							if($srow['time_in'] > $urow['time_in'])
+							if($srow['hora_llegada'] > $urow['hora_llegada'])
 							{
-								$time_in = $srow['time_in'];
+								$hora_llegada = $srow['hora_llegada'];
 							}
 
-							if($srow['time_out'] < $urow['time_in'])
+							if($srow['hora_salida'] < $urow['hora_llegada'])
 							{
-								$time_out = $srow['time_out'];
+								$hora_salida = $srow['hora_salida'];
 							}
 
-							$time_in = new DateTime($time_in);
-							$time_out = new DateTime($time_out);
-							$interval = $time_in->diff($time_out);
+							$hora_llegada = new DateTime($hora_llegada);
+							$hora_salida = new DateTime($hora_salida);
+							$interval = $hora_llegada->diff($hora_salida);
 							$hrs = $interval->format('%h');
 							$mins = $interval->format('%i');
 							$mins = $mins/60;
@@ -154,7 +151,7 @@ class asistencia_model
 								$int = $int - 1;
 							}
 
-							$sql = "UPDATE asistencia SET num_hr = '$int' WHERE id = '".$row['aid']."'";
+							$sql = "UPDATE asistencia SET horas_laboradas = '$int' WHERE id = '".$row['aid']."'";
 							$this->conexion->query($sql);
 						}
 						else{
@@ -173,10 +170,10 @@ class asistencia_model
 
 	}
 
-    public function insertar_asistencia($employee, $date, $time_in, $time_out)
+    public function insertar_asistencia($cedula, $fecha, $hora_llegada, $hora_salida)
     {
 
-        $sql = "SELECT * FROM empleados WHERE employee_id = '$employee'";
+		$sql = "SELECT id_empleado, id_horario, nombres, apellidos  FROM personas LEFT JOIN empleados ON personas.id_persona = empleados.id_personas WHERE cedula = '$cedula'";
 		$query = $this->conexion->query($sql);
 
 		if($query->rowCount() < 1)
@@ -185,9 +182,9 @@ class asistencia_model
 		}
 		else{
 			$row = $query->fetch();
-			$emp = $row['id'];
+			$id_empleado = $row['id_empleado'];
 
-			$sql = "SELECT * FROM asistencia WHERE employee_id = '$emp' AND date = '$date'";
+			$sql = "SELECT * FROM asistencia WHERE id_empleado = '$id_empleado' AND date = '$fecha'";
 			$query = $this->conexion->query($sql);
 
 			if($query->rowCount() > 0)
@@ -196,25 +193,25 @@ class asistencia_model
 			}
 			else{
 			
-				$sched = $row['schedule_id'];
-				$sql = "SELECT * FROM horarios WHERE schedule_id = '$sched'";
+				$sched = $row['id_horarios'];
+				$sql = "SELECT * FROM horarios WHERE id_horarios = '$sched'";
 				$squery = $this->conexion->query($sql);
 				$scherow = $squery->fetch();
-				$logstatus = ($time_in > $scherow['time_in']) ? 0 : 1;
+				$logstatus = ($hora_llegada > $scherow['hora_llegada']) ? 0 : 1;
 			
-				$sql = "INSERT INTO asistencia (employee_id, date, time_in, time_out, status) VALUES ('$emp', '$date', '$time_in', '$time_out', '$logstatus')";
+				$sql = "INSERT INTO asistencia (id_empleado, fecha, hora_llegada, hora_salida, status) VALUES ('$id_empleado', '$fecha', '$hora_llegada', '$hora_salida', '$logstatus')";
 				if($this->db->query($sql))
 				{
 					$_SESSION['success'] = 'Asistencia añadida satisfactoriamente';
 					$id = $this->conexion->lastInsertId();
 
-					$sql = "SELECT * FROM empleados LEFT JOIN horarios ON horarios.schedule_id=empleados.schedule_id WHERE empleados.id = '$emp'";
+					$sql = "SELECT * FROM empleados LEFT JOIN horarios ON horarios.id_horarios=empleados.id_horarios WHERE empleados.id_empleado = '$id_empleado'";
 					$query = $this->conexion->query($sql);
 					$srow = $query->fetch();
 
-					$time_in = new DateTime($time_in);
-					$time_out = new DateTime($time_out);
-					$interval = $time_in->diff($time_out);
+					$hora_llegada = new DateTime($hora_llegada);
+					$hora_salida = new DateTime($hora_salida);
+					$interval = $hora_llegada->diff($hora_salida);
 					$hrs = $interval->format('%h');
 					$mins = $interval->format('%i');
 					$mins = $mins/60;
@@ -224,7 +221,7 @@ class asistencia_model
 						$int = $int - 1;
 					}
 
-					$sql = "UPDATE asistencia SET num_hr = '$int' WHERE id = '$id'";
+					$sql = "UPDATE asistencia SET horas_laboradas = '$int' WHERE id = '$id'";
 					$this->conexion->query($sql);
 
 				}
@@ -237,10 +234,10 @@ class asistencia_model
 
     }
 
-    public function editar_asistencia($date, $time_in, $time_out, $id)
+    public function editar_asistencia($fecha, $hora_llegada, $hora_salida, $id)
     {
 
-        $sql = "UPDATE asistencia SET date = '$date', time_in = '$time_in', time_out = '$time_out' WHERE id = '$id'";
+        $sql = "UPDATE asistencia SET fecha = '$fecha', hora_llegada = '$hora_llegada', hora_salida = '$hora_salida' WHERE id = '$id'";
 
         if($this->conexion->query($sql))
 		{
@@ -249,27 +246,27 @@ class asistencia_model
 			$sql = "SELECT * FROM asistencia WHERE id = '$id'";
 			$query = $this->conexion->query($sql);
 			$row = $query->fetch();
-			$emp = $row['employee_id'];
+			$id_empleado = $row['id_empleado'];
 
-			$sql = "SELECT * FROM empleados LEFT JOIN horarios ON horarios.schedule_id=empleados.schedule_id WHERE empleados.id = '$emp'";
+			$sql = "SELECT * FROM empleados LEFT JOIN horarios ON horarios.id_horarios=empleados.id_horarios WHERE empleados.id_empleado = '$id_empleado'";
 			$query = $this->conexion->query($sql);
 			$srow = $query->fetch();
 
-			$logstatus = ($time_in > $srow['time_in']) ? 0 : 1;
+			$logstatus = ($hora_llegada > $srow['hora_llegada']) ? 0 : 1;
 
-			if($srow['time_in'] > $time_in)
+			if($srow['hora_llegada'] > $hora_llegada)
 			{
-				$time_in = $srow['time_in'];
+				$hora_llegada = $srow['hora_llegada'];
 			}
 
-			if($srow['time_out'] < $time_out)
+			if($srow['hora_salida'] < $hora_salida)
 			{
-				$time_out = $srow['time_out'];
+				$hora_salida = $srow['hora_salida'];
 			}
 
-			$time_in = new DateTime($time_in);
-			$time_out = new DateTime($time_out);
-			$interval = $time_in->diff($time_out);
+			$hora_llegada = new DateTime($hora_llegada);
+			$hora_salida = new DateTime($hora_salida);
+			$interval = $hora_llegada->diff($hora_salida);
 			$hrs = $interval->format('%h');
 			$mins = $interval->format('%i');
 			$mins = $mins/60;
@@ -279,7 +276,7 @@ class asistencia_model
 				$int = $int - 1;
 			}
 
-			$sql = "UPDATE asistencia SET num_hr = '$int', status = '$logstatus' WHERE id = '$id'";
+			$sql = "UPDATE asistencia SET horas_laboradas = '$int', status = '$logstatus' WHERE id = '$id'";
 			$this->conexion->query($sql);
 		}
 		else{

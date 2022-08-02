@@ -15,16 +15,16 @@ class nomina_model
     public function consulta_obtener_nomina($from, $to)
     {
 
-        $sql = "SELECT firstname, lastname, cargos.rate, SUM(num_hr) AS total_hr, asistencia.employee_id AS empid, empleados.employee_id AS ci FROM asistencia LEFT JOIN empleados ON empleados.id=asistencia.employee_id LEFT JOIN cargos ON cargos.position_id=empleados.position_id WHERE asistencia.date BETWEEN '$from' AND '$to' GROUP BY asistencia.employee_id ORDER BY empleados.lastname ASC, empleados.firstname ASC";
+        $sql = "SELECT personas.nombres, personas.apellidos, cargos.sueldo, SUM(horas_laboradas) AS total_horas, asistencia.id_empleado AS empid, personas.cedula AS ci FROM asistencia LEFT JOIN empleados ON empleados.id_empleado=asistencia.id_empleado LEFT JOIN personas ON empleados.id_persona = personas.id_persona LEFT JOIN cargos ON cargos.id_cargo=empleados.id_cargo WHERE asistencia.fecha BETWEEN '$from' AND '$to' GROUP BY asistencia.id_empleado ORDER BY personas.apellidos ASC, personas.nombres ASC";
         $query = $this->conexion->query($sql);
         return $query->fetchAll(PDO::FETCH_ASSOC);    
 
     }
 
-    public function consulta_avancefectivo($from, $to, $empid)
+    public function consulta_avancefectivo($from, $to, $id_empleado)
     {
 
-        $sql = "SELECT employee_id, SUM(amount) AS cashamount FROM avancefectivo WHERE employee_id='$empid' AND date_advance BETWEEN '$from' AND '$to'";
+        $sql = "SELECT id_empleado, SUM(monto) AS efectivo FROM avancefectivo WHERE id_empleado='$id_empleado' AND fecha BETWEEN '$from' AND '$to'";
         $query = $this->conexion->query($sql);
         return $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -33,7 +33,7 @@ class nomina_model
     public function consulta_deducciones()
     {
 
-        $sql = "SELECT SUM(amount) as total_amount FROM deducciones";
+        $sql = "SELECT SUM(monto) as total_monto FROM deducciones";
         $query = $this->conexion->query($sql);
         return $query->fetch(PDO::FETCH_ASSOC);
 
@@ -42,7 +42,7 @@ class nomina_model
     public function consulta_deducciones2()
     {
 
-        $sql = "SELECT amount as total_amount2 FROM deducciones2";
+        $sql = "SELECT monto as total_monto FROM deducciones2";
         $query = $this->conexion->query($sql);
         return $query->fetch(PDO::FETCH_ASSOC);
 
@@ -51,7 +51,7 @@ class nomina_model
     public function consulta_tasadolar()
     {
                       
-        $sql = "SELECT *, rate_dolar FROM tasa_dolar";
+        $sql = "SELECT *, tasa_dolar FROM tasa_dolar";
         $query = $this->conexion->query($sql);
         return $query->fetch(PDO::FETCH_ASSOC);
 

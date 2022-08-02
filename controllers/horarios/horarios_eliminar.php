@@ -1,14 +1,13 @@
 <?php 
-        include '../../admin/includes/session.php';
+        include '../../controllers/sesion/session.php';
         require_once "../../config/conn.php";
         require_once "../../models/horarios_model.php";
         $horarios = new horarios_model();
 
-        if(isset($_POST['delete']))
+        if(isset($_POST['eliminar']))
         {
-		    $id = $_POST['id'];
-
-            $eliminar = $horarios->eliminar_horarios($id); 
+		$id_horario = $_POST['id'];
+                $eliminar = $horarios->eliminar_horarios($id_horario); 
 
         }else{
 

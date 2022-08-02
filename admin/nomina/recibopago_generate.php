@@ -1,5 +1,5 @@
 <?php
-	include '../includes/session.php';
+	include '../../controllers/sesion/session.php';
 	require_once "../../config/conn.php";
   require_once "../../controllers/nomina/nomina_obtener.php";
 
@@ -21,13 +21,13 @@
     $contents = '';
 
       foreach($consulta_horas_trabajadas as $row){
-        $gross = $row['rate'] * $row['total_hr'];
-        $empid = $row['empid'];   
+        $gross = $row['sueldo'] * $row['total_horas'];
+        $id_empleado = $row['empid'];   
 
         //Obtiene el efectivo prestado al empleado
-        $consulta_avancefectivo = $nomina->consulta_avancefectivo($from, $to, $empid);
+        $consulta_avancefectivo = $nomina->consulta_avancefectivo($from, $to, $id_empleado);
         //Realiza el Cálculo de la Nomina. Retorna: El total de las deducciones y el Total del Pago Neto en Bs y Dólares
-        $calculo_nomina = $nomina->calculo_nomina($gross, $deduction, $deduction2, $consulta_avancefectivo[0]['cashamount'], $dolar);
+        $calculo_nomina = $nomina->calculo_nomina($gross, $deduction, $deduction2, $consulta_avancefectivo[0]['efectivo'], $dolar);
 
         $contents .= '
           <h2 align="center">Recibo de Pago</h2>
@@ -35,9 +35,9 @@
           <table cellspacing="0" cellpadding="3">
                   <tr>  
                     <td width="25%" align="right">Nombre Empleado: </td>
-                      <td width="25%"><b>'.$row['firstname']." ".$row['lastname'].'</b></td>
+                      <td width="25%"><b>'.$row['nombres']." ".$row['apellidos'].'</b></td>
               <td width="25%" align="right"><b>Sueldo: </b></td>
-              <td width="25%" align="right"><b>'.'$ '.number_format(($row['rate']*$row['total_hr']), 2).'</b></td> 
+              <td width="25%" align="right"><b>'.'$ '.number_format(($row['sueldo']*$row['total_horas']), 2).'</b></td> 
                 </tr>
                 <tr>
                   <td width="25%" align="right">Cédula de Identidad: </td>
@@ -49,7 +49,7 @@
               <td width="25%" align="right">Tasa Dólar BCV: </td>
               <td width="25%"><b>'.'$ '.number_format($dolar, 2).'</b></td> 
               <td width="25%" align="right">Avance de Efectivo: </td>
-              <td width="25%" align="right">'.'$ '.number_format($consulta_avancefectivo[0]['cashamount'], 2).'</td> 
+              <td width="25%" align="right">'.'$ '.number_format($consulta_avancefectivo[0]['efectivo'], 2).'</td> 
                 </tr>
 
                 <tr> 

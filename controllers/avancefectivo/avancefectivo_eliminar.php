@@ -1,10 +1,10 @@
 <?php
-        include '../../admin/includes/session.php'; 
+        include '../../controllers/sesion/session.php';
         include "../../config/conn.php";
         require_once "../../models/avancefectivo_model.php";
         $avancefectivo = new avancefectivo_model();
                 
-        if(isset($_POST['delete']))
+        if(isset($_POST['eliminar']))
         {
             $id = $_POST['id'];
                      

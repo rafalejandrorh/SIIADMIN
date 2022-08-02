@@ -14,9 +14,9 @@ class graficos_model
     public function graficos_asistencia_atiempo($year, $ontime)
     {
 
-        $and = 'AND YEAR(date) = '.$year;
+        $and = 'AND YEAR(fecha) = '.$year;
         for($m = 1; $m <= 12; $m++ ) {
-            $sql = "SELECT * FROM asistencia WHERE MONTH(date) = '$m' AND status = 1 $and";
+            $sql = "SELECT * FROM asistencia WHERE MONTH(fecha) = '$m' AND estatus_llegada = 1 $and";
             $oquery = $this->conexion->query($sql);
             array_push($ontime, $oquery->rowCount());
         }
@@ -27,9 +27,9 @@ class graficos_model
     public function graficos_asistencia_tarde($year, $late)
     {
 
-        $and = 'AND YEAR(date) = '.$year;
+        $and = 'AND YEAR(fecha) = '.$year;
         for($m = 1; $m <= 12; $m++ ) {
-            $sql = "SELECT * FROM asistencia WHERE MONTH(date) = '$m' AND status = 0 $and";
+            $sql = "SELECT * FROM asistencia WHERE MONTH(fecha) = '$m' AND estatus_llegada = 0 $and";
             $lquery = $this->conexion->query($sql);
             array_push($late, $lquery->rowCount());
         }

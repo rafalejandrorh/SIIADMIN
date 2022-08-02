@@ -1,4 +1,4 @@
-<?php include '../includes/session.php'; ?>
+<?php include '../../controllers/sesion/session.php'; ?>
 <?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -56,7 +56,7 @@
                     foreach($obtener as $row){
                   ?>
                       <tr>
-                        <td><?php echo '$ 1.00'." = ".'Bs '.$row['rate_dolar']?></td>
+                        <td><?php echo '$ 1.00'." = ".'Bs '.$row['tasa_dolar']?></td>
                         <td><?php echo $row['observaciones']?></td> 
                         <td><button class='btn btn-success btn-sm edit btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-edit'></i></button></td>
                       </tr>
@@ -93,7 +93,7 @@ function getRow(id){
     dataType: 'json',
     success: function(response){
       $('#attid').val(response.id);
-      $('#rate_dolar').val(response.rate_dolar);
+      $('#tasa_dolar').val(response.tasa_dolar);
 
   }});
 }})

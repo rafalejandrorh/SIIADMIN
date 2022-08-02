@@ -10,24 +10,24 @@
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="../../controllers/deducciones/deducciones_insertar.php">
           		  <div class="form-group">
-                  	<label for="description" class="col-sm-3 control-label">Descripción</label>
+                  	<label for="descripcion" class="col-sm-3 control-label">Descripción</label>
 
                   	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="description" name="description" required>
+                    	<input type="text" class="form-control" id="descripcion" name="descripcion" required>
 						<input type="hidden" name="tabla" value="deducciones">
                   	</div>
                 </div>
                 <div class="form-group">
-                    <label for="amount" class="col-sm-3 control-label">Monto</label>
+                    <label for="monto" class="col-sm-3 control-label">Monto</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="amount" name="amount" required>
+                      <input type="text" class="form-control" id="monto" name="monto" required>
                     </div>
                 </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Guardar</button>
+            	<button type="submit" class="btn btn-primary btn-flat" name="guardar"><i class="fa fa-save"></i> Guardar</button>
             	</form>
           	</div>
         </div>
@@ -46,24 +46,24 @@
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="../../controllers/deducciones/deducciones_insertar.php">
           		  <div class="form-group">
-                  	<label for="description" class="col-sm-3 control-label">Descripción</label>
+                  	<label for="descripcion" class="col-sm-3 control-label">Descripción</label>
 
                   	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="description" name="description" required>
+                    	<input type="text" class="form-control" id="descripcion" name="descripcion" required>
 						<input type="hidden" name="tabla" value="deducciones2">
                   	</div>
                 </div>
                 <div class="form-group">
-                    <label for="amount" class="col-sm-3 control-label">Monto</label>
+                    <label for="monto" class="col-sm-3 control-label">Monto</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="amount" name="amount" required>
+                      <input type="text" class="form-control" id="monto" name="monto" required>
                     </div>
                 </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Guardar</button>
+            	<button type="submit" class="btn btn-primary btn-flat" name="guardar"><i class="fa fa-save"></i> Guardar</button>
             	</form>
           	</div>
         </div>
@@ -88,23 +88,23 @@
                   	</div>
                 </div>
                 <div class="form-group">
-                    <label for="edit_description" class="col-sm-3 control-label">Descripción</label>
+                    <label for="edit_descripcion" class="col-sm-3 control-label">Descripción</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_description" name="description">
+                      <input type="text" class="form-control" id="edit_descripcion" name="descripcion">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="edit_amount" class="col-sm-3 control-label">Monto</label>
+                    <label for="edit_monto" class="col-sm-3 control-label">Monto</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_amount" name="amount">
+                      <input type="text" class="form-control" id="edit_monto" name="monto">
                     </div>
                 </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-success btn-flat" name="edit"><i class="fa fa-check-square-o"></i> Actualizar</button>
+            	<button type="submit" class="btn btn-success btn-flat" name="editar"><i class="fa fa-check-square-o"></i> Actualizar</button>
             	</form>
           	</div>
         </div>
@@ -129,23 +129,23 @@
                   	</div>
                 </div>
                 <div class="form-group">
-                    <label for="edit_description" class="col-sm-3 control-label">Descripción</label>
+                    <label for="edit_descripcion" class="col-sm-3 control-label">Descripción</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_description2" name="description">
+                      <input type="text" class="form-control" id="edit_descripcion2" name="descripcion">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="edit_amount" class="col-sm-3 control-label">Monto</label>
+                    <label for="edit_monto" class="col-sm-3 control-label">Monto</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_amount2" name="amount">
+                      <input type="text" class="form-control" id="edit_monto2" name="monto">
                     </div>
                 </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-success btn-flat" name="edit"><i class="fa fa-check-square-o"></i> Actualizar</button>
+            	<button type="submit" class="btn btn-success btn-flat" name="editar"><i class="fa fa-check-square-o"></i> Actualizar</button>
             	</form>
           	</div>
         </div>
@@ -176,7 +176,7 @@
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-danger btn-flat" name="delete"><i class="fa fa-trash"></i> Eliminar</button>
+            	<button type="submit" class="btn btn-danger btn-flat" name="eliminar"><i class="fa fa-trash"></i> Eliminar</button>
             	</form>
           	</div>
         </div>
@@ -207,7 +207,7 @@
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-danger btn-flat" name="delete"><i class="fa fa-trash"></i> Eliminar</button>
+            	<button type="submit" class="btn btn-danger btn-flat" name="eliminar"><i class="fa fa-trash"></i> Eliminar</button>
             	</form>
           	</div>
         </div>

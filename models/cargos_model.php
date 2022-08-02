@@ -27,46 +27,52 @@ class cargos_model
 
     }
 
-    public function insertar_cargos($title, $rate)
+    public function insertar_cargos($cargo, $sueldo)
     {
 
-        $sql = "INSERT INTO cargos (description, rate) VALUES ('$title', '$rate')";
-		if($this->conexion->query($sql))
+        $sql = "INSERT INTO cargos (cargo, sueldo) VALUES ('$cargo', '$sueldo')";
+		$query = $this->conexion->query($sql);
+        if($query->rowCount() >= 1)
         {
 			$_SESSION['success'] = 'Cargo añadido satisfactoriamente';
-		}
-		else{
-			$_SESSION['error'] = $this->conexion->error;
+		}else{
+			$_SESSION['error'] = 'Error al Insertar el Cargo, intente más tarde.';
 		}
         return $_SESSION;
 
     }
 
-    public function editar_cargos($title, $rate, $id)
+    public function editar_cargos($cargo, $sueldo, $id_cargo)
     {
 
-        $sql = "UPDATE cargos SET description = '$title', rate = '$rate' WHERE position_id = '$id'";
-        if($this->conexion->query($sql))
+        $sql = "UPDATE cargos SET cargo = '$cargo', sueldo = '$sueldo' WHERE id_cargo = '$id_cargo'";
+        $query = $this->conexion->query($sql);
+        if($query->rowCount() >= 1)
         {
 			$_SESSION['success'] = 'Cargo Actualizado Satisfactoriamente';
-		}
-		else{
-			$_SESSION['error'] = $this->dberror;
+		}else{
+			$_SESSION['error'] = 'Error al Editar el Cargo, intente más tarde.';
 		}
         return $_SESSION;
+
 
     }
     
-    public function eliminar_cargos($id)
+    public function eliminar_cargos($id_cargo)
     {
 
-        $sql = "DELETE FROM cargos WHERE position_id = '$id'";
-        if($this->conexion->query($sql))
+        $sql = "DELETE FROM cargos WHERE id_cargo = '$id_cargo'";
+        $query = $this->conexion->query($sql);
+        if($query->rowCount() >= 1)
         {
-			$_SESSION['success'] = 'Cargo eliminado satisfactoriamente';
-		}
-		else{
-			$_SESSION['error'] = $this->conexion->error;
+
+            $sql = "UPDATE FROM empleados SET id_cargo = 15 WHERE id_cargo = $id_cargo";
+			$_SESSION['success'] = 'Cargo eliminado satisfactoriamente. Recuerda reasignar los Cargos a los Empleados correspondientes.';
+
+		}else{
+
+			$_SESSION['error'] = 'Error al Eliminar el Cargo, intente más tarde.';
+
 		}
         return $_SESSION;
 

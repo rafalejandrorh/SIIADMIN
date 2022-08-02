@@ -23,7 +23,7 @@
 
                   	<div class="col-sm-9">
                   		<div class="bootstrap-timepicker">
-                    		<input type="text" class="form-control" id="rate_dolar" name="rate_dolar">
+                    		<input type="text" class="form-control" id="tasa_dolar" name="tasa_dolar">
                     	</div>
                   	</div>
         
@@ -32,7 +32,7 @@
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-success btn-flat" name="edit"><i class="fa fa-check-square-o"></i> Actualizar</button>
+            	<button type="submit" class="btn btn-success btn-flat" name="editar"><i class="fa fa-check-square-o"></i> Actualizar</button>
             	</form>
           	</div>
         </div>

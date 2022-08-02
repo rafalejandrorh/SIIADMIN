@@ -1,5 +1,5 @@
 <?php
-	include '../includes/session.php';
+	include '../../controllers/sesion/session.php';
 
 	function generateRow(){
 		$contents = '';
@@ -9,7 +9,7 @@
 
 			$contents .= "
 			<tr>
-        <td>".$row['employee_id']."</td>
+        <td>".$row['id_empleado']."</td>
 				<td>".$row['firstname'].", ".$row['lastname']."</td>
         <td>".$row['description']."</td>
         <td>".'$ '.number_format($row['rate'], 2)."</td>

@@ -13,7 +13,7 @@
                   	<label for="employee" class="col-sm-3 control-label">Cédula de Identidad</label>
 
                   	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="employee" name="employee" required>
+                    	<input type="text" class="form-control" id="cedula" name="cedula" required>
                   	</div>
                 </div>
                 <div class="form-group">
@@ -21,28 +21,28 @@
 
                     <div class="col-sm-9"> 
                       <div class="date">
-                        <input type="text" class="form-control" id="datepicker_add" name="date" placeholder="Formato de Fecha: AAAA/MM/DD" required>
+                        <input type="text" class="form-control" id="datepicker_add" name="fecha" placeholder="Formato de Fecha: AAAA/MM/DD" required>
                       </div>
                     </div>
                 </div>
                 <div class="form-group">
-                  	<label for="hours" class="col-sm-3 control-label">No. de Horas</label>
+                  	<label for="horas" class="col-sm-3 control-label">No. de Horas</label>
 
                   	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="hours" name="hours">
+                    	<input type="text" class="form-control" id="horas" name="horas">
                   	</div>
                 </div>
                  <div class="form-group">
-                    <label for="rate" class="col-sm-3 control-label">Pago por hora</label>
+                    <label for="monto" class="col-sm-3 control-label">Pago por hora</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="rate" name="rate" required>
+                      <input type="text" class="form-control" id="monto" name="monto" required>
                     </div>
                 </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Guardar</button>
+            	<button type="submit" class="btn btn-primary btn-flat" name="guardar"><i class="fa fa-save"></i> Guardar</button>
             	</form>
           	</div>
         </div>
@@ -56,7 +56,7 @@
           	<div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
               		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b><span class="employee_name"></span></b></h4>
+            	<h4 class="modal-title"><b><span id="nombres" class="employee_name"></span></b></h4>
           	</div>
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="../../controllers/tiempoextra/tiempoextra_editar.php">
@@ -66,32 +66,32 @@
                   	</div>
                 </div>
                 <div class="form-group">
-                    <label for="datepicker_edit" class="col-sm-3 control-label">Fecha</label>
+                    <label for="fecha_edit" class="col-sm-3 control-label">Fecha</label>
 
                     <div class="col-sm-9"> 
                       <div class="date">
-                        <input type="text" class="form-control" id="datepicker_edit" name="date" required>
+                        <input type="text" class="form-control" id="fecha_edit" name="fecha" required>
                       </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="hours_edit" class="col-sm-3 control-label">No. de Horas</label>
+                    <label for="horas_edit" class="col-sm-3 control-label">No. de Horas</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="hours_edit" name="hours">
+                      <input type="text" class="form-control" id="horas_edit" name="horas">
                     </div>
                 </div>
                  <div class="form-group">
-                    <label for="rate_edit" class="col-sm-3 control-label">Pago por hora</label>
+                    <label for="monto_edit" class="col-sm-3 control-label">Pago por hora</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="rate_edit" name="rate" required>
+                      <input type="text" class="form-control" id="monto_edit" name="monto" required>
                     </div>
                 </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-success btn-flat" name="edit"><i class="fa fa-check-square-o"></i> Actualizar</button>
+            	<button type="submit" class="btn btn-success btn-flat" name="editar"><i class="fa fa-check-square-o"></i> Actualizar</button>
             	</form>
           	</div>
         </div>
@@ -105,7 +105,7 @@
           	<div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
               		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b><span id="overtime_date"></span></b></h4>
+            	<h4 class="modal-title"><b><span id="fecha"></span></b></h4>
           	</div>
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="../../controllers/tiempoextra/tiempoextra_eliminar.php">
@@ -121,7 +121,7 @@
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-danger btn-flat" name="delete"><i class="fa fa-trash"></i> Eliminar</button>
+            	<button type="submit" class="btn btn-danger btn-flat" name="eliminar"><i class="fa fa-trash"></i> Eliminar</button>
             	</form>
           	</div>
         </div>

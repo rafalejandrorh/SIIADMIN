@@ -1,16 +1,16 @@
 <?php 
-        include '../../admin/includes/session.php';
+        include '../../controllers/sesion/session.php';
         include "../../config/conn.php";
         require_once "../../models/deducciones_model.php";
         $deducciones = new deducciones_model();
                 
-        if(isset($_POST['edit']))
+        if(isset($_POST['editar']))
         {
             $id = $_POST['id'];
-            $description = $_POST['description'];
-            $amount = $_POST['amount'];
+            $descripcion = $_POST['descripcion'];
+            $monto = $_POST['monto'];
             $tabla = $_POST['tabla'];
-            $editar = $deducciones->editar_deducciones($description, $amount, $id, $tabla); 
+            $editar = $deducciones->editar_deducciones($descripcion, $monto, $id, $tabla); 
 
         }else{
 

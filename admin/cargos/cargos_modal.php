@@ -13,20 +13,20 @@
                   	<label for="title" class="col-sm-3 control-label">Nombre Cargo</label>
 
                   	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="title" name="title" required>
+                    	<input type="text" class="form-control" id="cargo" name="cargo" required>
                   	</div>
                 </div>
                 <div class="form-group">
                     <label for="rate" class="col-sm-3 control-label">Pago por Hora</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="rate" name="rate" required>
+                      <input type="text" class="form-control" id="sueldo" name="sueldo" required>
                     </div>
                 </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Guardar</button>
+            	<button type="submit" class="btn btn-primary btn-flat" name="guardar"><i class="fa fa-save"></i> Guardar</button>
             	</form>
           	</div>
         </div>
@@ -46,27 +46,27 @@
             	<form class="form-horizontal" method="POST" action="../../controllers/cargos/cargos_editar.php">
 				<div class="form-group">
                   	<div class="col-sm-9">
-                    	<input type="hidden" class="form-control" id="edit_posid" name="id" required>
+                    	<input type="hidden" class="form-control" id="edit_id_cargo" name="id" required>
                   	</div>
                 </div>
                 <div class="form-group">
                     <label for="edit_title" class="col-sm-3 control-label">Nombre del Cargo</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_title" name="title">
+                      <input type="text" class="form-control" id="edit_cargo" name="cargo">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="edit_rate" class="col-sm-3 control-label">Costo por Hora</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_rate" name="rate">
+                      <input type="text" class="form-control" id="edit_sueldo" name="sueldo">
                     </div>
                 </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-success btn-flat" name="edit"><i class="fa fa-check-square-o"></i> Actualizar</button>
+            	<button type="submit" class="btn btn-success btn-flat" name="editar"><i class="fa fa-check-square-o"></i> Actualizar</button>
             	</form>
           	</div>
         </div>
@@ -86,12 +86,12 @@
             	<form class="form-horizontal" method="POST" action="../../controllers/cargos/cargos_eliminar.php">
 				<div class="form-group">
                   	<div class="col-sm-9">
-                    	<input type="hidden" class="form-control" id="del_posid" name="id" required>
+                    	<input type="hidden" class="form-control" id="del_id_cargo" name="id" required>
                   	</div>
                 </div>
             		<div class="text-center">
 	                	<p>ELIMINAR POSICIÓN</p>
-	                	<h2 id="del_position" class="bold"></h2>
+	                	<h2 id="del_cargo" class="bold"></h2>
 	            	</div>
           	</div>
           	<div class="modal-footer">

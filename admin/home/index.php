@@ -1,6 +1,6 @@
 <?php 
 
-  include '../includes/session.php';
+  include '../../controllers/sesion/session.php';
   include '../includes/timezone.php'; 
   require_once '../../controllers/home/graficos_empleados.php';
   include '../includes/header.php'; ?>
@@ -64,7 +64,7 @@
             <div class="icon">
               <i class="ion ion-person-stalker"></i>
             </div>
-            <a href="empleados/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="../empleados/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
@@ -87,7 +87,7 @@
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="asistencia/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="../asistencia/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
@@ -101,7 +101,7 @@
             <div class="icon">
               <i class="ion ion-clock"></i>
             </div>
-            <a href="asistencia/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="../asistencia/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
@@ -115,7 +115,7 @@
             <div class="icon">
               <i class="ion ion-alert-circled"></i>
             </div>
-            <a href="asistencia/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="../asistencia/index.php" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
       </div>

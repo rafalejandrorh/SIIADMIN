@@ -1,4 +1,4 @@
-<?php include '../includes/session.php'; ?>
+<?php include '../../controllers/sesion/session.php'; ?>
 <?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -60,8 +60,8 @@
                     {
                       ?>
                         <tr>
-                          <td><?php echo $row['description'] ?></td>
-                          <td><?php echo $row['amount'] ?></td>
+                          <td><?php echo $row['descripcion'] ?></td>
+                          <td><?php echo $row['monto'] ?></td>
                           <td>
                             <button class='btn btn-success btn-sm edit1 btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-edit'></i></button>
                             <button class='btn btn-danger btn-sm delete1 btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-trash'></i></button>
@@ -95,8 +95,8 @@
                     {
                       ?>
                         <tr>
-                          <td><?php echo $row['description']?></td>
-                          <td><?php echo $row['amount']?></td>
+                          <td><?php echo $row['descripcion']?></td>
+                          <td><?php echo $row['monto']?></td>
                           <td>
                             <button class='btn btn-success btn-sm edit2 btn-flat' data-id="<?php echo $row['id']?>"><i class='fa fa-edit'></i></button>
                             <button class='btn btn-danger btn-sm delete2 btn-flat' data-id="<?php echo $row['id']?>"><i class='fa fa-trash'></i></button>
@@ -158,9 +158,9 @@ function getRow(id){
     success: function(response){
       $('.decid').val(response.id);
       $('#edit_decid').val(response.id);
-      $('#edit_description').val(response.description);
-      $('#edit_amount').val(response.amount);
-      $('#del_deduction').html(response.description);
+      $('#edit_descripcion').val(response.descripcion);
+      $('#edit_monto').val(response.monto);
+      $('#del_deduccion').html(response.descripcion);
       $('#del_decid').val(response.id);
     }
   });
@@ -175,9 +175,9 @@ function getRow2(id){
     success: function(response){
       $('.decid2').val(response.id);
       $('#edit_decid2').val(response.id);
-      $('#edit_description2').val(response.description);
-      $('#edit_amount2').val(response.amount);
-      $('#del_deduction2').html(response.description);
+      $('#edit_descripcion2').val(response.descripcion);
+      $('#edit_monto2').val(response.monto);
+      $('#del_deduccion2').html(response.descripcion);
       $('#del_decid2').val(response.id);
     }
   });

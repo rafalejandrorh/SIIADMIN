@@ -1,5 +1,5 @@
 <?php 
-          include '../../admin/includes/session.php';
+          include '../../controllers/sesion/session.php';
           require_once "../../config/conn.php";
           require_once "../../models/asistencia_model.php";
           $asistencia = new asistencia_model();
@@ -7,13 +7,13 @@
           if(isset($_POST['edit']))
           {
                $id = $_POST['id'];
-               $date = $_POST['edit_date'];
-               $time_in = $_POST['edit_time_in'];
-               $time_in = date('H:i:s', strtotime($time_in));
-               $time_out = $_POST['edit_time_out'];
-               $time_out = date('H:i:s', strtotime($time_out));
+               $fecha = $_POST['fecha'];
+               $llegada = $_POST['hora_llegada'];
+               $hora_llegada = date('H:i:s', strtotime($llegada));
+               $salida = $_POST['hora_salida'];
+               $hora_salida = date('H:i:s', strtotime($salida));
                          
-               $editar = $asistencia->editar_asistencia($date, $time_in, $time_out, $id); 
+               $editar = $asistencia->editar_asistencia($fecha, $hora_llegada, $hora_salida, $id); 
             
           }else{
 

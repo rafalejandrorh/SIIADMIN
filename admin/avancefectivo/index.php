@@ -1,4 +1,4 @@
-<?php include '../includes/session.php'; ?>
+<?php include '../../controllers/sesion/session.php';; ?>
 <?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -64,10 +64,10 @@
                       ?>
                         <tr>
                           <td class='hidden'></td>
-                          <td><?php echo date('M d, Y', strtotime($row['date_advance']))?></td>
-                          <td><?php echo $row['empid']?></td>
-                          <td><?php echo $row['firstname'].' '.$row['lastname']?></td>
-                          <td><?php echo '$ '.number_format($row['amount'], 2)?></td>
+                          <td><?php echo date('M d, Y', strtotime($row['fecha']))?></td>
+                          <td><?php echo $row['ci']?></td>
+                          <td><?php echo $row['nombres'].' '.$row['apellidos']?></td>
+                          <td><?php echo '$ '.number_format($row['monto'], 2)?></td>
                           <td>
                             <button class='btn btn-success btn-sm edit btn-flat' data-id='<?php echo $row['caid']?>'><i class='fa fa-edit'></i></button>
                             <button class='btn btn-danger btn-sm delete btn-flat' data-id='<?php echo $row['caid']?>'><i class='fa fa-trash'></i></button>
@@ -112,11 +112,12 @@ function getRow(id){
     dataType: 'json',
     success: function(response){
       console.log(response);
-      $('.date').html(response.date_advance);
-      $('.employee_name').html(response.firstname+' '+response.lastname);
+      $('#fecha').html(response.fecha);
+      $('#nombres').html(response.nombres+' '+response.apellidos);
+      $('#edit_monto').val(response.monto);
       $('#caid').val(response.caid);
       $('#del_caid').val(response.caid);
-      $('#edit_amount').val(response.amount);
+      $('#del_nombres').html(response.nombres+' '+response.apellidos); 
     }
   });
 }

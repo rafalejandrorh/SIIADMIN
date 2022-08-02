@@ -2,16 +2,16 @@
         require "../../config/conn.php";
         include "../../models/asistencia_model.php";
         include "../../empleado/includes/timezone.php";
-        include "../../empleado/includes/session.php";
+        include '../../controllers/sesion/session.php';
         $asistencia = new asistencia_model();
 
         if(isset($_POST['signin']))
         {
-            $employee = $_POST['employee'];
-            $status = $_POST['status'];
-			$date_now = date('Y-m-d');
+            $cedula = $_POST['employee'];
+            $estatus_llegada = $_POST['status'];
+			$fecha = date('Y-m-d');
 
-            $buscarempleado = $asistencia->insertar_asistencia_empleado($employee, $status, $date_now); 
+            $buscarempleado = $asistencia->insertar_asistencia_empleado($cedula, $estatus_llegada, $fecha); 
             
         }else{
 

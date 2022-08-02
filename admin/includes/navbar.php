@@ -12,16 +12,16 @@
           <li class="dropdown user user-menu">
           
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo (!empty($user['photo'])) ? '../../images/'.$user['photo'] : '../../images/profile.jpg'; ?>" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?php echo $user['firstname'].' '.$user['lastname']; ?></span>
+              <img src="<?php echo (!empty($_SESSION['foto'])) ? '../../images/'.$_SESSION['foto'] : '../../images/profile.jpg'; ?>" class="user-image" alt="User Image">
+              <span class="hidden-xs"><?php echo $_SESSION['nombres'].' '.$_SESSION['apellidos']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
-                <img src="<?php echo (!empty($user['photo'])) ? '../../images/'.$user['photo'] : '../../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
+                <img src="<?php echo (!empty($_SESSION['foto'])) ? '../../images/'.$_SESSION['foto'] : '../../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
 
                 <p>
-                  <?php echo $user['firstname'].' '.$user['lastname']; ?>
-                  <small>Miembro desde <?php echo date('M. Y', strtotime($user['created_on'])); ?></small>
+                  <?php echo $_SESSION['nombres'].' '.$_SESSION['apellidos']; ?>
+                  <small>Miembro desde <?php echo date('M. Y', strtotime($_SESSION['ingreso'])); ?></small>
                 </p>
               </li>
               <li class="user-footer">

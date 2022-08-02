@@ -28,31 +28,33 @@ class deducciones_model
 
     }
 
-    public function insertar_deducciones($description, $amount, $tabla)
+    public function insertar_deducciones($descripcion, $monto, $tabla)
     {
 
-        $sql = "INSERT INTO $tabla (description, amount) VALUES ('$description', '$amount')";
-        if($this->conexion->query($sql))
+        $sql = "INSERT INTO $tabla (descripcion, monto) VALUES ('$descripcion', '$monto')";
+        $query = $this->conexion->query($sql);
+        if($query->rowCount() >= 1)
         {
 			$_SESSION['success'] = 'Deducciones añadidas satisfactoriamente';
 		}
 		else{
-			$_SESSION['error'] = $this->conexion->error;
+            $_SESSION['error'] = 'Error al Insertar Deducciones. Intente más tarde.';
 		}
         return $_SESSION;
 
     }
 
-    public function editar_deducciones($description, $amount, $id, $tabla)
+    public function editar_deducciones($descripcion, $monto, $id, $tabla)
     {
 
-        $sql = "UPDATE $tabla SET description = '$description', amount = '$amount' WHERE id = '$id'";
-        if($this->conexion->query($sql))
+        $sql = "UPDATE $tabla SET descripcion = '$descripcion', monto = '$monto' WHERE id = '$id'";
+        $query = $this->conexion->query($sql);
+        if($query->rowCount() >= 1)
         {
 			$_SESSION['success'] = 'Deducción actualizada satisfactoriamente';
 		}
 		else{
-			$_SESSION['error'] = $this->dberror;
+			$_SESSION['error'] = 'Error al Editar Deducciones. Intente más tarde.';
 		}
         return $_SESSION;
 
@@ -67,7 +69,7 @@ class deducciones_model
 			$_SESSION['success'] = 'La Deducción se eliminó correctamente';
 		}
 		else{
-			$_SESSION['error'] = $this->conexion->error;
+			$_SESSION['error'] = 'Error al Eliminar Deducciones. Intente más tarde.';
 		}
         return $_SESSION;
 

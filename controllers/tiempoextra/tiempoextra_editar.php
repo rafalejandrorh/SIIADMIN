@@ -1,17 +1,17 @@
 <?php 
-        include '../../admin/includes/session.php';
+        include '../../controllers/sesion/session.php';
         include "../../config/conn.php";
         require_once "../../models/tiempoextra_model.php";
         $tiempoextra = new tiempoextra_model();
                 
-        if(isset($_POST['edit']))
+        if(isset($_POST['editar']))
         {
             $id = $_POST['id'];
-            $date = $_POST['date'];
-            $hours = $_POST['hours'];
-            $rate = $_POST['rate'];
+            $fecha = $_POST['fecha'];
+            $horas = $_POST['horas'];
+            $monto = $_POST['monto'];
                     
-            $editar = $tiempoextra->editar_tiempoextra($date, $hours, $rate, $id); 
+            $editar = $tiempoextra->editar_tiempoextra($fecha, $horas, $monto, $id); 
             
         }else{
 

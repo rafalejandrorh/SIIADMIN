@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if(isset($_SESSION['admin'])){
+  if(isset($_SESSION['id_usuario'])){
     header('location:../home/index.php');
   }
   include '../../controllers/sesion/login.php';

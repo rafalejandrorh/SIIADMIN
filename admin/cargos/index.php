@@ -1,4 +1,4 @@
-<?php include '../includes/session.php'; ?>
+<?php include '../../controllers/sesion/session.php'; ?>
 <?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -65,11 +65,11 @@
                     {
                       ?>
                         <tr>
-                          <td><?php echo $row['description']?></td>
-                          <td><?php echo '$ '.number_format($row['rate'], 2)?></td>
+                          <td><?php echo $row['cargo']?></td>
+                          <td><?php echo '$ '.number_format($row['sueldo'], 2)?></td>
                           <td>
-                            <button class='btn btn-success btn-sm edit btn-flat' data-id='<?php echo $row['position_id']?>'><i class='fa fa-edit'></i></button>
-                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='<?php echo $row['position_id']?>'><i class='fa fa-trash'></i></button>
+                            <button class='btn btn-success btn-sm edit btn-flat' data-id='<?php echo $row['id_cargo']?>'><i class='fa fa-edit'></i></button>
+                            <button class='btn btn-danger btn-sm delete btn-flat' data-id='<?php echo $row['id_cargo']?>'><i class='fa fa-trash'></i></button>
                           </td>
                         </tr>
                       <?php } ?>
@@ -110,12 +110,11 @@ function getRow(id){
     data: {id:id},
     dataType: 'json',
     success: function(response){
-      $('#posid').val(response.position_id);
-      $('#edit_title').val(response.description);
-      $('#edit_rate').val(response.rate);
-      $('#edit_posid').val(response.position_id);
-      $('#del_posid').val(response.position_id);
-      $('#del_position').html(response.description);
+      $('#edit_cargo').val(response.cargo);
+      $('#edit_sueldo').val(response.sueldo);
+      $('#edit_id_cargo').val(response.id_cargo);
+      $('#del_id_cargo').val(response.id_cargo);
+      $('#del_cargo').html(response.cargo);
     }
   });
 }

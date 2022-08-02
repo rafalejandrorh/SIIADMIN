@@ -1,15 +1,15 @@
 <?php
-        include '../../admin/includes/session.php';
+        include '../../controllers/sesion/session.php';
         include "../../config/conn.php";
         require_once "../../models/avancefectivo_model.php";
         $avancefectivo = new avancefectivo_model();
                 
-        if(isset($_POST['edit']))
+        if(isset($_POST['editar']))
         {
             $id = $_POST['id'];
-            $amount = $_POST['amount'];
+            $monto = $_POST['monto'];
                      
-            $editar = $avancefectivo->editar_avancefectivo($amount, $id); 
+            $editar = $avancefectivo->editar_avancefectivo($monto, $id); 
             
         }else{
 

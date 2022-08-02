@@ -1,19 +1,19 @@
 <?php 
-        include '../../admin/includes/session.php';
+        include '../../controllers/sesion/session.php';
         require_once "../../config/conn.php";
         require_once "../../models/asistencia_model.php";
         $asistencia = new asistencia_model();
                 
         if(isset($_POST['add']))
         {
-            $employee = $_POST['employee'];
-            $date = $_POST['date'];
-            $in = $_POST['time_in'];
-            $time_in = date('H:i:s', strtotime($in));
-            $out = $_POST['time_out'];
-            $time_out = date('H:i:s', strtotime($out));
+            $cedula = $_POST['employee'];
+            $fecha = $_POST['fecha'];
+            $llegada = $_POST['hora_llegada'];
+            $hora_llegada = date('H:i:s', strtotime($llegada));
+            $salida = $_POST['hora_salida'];
+            $hora_salida = date('H:i:s', strtotime($salida));
                     
-            $buscarempleado = $asistencia->insertar_asistencia($employee, $date, $time_in, $time_out);
+            $buscarempleado = $asistencia->insertar_asistencia($cedula, $fecha, $hora_llegada, $hora_salida);
       
         }else{
 

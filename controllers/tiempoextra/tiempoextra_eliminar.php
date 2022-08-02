@@ -1,10 +1,10 @@
 <?php 
-        include '../../admin/includes/session.php';
+        include '../../controllers/sesion/session.php';
         include "../../config/conn.php";
         require_once "../../models/tiempoextra_model.php";
         $tiempoextra = new tiempoextra_model();
                 
-        if(isset($_POST['delete']))
+        if(isset($_POST['eliminar']))
         {
             $id = $_POST['id'];
                      

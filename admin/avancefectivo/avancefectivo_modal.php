@@ -13,20 +13,20 @@
                   	<label for="employee" class="col-sm-3 control-label">Cédula de Identidad</label>
 
                   	<div class="col-sm-9">
-                    	<input type="text" class="form-control" id="employee" name="employee" required>
+                    	<input type="text" class="form-control" id="cedula" name="cedula" required>
                   	</div>
                 </div>
                 <div class="form-group">
-                    <label for="amount" class="col-sm-3 control-label">Monto</label>
+                    <label for="monto" class="col-sm-3 control-label">Monto</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="amount" name="amount" required>
+                      <input type="text" class="form-control" id="monto" name="monto" required>
                     </div>
                 </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-primary btn-flat" name="add"><i class="fa fa-save"></i> Guardar</button>
+            	<button type="submit" class="btn btn-primary btn-flat" name="guardar"><i class="fa fa-save"></i> Guardar</button>
             	</form>
           	</div>
         </div>
@@ -40,7 +40,7 @@
           	<div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
               		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b><span class="date"></span> - <span class="employee_name"></span></b></h4>
+            	<h2 class="modal-title"><b><span id="fecha" class="date"></span> - <span id="nombres" class="employee_name"></span></b></h2>
           	</div>
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="../../controllers/avancefectivo/avancefectivo_editar.php">
@@ -52,16 +52,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="edit_amount" class="col-sm-3 control-label">Monto</label>
+                    <label for="edit_monto" class="col-sm-3 control-label">Monto</label>
 
                     <div class="col-sm-9">
-                      <input type="text" class="form-control" id="edit_amount" name="amount" required>
+                      <input type="text" class="form-control" id="edit_monto" name="monto" required>
                     </div>
                 </div>
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-success btn-flat" name="edit"><i class="fa fa-check-square-o"></i> Actualizar</button>
+            	<button type="submit" class="btn btn-success btn-flat" name="editar"><i class="fa fa-check-square-o"></i> Actualizar</button>
             	</form>
           	</div>
         </div>
@@ -75,7 +75,7 @@
           	<div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
               		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b><span class="date"></span></b></h4>
+            	<h4 class="modal-title"><b><span id="del_nombres" class="date"></span></b></h4>
           	</div>
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="../../controllers/avancefectivo/avancefectivo_eliminar.php">
@@ -92,7 +92,7 @@
           	</div>
           	<div class="modal-footer">
             	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
-            	<button type="submit" class="btn btn-danger btn-flat" name="delete"><i class="fa fa-trash"></i> Eliminar</button>
+            	<button type="submit" class="btn btn-danger btn-flat" name="eliminar"><i class="fa fa-trash"></i> Eliminar</button>
             	</form>
           	</div>
         </div>

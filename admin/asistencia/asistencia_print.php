@@ -1,29 +1,29 @@
 <?php
-	include '../includes/session.php';
+	include '../../controllers/sesion/session.php';
+  require_once "../../controllers/asistencia/asistencia_obtener.php";
 
-	function generateRow($conn){
-		$contents = '';
-		
-    require_once "../../controllers/asistencia/asistencia_obtener.php";
-    foreach($obtener as $row){
+      function generateRow($obtener){
+        $contents = '';
+        
+        foreach($obtener as $row){
 
-      $status = ($row['status'])?'<span class="label label-warning pull-right"> (A tiempo)</span>':'<span class="label label-danger pull-right"> (Tarde)</span>';
-			$contents .= "
-      <tr>
-        <td>".date('M d, Y', strtotime($row['date']))."</td>
-        <td>".$row['employee_id']."</td>
-				<td>".$row['lastname'].", ".$row['firstname']."</td>
-        <td>".$row['description']."</td>
-        <td>".date('h:i A', strtotime($row['time_in'])).' - '. date('h:i A', strtotime($row['time_out'])).$status."</td>
-        <td>".number_format($row['num_hr'],1)."</td>
-			</tr>
-    ";
-		}
+          $status = ($row['status'])?'<span class="label label-warning pull-right"> (A tiempo)</span>':'<span class="label label-danger pull-right"> (Tarde)</span>';
+          $contents .= "
+          <tr>
+            <td>".date('M d, Y', strtotime($row['date']))."</td>
+            <td>".$row['ci']."</td>
+            <td>".$row['lastname'].", ".$row['firstname']."</td>
+            <td>".$row['description']."</td>
+            <td>".date('h:i A', strtotime($row['time_in'])).' - '. date('h:i A', strtotime($row['time_out'])).$status."</td>
+            <td>".number_format($row['num_hr'],1)."</td>
+          </tr>
+        ";
+        }
 
-		return $contents;
-	}
+        return $contents;
+      }
 
-	require_once('../../tcpdf_min/tcpdf.php');  
+	  require_once('../../tcpdf_min/tcpdf.php');  
     $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
     $pdf->SetCreator(PDF_CREATOR);  
     $pdf->SetTitle('Asistencia de Empleados');  
@@ -41,6 +41,7 @@
     $content = '';  
     $content .= '
       	<h2 align="center">Asistencia</h2>
+        <h4 align="center">'.$from_title." - ".$to_title.'</h4>
       	<table border="1" cellspacing="0" cellpadding="3">  
            <tr>  
                 <th width="16%" align="center"><b>Fecha</b></th>
@@ -51,7 +52,7 @@
                 <th width="14%" align="center"><b>Horas Trabajadas</b></th> 
            </tr>
       ';  
-    $content .= generateRow($conn); 
+    $content .= generateRow($obtener); 
     $content .= '</table>';  
     $pdf->writeHTML($content);  
     $pdf->Output('Asistencia de Empleados.pdf', 'I');

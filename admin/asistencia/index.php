@@ -1,6 +1,6 @@
 <?php 
     include '../includes/header.php'; 
-    include '../includes/session.php';
+    include '../../controllers/sesion/session.php';
 ?>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -80,16 +80,16 @@
 
                     foreach($obtener as $row)
                     {
-                      $status = ($row['status'])?'<span class="label label-warning pull-right">A tiempo</span>':'<span class="label label-danger pull-right">Tarde</span>';
+                      $status = ($row['estatus_llegada'])?'<span class="label label-warning pull-right">A tiempo</span>':'<span class="label label-danger pull-right">Tarde</span>';
                       ?>
                         <tr>
-                          <td><?php echo date('M d, Y', strtotime($row['date']))?></td>
-                          <td><?php echo $row['empid']?></td>
-                          <td><?php echo $row['firstname'].' '.$row['lastname']?></td>
-                          <td><?php echo $row['description']?></td>
-                          <td><?php echo date('h:i A', strtotime($row['time_in'])).$status?></td>
-                          <td><?php echo date('h:i A', strtotime($row['time_out']))?></td>
-                          <td><?php echo number_format($row['num_hr'],1)?></td>
+                          <td><?php echo date('M d, Y', strtotime($row['fecha']))?></td>
+                          <td><?php echo $row['cedula']?></td>
+                          <td><?php echo $row['nombres'].', '.$row['apellidos']?></td>
+                          <td><?php echo $row['cargo']?></td>
+                          <td><?php echo date('h:i A', strtotime($row['hora_llegada'])).$status?></td>
+                          <td><?php echo date('h:i A', strtotime($row['hora_salida']))?></td>
+                          <td><?php echo number_format($row['horas_laboradas'],1)?></td>
                           <td class='text-center'>
                             <button class='btn btn-success btn-sm btn-flat edit' data-id='<?php echo $row['attid']?>'><i class='fa fa-edit'></i></button>
                             <button class='btn btn-danger btn-sm btn-flat delete' data-id='<?php echo $row['attid']?>'><i class='fa fa-trash'></i></button>
@@ -145,14 +145,14 @@ function getRow(id){
     data: {id:id},
     dataType: 'json',
     success: function(response){
-      $('#datepicker_edit').val(response.date);
-      $('#attendance_date').html(response.date);
-      $('#edit_time_in').val(response.time_in);
-      $('#edit_time_out').val(response.time_out);
+      $('#attendance_fecha').val(response.fecha);
+      $('#edit_fecha').val(response.fecha);
+      $('#edit_hora_llegada').val(response.hora_llegada);
+      $('#edit_hora_salida').val(response.hora_salida);
       $('#attid').val(response.attid);
-      $('#employee_name').html(response.firstname+' '+response.lastname);
+      $('#nombres').html(response.nombres+' '+response.apellidos);
       $('#del_attid').val(response.attid);
-      $('#del_employee_name').html(response.firstname+' '+response.lastname);
+      $('#del_nombres').html(response.nombres+' '+response.apellidos);
     }
   });
 }
