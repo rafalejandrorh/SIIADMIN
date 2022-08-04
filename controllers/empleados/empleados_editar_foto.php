@@ -12,7 +12,7 @@
             $foto = $_FILES['photo']['name'];
             if(!empty($foto))
             {
-                move_uploaded_file($_FILES['photo']['tmp_name'], '../../images/'.$foto);	
+                move_uploaded_file($_FILES['photo']['tmp_name'], '../../images/perfil/'.$foto);	
             }  
             
             $id_persona = $personas->obtener_persona($id_empleado);

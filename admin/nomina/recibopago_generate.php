@@ -26,6 +26,10 @@
 
         //Obtiene el efectivo prestado al empleado
         $consulta_avancefectivo = $nomina->consulta_avancefectivo($from, $to, $id_empleado);
+        if(!isset($consulta_avancefectivo[0]['efectivo']))
+        {
+            $consulta_avancefectivo[0]['efectivo'] = 0;
+        } 
         //Realiza el Cálculo de la Nomina. Retorna: El total de las deducciones y el Total del Pago Neto en Bs y Dólares
         $calculo_nomina = $nomina->calculo_nomina($gross, $deduction, $deduction2, $consulta_avancefectivo[0]['efectivo'], $dolar);
 
@@ -62,7 +66,7 @@
                   <td></td> 
                   <td></td>
               <td width="25%" align="right"><b>Salario Neto en Dólares:</b></td>
-              <td width="25%" align="right"><b>'.'$ '.number_format($calculo_nomina['net'], 2).'</b></td> 
+              <td width="25%" align="right"><b>'.'$ '.number_format($calculo_nomina['neto'], 2).'</b></td> 
                 </tr>
             <tr> 
                   <td></td> 

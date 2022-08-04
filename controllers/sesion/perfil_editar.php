@@ -21,7 +21,7 @@ if (isset($_POST['guardar'])) {
     $foto = $_FILES['foto']['name'];
     if (password_verify($curr_contraseña, $_SESSION['contraseña'])) {
         if (!empty($foto)) {
-            move_uploaded_file($_FILES['foto']['tmp_name'], '../images/' . $foto);
+            move_uploaded_file($_FILES['foto']['tmp_name'], '../images/perfil/' . $foto);
             $filename = $foto;
         } else {
             $filename = $_SESSION['foto'];

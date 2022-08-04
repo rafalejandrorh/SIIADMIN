@@ -57,6 +57,13 @@ class cargos_model
 
 
     }
+
+    public function datos_cargos($id)
+	{
+		$sql = "SELECT * FROM cargos WHERE id_cargo = '$id'";
+		$query = $this->conexion->query($sql);
+		return $query->fetch(PDO::FETCH_ASSOC);
+	}
     
     public function eliminar_cargos($id_cargo)
     {

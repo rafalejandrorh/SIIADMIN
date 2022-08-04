@@ -50,6 +50,15 @@ class tiempoextra_model
 
     }
     
+    public function datos_tiempoextra($id)
+	{
+		$sql = "SELECT *, tiempoextra.id AS otid FROM tiempoextra 
+        LEFT JOIN empleados on empleados.id_empleado=tiempoextra.id_empleado 
+        LEFT JOIN personas ON empleados.id_persona = personas.id_persona WHERE tiempoextra.id='$id'";
+		$query = $this->conexion->query($sql);
+		return $query->fetch(PDO::FETCH_ASSOC);
+	}
+
     public function eliminar_tiempoextra($id)
     {
 

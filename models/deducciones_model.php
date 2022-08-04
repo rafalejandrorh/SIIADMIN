@@ -59,7 +59,14 @@ class deducciones_model
         return $_SESSION;
 
     }
-    
+
+    public function datos_deducciones($id, $tabla)
+	{
+		$sql = "SELECT * FROM $tabla WHERE id = '$id'";
+		$query = $this->conexion->query($sql);
+		return $query->fetch(PDO::FETCH_ASSOC);
+	}
+
     public function eliminar_deducciones($id, $tabla)
     {
 

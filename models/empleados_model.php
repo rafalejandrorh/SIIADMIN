@@ -95,6 +95,20 @@ class empleados_model
 
     }
 
+    public function datos_empleados($id_empleado)
+	{
+		$sql = "SELECT personas.nombres, personas.apellidos, personas.direccion, personas.fecha_nacimiento, personas.numero_contacto,
+		personas.genero, cargos.id_cargo, cargos.cargo, horarios.id_horarios, horarios.hora_llegada, horarios.hora_salida, 
+		personas.foto, personas.cedula, empleados.id_empleado
+		FROM empleados 
+		LEFT JOIN cargos ON cargos.id_cargo=empleados.id_cargo 
+		LEFT JOIN horarios ON horarios.id_horarios=empleados.id_horarios 
+		LEFT JOIN personas ON empleados.id_persona=personas.id_persona 
+		WHERE empleados.id_empleado = '$id_empleado'";
+		$query = $this->conexion->query($sql);
+		return $query->fetch(PDO::FETCH_ASSOC);
+	}
+
     public function inactivar_empleado($id_empleado)
     {
 

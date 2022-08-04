@@ -7,15 +7,15 @@
         
         foreach($obtener as $row){
 
-          $status = ($row['status'])?'<span class="label label-warning pull-right"> (A tiempo)</span>':'<span class="label label-danger pull-right"> (Tarde)</span>';
+          $status = ($row['estatus_llegada'])?'<span class="label label-warning pull-right"> (A tiempo)</span>':'<span class="label label-danger pull-right"> (Tarde)</span>';
           $contents .= "
           <tr>
-            <td>".date('M d, Y', strtotime($row['date']))."</td>
-            <td>".$row['ci']."</td>
-            <td>".$row['lastname'].", ".$row['firstname']."</td>
-            <td>".$row['description']."</td>
-            <td>".date('h:i A', strtotime($row['time_in'])).' - '. date('h:i A', strtotime($row['time_out'])).$status."</td>
-            <td>".number_format($row['num_hr'],1)."</td>
+            <td>".date('M d, Y', strtotime($row['fecha']))."</td>
+            <td>".$row['cedula']."</td>
+            <td>".$row['apellidos'].", ".$row['nombres']."</td>
+            <td>".$row['cargo']."</td>
+            <td>".date('h:i A', strtotime($row['hora_llegada'])).' - '. date('h:i A', strtotime($row['hora_salida'])).$status."</td>
+            <td>".number_format($row['horas_laboradas'],1)."</td>
           </tr>
         ";
         }

@@ -17,7 +17,7 @@ class sesion_model
     public function iniciar_login($usuario, $contraseña)
     {
 
-        $sql = "SELECT * FROM usuarios WHERE usuario = '$usuario'";
+        $sql = "SELECT * FROM public.usuarios WHERE usuario = '$usuario'";
         $query = $this->conexion->query($sql);
 
         if($query->rowCount() < 1)
@@ -28,7 +28,7 @@ class sesion_model
             if(password_verify($contraseña, $row['contraseña']))
             {
                 $id_persona = $row['id_persona'];
-                $sql = "SELECT personas.foto, personas.nombres, personas.apellidos, personas.fecha_ingreso FROM personas WHERE id_persona = $id_persona";
+                $sql = "SELECT personas.foto, personas.nombres, personas.apellidos, personas.fecha_ingreso FROM public.personas WHERE id_persona = $id_persona";
                 $query = $this->conexion->query($sql);
                 $srow = $query->fetch();
                 $_SESSION['foto'] = $srow['foto'];

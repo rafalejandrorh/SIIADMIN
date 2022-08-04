@@ -67,7 +67,7 @@ class personas_model
     public function validar_persona($cedula)
     {
 
-        $sql = "SELECT id_persona FROM personas WHERE cedula = $cedula";
+        $sql = "SELECT id_persona FROM personas WHERE cedula = '$cedula'";
         $query = $this->conexion->query($sql);
         if($query->rowCount() >= 1)
         {
@@ -77,7 +77,6 @@ class personas_model
             return $query->rowCount();
 
         }else{
-            $_SESSION['error'] = 'Error, La Persona indicada no está registrada en el Sistema.';
             return 0;
         }
 

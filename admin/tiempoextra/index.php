@@ -117,7 +117,7 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'tiempoextra_row.php',
+    url: 'tiempoextra_id.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){

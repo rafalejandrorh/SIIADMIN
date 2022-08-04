@@ -9,13 +9,13 @@
 
 			$contents .= "
 			<tr>
-        <td>".$row['id_empleado']."</td>
-				<td>".$row['firstname'].", ".$row['lastname']."</td>
-        <td>".$row['description']."</td>
-        <td>".'$ '.number_format($row['rate'], 2)."</td>
-				<td>".date('h:i A', strtotime($row['time_in'])).' - '. date('h:i A', strtotime($row['time_out']))."</td>
-        <td>".$row['address']."</td>
-        <td>".$row['contact_info']."</td>
+        <td>".$row['cedula']."</td>
+				<td>".$row['nombres'].", ".$row['apellidos']."</td>
+        <td>".$row['cargo']."</td>
+        <td>".'$ '.number_format($row['sueldo'], 2)."</td>
+				<td>".date('h:i A', strtotime($row['hora_llegada'])).' - '. date('h:i A', strtotime($row['hora_llegada']))."</td>
+        <td>".$row['direccion']."</td>
+        <td>".$row['numero_contacto']."</td>
 			</tr>
 			";
 		}
@@ -52,7 +52,7 @@
               <th width="14%" align="center"><b>Teléfono</b></th>
            </tr>  
       ';  
-    $content .= generateRow($conn); 
+    $content .= generateRow(); 
     $content .= '</table>';  
     $pdf->writeHTML($content);  
     $pdf->Output('Lista de Empleados.pdf', 'I');

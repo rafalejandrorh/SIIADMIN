@@ -35,6 +35,13 @@ class tasadolar_model
 		$_SESSION['success'] = 'Tasa del dólar modificada satisfactoriamente';
 
     }
+
+    public function datos_tasadolar($id)
+	{
+		$sql = "SELECT * FROM tasa_dolar WHERE id = '$id'";
+		$query = $this->conexion->query($sql);
+		return $query->fetch(PDO::FETCH_ASSOC);
+	}
     
 }
 

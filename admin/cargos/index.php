@@ -106,7 +106,7 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'cargos_row.php',
+    url: 'cargos_id.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){

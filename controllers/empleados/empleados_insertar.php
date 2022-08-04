@@ -18,7 +18,7 @@
             $foto = $_FILES['foto']['name'];
 
             if(!empty($foto)){
-                move_uploaded_file($_FILES['foto']['tmp_name'], '../../images'.$foto);	
+                move_uploaded_file($_FILES['foto']['tmp_name'], '../../images/perfil/'.$foto);	
             }
 
             $personas = new personas_model(); 

@@ -9,8 +9,8 @@
 
 			$contents .= "
 			<tr>
-        <td>".$row['description']."</td>
-        <td>".'$ '.number_format($row['rate'], 2)."</td>
+        <td>".$row['cargo']."</td>
+        <td>".'$ '.number_format($row['sueldo'], 2)."</td>
 			</tr>
 			";
 		}
@@ -42,7 +42,7 @@
            		<th width="50%" align="center"><b>Sueldo por Hora</b></th>
            </tr>  
       ';  
-    $content .= generateRow($conn); 
+    $content .= generateRow(); 
     $content .= '</table>';  
     $pdf->writeHTML($content);  
     $pdf->Output('Horario de Empleados.pdf', 'I');

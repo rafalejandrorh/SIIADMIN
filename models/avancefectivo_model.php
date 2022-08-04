@@ -47,6 +47,15 @@ class avancefectivo_model
 		$_SESSION['success'] = 'Avance de Efectivo actualizado satisfactoriamente';
 
     }
+
+    public function datos_avancefectivo($id)
+	{
+		$sql = "SELECT *, avancefectivo.id AS caid FROM avancefectivo 
+        LEFT JOIN empleados ON empleados.id_empleado=avancefectivo.id_empleado 
+        LEFT JOIN personas ON empleados.id_persona = personas.id_persona WHERE avancefectivo.id='$id'";
+		$query = $this->conexion->query($sql);
+		return $query->fetch(PDO::FETCH_ASSOC);
+	}
     
     public function eliminar_avancefectivo($id)
     {

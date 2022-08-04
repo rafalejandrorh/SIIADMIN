@@ -52,6 +52,13 @@ class horarios_model
 
     }
 
+    public function datos_horarios($id)
+    {
+        $sql = "SELECT * FROM horarios WHERE id_horarios = '$id'";
+        $query = $this->conexion->query($sql);
+        return $query->fetch(PDO::FETCH_ASSOC);
+    }
+
     public function eliminar_horarios($id_horarios)
     {
 

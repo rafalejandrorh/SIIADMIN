@@ -152,7 +152,7 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'deducciones_row.php',
+    url: 'deducciones_id.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){
@@ -166,11 +166,11 @@ function getRow(id){
   });
 }
 
-function getRow2(id){
+function getRow2(id2){
   $.ajax({
     type: 'POST',
-    url: 'deducciones_row2.php',
-    data: {id:id},
+    url: 'deducciones_id.php',
+    data: {id2:id2},
     dataType: 'json',
     success: function(response){
       $('.decid2').val(response.id);

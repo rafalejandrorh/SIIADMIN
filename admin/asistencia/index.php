@@ -9,8 +9,8 @@
 <?php include '../includes/navbar.php'; 
       include '../includes/menubar.php'; 
       include '../includes/timezone.php';
-  $range_to = date('m/d/Y');
-  $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
+  $range_to = date('d/m/Y');
+  $range_from = date('d/m/Y', strtotime('-30 day', strtotime($range_to)));
 ?>
 
   <div class="content-wrapper">
@@ -141,14 +141,14 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'asistencia_row.php',
+    url: 'asistencia_id.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){
       $('#attendance_fecha').val(response.fecha);
       $('#edit_fecha').val(response.fecha);
-      $('#edit_hora_llegada').val(response.hora_llegada);
-      $('#edit_hora_salida').val(response.hora_salida);
+      $('#edit_hora_llegada').html(response.hora_llegada).val(response.hora_llegada);
+      $('#edit_hora_salida').html(response.hora_salida).val(response.hora_salida);
       $('#attid').val(response.attid);
       $('#nombres').html(response.nombres+' '+response.apellidos);
       $('#del_attid').val(response.attid);

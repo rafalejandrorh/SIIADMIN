@@ -62,8 +62,6 @@
                 </thead>
                 <tbody>
                   <?php
-                  print_r($_SESSION);
-                  require_once "../../config/conn.php";
                   require_once "../../controllers/empleados/empleados_obtener.php";
                   require_once "../../controllers/cargos/cargos_obtener.php";
                   require_once "../../controllers/horarios/horarios_obtener.php";
@@ -79,7 +77,7 @@
                           <td><?php echo date('h:i A', strtotime($row['hora_llegada'])).' - '.date('h:i A', strtotime($row['hora_salida'])); ?></td>
                           <td><?php echo $row['direccion']; ?></td>
                           <td><?php echo $row['numero_contacto']; ?></td>
-                          <td><img src="<?php echo (!empty($row['foto']))? '../../images/'.$row['foto']:'../../images/profile.jpg'; ?>" width="30px" height="30px"> <a href="#edit_photo" data-toggle="modal" class="pull-right photo" data-id="<?php echo $row['id']; ?>"><span class="fa fa-edit"></span></a></td>
+                          <td><img src="<?php echo (!empty($row['foto']))? '../../images/perfil/'.$row['foto']:'../../images/perfil/profile.jpg'; ?>" width="30px" height="30px"> <a href="#edit_photo" data-toggle="modal" class="pull-right photo" data-id="<?php echo $row['id']; ?>"><span class="fa fa-edit"></span></a></td>
                           <td>
                             <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-edit"></i></button>
                             <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-trash"></i></button>
@@ -135,7 +133,7 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'empleados_row.php',
+    url: 'empleados_id.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){

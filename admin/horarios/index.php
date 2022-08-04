@@ -103,7 +103,7 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'horarios_row.php',
+    url: 'horarios_id.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){

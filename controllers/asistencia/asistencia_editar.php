@@ -4,7 +4,7 @@
           require_once "../../models/asistencia_model.php";
           $asistencia = new asistencia_model();
                
-          if(isset($_POST['edit']))
+          if(isset($_POST['editar']))
           {
                $id = $_POST['id'];
                $fecha = $_POST['fecha'];

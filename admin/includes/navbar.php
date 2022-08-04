@@ -12,12 +12,12 @@
           <li class="dropdown user user-menu">
           
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="<?php echo (!empty($_SESSION['foto'])) ? '../../images/'.$_SESSION['foto'] : '../../images/profile.jpg'; ?>" class="user-image" alt="User Image">
+              <img src="<?php echo (!empty($_SESSION['foto'])) ? '../../images/perfil/'.$_SESSION['foto'] : '../../images/perfil/profile.jpg'; ?>" class="user-image" alt="User Image">
               <span class="hidden-xs"><?php echo $_SESSION['nombres'].' '.$_SESSION['apellidos']; ?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
-                <img src="<?php echo (!empty($_SESSION['foto'])) ? '../../images/'.$_SESSION['foto'] : '../../images/profile.jpg'; ?>" class="img-circle" alt="User Image">
+                <img src="<?php echo (!empty($_SESSION['foto'])) ? '../../images/perfil/'.$_SESSION['foto'] : '../../images/perfil/profile.jpg'; ?>" class="img-circle" alt="User Image">
 
                 <p>
                   <?php echo $_SESSION['nombres'].' '.$_SESSION['apellidos']; ?>

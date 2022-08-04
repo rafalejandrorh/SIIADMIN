@@ -14,11 +14,12 @@ class graficos_model
     public function graficos_asistencia_atiempo($year, $ontime)
     {
 
-        $and = 'AND YEAR(fecha) = '.$year;
+        $and = 'AND EXTRACT(YEAR FROM fecha) = '.$year;
         for($m = 1; $m <= 12; $m++ ) {
-            $sql = "SELECT * FROM asistencia WHERE MONTH(fecha) = '$m' AND estatus_llegada = 1 $and";
-            $oquery = $this->conexion->query($sql);
-            array_push($ontime, $oquery->rowCount());
+            //$sql = "SELECT * FROM public.asistencia WHERE MONTH(fecha) = '$m' AND estatus_llegada = 1 $and";
+            $sql = "SELECT * FROM public.asistencia WHERE EXTRACT(MONTH FROM fecha) = '$m' AND estatus_llegada = 1 $and";
+            $query = $this->conexion->query($sql);
+            array_push($ontime, $query->rowCount());
         }
         return $ontime;
 
@@ -27,11 +28,11 @@ class graficos_model
     public function graficos_asistencia_tarde($year, $late)
     {
 
-        $and = 'AND YEAR(fecha) = '.$year;
+        $and = 'AND EXTRACT(YEAR FROM fecha) = '.$year;
         for($m = 1; $m <= 12; $m++ ) {
-            $sql = "SELECT * FROM asistencia WHERE MONTH(fecha) = '$m' AND estatus_llegada = 0 $and";
-            $lquery = $this->conexion->query($sql);
-            array_push($late, $lquery->rowCount());
+            $sql = "SELECT * FROM public.asistencia WHERE EXTRACT(MONTH FROM fecha) = '$m' AND estatus_llegada = 0 $and";
+            $query = $this->conexion->query($sql);
+            array_push($late, $query->rowCount());
         }
         return $late;
 

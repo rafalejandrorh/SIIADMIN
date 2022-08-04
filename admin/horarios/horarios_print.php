@@ -9,8 +9,8 @@
 
 			$contents .= "
 			<tr>
-        <td>".date('h:i A', strtotime($row['time_in']))."</td>
-        <td>".date('h:i A', strtotime($row['time_out']))."</td>
+        <td>".date('h:i A', strtotime($row['hora_llegada']))."</td>
+        <td>".date('h:i A', strtotime($row['hora_salida']))."</td>
 			</tr>
 			";
 		}
@@ -42,7 +42,7 @@
             <th>Hora de Salida</th>
            </tr>  
       ';  
-    $content .= generateRow($conn); 
+    $content .= generateRow(); 
     $content .= '</table>';  
     $pdf->writeHTML($content);  
     $pdf->Output('Horarios.pdf', 'I');

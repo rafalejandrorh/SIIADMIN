@@ -3,9 +3,9 @@
         require_once "../../models/nomina_model.php";
         $nomina = new nomina_model();
 
-        $from = 0;
-        $to = 0;
-
+        $from = null;
+        $to = null;
+        
         if(isset($_GET['range']))
         {
                 $range = $_GET['range'];

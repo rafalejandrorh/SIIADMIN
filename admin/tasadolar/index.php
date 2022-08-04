@@ -88,13 +88,12 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'tasa_dolar_row.php',
+    url: 'tasa_dolar_id.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){
-      $('#attid').val(response.id);
-      $('#tasa_dolar').val(response.tasa_dolar);
-
+    $('#attid').val(response.id);
+    $('#tasa_dolar').val(response.tasa_dolar);
   }});
 }})
 </script>

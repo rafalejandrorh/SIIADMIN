@@ -4,9 +4,9 @@
         require_once "../../models/asistencia_model.php";
         $asistencia = new asistencia_model();
                 
-        if(isset($_POST['add']))
+        if(isset($_POST['guardar']))
         {
-            $cedula = $_POST['employee'];
+            $cedula = $_POST['cedula'];
             $fecha = $_POST['fecha'];
             $llegada = $_POST['hora_llegada'];
             $hora_llegada = date('H:i:s', strtotime($llegada));

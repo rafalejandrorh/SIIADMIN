@@ -107,7 +107,7 @@ $(function(){
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'avancefectivo_row.php',
+    url: 'avancefectivo_id.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){
