@@ -9,9 +9,11 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
 
-            $iniciar = $login->iniciar_login($username, $password); 
+            $iniciar = $login->iniciar_sesion($username, $password); 
             if(isset($_SESSION['login_exitoso']))
             {
+                $historial = $login->historial_login($_SESSION['idUsuario']);
+                $_SESSION['idhistorial'] = $historial;
                 header('location: ../../admin/home/index.php');
             }
         }    
