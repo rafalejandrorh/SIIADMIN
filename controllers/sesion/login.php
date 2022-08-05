@@ -12,9 +12,9 @@
             $iniciar = $login->iniciar_sesion($username, $password); 
             if(isset($_SESSION['login_exitoso']))
             {
-                $historial = $login->historial_login($_SESSION['idUsuario']);
-                $_SESSION['idhistorial'] = $historial;
-                header('location: ../../admin/home/index.php');
+                $historial = $login->historial_login($_SESSION['id_usuario'], $_SESSION['IP']);
+                $_SESSION['id_historial'] = $historial;
+                header('location: ../../admin/home/administracion.php');
             }
         }    
 ?>

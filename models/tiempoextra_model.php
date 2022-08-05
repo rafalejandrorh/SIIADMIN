@@ -11,11 +11,8 @@ class tiempoextra_model
 
     public function __construct()
     {
-        
-        $this->db = Conexion::DB_mySQL();
         $this->conexion = new Conexion;
         $this->tiempoextra = array();
-
     }
 
     public function obtener_tiempoextra()

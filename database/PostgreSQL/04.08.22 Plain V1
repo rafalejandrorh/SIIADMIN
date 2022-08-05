@@ -5,7 +5,7 @@
 -- Dumped from database version 14.2
 -- Dumped by pg_dump version 14.2
 
--- Started on 2022-08-04 16:13:16
+-- Started on 2022-08-04 22:40:22
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 3394 (class 0 OID 21707)
+-- TOC entry 3395 (class 0 OID 27888)
 -- Dependencies: 209
 -- Data for Name: asistencia; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -41,7 +41,7 @@ INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_lle
 
 
 --
--- TOC entry 3396 (class 0 OID 21711)
+-- TOC entry 3397 (class 0 OID 27892)
 -- Dependencies: 211
 -- Data for Name: avancefectivo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -52,7 +52,7 @@ INSERT INTO public.avancefectivo (id, fecha, monto, id_empleado) VALUES (13, '20
 
 
 --
--- TOC entry 3398 (class 0 OID 21715)
+-- TOC entry 3399 (class 0 OID 27896)
 -- Dependencies: 213
 -- Data for Name: cargos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -68,7 +68,7 @@ INSERT INTO public.cargos (id_cargo, cargo, sueldo) VALUES (15, 'Sin Cargo', '0.
 
 
 --
--- TOC entry 3400 (class 0 OID 21721)
+-- TOC entry 3401 (class 0 OID 27902)
 -- Dependencies: 215
 -- Data for Name: deducciones; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -78,7 +78,7 @@ INSERT INTO public.deducciones (id, descripcion, monto) VALUES (7, 'Paro Forzoso
 
 
 --
--- TOC entry 3401 (class 0 OID 21726)
+-- TOC entry 3402 (class 0 OID 27907)
 -- Dependencies: 216
 -- Data for Name: deducciones2; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -87,7 +87,7 @@ INSERT INTO public.deducciones2 (id, descripcion, monto) VALUES (11, 'FAOV', 0.0
 
 
 --
--- TOC entry 3404 (class 0 OID 21733)
+-- TOC entry 3405 (class 0 OID 27914)
 -- Dependencies: 219
 -- Data for Name: empleados; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -103,7 +103,7 @@ INSERT INTO public.empleados (id_empleado, id_persona, id_cargo, id_horarios, es
 
 
 --
--- TOC entry 3405 (class 0 OID 21736)
+-- TOC entry 3406 (class 0 OID 27917)
 -- Dependencies: 220
 -- Data for Name: empleados_cuenta_bancaria; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -111,7 +111,7 @@ INSERT INTO public.empleados (id_empleado, id_persona, id_cargo, id_horarios, es
 
 
 --
--- TOC entry 3407 (class 0 OID 21742)
+-- TOC entry 3408 (class 0 OID 27923)
 -- Dependencies: 222
 -- Data for Name: empleados_pagomovil; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -119,15 +119,18 @@ INSERT INTO public.empleados (id_empleado, id_persona, id_cargo, id_horarios, es
 
 
 --
--- TOC entry 3408 (class 0 OID 21747)
+-- TOC entry 3409 (class 0 OID 27928)
 -- Dependencies: 223
 -- Data for Name: historial_sesion; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
+INSERT INTO public.historial_sesion (id, id_usuario, inicio_sesion, cierre_sesion, ip) VALUES (1, 1, '2022-08-04 18:14:43-04', '2022-08-04 18:14:50-04', '192.168.1.110');
+INSERT INTO public.historial_sesion (id, id_usuario, inicio_sesion, cierre_sesion, ip) VALUES (2, 1, '2022-08-04 18:15:05-04', '2022-08-04 21:27:34-04', '192.168.1.110');
+INSERT INTO public.historial_sesion (id, id_usuario, inicio_sesion, cierre_sesion, ip) VALUES (3, 1, '2022-08-04 21:27:41-04', '2022-08-04 22:39:27-04', '::1');
 
 
 --
--- TOC entry 3409 (class 0 OID 21750)
+-- TOC entry 3410 (class 0 OID 27931)
 -- Dependencies: 224
 -- Data for Name: horarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -142,7 +145,7 @@ INSERT INTO public.horarios (id_horarios, hora_llegada, hora_salida) VALUES (15,
 
 
 --
--- TOC entry 3411 (class 0 OID 21754)
+-- TOC entry 3412 (class 0 OID 27935)
 -- Dependencies: 226
 -- Data for Name: personas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -158,7 +161,7 @@ INSERT INTO public.personas (id_persona, cedula, nombres, apellidos, direccion, 
 
 
 --
--- TOC entry 3413 (class 0 OID 21760)
+-- TOC entry 3414 (class 0 OID 27941)
 -- Dependencies: 228
 -- Data for Name: tasa_dolar; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -167,7 +170,7 @@ INSERT INTO public.tasa_dolar (id, observaciones, tasa_dolar) VALUES (1, 'Tasa o
 
 
 --
--- TOC entry 3415 (class 0 OID 21764)
+-- TOC entry 3416 (class 0 OID 27945)
 -- Dependencies: 230
 -- Data for Name: tiempoextra; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -176,17 +179,18 @@ INSERT INTO public.tiempoextra (id, horas, monto, fecha, id_empleado) VALUES (14
 
 
 --
--- TOC entry 3417 (class 0 OID 21768)
+-- TOC entry 3418 (class 0 OID 27949)
 -- Dependencies: 232
 -- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.usuarios (id_usuario, id_persona, usuario, "contraseña", fecha_creacion, habilitado, intentos_fallidos) VALUES (1, 6, 'rafael.rivero', '$2y$10$Qkaq2xvF/qPB/gmKq2OUoeDGL9zUA4EUleNGbJaTZcz6/tdV4ALyy', '2022-02-20', true, NULL);
-INSERT INTO public.usuarios (id_usuario, id_persona, usuario, "contraseña", fecha_creacion, habilitado, intentos_fallidos) VALUES (2, 0, 'admin', '$2y$10$Hh2bHimRjjFqklN95J/1xunijAk9Hqi8VwGoN11KRLLz.H5wgDEHO', '2022-02-20', false, NULL);
+INSERT INTO public.usuarios (id_usuario, id_persona, usuario, "contraseña", fecha_creacion, habilitado, intentos_fallidos) VALUES (1, 6, 'rafael.rivero', '$2y$10$Qkaq2xvF/qPB/gmKq2OUoeDGL9zUA4EUleNGbJaTZcz6/tdV4ALyy', '2022-02-20', true, 0);
+INSERT INTO public.usuarios (id_usuario, id_persona, usuario, "contraseña", fecha_creacion, habilitado, intentos_fallidos) VALUES (2, 0, 'superadmin', '$2y$10$Ol0CkWcGE7h09dIrhHnmn.U7r3g5tLOA3DWr2pJ4.5iZvVpDnd1cq', '2022-02-20', true, 0);
+INSERT INTO public.usuarios (id_usuario, id_persona, usuario, "contraseña", fecha_creacion, habilitado, intentos_fallidos) VALUES (3, 1, 'willian.c', '$2y$10$aN.DtRbM8r/uL.5UK9Em.u2JPiqLwxxXOcZksBIhq5xQISJwo1MRi', '2022-08-04', true, 0);
 
 
 --
--- TOC entry 3424 (class 0 OID 0)
+-- TOC entry 3426 (class 0 OID 0)
 -- Dependencies: 210
 -- Name: asistencia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -195,7 +199,7 @@ SELECT pg_catalog.setval('public.asistencia_id_seq', 159, true);
 
 
 --
--- TOC entry 3425 (class 0 OID 0)
+-- TOC entry 3427 (class 0 OID 0)
 -- Dependencies: 212
 -- Name: avancefectivo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -204,7 +208,7 @@ SELECT pg_catalog.setval('public.avancefectivo_id_seq', 13, true);
 
 
 --
--- TOC entry 3426 (class 0 OID 0)
+-- TOC entry 3428 (class 0 OID 0)
 -- Dependencies: 214
 -- Name: cargos_id_cargo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -213,7 +217,7 @@ SELECT pg_catalog.setval('public.cargos_id_cargo_seq', 15, true);
 
 
 --
--- TOC entry 3427 (class 0 OID 0)
+-- TOC entry 3429 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: deducciones2_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -222,7 +226,7 @@ SELECT pg_catalog.setval('public.deducciones2_id_seq', 11, true);
 
 
 --
--- TOC entry 3428 (class 0 OID 0)
+-- TOC entry 3430 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: deducciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -231,7 +235,7 @@ SELECT pg_catalog.setval('public.deducciones_id_seq', 7, true);
 
 
 --
--- TOC entry 3429 (class 0 OID 0)
+-- TOC entry 3431 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: empleados_id_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -240,7 +244,16 @@ SELECT pg_catalog.setval('public.empleados_id_empleado_seq', 8, true);
 
 
 --
--- TOC entry 3430 (class 0 OID 0)
+-- TOC entry 3432 (class 0 OID 0)
+-- Dependencies: 234
+-- Name: historial_sesion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.historial_sesion_id_seq', 3, true);
+
+
+--
+-- TOC entry 3433 (class 0 OID 0)
 -- Dependencies: 225
 -- Name: horarios_id_horarios_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -249,7 +262,7 @@ SELECT pg_catalog.setval('public.horarios_id_horarios_seq', 15, true);
 
 
 --
--- TOC entry 3431 (class 0 OID 0)
+-- TOC entry 3434 (class 0 OID 0)
 -- Dependencies: 227
 -- Name: personas_id_persona_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -258,7 +271,7 @@ SELECT pg_catalog.setval('public.personas_id_persona_seq', 8, true);
 
 
 --
--- TOC entry 3432 (class 0 OID 0)
+-- TOC entry 3435 (class 0 OID 0)
 -- Dependencies: 229
 -- Name: tasa_dolar_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -267,7 +280,7 @@ SELECT pg_catalog.setval('public.tasa_dolar_id_seq', 1, true);
 
 
 --
--- TOC entry 3433 (class 0 OID 0)
+-- TOC entry 3436 (class 0 OID 0)
 -- Dependencies: 231
 -- Name: tiempoextra_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -276,15 +289,15 @@ SELECT pg_catalog.setval('public.tiempoextra_id_seq', 14, true);
 
 
 --
--- TOC entry 3434 (class 0 OID 0)
+-- TOC entry 3437 (class 0 OID 0)
 -- Dependencies: 233
 -- Name: usuarios_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.usuarios_id_usuario_seq', 2, true);
+SELECT pg_catalog.setval('public.usuarios_id_usuario_seq', 3, true);
 
 
--- Completed on 2022-08-04 16:13:16
+-- Completed on 2022-08-04 22:40:23
 
 --
 -- PostgreSQL database dump complete

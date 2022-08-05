@@ -1,7 +1,7 @@
 <?php
   session_start();
   if(isset($_SESSION['id_usuario'])){
-    header('location:../home/index.php');
+    header('location:../home/administracion.php');
   }
   include '../../controllers/sesion/login.php';
   include '../includes/header.php'; ?>

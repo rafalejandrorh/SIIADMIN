@@ -10,53 +10,7 @@ class sesion_model
 
     public function __construct()
     {
-        $this->db = Conexion::DB_mySQL();
 		$this->conexion = new Conexion;
-    }
-
-
-    public function autenticarUsuario()
-    {
-        $result = $this->conexion_bd->prepare('SELECT * FROM "RENOAS".usuario WHERE  usuario = :m_usuario AND activo = 1');
-        $result->bindValue(":m_usuario", $this->usuario);
-        $result->execute();
-        $num = $result->rowCount();
-        $regitro = $result->fetch(PDO::FETCH_ASSOC);
-        $this->idusuario = @$regitro['idusuario'];
-        $this->idfuncionario  = @$regitro["idfuncionario "];
-        $this->idnom_perfil = @$regitro["idnom_perfil"];
-        $this->habilitado = @$regitro['habilitado'];
-        $this->intentos = @$regitro['intentos'];
-        if ($num != 0) {
-            if ($this->habilitado == 1) {
-                if ($this->intentos < 3) {
-                    $hashTrue = password_verify($this->clave, $regitro["clave"]);
-                    if ($hashTrue == true) {
-                        $_SESSION['usuario'] = $this->usuario;
-                        $_SESSION['idusuario'] = $this->idusuario;
-                        $_SESSION['idfuncionario '] = $this->idfuncionario;
-                        return 10; // ingresa exitosamente...
-                    } else {
-                        $intento = $this->intentos;
-                        $this->intentos++;
-                        $result = $this->conexion_bd->prepare('UPDATE "RENOAS".usuario set intentos=:intentos WHERE idusuario =:idusuario ');
-                        $result->execute(array(':intentos' => $this->intentos, ':idusuario' => $this->idusuario));
-                        return "2$intento"; // clave errada
-                    }
-                } else {
-                    $this->habilitado = 0;
-                    $result = $this->conexion_bd->prepare('UPDATE "RENOAS".usuario set habilitado=:habilitado WHERE idusuario =:idusuario ');
-                    $result->execute(array(':habilitado' => $this->habilitado, ':idusuario' => $this->idusuario));
-                    return 30; //  el usuario se bloquea por numero de intentos
-                }
-            } else {
-                //el usuario se encuentra bloqueado
-                return 40;
-            }
-        } else {
-            return 50; //usuario no existe
-        }
-        $conexion_db = null;
     }
 
     public function iniciar_sesion($usuario, $contraseña)
@@ -100,7 +54,7 @@ class sesion_model
                 } else if ($row['intentos_fallidos'] == 3)
                 {
                     $_SESSION['error'] = 'Superaste los 3 Intentos, tu usuario ha sido bloqueado.';
-                    $habilitado = false;
+                    $habilitado = 'false';
                     $id_usuario = $row['id_usuario'];
                     $sql = "UPDATE public.usuarios SET habilitado = '$habilitado'  WHERE id_usuario = '$id_usuario'";
                     $query = $this->conexion->query($sql);
@@ -112,43 +66,47 @@ class sesion_model
 
     }
 
-    public function historial_login($idusuario)
+    public function obtener_historial()
     {
-        $sql = "INSERT INTO historial_sesion (idusuario, inicio_sesion) VALUES ($idusuario, CURRENT_TIMESTAMP,)";
-        $this->conexion_bd->query($sql);
-        return $this->conexion_bd->lastInsertId();
+        $sql = "SELECT historial_sesion.inicio_sesion, historial_sesion.cierre_sesion, historial_sesion.ip, usuarios.usuario, personas.nombres, personas.apellidos 
+        FROM historial_sesion 
+        LEFT JOIN usuarios ON historial_sesion.id_usuario = usuarios.id_usuario
+        LEFT JOIN personas ON usuarios.id_persona = personas.id_persona";
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function historial_login($id_usuario, $IP)
+    {
+        $sql = "INSERT INTO historial_sesion (id_usuario, inicio_sesion, ip) VALUES ($id_usuario, CURRENT_TIMESTAMP, '$IP')";
+        $this->conexion->query($sql);
+        return $this->conexion->lastInsertId();
     }
 
     public function historial_logout($id)
     {
         $sql = "UPDATE historial_sesion set cierre_sesion = CURRENT_TIMESTAMP WHERE id = $id";
-        $this->conexion_bd->query($sql);
+        $this->conexion->query($sql);
     }
     ///////////////////////////////
     public function bloquear($id_usuario)
     {
-        $habilitado = false;
+        $habilitado = 'false';
         $sql = "UPDATE usuarios SET habilitado = '$habilitado', intentos_fallidos = 1 WHERE id_usuario= '$id_usuario'";
-        $this->conexion_bd->query($sql);
+        $this->conexion->query($sql);
     }
 
-    public function desbloquearUsuario($id_usuario)
+    public function sesiones_abiertas()
     {
-        $habilitado = true;
-        $sql = "UPDATE usuarios SET habilitado='$habilitado', intentos_fallidos = 0 WHERE id_usuario='$id_usuario'";
-        $query = $this->conexion_bd->query($sql);
-        $num = $query->rowCount();
-        if ($num > 0) {
-            echo "Usuario desbloqueado exitosamente";
-        } else {
-            echo "Error al desbloquear usuario";
-        }
+        $date = date('Y-m-d');
+        $sql = "SELECT id FROM historial_sesion WHERE cierre_sesion IS NULL";
+        return $this->conexion->query($sql);
     }
 
     public function reseteoIntentos($id_usuario)
     {
         $sql = "UPDATE usuarios SET intentos_fallidos = 0 WHERE id_usuario='$id_usuario'";
-        $result = $this->conexion_bd->query($sql);
+        $result = $this->conexion->query($sql);
         $estatus = match ($result->rowCount()) {
             0 => 'Ejecucion fallida',
             default => 'Ejecución exitosa',
@@ -157,22 +115,10 @@ class sesion_model
         return $estatus;
     }
 
-    public function registrarUsuario()
-    {
-        $renoas = '"RENOAS"';
-        $result = $this->conexion_bd->prepare("INSERT INTO $renoas.usuario(idfuncionario, idnom_perfil, usuario, clave, habilitado, intentos, tiemp_registro, tiemp_actualizacion)
-            VALUES ( :idfuncionario, :idnom_perfil, :usuario, :clave, 1, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)");
-
-        $result->execute(array(
-            ':idfuncionario' => $this->idfuncionario, ':idnom_perfil' => $this->idnom_perfil, ':usuario' => $this->usuario, ':clave'=>password_hash($this->clave,PASSWORD_DEFAULT)
-        ));
-        return $result->rowCount(); //Cualquier dato superior a 0 indique registro exitoso
-    }
-
     public function verificarUsuario()
     {
         $renoas = '"RENOAS"';
-        $result = $this->conexion_bd->prepare("SELECT idusuario,usuario, activo  FROM $renoas.usuario WHERE idfuncionario = :idfuncionario");
+        $result = $this->conexion->prepare("SELECT id_usuario,usuario, activo  FROM $renoas.usuario WHERE idfuncionario = :idfuncionario");
         $result->execute(array(':idfuncionario' => $this->idfuncionario));
         $n = $result->rowCount();
         if ($n > 0) {
@@ -186,7 +132,7 @@ class sesion_model
     public function verificarNombreUsuario()
     {
         $renoas = '"RENOAS"';
-        $result = $this->conexion_bd->prepare("SELECT usuario  FROM $renoas.usuario WHERE usuario = :usuario AND activo = 1");
+        $result = $this->conexion->prepare("SELECT usuario  FROM $renoas.usuario WHERE usuario = :usuario AND activo = 1");
         $result->execute(array(':usuario' => $this->usuario));
         $n = $result->rowCount();
         if ($n > 0) {

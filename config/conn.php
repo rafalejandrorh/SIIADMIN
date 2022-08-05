@@ -22,11 +22,11 @@ require_once('config.php');
             }
         }
     
-        public static function DB_mySQL()
-        {
-           $conn = new mysqli('localhost', 'root', '', 'siiadmin');
-           return $conn; 
-        }
+        // public function DB_mySQL()
+        // {
+        //    $conn = new mysqli('localhost', 'root', '', 'siiadmin');
+        //    return $conn; 
+        // }
 
     }
 

@@ -3,7 +3,7 @@
 
 	require_once '../../models/sesion_model.php';
 	$login = new sesion_model();
-	$historial = $login->historial_logout($_SESSION['idhistorial']);
+	$historial = $login->historial_logout($_SESSION['id_historial']);
 
 	session_destroy();
 

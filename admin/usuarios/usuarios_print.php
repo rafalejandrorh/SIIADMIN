@@ -3,16 +3,25 @@
 
 	function generateRow(){
 		$contents = '';
-		require_once "../../controllers/sesion/sesion_obtener.php";
+		require_once "../../controllers/usuarios/usuarios_obtener.php";
     foreach($obtener as $row){
+
+      if($row['habilitado'] == 1)
+      {
+        $row['habilitado'] = '<span class="label label-success pull-right">Habilitado</span>';
+      } 
+      else if($row['habilitado'] == null)
+      {
+        $row['habilitado'] = '<span class="label label-danger pull-right">Deshabilitado</span>';
+      }
 
 			$contents .= "
 			<tr>
-        <td>".$row['nombres'].' '.$row['apellidos']."</td>
-				<td>".$row['usuario']."</td>
-        <td>".$row['inicio_sesion']."</td>
-        <td>".$row['cierre_sesion']."</td>
-        <td>".$row['ip']."</td>
+        <td>".$row['cedula']."</td>
+				<td>".$row['nombres'].", ".$row['apellidos']."</td>
+        <td>".$row['usuario']."</td>
+        <td>".$row['habilitado']."</td>
+        <td>".$row['fecha_creacion']."</td>
 			</tr>
 			";
 		}
@@ -37,19 +46,19 @@
     $pdf->AddPage();  
     $content = '';  
     $content .= '
-      	<h2 align="center">Historial de Sesión - SIIADMIN</h2>
+      	<h2 align="center">Lista de Usuarios - SIIADMIN</h2>
       	<table border="1" cellspacing="0" cellpadding="3">  
            <tr>
-              <th width="20%" align="center"><b>Nombre Completo</b></th>
+              <th width="20%" align="center"><b>Cédula de Identidad</b></th>  
+           		<th width="20%" align="center"><b>Nombre Empleado</b></th>
               <th width="20%" align="center"><b>Usuario</b></th>
-              <th width="20%" align="center"><b>Inicio de Sesión</b></th>
-              <th width="20%" align="center"><b>Cierre de Sesión</b></th>
-              <th width="20%" align="center"><b>I.P</b></th>
+              <th width="20%" align="center"><b>Estatus</b></th>
+				      <th width="20%" align="center"><b>Fecha de Creación</b></th> 
            </tr>  
       ';  
     $content .= generateRow(); 
     $content .= '</table>';  
     $pdf->writeHTML($content);  
-    $pdf->Output('Historial de Sesión - SIIADMIN.pdf', 'I');
+    $pdf->Output('Lista de Usuarios - SIIADMIN.pdf', 'I');
 
 ?>

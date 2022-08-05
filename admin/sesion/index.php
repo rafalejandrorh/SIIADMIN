@@ -8,10 +8,10 @@
 
   <div class="content-wrapper">
     <section class="content-header">
-    <h1><b>Trazas del Sistema</b></h1>
+    <h1><b>Historial de Sesión</b></h1>
       <ol class="breadcrumb">
         <li><a href="#"> Seguridad</a></li>
-        <li class="active"><i class="fa fa-save"></i> Trazas</li>
+        <li class="active"><i class="fa fa-history"></i> Historial de Sesión</li>
       </ol>
     </section>
     <section class="content">
@@ -42,40 +42,35 @@
           <div class="box">
             <div class="box-header with-border">
               <div class="pull-right">
-                <a href="trazas_print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+                <a href="sesion_print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
               </div>
               </div>
           <div class="table-responsive">
             <div class="box-body">
               <table id="example2" class="table table-bordered">
                 <thead>
-                  <th>Fecha</th>
+                  <th>Nombre Completo</th>
                   <th>Usuario</th>
-                  <th>Acción</th>
+                  <th>Inicio de Sesión</th>
+                  <th>Cierre de Sesión</th>
                   <th>I.P</th>
-                  <th>Acciones</th>
                 </thead>
                 <tbody>
                   <?php
-                  print_r($_SESSION);
-                  // Variables Globales de Server: ['REMOTE_ADDR'], ['REQUEST_METHOD'], ['REQUEST_URI']
-                  //require_once "../../controllers/trazas/trazas_obtener.php";
+                  require_once "../../controllers/sesion/sesion_obtener.php";
 
-                  //foreach($obtener as $row)
+                  foreach($obtener as $row)
                     { 
                       ?>
                         <tr>
+                          <td><?php echo $row['nombres'].' '.$row['apellidos'] ?></td>
+                          <td><?php echo $row['usuario'] ?></td>
+                          <td><?php echo $row['inicio_sesion'] ?></td>
+                          <td><?php echo $row['cierre_sesion'] ?></td>
+                          <td><?php echo $row['ip'] ?></td>
                           <td><?php ?></td>
                           <td><?php ?></td>
                           <td><?php ?></td>
-                          <td><?php ?></td>
-                          <td><?php ?></td>
-                          <td><?php ?></td>
-                          <td><?php ?></td>
-                          <td><?php ?></td>
-                          <td>
-                            <button class="btn btn-sm show btn-flat" data-id="<?php echo $row['id']; ?>"><i class="fa fa-plus-square"></i></button>
-                          </td>
                         </tr>
                       <?php } ?>
                 </tbody>
@@ -89,7 +84,6 @@
   </div>
     
   <?php include '../includes/footer.php'; ?>
-  <?php include 'trazas_modal.php'; ?>
 </div>
 <?php include '../includes/scripts.php'; ?>
 <script>

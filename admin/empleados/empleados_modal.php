@@ -1,4 +1,4 @@
-<?php //include_once "../../controllers/empleados/empleados_modal_cargos.php"; ?>
+
 <!-- AÑADIR -->
 <div class="modal fade" id="addnew">
     <div class="modal-dialog">

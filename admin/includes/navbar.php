@@ -1,5 +1,5 @@
 <header class="main-header">
-    <a href="../home/index.php" class="logo">
+    <a href="../home/administracion.php" class="logo">
       <span class="logo-mini"><b>SIIAD</b></span>
       <span class="logo-lg"><b>SIIADMIN</b></span>
     </a>

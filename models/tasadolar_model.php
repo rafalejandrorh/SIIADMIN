@@ -11,11 +11,8 @@ class tasadolar_model
 
     public function __construct()
     {
-        
-        $this->db = Conexion::DB_mySQL();
 		$this->conexion = new Conexion;
         $this->tasadolar = array();
-
     }
 
     public function obtener_tasadolar()

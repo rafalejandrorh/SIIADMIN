@@ -4,18 +4,19 @@ require_once('../../config/conn.php');
 
 class personas_model 
 {
-
-    private $db;
-    private $empleados;
     public $conexion;
 
     public function __construct()
     {
-        
-        $this->db = Conexion::DB_mySQL();
 		$this->conexion = new Conexion;
         $this->empleados = array();
+    }
 
+    public function lista_personas()
+    {
+        $sql = "SELECT id_persona, nombres, apellidos FROM personas";
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function obtener_persona($id_empleado)
@@ -25,7 +26,7 @@ class personas_model
         $dato = $query->fetch(PDO::FETCH_ASSOC);
         if ($query->rowCount() >= 1) {
             return $dato['id_persona'];
-        } else {
+        }else{
             return $query->rowCount();
         }
     }

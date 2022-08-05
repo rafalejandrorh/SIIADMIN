@@ -2,7 +2,7 @@
 
   include '../../controllers/sesion/session.php';
   include '../includes/timezone.php'; 
-  require_once '../../controllers/home/graficos_empleados.php';
+  require_once '../../controllers/home/graficos_administracion.php';
   include '../includes/header.php'; ?>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -15,8 +15,8 @@
     <section class="content-header">
       <h1><b>Panel de Control</b></h1>
       <ol class="breadcrumb">
-        <li><a href="#"> Reportes</a></li>
-        <li class="active"><i class="fa fa-dashboard"></i> Panel de Control</li>
+        <li><a href="#"> Reportes Gráficos</a></li>
+        <li class="active"><i class="fa fa-dashboard"></i> Administración</li>
       </ol>
     </section>
 
@@ -54,7 +54,7 @@
           <div class="small-box bg-blue">
             <div class="inner">
               <?php
-                require_once "../../controllers/home/reportes_empleados.php";
+                require_once "../../controllers/home/reportes_administracion.php";
 
                 echo "<h3>".$total_empleados->rowCount()."</h3>"
               ?>
@@ -229,7 +229,7 @@ $(function(){
 <script>
 $(function(){
   $('#select_year').change(function(){
-    window.location.href = 'index.php?year='+$(this).val();
+    window.location.href = 'administracion.php?year='+$(this).val();
   });
 });
 </script>
