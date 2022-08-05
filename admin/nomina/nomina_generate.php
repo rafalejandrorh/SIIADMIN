@@ -23,8 +23,8 @@
 
                         $contents .= '
                         <tr>
-                        <td align="center">'.$row['apellidos'].', '.$row['nombres'].'</td>
                         <td align="center">'.$row['ci'].'</td>
+                        <td align="center">'.$row['apellidos'].', '.$row['nombres'].'</td>
                         <td align="right">'.'$ '.number_format($sueldo, 2).'</td>
                         <td align="right">'.'$ '.number_format($calculo_nomina['deductionley'], 2).'</td>
                         <td align="right">'.'$ '.number_format($consulta_avancefectivo[0]['efectivo'], 2).'</td>
@@ -68,8 +68,8 @@
                 <h4 align="center">'.$from_title." - ".$to_title.'</h4>
                 <table border="1" cellspacing="0" cellpadding="3">  
                         <tr>  
-                        <th width="16,2%" align="center"><b>Nombre Completo</b></th>
                         <th width="14,2%" align="center"><b>Cédula de Identidad</b></th>
+                        <th width="16,2%" align="center"><b>Nombre Completo</b></th>
                         <th width="10,2%" align="center"><b>Sueldo</b></th>
                         <th width="15,2%" align="center"><b>Deducciones</b></th>
                         <th width="12,2%" align="center"><b>Avance Efectivo</b></th>
@@ -82,7 +82,7 @@
         $content.= 
                 '<table border="1" cellspacing="0" cellpadding="3">  
                         <tr>  
-                        <th width="16,2%" align="center"><b>Tasa del Dólar</b></th>
+                        <th width="30,4%" align="center"><b>Tasa del Dólar</b></th>
                         </tr>';
         $content.= generateRow2($dolar); 
         $content.= '</table>'; 

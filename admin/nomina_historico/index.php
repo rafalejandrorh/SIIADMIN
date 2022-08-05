@@ -14,10 +14,10 @@
   <div class="content-wrapper">
  
     <section class="content-header">
-    <h1><b>Nómina</b></h1>
+    <h1><b>Histórico de Nómina</b></h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class=""></i> Finanzas</a></li>
-        <li class="active"><i class="fa fa-calculator"></i> Nómina</li>
+        <li class="active"><i class="fa fa-calculator"></i> Histórico de Nómina</li>
       </ol>
     </section>
   
@@ -56,52 +56,42 @@
                     </div>
                     <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range" value="<?php echo (isset($_GET['range'])) ? $_GET['range'] : $range_from.' - '.$range_to; ?>">
                   </div> 
-                  <button type="button" class="btn btn- btn-sm btn-flat" id="payslip"><span class="glyphicon glyphicon-print"></span> Recibo de Pago</button>
                   <button type="button" class="btn btn-danger btn-sm btn-flat" id="payroll"><span class="fa fa-file-pdf-o"></span> PDF</button>
                   <button type="button" class="btn btn-success btn-sm btn-flat" id=""><span class="fa fa-file-excel-o"></span> Excel</button>
-                  <button type="submit" name="guardar" class="btn btn-primary btn-sm btn-flat"><span class="glyphicon glyphicon-save"></span> Guardar Nómina</button>
                 </form>
               </div>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered">
                 <thead>
-                  <th>Cédula de Identidad</th>
+                  <th>Fecha Emisión</th>
+                  <th>C.I</th>
                   <th>Nombre Completo</th>
                   <th>Sueldo</th>
-                  <th>Deducciones</th>
-                  <th>Avance de Efectivo</th>
-                  <th>Tasa de Dolar BCV</th>
+                  <th>Total Deducciones</th>
+                  <th>Tasa Dolar</th>
                   <th>Pago Neto en $</th>
                   <th>Pago Neto en Bs</th>
+                  <th>Fecha Inicio</th>
+                  <th>Fecha Final</th>
                 </thead>
                 <tbody>
                   <?php 
-                    require_once "../../controllers/nomina/nomina_obtener.php";
-                    foreach($consulta_horas_trabajadas as $row)
+                    require_once "../../controllers/nomina/historico_nomina_obtener.php";
+                    foreach($obtener_historico_nomina as $row)
                     {
-                    $sueldo = $row['sueldo'] * $row['total_horas'];
-                    $id_empleado = $row['empid'];   
-    
-                    //Obtiene el efectivo prestado al empleado
-                    $consulta_avancefectivo = $nomina->consulta_avancefectivo($from, $to, $id_empleado);
-                    if(!isset($consulta_avancefectivo[0]['efectivo']))
-                    {
-                      $consulta_avancefectivo[0]['efectivo'] = 0;
-                    }  
-                    //Realiza el Cálculo de la Nomina. Retorna: El total de las deducciones y el Total del Pago Neto en Bs y Dólares
-                    $calculo_nomina = $nomina->calculo_nomina($sueldo, $deduction, $deduction2, $consulta_avancefectivo[0]['efectivo'], $dolar);
-
                   ?>
-                  <tr>   
+                  <tr>
+                    <td><?php echo date('d-m-Y', strtotime($row['fecha_emision']))?></td>      
                     <td><?php echo $row['ci']?></td>         
                     <td><?php echo $row['apellidos']." ".$row['nombres']?></td>
-                    <td><?php echo '$ '.number_format($sueldo, 2)?></td>
-                    <td><?php echo '$ '.number_format($calculo_nomina['deductionley'], 2)?></td>
-                    <td><?php echo '$ '.number_format($consulta_avancefectivo[0]['efectivo'], 2)?></td>
-                    <td><?php echo '$ '.number_format(1,2)." = Bs ".number_format($dolar,2)?></td>
-                    <td><?php echo '$ '.number_format($calculo_nomina['neto'], 2)?></td>
-                    <td><?php echo 'Bs.D '.number_format($calculo_nomina['bs'], 2)?></td> 
+                    <td><?php echo '$ '.number_format($row['sueldo'], 2)?></td>
+                    <td><?php echo '$ '.number_format($row['total_deducciones'], 2)?></td>
+                    <td><?php echo '$ '.number_format($row['tasa_dolar'],2)?></td>
+                    <td><?php echo '$ '.number_format($row['sueldo_neto'], 2)?></td>
+                    <td><?php echo 'Bs.D '.number_format($row['sueldo_bolivares'], 2)?></td> 
+                    <td><?php echo date('d-m-Y', strtotime($row['fecha_inicio_nomina']))?></td>   
+                    <td><?php echo date('d-m-Y', strtotime($row['fecha_final_nomina']))?></td>   
                   </tr>
                   <?php } ?>
                 </tbody>
@@ -139,7 +129,7 @@ $(function(){
 
   $('#payroll').click(function(e){
     e.preventDefault();
-    $('#payForm').attr('action', 'nomina_generate.php');
+    $('#payForm').attr('action', 'nomina_historico_generate.php');
     $('#payForm').submit();
   });
 

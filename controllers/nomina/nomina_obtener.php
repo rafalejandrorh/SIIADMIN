@@ -39,4 +39,41 @@
         //Obtiene los Empleados, sus horas trabajadas y el monto a cobrar por esas horas
         $consulta_horas_trabajadas = $nomina->consulta_obtener_nomina($from, $to);
 
+        if(isset($_POST['guardar']))
+        {
+                $range = $_GET['range'];
+                $ex = explode(' - ', $range);
+                $from = date('Y-m-d', strtotime($ex[0]));
+                $to = date('Y-m-d', strtotime($ex[1]));
+
+                foreach($consulta_horas_trabajadas as $row)
+                {
+                        $sueldo = $row['sueldo'] * $row['total_horas'];
+                        $id_empleado = $row['empid'];   
+        
+                        //Obtiene el efectivo prestado al empleado
+                        $consulta_avancefectivo = $nomina->consulta_avancefectivo($from, $to, $id_empleado);
+                        if(!isset($consulta_avancefectivo[0]['efectivo']))
+                        {
+                          $consulta_avancefectivo[0]['efectivo'] = 0;
+                        }  
+                        //Realiza el Cálculo de la Nomina. Retorna: El total de las deducciones y el Total del Pago Neto en Bs y Dólares
+                        $calculo_nomina = $nomina->calculo_nomina($sueldo, $deduction, $deduction2, $consulta_avancefectivo[0]['efectivo'], $dolar);
+
+                        $exfrom = explode('-', $from);
+                        $exto = explode('-', $to);
+                        $id_nomina = $exfrom[0].$exfrom[1].$exfrom[2].'-'.$exto[0].$exto[1].$exto[2].'-'.$id_empleado;
+                        $sueldo_prox = number_format($sueldo, 2);
+                        $deductionley = number_format($calculo_nomina['deductionley'],2);
+                        $total_deduction = number_format($calculo_nomina['total_deduction'],2);
+                        $neto = number_format($calculo_nomina['neto'],2);
+                        $bs = number_format($calculo_nomina['bs'],2);
+
+                        $historico_nomina = $nomina->guardar_historico_nomina($id_nomina, $id_empleado, $sueldo_prox, $deductionley, 
+                        $consulta_avancefectivo[0]['efectivo'], $total_deduction, $dolar, $neto, $bs, 
+                        $fecha_emision, $from, $to);
+                }
+                header("Location: ../../admin/nomina/index.php?range=$range");
+        }        
+
 ?>

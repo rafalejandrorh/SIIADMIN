@@ -53,7 +53,7 @@
                   <th>Usuario</th>
                   <th>Inicio de Sesión</th>
                   <th>Cierre de Sesión</th>
-                  <th>I.P</th>
+                  <th>Dirección I.P</th>
                 </thead>
                 <tbody>
                   <?php

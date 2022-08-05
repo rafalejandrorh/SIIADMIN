@@ -83,7 +83,7 @@
                       $status = ($row['estatus_llegada'])?'<span class="label label-warning pull-right">A tiempo</span>':'<span class="label label-danger pull-right">Tarde</span>';
                       ?>
                         <tr>
-                          <td><?php echo date('M d, Y', strtotime($row['fecha']))?></td>
+                          <td><?php echo date('d M, Y', strtotime($row['fecha']))?></td>
                           <td><?php echo $row['cedula']?></td>
                           <td><?php echo $row['nombres'].', '.$row['apellidos']?></td>
                           <td><?php echo $row['cargo']?></td>
