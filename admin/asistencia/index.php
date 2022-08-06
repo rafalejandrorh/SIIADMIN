@@ -58,7 +58,8 @@
                     </div>
                     <input type="text" class="form-control pull-right col-sm-8" id="reservation" name="date_range" value="<?php echo (isset($_GET['range'])) ? $_GET['range'] : $range_from.' - '.$range_to; ?>">
                   </div>
-                    <button type="button" class="btn btn-success btn-sm btn-flat" id="asistencia"><span class="glyphicon glyphicon-print"></span> Imprimir</button>
+                    <button type="button" class="btn btn-danger btn-sm btn-flat" id="asistencia"><span class="fa fa-file-pdf-o"></span> PDF</button>
+                    <button type="button" class="btn btn-success btn-sm btn-flat" id="payexcel"><span class="fa fa-file-excel-o"></span> Excel</button>
               </form>
               </div>
             </div>
@@ -133,6 +134,12 @@ $(function(){
   $('#asistencia').click(function(e){
     e.preventDefault();
     $('#asistForm').attr('action', 'asistencia_print.php');
+    $('#asistForm').submit();
+  });
+
+  $('#payexcel').click(function(e){
+    e.preventDefault();
+    $('#asistForm').attr('action', 'asistencia_xlsx.php');
     $('#asistForm').submit();
   });
 

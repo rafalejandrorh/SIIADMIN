@@ -9,7 +9,6 @@ class personas_model
     public function __construct()
     {
 		$this->conexion = new Conexion;
-        $this->empleados = array();
     }
 
     public function lista_personas()

@@ -6,9 +6,7 @@
   <?php include '../includes/navbar.php'; ?>
   <?php include '../includes/menubar.php'; ?>
 
-  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
     <section class="content-header">
     <h1><b>Tiempo Extra</b></h1>
       <ol class="breadcrumb">
@@ -16,7 +14,7 @@
         <li class="active"><i class="fa fa-hourglass-1"></i> Tiempo Extra</li>
       </ol>
     </section>
-    <!-- Main content -->
+
     <section class="content">
       <?php
         if(isset($_SESSION['error'])){
@@ -46,7 +44,10 @@
             <div class="box-header with-border">
               <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
               <div class="pull-right">
-               <a href="tiempoextra_print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+                <form method="POST" class="form-inline" id="payForm">
+                  <button type="button" class="btn btn-danger btn-sm btn-flat" id="payroll"><span class="fa fa-file-pdf-o"></span> PDF</button>
+                  <button type="button" class="btn btn-success btn-sm btn-flat" id="payexcel"><span class="fa fa-file-excel-o"></span> Excel</button>
+                </form>
               </div>
             </div>
             <div class="box-body">
@@ -113,6 +114,18 @@ $(function(){
     getRow(id);
   });
 });
+
+$('#payroll').click(function(e){
+    e.preventDefault();
+    $('#payForm').attr('action', 'tiempoextra_print.php');
+    $('#payForm').submit();
+  });
+
+  $('#payexcel').click(function(e){
+    e.preventDefault();
+    $('#payForm').attr('action', 'tiempoextra_xlsx.php');
+    $('#payForm').submit();
+  });
 
 function getRow(id){
   $.ajax({

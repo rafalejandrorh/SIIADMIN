@@ -26,10 +26,10 @@
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#profile" data-toggle="modal" class="btn btn-default btn-flat" id="admin_profile">Actualizar</a>
+                  <a href="#profile" data-toggle="modal" class="btn btn-default btn-flat" id="admin_profile"><i class="fa fa-refresh"></i> Actualizar</a>
                 </div>
                 <div class="pull-right">
-                  <a href="../../controllers/sesion/logout.php" class="btn btn-default btn-flat">Cerrar Sesión</a>
+                  <a href="../../controllers/sesion/logout.php" class="btn btn-default btn-flat"><i class="fa fa-power-off"></i> Cerrar Sesión</a>
                 </div>
               </li>
             </ul>

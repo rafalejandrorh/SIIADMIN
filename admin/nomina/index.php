@@ -1,10 +1,12 @@
-<?php include '../../controllers/sesion/session.php';?>
-<?php
+<?php 
+  include '../../controllers/sesion/session.php';
   include '../includes/timezone.php';
+  require_once "../../controllers/nomina/nomina_obtener.php";
+
   $range_to = date('m/d/Y');
   $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
-?>
-<?php include '../includes/header.php'; ?>
+  
+  include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -48,6 +50,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border">
+                
               <div class="pull-right">
                 <form method="POST" class="form-inline" id="payForm">
                   <div class="input-group">
@@ -58,7 +61,7 @@
                   </div> 
                   <button type="button" class="btn btn- btn-sm btn-flat" id="payslip"><span class="glyphicon glyphicon-print"></span> Recibo de Pago</button>
                   <button type="button" class="btn btn-danger btn-sm btn-flat" id="payroll"><span class="fa fa-file-pdf-o"></span> PDF</button>
-                  <button type="button" class="btn btn-success btn-sm btn-flat" id=""><span class="fa fa-file-excel-o"></span> Excel</button>
+                  <button type="button" class="btn btn-success btn-sm btn-flat" id="payexcel"><span class="fa fa-file-excel-o"></span> Excel</button>
                   <button type="submit" name="guardar" class="btn btn-primary btn-sm btn-flat"><span class="glyphicon glyphicon-save"></span> Guardar Nómina</button>
                 </form>
               </div>
@@ -77,7 +80,7 @@
                 </thead>
                 <tbody>
                   <?php 
-                    require_once "../../controllers/nomina/nomina_obtener.php";
+                    
                     foreach($consulta_horas_trabajadas as $row)
                     {
                     $sueldo = $row['sueldo'] * $row['total_horas'];
@@ -118,19 +121,6 @@
 <?php include '../includes/scripts.php'; ?> 
 <script>
 $(function(){
-  $('.edit').click(function(e){
-    e.preventDefault();
-    $('#edit').modal('show');
-    var id = $(this).data('id');
-    getRow(id);
-  });
-
-  $('.delete').click(function(e){
-    e.preventDefault();
-    $('#delete').modal('show');
-    var id = $(this).data('id');
-    getRow(id);
-  });
 
   $("#reservation").on('change', function(){
     var range = encodeURI($(this).val());
@@ -140,6 +130,12 @@ $(function(){
   $('#payroll').click(function(e){
     e.preventDefault();
     $('#payForm').attr('action', 'nomina_generate.php');
+    $('#payForm').submit();
+  });
+
+  $('#payexcel').click(function(e){
+    e.preventDefault();
+    $('#payForm').attr('action', 'nomina_xlsx.php');
     $('#payForm').submit();
   });
 

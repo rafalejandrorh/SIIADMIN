@@ -6,15 +6,15 @@
 		require_once "../../controllers/tiempoextra/tiempoextra_obtener.php";
     foreach($obtener as $row)
     {
-      $gross = $row['rate'] * $row['hours'];
+      $gross = $row['monto'] * $row['horas'];
       
 			$contents .= "
 			<tr>
-        <td>".date('M d, Y', strtotime($row['date_overtime']))."</td>
-        <td>".$row['employee_id']."</td>
-        <td>".$row['firstname'].' '.$row['lastname']."</td>
-        <td>".$row['hours']."</td>
-        <td>".'$ '.$row['rate']."</td>
+        <td>".date('d M, Y', strtotime($row['fecha']))."</td>
+        <td>".$row['cedula']."</td>
+        <td>".$row['nombres'].' '.$row['apellidos']."</td>
+        <td>".$row['horas']."</td>
+        <td>".'$ '.$row['monto']."</td>
         <td>".'$ '.number_format($gross, 2)."</td>
 			</tr>
 			";
@@ -43,15 +43,15 @@
       	<h2 align="center">Tiempo Extra de Empleados</h2>
       	<table border="1" cellspacing="0" cellpadding="3">  
            <tr>
-              <th width="16%">Fecha</th>
-              <th width="16%">Cédula de Identidad</th>
-              <th width="16%">Nombre</th>
-              <th width="16%">No. de Horas</th>
-              <th width="16%">Monto de Hora</th>
-              <th width="16%">Pago Total de Horas extra</th>
+              <th width="16%"><b>Fecha</b></th>
+              <th width="16%"><b>Cédula de Identidad</b></th>
+              <th width="16%"><b>Nombre</b></th>
+              <th width="16%"><b>No. de Horas</b></th>
+              <th width="16%"><b>Monto de Hora</b></th>
+              <th width="16%"><b>Pago Total de Horas extra</b></th>
            </tr>  
       ';  
-    $content .= generateRow($conn); 
+    $content .= generateRow(); 
     $content .= '</table>';  
     $pdf->writeHTML($content);  
     $pdf->Output('Tiempo Extra de Empleados.pdf', 'I');

@@ -4,15 +4,11 @@ require_once('../../config/conn.php');
 
 class tasadolar_model 
 {
-
-    private $db;
-    private $tasadolar;
     public $conexion;
 
     public function __construct()
     {
 		$this->conexion = new Conexion;
-        $this->tasadolar = array();
     }
 
     public function obtener_tasadolar()

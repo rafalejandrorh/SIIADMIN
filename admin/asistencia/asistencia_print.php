@@ -8,23 +8,23 @@
         foreach($obtener as $row){
 
           $status = ($row['estatus_llegada'])?'<span class="label label-warning pull-right"> (A tiempo)</span>':'<span class="label label-danger pull-right"> (Tarde)</span>';
-          $contents .= "
+          $contents .= '
           <tr>
-            <td>".date('M d, Y', strtotime($row['fecha']))."</td>
-            <td>".$row['cedula']."</td>
-            <td>".$row['apellidos'].", ".$row['nombres']."</td>
-            <td>".$row['cargo']."</td>
-            <td>".date('h:i A', strtotime($row['hora_llegada'])).' - '. date('h:i A', strtotime($row['hora_salida'])).$status."</td>
-            <td>".number_format($row['horas_laboradas'],1)."</td>
+            <td align="center">'.date('d M, Y', strtotime($row['fecha'])).'</td>
+            <td align="center">'.$row['cedula'].'</td>
+            <td align="center">'.$row['apellidos'].', '.$row['nombres'].'</td>
+            <td align="center">'.$row['cargo'].'</td>
+            <td align="center">'.date('h:i A', strtotime($row['hora_llegada'])).' - '. date('h:i A', strtotime($row['hora_salida'])).$status.'</td>
+            <td align="center">'.number_format($row['horas_laboradas'],1).'</td>
           </tr>
-        ";
+        ';
         }
 
         return $contents;
       }
 
 	  require_once('../../tcpdf_min/tcpdf.php');  
-    $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
+    $pdf = new TCPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
     $pdf->SetCreator(PDF_CREATOR);  
     $pdf->SetTitle('Asistencia de Empleados');  
     $pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);  

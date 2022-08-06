@@ -48,7 +48,7 @@
         }
 
 	require_once('../../tcpdf_min/tcpdf.php');  
-        $pdf = new TCPDF('P', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
+        $pdf = new TCPDF('L', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);  
         $pdf->SetCreator(PDF_CREATOR);  
         $pdf->SetTitle('Nomina: '.$from_title.' - '.$to_title);  
         $pdf->SetHeaderData('', '', PDF_HEADER_TITLE, PDF_HEADER_STRING);  
@@ -69,7 +69,7 @@
                 <table border="1" cellspacing="0" cellpadding="3">  
                         <tr>  
                         <th width="14,2%" align="center"><b>Cédula de Identidad</b></th>
-                        <th width="16,2%" align="center"><b>Nombre Completo</b></th>
+                        <th width="18,2%" align="center"><b>Nombre Completo</b></th>
                         <th width="10,2%" align="center"><b>Sueldo</b></th>
                         <th width="15,2%" align="center"><b>Deducciones</b></th>
                         <th width="12,2%" align="center"><b>Avance Efectivo</b></th>
@@ -82,7 +82,7 @@
         $content.= 
                 '<table border="1" cellspacing="0" cellpadding="3">  
                         <tr>  
-                        <th width="30,4%" align="center"><b>Tasa del Dólar</b></th>
+                        <th width="14,2%" align="center"><b>Tasa del Dólar</b></th>
                         </tr>';
         $content.= generateRow2($dolar); 
         $content.= '</table>'; 

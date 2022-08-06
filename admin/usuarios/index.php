@@ -43,7 +43,7 @@
             <div class="box-header with-border">
                <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
               <div class="pull-right">
-                <a href="usuarios_print.php" class="btn btn-success btn-sm btn-flat"><span class="glyphicon glyphicon-print"></span> Imprimir</a>
+                <a href="usuarios_print.php" class="btn btn-danger btn-sm btn-flat"><span class="fa fa-file-pdf-o"></span> PDF</a>
               </div>
               </div>
           <div class="table-responsive">

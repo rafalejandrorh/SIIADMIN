@@ -19,7 +19,7 @@
         <li class="header">ADMINISTRACIÓN</li>
         <li><a href="../asistencia/index.php"><i class="fa fa-calendar"></i> <span>Asistencia</span></a></li>
         <li><a href="../empleados/index.php"><i class="fa fa-users"></i> <span>Empleados</span></a></li>
-        <li><a href="#"><i class="fa fa-credit-card"></i> <span>Métodos de Pago</span></a></li> <!-- ../metodo_pagos/index.php -->
+        <li><a href="../metodo_pagos/index.php"><i class="fa fa-credit-card"></i> <span>Métodos de Pago</span></a></li>
         <li><a href="../horarios/index.php"><i class="fa fa-clock-o"></i> <span>Horarios</span></a></li>
         <li><a href="../cargos/index.php"><i class="fa fa-suitcase"></i> <span>Cargos</span></a></li>
 
@@ -31,7 +31,14 @@
         <li><a href="../tiempoextra/index.php"><i class="fa fa-hourglass-1"></i> <span>Tiempo Extra</span></a></li>
         <li><a href="../avancefectivo/index.php"><i class="fa fa-money"></i> <span>Avance de Efectivo</span></a></li>
 
+        <!-- <li class="header">ACTIVOS</li>
+        <li><a href="#"><i class="fa fa-server"></i> <span>Tecnología</span></a></li>
+        <li><a href="#"><i class="fa fa-building"></i> <span>Mobiliario</span></a></li>
+        <li><a href="#"><i class="fa fa-car"></i> <span>Vehículos</span></a></li>
+        <li><a href="#"><i class="fa fa-file-o"></i> <span>Papelería</span></a></li> -->
+
         <li class="header">SEGURIDAD</li>
+        <li><a href="#"><i class="fa fa-check-square-o"></i> <span>Bitácora</span></a></li> <!-- ../bitacora/index.php -->
         <li><a href="../usuarios/index.php"><i class="fa fa-user"></i> <span>Usuarios del Sistema</span></a></li>
         <li><a href="../sesion/index.php"><i class="fa fa-history"></i> <span>Historial de Sesión</span></a></li>
         <li class="treeview">
@@ -58,18 +65,3 @@
       </ul>  
     </section>
   </aside>
-
-
-  <!-- <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i>
-            <span>Empleados</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="../empleados/index.php"><i class="fa fa-circle-o"></i> Lista de Empleados</a></li>
-            <li><a href="../horarios/index.php"><i class="fa fa-circle-o"></i> Horarios</a></li>
-          </ul>
-   </li> -->

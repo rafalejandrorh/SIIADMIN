@@ -5,6 +5,7 @@
 
         $from = null;
         $to = null;
+        $range = null;
         
         if(isset($_GET['range']))
         {

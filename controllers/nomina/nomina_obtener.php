@@ -1,10 +1,10 @@
 <?php
-        require_once "../../config/conn.php";
         require_once "../../models/nomina_model.php";
         $nomina = new nomina_model();
 
         $from = null;
         $to = null;
+        $range = null;
         
         if(isset($_GET['range']))
         {
@@ -60,6 +60,7 @@
                         //Realiza el Cálculo de la Nomina. Retorna: El total de las deducciones y el Total del Pago Neto en Bs y Dólares
                         $calculo_nomina = $nomina->calculo_nomina($sueldo, $deduction, $deduction2, $consulta_avancefectivo[0]['efectivo'], $dolar);
 
+                        $fecha_emision = date('Y-m-d');
                         $exfrom = explode('-', $from);
                         $exto = explode('-', $to);
                         $id_nomina = $exfrom[0].$exfrom[1].$exfrom[2].'-'.$exto[0].$exto[1].$exto[2].'-'.$id_empleado;
@@ -73,7 +74,7 @@
                         $consulta_avancefectivo[0]['efectivo'], $total_deduction, $dolar, $neto, $bs, 
                         $fecha_emision, $from, $to);
                 }
-                header("Location: ../../admin/nomina/index.php?range=$range");
+                //header("Location: ../../admin/historico_nomina/index.php");
         }        
 
 ?>
