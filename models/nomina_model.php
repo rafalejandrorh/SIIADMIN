@@ -15,10 +15,11 @@ class nomina_model
 
     public function consulta_obtener_nomina($from, $to)
     {
+
         $filtro = null;
 		if($from != null && $to != null)
 		{
-			$filtro = "AND asistencia.fecha BETWEEN '$from' AND '$to'";
+			$filtro = "WHERE asistencia.fecha BETWEEN '$from' AND '$to'";
 		}
         $sql = "SELECT personas.nombres, personas.apellidos, cargos.sueldo, SUM(horas_laboradas) AS total_horas, asistencia.id_empleado 
         AS empid, personas.cedula AS ci 
@@ -26,7 +27,7 @@ class nomina_model
         LEFT JOIN empleados ON empleados.id_empleado=asistencia.id_empleado 
         LEFT JOIN personas ON empleados.id_persona = personas.id_persona 
         LEFT JOIN cargos ON cargos.id_cargo=empleados.id_cargo 
-        WHERE empleados.estatus = 1 $filtro 
+        $filtro 
         GROUP BY asistencia.id_empleado, personas.nombres, personas.apellidos, cargos.sueldo, personas.cedula 
         ORDER BY personas.apellidos ASC, personas.nombres ASC";
         $query = $this->conexion->query($sql);
@@ -36,6 +37,7 @@ class nomina_model
 
     public function obtener_historico_nomina($from, $to)
     {
+
         $filtro = null;
 		if($from != null && $to != null)
 		{
@@ -62,6 +64,7 @@ class nomina_model
 
     public function consulta_avancefectivo($from, $to, $id_empleado)
     {
+        
         $filtro = null;
 		if($from != null && $to != null)
 		{

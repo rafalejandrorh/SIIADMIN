@@ -2,7 +2,7 @@
 
 require_once('../../config/conn.php');
 
-class empleados_model 
+class metodo_pagos_model 
 {
 
     public $conexion;
@@ -18,60 +18,16 @@ class empleados_model
         return $this->conexion->query($sql);
     }
 
-    public function obtener_empleados_nuevo_ingreso()
+    public function obtener_metodo_pagos()
     {
-        $fecha = date('Y-m-d');
-        $fecha_inicial = date('Y-m-d', strtotime('-30 day', strtotime($fecha)));
-        $sql = "SELECT personas.nombres, personas.apellidos, personas.foto, personas.id_persona, personas.fecha_ingreso, cargos.cargo 
-        FROM empleados 
-        LEFT JOIN personas ON empleados.id_persona = personas.id_persona
-        LEFT JOIN cargos ON empleados.id_cargo = cargos.id_cargo
-        WHERE personas.fecha_ingreso BETWEEN '$fecha_inicial' AND '$fecha' AND empleados.estatus = 1";
-        $query = $this->conexion->query($sql);
-        return $query->fetchAll(PDO::FETCH_ASSOC);
-    }
 
-    public function obtener_empleados_egreso()
-    {
-        $fecha = date('Y-m-d');
-        $fecha_inicial = date('Y-m-d', strtotime('-30 day', strtotime($fecha)));
-        $sql = "SELECT personas.nombres, personas.apellidos, personas.foto, personas.id_persona, personas.fecha_ingreso, cargos.cargo 
-        FROM empleados 
+        $sql = "SELECT personas.cedula, personas.nombres, personas.apellidos, 
+        FROM empleados_cuenta_bancaria
+        LEFT JOIN empleados ON empleados_cuenta_bancaria.id_empleado = empleados.id_empleado
         LEFT JOIN personas ON empleados.id_persona = personas.id_persona 
-        LEFT JOIN cargos ON empleados.id_cargo = cargos.id_cargo
-        WHERE personas.fecha_ingreso BETWEEN '$fecha_inicial' AND '$fecha' AND empleados.estatus = 0";
-        $query = $this->conexion->query($sql);
-        return $query->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function obtener_empleados()
-    {
-
-        $sql = "SELECT personas.cedula, personas.nombres, personas.apellidos, cargos.cargo, cargos.sueldo, horarios.hora_llegada, 
-        horarios.hora_salida, personas.direccion, personas.numero_contacto, personas.foto, empleados.id_empleado AS id
-        FROM empleados 
-        LEFT JOIN personas ON empleados.id_persona = personas.id_persona 
-        LEFT JOIN cargos ON empleados.id_cargo = cargos.id_cargo 
-        LEFT JOIN horarios ON horarios.id_horarios = empleados.id_horarios
         WHERE estatus = 1";
         $query = $this->conexion->query($sql);
         return $query->fetchAll(PDO::FETCH_ASSOC);
-
-    }
-
-    public function obtener_empleado($id_persona)
-    {
-
-		$sql = "SELECT empleados.id_empleado FROM empleados WHERE empleados.id_persona = '$id_persona'";
-		$query = $this->conexion->query($sql);
-        if($query->rowCount() >= 1)
-        {
-            $dato = $query->fetch();
-            return $dato['id_empleado'];
-        }else{
-            $_SESSION['error'] = 'Error, la Persona indicada no está registrada como Empleado.';
-            return 0;
-        }    
 
     }
 

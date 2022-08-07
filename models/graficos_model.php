@@ -17,7 +17,7 @@ class graficos_model
 
         $and = 'AND EXTRACT(YEAR FROM fecha) = '.$year;
         for($m = 1; $m <= 12; $m++ ) {
-            $sql = "SELECT * FROM public.asistencia WHERE EXTRACT(MONTH FROM fecha) = '$m' AND estatus_llegada = 1 $and";
+            $sql = "SELECT id FROM public.asistencia WHERE EXTRACT(MONTH FROM fecha) = '$m' AND estatus_llegada = 1 $and";
             $query = $this->conexion->query($sql);
             array_push($ontime, $query->rowCount());
         }
@@ -30,7 +30,7 @@ class graficos_model
 
         $and = 'AND EXTRACT(YEAR FROM fecha) = '.$year;
         for($m = 1; $m <= 12; $m++ ) {
-            $sql = "SELECT * FROM public.asistencia WHERE EXTRACT(MONTH FROM fecha) = '$m' AND estatus_llegada = 0 $and";
+            $sql = "SELECT id FROM public.asistencia WHERE EXTRACT(MONTH FROM fecha) = '$m' AND estatus_llegada = 0 $and";
             $query = $this->conexion->query($sql);
             array_push($late, $query->rowCount());
         }
@@ -55,7 +55,7 @@ class graficos_model
 
         $and = 'AND EXTRACT(YEAR FROM inicio_sesion) = '.$year;
         for($m = 1; $m <= 12; $m++ ) {
-            $sql = "SELECT * FROM public.historial_sesion WHERE EXTRACT(MONTH FROM inicio_sesion) = '$m' $and";
+            $sql = "SELECT id FROM public.historial_sesion WHERE EXTRACT(MONTH FROM inicio_sesion) = '$m' $and";
             $query = $this->conexion->query($sql);
             array_push($conexiones, $query->rowCount());
         }
@@ -68,7 +68,7 @@ class graficos_model
 
         $and = 'AND EXTRACT(YEAR FROM cierre_sesion) = '.$year;
         for($m = 1; $m <= 12; $m++ ) {
-            $sql = "SELECT * FROM public.historial_sesion WHERE EXTRACT(MONTH FROM cierre_sesion) = '$m' $and";
+            $sql = "SELECT id FROM public.historial_sesion WHERE EXTRACT(MONTH FROM cierre_sesion) = '$m' $and";
             $query = $this->conexion->query($sql);
             array_push($conexiones, $query->rowCount());
         }

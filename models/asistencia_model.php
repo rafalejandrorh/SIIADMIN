@@ -32,7 +32,7 @@ class asistencia_model
 		include "../../admin/includes/timezone.php";
 		$today = date('Y-m-d');
 
-		$sql = "SELECT * FROM public.asistencia WHERE fecha = '$today' AND estatus_llegada = 1";
+		$sql = "SELECT id FROM public.asistencia WHERE fecha = '$today' AND estatus_llegada = 1";
 		return $this->conexion->query($sql);
 
     }
@@ -41,7 +41,7 @@ class asistencia_model
     {
 		include "../../admin/includes/timezone.php";
 		$today = date('Y-m-d');
-		$sql = "SELECT * FROM public.asistencia WHERE fecha = '$today' AND estatus_llegada = 0";
+		$sql = "SELECT id FROM public.asistencia WHERE fecha = '$today' AND estatus_llegada = 0";
 		return $this->conexion->query($sql);
 
     }
@@ -49,7 +49,7 @@ class asistencia_model
 	public function asistentes_atiempo()
     {
 		
-        $sql = "SELECT * FROM public.asistencia";
+        $sql = "SELECT id FROM public.asistencia";
         return $this->conexion->query($sql);
 
     }
@@ -57,7 +57,7 @@ class asistencia_model
 	public function asistentes_tarde()
     {
 
-		$sql = "SELECT * FROM public.asistencia WHERE estatus_llegada = 1";
+		$sql = "SELECT id FROM public.asistencia WHERE estatus_llegada = 1";
 		return $this->conexion->query($sql);
 
     }

@@ -1,0 +1,430 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.2
+-- Dumped by pg_dump version 14.2
+
+-- Started on 2022-08-07 18:59:59
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 3416 (class 0 OID 27888)
+-- Dependencies: 209
+-- Data for Name: asistencia; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (132, 1, '2022-04-04', '09:00:00', 1, '17:00:00', 7);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (133, 1, '2022-04-05', '10:15:00', 0, '17:30:00', 5.75);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (134, 1, '2022-04-06', '08:45:00', 1, '16:15:00', 6.25);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (136, 2, '2022-04-05', '08:00:00', 1, '16:00:00', 7);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (137, 2, '2022-04-06', '07:45:00', 1, '16:00:00', 7);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (138, 3, '2022-04-04', '08:00:00', 1, '16:00:00', 7);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (139, 3, '2022-04-06', '08:00:00', 1, '16:00:00', 7);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (140, 4, '2022-04-05', '07:30:00', 1, '18:00:00', 7);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (141, 5, '2022-04-06', '10:00:00', 1, '17:00:00', 6);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (151, 4, '2022-06-22', '15:00:00', 0, '22:00:00', 6);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (153, 4, '2022-06-14', '13:15:00', 0, '22:15:00', 8);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (156, 6, '2022-07-24', '08:08:00', 0, '19:00:00', 6.8666666666667);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (157, 7, '2022-07-24', '13:00:00', 0, '22:00:00', 8);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (135, 2, '2022-04-04', '07:30:00', 0, '17:30:00', 5.4666666666667);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (161, 6, '2022-08-07', '14:04:14', 0, NULL, NULL);
+INSERT INTO public.asistencia (id, id_empleado, fecha, hora_llegada, estatus_llegada, hora_salida, horas_laboradas) VALUES (160, 8, '2022-08-07', '13:30:00', 0, NULL, NULL);
+
+
+--
+-- TOC entry 3418 (class 0 OID 27892)
+-- Dependencies: 211
+-- Data for Name: avancefectivo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.avancefectivo (id, fecha, monto, id_empleado) VALUES (10, '2022-04-06', 8, 1);
+INSERT INTO public.avancefectivo (id, fecha, monto, id_empleado) VALUES (11, '2022-04-06', 4, 2);
+INSERT INTO public.avancefectivo (id, fecha, monto, id_empleado) VALUES (13, '2022-06-17', 15, 3);
+
+
+--
+-- TOC entry 3443 (class 0 OID 28043)
+-- Dependencies: 236
+-- Data for Name: bancos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (1, 'BANCO NACIONAL DE CRÉDITO (BNC)', 'Avenida Vollmer, Torre Sur del Centro Empresarial, piso 5, Urbanizacion San Bernardino, Municipio Libertador, Distrito Capital.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (2, 'BANCO PLAZA
+', 'Avenida Casanova, entre calles Unin y Villaflor, Sabana Grande, Torre Banco Plaza, PH, Municipio Libertador, Distrito Capital.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (3, 'BANCO DEL CARIBE (BANCARIBE)
+', 'Avenida Francisco de Miranda, cruce con calle El Parque y Avenida Mohedano, Edificio Centro Empresarial Galipan, Torre Bancaribe, PB, Urbanizacion El Rosal, Municipio Chacao, estado Miranda.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (4, 'BANCO SOFITASA', 'Avenida 7ma, esquina calle 4, Edificio Banco Sofitasa, Mezzanina, oficina 1, Sector Centro, San Cristobal, estado Tachira.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (5, 'DEL SUR BANCO
+', 'Avenida principal de La Castellana con avenida San Felipe, Edificio Bancaracas, piso 6, Oficina 603, La Castellana, Municipio Chacao estado Miranda.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (6, 'BANCO DEL TESORO', 'Calle Guaicaipuro, Torre Banco del Tesoro, PH, El Rosal, Municipio Chacao, estado Miranda.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (7, 'BANCO EXTERIOR', 'Avenida Urdaneta, Urapal a Rio, Edificio Banco Exterior, piso 1, Parroquia La Candelaria, Municipio Libertador, Distrito Capital.', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (8, 'BANCO INTERNACIONAL DE DESARROLLO', 'Avenida Francisco de Miranda, Edificio Dozsa, piso 8, Urbanizacion El Rosal, Municipio Chacao, estado Miranda.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (9, 'BANCO DE LA FUERZA ARMADA NACIONAL BOLIVARIANA (BANFANB)
+', 'Avenida Venezuela del Rosal, Urbanización El Rosal, Torre BANFANB, piso 1, Municipio Chacao, estado Miranda', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (10, 'BANCO FONDO COMUN (BFC)
+', 'Avenida Lazo Marti entre avenida Venezuela y calle Guaicaipuro, Torre BFC, piso 4, Urbanizacion El Rosal, Municipio Chacao, estado Miranda.', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (11, 'BANPLUS BANCO UNIVERSAL
+', 'Avenida Paseo Enrique Eraso, Torre La Noria, piso 6, Las Mercedes, Municipio Baruta, estado Miranda.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (12, '100% BANCO', 'Avenida Blandin, Centro Comercial San Ignacio, Torre Copernico, piso 10, La Castellana, Municipio Chacao, estado Miranda.', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (13, 'BANCO PROVINCIAL', 'Avenida Vollmer con avenida Este 0, Centro Financiero Provincial, piso 27, San Bernardino, Municipio Libertador, Distrito Capital.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (14, 'BANCO BICENTENARIO', 'Avenida Venezuela, Edificio Banco Bicentenario, Planta Baja, Urbanización El Rosal, Municipio Chacao, estado Miranda.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (15, 'BANCO DE VENEZUELA', 'Avenida Universidad, esquina de Sociedad, Torre de Servicios Centrales, piso 18, Parroquia Catedral, Municipio Libertador, Distrito Capital.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (16, 'BANCO AGRÍCOLA DE VENEZUELA
+', 'Avenida Francisco de Miranda, Edificio Cavendes, Piso 17, Los Palos Grandes, Municipio Chacao, estado Miranda.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (17, 'BANESCO
+', 'Avenida Principal de Bello Monte, entre calle Sorbona y calle Lincoln, Edificio Ciudad Banesco, Municipio Baruta, estado Miranda.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (18, 'BANCO CARONÍ', 'Avenida Via Venezuela, Edificio Multicentro Banco Caroni, Mezzanina, Puerto Ordaz, estado Bolivar.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (19, 'BANCO MERCANTIL
+', 'Avenida Andres Bello, Edificio Mercantil, Piso 35, Urbanizacion San Bernardino, Municipio Libertador, Distrito Capital.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (20, 'BANCO ACTIVO
+', 'Avenida Francisco de Miranda, Edificio Torre Europa, piso 12, oficina 12A / 12B, Urbanizacion Campo Alegre, Municipio Chacao, estado Miranda.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (21, 'BANCO VENEZOLANO DE CRÉDITO
+', 'Avenida Alameda, Urbanizacion San Bernardino, Edificio Venezolano de Credito, piso 9, Municipio Libertador, Distrito Capital.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (22, 'BANCAMIGA
+', 'Edificio Sede Gerencial La Castellana, avenida Francisco de Miranda, cruce con la avenida Principal de La Castellana, Chacao, Municipio Chacao, estado Miranda.
+', 1);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (23, 'BANCO DE LA GENTE EMPRENDEDORA (BANGENTE)
+', 'Centro Rental de la Universidad Metropolitana (CENTROMET), Edificio Numero 1, Planta Baja, Entrada Oeste, Urbanización Terrazas del Avila, Municipio Sucre, estado Miranda.
+', 2);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (24, 'MI BANCO
+', 'Avenida Francisco de Miranda, Centro Lido, Torre A, piso 5, Oficina 5-A (51-A, 52-A, 53-A, 54-A, 55-A, 56-A y 57-A) Urbanizacion El Rosal, Municipio Chacao, estado Miranda.
+', 2);
+INSERT INTO public.bancos (id_banco, nombre, direccion, id_entidad) OVERRIDING SYSTEM VALUE VALUES (25, 'BANCRECER
+', 'Avenida Francisco de Miranda, cruce con calle Capitolio, Torre Bazar Bolivar, Planta Baja, Boleita Sur, Municipio Sucre, estado Miranda.
+', 2);
+
+
+--
+-- TOC entry 3446 (class 0 OID 28054)
+-- Dependencies: 239
+-- Data for Name: bancos_entidad; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.bancos_entidad (id_entidad, entidad) VALUES (1, 'Banco Universal');
+INSERT INTO public.bancos_entidad (id_entidad, entidad) VALUES (2, 'Banco Microfinanciero');
+
+
+--
+-- TOC entry 3420 (class 0 OID 27896)
+-- Dependencies: 213
+-- Data for Name: cargos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.cargos (id_cargo, cargo, sueldo) VALUES (1, 'Asistente Administrativo', '0.25');
+INSERT INTO public.cargos (id_cargo, cargo, sueldo) VALUES (3, 'Analista < 5 años', '0.40');
+INSERT INTO public.cargos (id_cargo, cargo, sueldo) VALUES (5, 'Gerente', '1.25');
+INSERT INTO public.cargos (id_cargo, cargo, sueldo) VALUES (7, 'Coordinador', '1');
+INSERT INTO public.cargos (id_cargo, cargo, sueldo) VALUES (8, 'Analista > 5 años', '0.75');
+INSERT INTO public.cargos (id_cargo, cargo, sueldo) VALUES (9, 'Analista < 1 año', '0.30');
+INSERT INTO public.cargos (id_cargo, cargo, sueldo) VALUES (10, 'Servicios Generales', '0.70');
+INSERT INTO public.cargos (id_cargo, cargo, sueldo) VALUES (15, 'Sin Cargo', '0.00');
+
+
+--
+-- TOC entry 3422 (class 0 OID 27902)
+-- Dependencies: 215
+-- Data for Name: deducciones; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.deducciones (id, descripcion, monto) VALUES (5, 'IVSS 4%', 0.04);
+INSERT INTO public.deducciones (id, descripcion, monto) VALUES (7, 'Paro Forzoso 1%', 0.01);
+
+
+--
+-- TOC entry 3423 (class 0 OID 27907)
+-- Dependencies: 216
+-- Data for Name: deducciones2; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.deducciones2 (id, descripcion, monto) VALUES (11, 'FAOV', 0.01);
+
+
+--
+-- TOC entry 3426 (class 0 OID 27914)
+-- Dependencies: 219
+-- Data for Name: empleados; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.empleados (id_empleado, id_persona, id_cargo, id_horarios, estatus) VALUES (1, 1, 3, 4, 1);
+INSERT INTO public.empleados (id_empleado, id_persona, id_cargo, id_horarios, estatus) VALUES (2, 5, 5, 3, 1);
+INSERT INTO public.empleados (id_empleado, id_persona, id_cargo, id_horarios, estatus) VALUES (3, 2, 7, 2, 1);
+INSERT INTO public.empleados (id_empleado, id_persona, id_cargo, id_horarios, estatus) VALUES (4, 3, 8, 2, 1);
+INSERT INTO public.empleados (id_empleado, id_persona, id_cargo, id_horarios, estatus) VALUES (5, 4, 10, 6, 1);
+INSERT INTO public.empleados (id_empleado, id_persona, id_cargo, id_horarios, estatus) VALUES (6, 6, 1, 2, 1);
+INSERT INTO public.empleados (id_empleado, id_persona, id_cargo, id_horarios, estatus) VALUES (7, 7, 1, 2, 1);
+INSERT INTO public.empleados (id_empleado, id_persona, id_cargo, id_horarios, estatus) VALUES (8, 8, 7, 2, 0);
+
+
+--
+-- TOC entry 3427 (class 0 OID 27917)
+-- Dependencies: 220
+-- Data for Name: empleados_cuenta_bancaria; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3429 (class 0 OID 27923)
+-- Dependencies: 222
+-- Data for Name: empleados_pagomovil; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 3430 (class 0 OID 27928)
+-- Dependencies: 223
+-- Data for Name: historial_sesion; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.historial_sesion (id, id_usuario, inicio_sesion, cierre_sesion, ip) VALUES (1, 1, '2022-08-04 18:14:43-04', '2022-08-04 18:14:50-04', '192.168.1.110');
+INSERT INTO public.historial_sesion (id, id_usuario, inicio_sesion, cierre_sesion, ip) VALUES (2, 1, '2022-08-04 18:15:05-04', '2022-08-04 21:27:34-04', '192.168.1.110');
+INSERT INTO public.historial_sesion (id, id_usuario, inicio_sesion, cierre_sesion, ip) VALUES (3, 1, '2022-08-04 21:27:41-04', '2022-08-04 22:39:27-04', '::1');
+INSERT INTO public.historial_sesion (id, id_usuario, inicio_sesion, cierre_sesion, ip) VALUES (4, 1, '2022-08-05 08:26:34-04', '2022-08-05 10:49:06-04', '::1');
+INSERT INTO public.historial_sesion (id, id_usuario, inicio_sesion, cierre_sesion, ip) VALUES (5, 1, '2022-08-05 17:10:11-04', '2022-08-05 21:16:04-04', '::1');
+INSERT INTO public.historial_sesion (id, id_usuario, inicio_sesion, cierre_sesion, ip) VALUES (6, 1, '2022-08-07 10:45:43-04', '2022-08-07 14:02:30-04', '::1');
+INSERT INTO public.historial_sesion (id, id_usuario, inicio_sesion, cierre_sesion, ip) VALUES (7, 1, '2022-08-07 14:04:28-04', NULL, '::1');
+
+
+--
+-- TOC entry 3442 (class 0 OID 28024)
+-- Dependencies: 235
+-- Data for Name: historico_nomina; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.historico_nomina (id_nomina, id_empleado, sueldo, deducciones_ley, avance_efectivo, total_deducciones, tasa_dolar, sueldo_neto, sueldo_bolivares, fecha_emision, fecha_inicio_nomina, fecha_final_nomina) VALUES ('20220401-20220430-2', 2, 24.33, 1.65, 4, 5.65, 5.8, 18.69, 108.38, '2022-08-05 00:00:00-04', '2022-04-01', '2022-04-30');
+INSERT INTO public.historico_nomina (id_nomina, id_empleado, sueldo, deducciones_ley, avance_efectivo, total_deducciones, tasa_dolar, sueldo_neto, sueldo_bolivares, fecha_emision, fecha_inicio_nomina, fecha_final_nomina) VALUES ('20220401-20220430-1', 1, 7.60, 0.51, 8, 8.51, 5.8, -0.91, -5.30, '2022-08-05 00:00:00-04', '2022-04-01', '2022-04-30');
+INSERT INTO public.historico_nomina (id_nomina, id_empleado, sueldo, deducciones_ley, avance_efectivo, total_deducciones, tasa_dolar, sueldo_neto, sueldo_bolivares, fecha_emision, fecha_inicio_nomina, fecha_final_nomina) VALUES ('20220401-20220430-5', 5, 4.20, 0.28, 0, 0.28, 5.8, 3.92, 22.71, '2022-08-05 00:00:00-04', '2022-04-01', '2022-04-30');
+INSERT INTO public.historico_nomina (id_nomina, id_empleado, sueldo, deducciones_ley, avance_efectivo, total_deducciones, tasa_dolar, sueldo_neto, sueldo_bolivares, fecha_emision, fecha_inicio_nomina, fecha_final_nomina) VALUES ('20220401-20220430-3', 3, 14.00, 0.95, 0, 0.95, 5.8, 13.05, 75.70, '2022-08-05 00:00:00-04', '2022-04-01', '2022-04-30');
+INSERT INTO public.historico_nomina (id_nomina, id_empleado, sueldo, deducciones_ley, avance_efectivo, total_deducciones, tasa_dolar, sueldo_neto, sueldo_bolivares, fecha_emision, fecha_inicio_nomina, fecha_final_nomina) VALUES ('20220401-20220430-4', 4, 5.25, 0.36, 0, 0.36, 5.8, 4.89, 28.39, '2022-08-05 00:00:00-04', '2022-04-01', '2022-04-30');
+
+
+--
+-- TOC entry 3431 (class 0 OID 27931)
+-- Dependencies: 224
+-- Data for Name: horarios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.horarios (id_horarios, hora_llegada, hora_salida) VALUES (2, '08:00:00', '16:00:00');
+INSERT INTO public.horarios (id_horarios, hora_llegada, hora_salida) VALUES (4, '10:00:00', '18:00:00');
+INSERT INTO public.horarios (id_horarios, hora_llegada, hora_salida) VALUES (6, '11:00:00', '19:00:00');
+INSERT INTO public.horarios (id_horarios, hora_llegada, hora_salida) VALUES (12, '12:00:00', '20:00:00');
+INSERT INTO public.horarios (id_horarios, hora_llegada, hora_salida) VALUES (13, '00:00:00', '00:00:00');
+INSERT INTO public.horarios (id_horarios, hora_llegada, hora_salida) VALUES (14, '13:00:00', '21:00:00');
+INSERT INTO public.horarios (id_horarios, hora_llegada, hora_salida) VALUES (15, '14:00:00', '22:00:00');
+
+
+--
+-- TOC entry 3433 (class 0 OID 27935)
+-- Dependencies: 226
+-- Data for Name: personas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.personas (id_persona, cedula, nombres, apellidos, direccion, fecha_nacimiento, numero_contacto, genero, foto, fecha_ingreso) VALUES (1, '14450022', 'Willian', 'Cañizales', 'Cementerio', '1980-06-01', 'N/A', 'Masculino', 'avatar04.png', '2022-04-06');
+INSERT INTO public.personas (id_persona, cedula, nombres, apellidos, direccion, fecha_nacimiento, numero_contacto, genero, foto, fecha_ingreso) VALUES (2, '14452990', 'Dayurimare', 'Gonzalez', '23 de Enero', '1977-01-15', 'N/A', 'Femenino', 'avatar2.png', '2022-04-06');
+INSERT INTO public.personas (id_persona, cedula, nombres, apellidos, direccion, fecha_nacimiento, numero_contacto, genero, foto, fecha_ingreso) VALUES (3, '6304240', 'Giuseppe', 'Lodise', 'Propatria', '1952-12-12', 'N/A', 'Masculino', 'avatar5.png', '2022-04-06');
+INSERT INTO public.personas (id_persona, cedula, nombres, apellidos, direccion, fecha_nacimiento, numero_contacto, genero, foto, fecha_ingreso) VALUES (4, '16894094', 'Lurdes', 'Escalona', 'Parque Central', '1984-01-23', 'N/A', 'Femenino', 'avatar3.png', '2022-04-06');
+INSERT INTO public.personas (id_persona, cedula, nombres, apellidos, direccion, fecha_nacimiento, numero_contacto, genero, foto, fecha_ingreso) VALUES (5, '13127064', 'Yurvin', 'Boada', 'Macaracuay', '1976-08-05', 'N/A', 'Femenino', 'avatar3.png', '2022-04-06');
+INSERT INTO public.personas (id_persona, cedula, nombres, apellidos, direccion, fecha_nacimiento, numero_contacto, genero, foto, fecha_ingreso) VALUES (7, '11406782', 'Trina', 'Herrera', 'San Pedro', '1973-04-11', '4127256457', 'Femenino', 'avatar2.png', '2022-07-25');
+INSERT INTO public.personas (id_persona, cedula, nombres, apellidos, direccion, fecha_nacimiento, numero_contacto, genero, foto, fecha_ingreso) VALUES (8, '11934827', 'Giovanny', 'Rivero', 'La Bandera', '1974-10-11', '4241207009', 'Masculino', '', '2022-08-03');
+INSERT INTO public.personas (id_persona, cedula, nombres, apellidos, direccion, fecha_nacimiento, numero_contacto, genero, foto, fecha_ingreso) VALUES (6, '27903883', 'Rafael', 'Rivero', 'San Pedro', '2000-12-28', '4241385808', 'Masculino', 'profile_rafael.jpg', '2022-08-07');
+
+
+--
+-- TOC entry 3435 (class 0 OID 27941)
+-- Dependencies: 228
+-- Data for Name: tasa_dolar; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.tasa_dolar (id, observaciones, tasa_dolar) VALUES (1, 'Tasa oficial publicada por el Banco Central de Venezuela. La misma debe actualizarse al momento', 5.8);
+
+
+--
+-- TOC entry 3437 (class 0 OID 27945)
+-- Dependencies: 230
+-- Data for Name: tiempoextra; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.tiempoextra (id, horas, monto, fecha, id_empleado) VALUES (14, 2, 1, '2022-04-06', 1);
+
+
+--
+-- TOC entry 3439 (class 0 OID 27949)
+-- Dependencies: 232
+-- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+INSERT INTO public.usuarios (id_usuario, id_persona, usuario, "contraseña", fecha_creacion, habilitado, intentos_fallidos) VALUES (1, 6, 'rafael.rivero', '$2y$10$Qkaq2xvF/qPB/gmKq2OUoeDGL9zUA4EUleNGbJaTZcz6/tdV4ALyy', '2022-02-20', true, 0);
+INSERT INTO public.usuarios (id_usuario, id_persona, usuario, "contraseña", fecha_creacion, habilitado, intentos_fallidos) VALUES (2, 0, 'superadmin', '$2y$10$Ol0CkWcGE7h09dIrhHnmn.U7r3g5tLOA3DWr2pJ4.5iZvVpDnd1cq', '2022-02-20', true, 0);
+INSERT INTO public.usuarios (id_usuario, id_persona, usuario, "contraseña", fecha_creacion, habilitado, intentos_fallidos) VALUES (3, 1, 'willian.c', '$2y$10$aN.DtRbM8r/uL.5UK9Em.u2JPiqLwxxXOcZksBIhq5xQISJwo1MRi', '2022-08-04', true, 0);
+
+
+--
+-- TOC entry 3453 (class 0 OID 0)
+-- Dependencies: 210
+-- Name: asistencia_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.asistencia_id_seq', 161, true);
+
+
+--
+-- TOC entry 3454 (class 0 OID 0)
+-- Dependencies: 212
+-- Name: avancefectivo_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.avancefectivo_id_seq', 13, true);
+
+
+--
+-- TOC entry 3455 (class 0 OID 0)
+-- Dependencies: 240
+-- Name: bancos_id_banco_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.bancos_id_banco_seq', 1, false);
+
+
+--
+-- TOC entry 3456 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: cargos_id_cargo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.cargos_id_cargo_seq', 15, true);
+
+
+--
+-- TOC entry 3457 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: deducciones2_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.deducciones2_id_seq', 11, true);
+
+
+--
+-- TOC entry 3458 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: deducciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.deducciones_id_seq', 7, true);
+
+
+--
+-- TOC entry 3459 (class 0 OID 0)
+-- Dependencies: 237
+-- Name: empleados_cuenta_bancaria_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.empleados_cuenta_bancaria_id_seq', 1, false);
+
+
+--
+-- TOC entry 3460 (class 0 OID 0)
+-- Dependencies: 221
+-- Name: empleados_id_empleado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.empleados_id_empleado_seq', 8, true);
+
+
+--
+-- TOC entry 3461 (class 0 OID 0)
+-- Dependencies: 238
+-- Name: empleados_pagomovil_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.empleados_pagomovil_id_seq', 1, false);
+
+
+--
+-- TOC entry 3462 (class 0 OID 0)
+-- Dependencies: 234
+-- Name: historial_sesion_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.historial_sesion_id_seq', 7, true);
+
+
+--
+-- TOC entry 3463 (class 0 OID 0)
+-- Dependencies: 225
+-- Name: horarios_id_horarios_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.horarios_id_horarios_seq', 15, true);
+
+
+--
+-- TOC entry 3464 (class 0 OID 0)
+-- Dependencies: 227
+-- Name: personas_id_persona_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.personas_id_persona_seq', 8, true);
+
+
+--
+-- TOC entry 3465 (class 0 OID 0)
+-- Dependencies: 229
+-- Name: tasa_dolar_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tasa_dolar_id_seq', 1, true);
+
+
+--
+-- TOC entry 3466 (class 0 OID 0)
+-- Dependencies: 231
+-- Name: tiempoextra_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tiempoextra_id_seq', 14, true);
+
+
+--
+-- TOC entry 3467 (class 0 OID 0)
+-- Dependencies: 233
+-- Name: usuarios_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.usuarios_id_usuario_seq', 3, true);
+
+
+-- Completed on 2022-08-07 19:00:00
+
+--
+-- PostgreSQL database dump complete
+--
+

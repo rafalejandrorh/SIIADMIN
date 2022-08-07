@@ -158,7 +158,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header with-border"> 
-              <h3 class="box-title"><b>Asistentes Hoy</b></h3>  
+              <h3 class="box-title"><b>Empleados asistentes Hoy</b></h3>  
               <div class="pull-right">
               <form method="POST" class="form-inline" id="asistForm">
                   <div class="input-group">
@@ -241,8 +241,9 @@
                         {
                       ?>
                       <li>
-                        <img src="<?php echo (!empty($row['foto'])) ? '../../images/perfil/'.$row['foto'] : '../../images/perfil/profile.jpg';?>" alt="User Image">
-                        <a class="users-list-name" href="#"><?php echo $row['nombres'].' '.$row['apellidos']?></a>
+                        <img src="<?php echo (!empty($row['foto'])) ? '../../images/perfil/'.$row['foto'] : '../../images/perfil/profile.jpg';?>" width="100" height="100" alt="User Image">
+                        <a class="users-list-name" href="../asistencia/index.php"><?php echo $row['nombres'].' '.$row['apellidos']?></a>
+                        <a class="users-list-name" href="../asistencia/index.php"><?php echo $row['cargo']?></a>
                         <span class="users-list-date">
                           <?php
                             $hoy = date('Y-m-d');
@@ -286,8 +287,9 @@
                         {
                       ?>
                       <li>
-                        <img src="<?php echo (!empty($row['foto'])) ? '../../images/perfil/'.$row['foto'] : '../../images/perfil/profile.jpg';?>" alt="User Image">
-                        <a class="users-list-name" href="#"><?php echo $row['nombres'].' '.$row['apellidos']?></a>
+                        <img src="<?php echo (!empty($row['foto'])) ? '../../images/perfil/'.$row['foto'] : '../../images/perfil/profile.jpg';?>" width="100" height="100" alt="User Image">
+                        <a class="users-list-name" href="../asistencia/index.php"><?php echo $row['nombres'].' '.$row['apellidos']?></a>
+                        <a class="users-list-name" href="../asistencia/index.php"><?php echo $row['cargo']?></a>
                         <span class="users-list-date">
                           <?php
                             $hoy = date('Y-m-d');
@@ -322,33 +324,24 @@
 
 </div>
 
-<!-- REQUIRED SCRIPTS -->
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.js"></script>
-
-<!-- OPTIONAL SCRIPTS -->
-<script src="../../dist/js/demo.js"></script>
-
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="../../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="../../plugins/raphael/raphael.min.js"></script>
-<script src="../../plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="../../plugins/jquery-mapael/maps/usa_states.min.js"></script>
-<!-- ChartJS -->
-<script src="../../plugins/chart.js/Chart.min.js"></script>
-
-<!-- PAGE SCRIPTS -->
-<script src="../../dist/js/pages/dashboard2.js"></script>
-
 <?php include '../includes/scripts.php'; ?>
 <script>
+$(function(){
+
+  $('#asistencia').click(function(e){
+    e.preventDefault();
+    $('#asistForm').attr('action', 'asistencia_hoy_print.php');
+    $('#asistForm').submit();
+  });
+
+  $('#payexcel').click(function(e){
+    e.preventDefault();
+    $('#asistForm').attr('action', 'asistencia_hoy_xlsx.php');
+    $('#asistForm').submit();
+  });
+
+});
+
 $(function(){
   var barChartCanvas = $('#barChart').get(0).getContext('2d')
   var barChart = new Chart(barChartCanvas)
