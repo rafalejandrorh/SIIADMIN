@@ -210,7 +210,7 @@
           	<div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
               		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
+            	<h4 class="modal-title"><b><span class="employee_id">Editar Empleado</span></b></h4>
           	</div>
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="../../controllers/empleados/empleados_editar.php">     		
@@ -328,7 +328,7 @@
           	<div class="modal-header">
             	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
               		<span aria-hidden="true">&times;</span></button>
-            	<h4 class="modal-title"><b><span class="employee_id"></span></b></h4>
+            	<h4 class="modal-title"><b><span class="employee_id">Eliminar Empleado</span></b></h4>
           	</div>
           	<div class="modal-body">
             	<form class="form-horizontal" method="POST" action="../../controllers/empleados/empleados_eliminar.php">

@@ -5,24 +5,37 @@ require_once('../../config/conn.php');
 class empleados_model 
 {
 
-    private $db;
-    private $empleados;
     public $conexion;
 
     public function __construct()
     {
-        
 		$this->conexion = new Conexion;
-        $this->empleados = array();
-
     }
 
     public function obtener_total_empleados()
     {
-
         $sql = "SELECT * FROM empleados";
         return $this->conexion->query($sql);
+    }
 
+    public function obtener_empleados_nuevo_ingreso()
+    {
+        $fecha = date('Y-m-d');
+        $fecha_inicial = date('Y-m-d', strtotime('-30 day', strtotime($fecha)));
+        $sql = "SELECT personas.nombres, personas.apellidos, personas.foto, personas.id_persona, personas.fecha_ingreso FROM empleados 
+        LEFT JOIN personas ON empleados.id_persona = personas.id_persona WHERE personas.fecha_ingreso BETWEEN '$fecha_inicial' AND '$fecha' AND empleados.estatus = 1";
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function obtener_empleados_egreso()
+    {
+        $fecha = date('Y-m-d');
+        $fecha_inicial = date('Y-m-d', strtotime('-30 day', strtotime($fecha)));
+        $sql = "SELECT personas.nombres, personas.apellidos, personas.foto, personas.id_persona, personas.fecha_ingreso FROM empleados 
+        LEFT JOIN personas ON empleados.id_persona = personas.id_persona WHERE personas.fecha_ingreso BETWEEN '$fecha_inicial' AND '$fecha' AND empleados.estatus = 0";
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function obtener_empleados()
@@ -72,11 +85,9 @@ class empleados_model
 
     public function editar_empleado($id_empleado, $id_cargo, $id_horario)
     {
-
-            $sql = "UPDATE empleados SET id_cargo = $id_cargo, id_horarios = $id_horario WHERE id_empleado = $id_empleado";
-            $query = $this->conexion->query($sql);
-            $_SESSION['success'] = 'Datos del Empleado actualizados con éxito';
-
+        $sql = "UPDATE empleados SET id_cargo = $id_cargo, id_horarios = $id_horario WHERE id_empleado = $id_empleado";
+        $query = $this->conexion->query($sql);
+        $_SESSION['success'] = 'Datos del Empleado actualizados con éxito';
     }
 
     public function editar_foto_empleados($id_persona, $foto)

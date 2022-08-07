@@ -78,7 +78,6 @@
                 <tbody>
                   <?php
                     require_once "../../controllers/asistencia/asistencia_obtener.php";
-
                     foreach($obtener as $row)
                     {
                       $status = ($row['estatus_llegada'])?'<span class="label label-warning pull-right">A tiempo</span>':'<span class="label label-danger pull-right">Tarde</span>';
@@ -89,8 +88,30 @@
                           <td><?php echo $row['nombres'].', '.$row['apellidos']?></td>
                           <td><?php echo $row['cargo']?></td>
                           <td><?php echo date('h:i A', strtotime($row['hora_llegada'])).$status?></td>
-                          <td><?php echo date('h:i A', strtotime($row['hora_salida']))?></td>
-                          <td><?php echo number_format($row['horas_laboradas'],1)?></td>
+                          <td><?php 
+                          if($row['hora_salida'] != null)
+                          { 
+                            echo date('h:i A', strtotime($row['hora_salida']));
+                          }else{
+                            echo '00:00 PM';
+                          }
+                          ?></td>
+                          <td><?php 
+                          if($row['horas_laboradas'] != null)
+                          {
+                            echo number_format($row['horas_laboradas'],1);
+                          }else{
+                            $hora_llegada = new DateTime($row['hora_llegada']);
+                            $hora = date('H:i:s');
+                            $hora_actual = new DateTime($hora);
+                            $interval = $hora_llegada->diff($hora_actual);
+                            $hrs = $interval->format('%h');
+                            $mins = $interval->format('%i');
+                            $mins = $mins/60;
+                            $int = $hrs + $mins;
+                            echo number_format($int, 1);
+                          }
+                          ?></td>
                           <td class='text-center'>
                             <button class='btn btn-success btn-sm btn-flat edit' data-id='<?php echo $row['attid']?>'><i class='fa fa-edit'></i></button>
                             <button class='btn btn-danger btn-sm btn-flat delete' data-id='<?php echo $row['attid']?>'><i class='fa fa-trash'></i></button>

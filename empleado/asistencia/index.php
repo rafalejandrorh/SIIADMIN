@@ -25,13 +25,13 @@ $buscarempleado = [];
           </div>
 
       		<div class="form-group has-feedback">
-        		<input type="text" class="form-control input-lg" id="employee" name="employee" required placeholder="Ingresa tu Cédula de Identidad">
+        		<input type="text" class="form-control input-lg" id="cedula" name="cedula" required placeholder="Ingresa tu Cédula de Identidad">
         		<span class="glyphicon glyphicon-user form-control-feedback"></span>
       		</div>
 
       		<div class="row">
     			  <div class="col-xs-6">
-          			<button type="submit" class="btn btn-primary btn-block btn-flat" name="signin"><i class="fa fa-sign-in"></i> Registrar</button>
+          			<button type="submit" class="btn btn-primary btn-block btn-flat" name="registrar"><i class="fa fa-sign-in"></i> Registrar</button>
         		</div>
 
             <div class="col-xs-6">

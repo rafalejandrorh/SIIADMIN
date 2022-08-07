@@ -16,7 +16,7 @@
       <h1><b>Panel de Control</b></h1>
       <ol class="breadcrumb">
         <li><a href="#"> Reportes Gráficos</a></li>
-        <li class="active"><i class="fa fa-dashboard"></i> Administración</li>
+        <li class="active"><i class="fa fa-tachometer-alt"></i> Administración</li>
       </ol>
     </section>
 
@@ -154,11 +154,198 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header with-border"> 
+              <h3 class="box-title"><b>Asistentes Hoy</b></h3>  
+              <div class="pull-right">
+              <form method="POST" class="form-inline" id="asistForm">
+                  <div class="input-group">
+                  </div>
+                    <button type="button" class="btn btn-danger btn-sm btn-flat" id="asistencia"><span class="fa fa-file-pdf-o"></span> PDF</button>
+                    <button type="button" class="btn btn-success btn-sm btn-flat" id="payexcel"><span class="fa fa-file-excel-o"></span> Excel</button>
+              </form>
+              </div>
+            </div>
+            <div class="box-body">
+              <table id="example1" class="table table-bordered">
+                <thead>
+                  <th class="">Fecha</th>
+                  <th class="">Cédula de Identidad</th>
+                  <th class="">Nombre Completo</th>
+                  <th class="">Cargo</th>
+                  <th class="">Hora de Entrada</th>
+                  <th class="">Hora de Salida</th>
+                  <th class="">Horas Laboradas</th>
+                </thead>
+                <tbody>
+                  <?php
+                    require_once "../../controllers/home/reportes_administracion.php";
+
+                    foreach($asistentes_hoy as $row)
+                    {
+                      $status = ($row['estatus_llegada'])?'<span class="label label-warning pull-right">A tiempo</span>':'<span class="label label-danger pull-right">Tarde</span>';
+                      ?>
+                        <tr>
+                          <td><?php echo date('d M, Y', strtotime($row['fecha']))?></td>
+                          <td><?php echo $row['cedula']?></td>
+                          <td><?php echo $row['nombres'].', '.$row['apellidos']?></td>
+                          <td><?php echo $row['cargo']?></td>
+                          <td><?php echo date('h:i A', strtotime($row['hora_llegada'])).$status?></td>
+                          <td><?php 
+                          if($row['hora_salida'] != null)
+                          { 
+                            echo date('h:i A', strtotime($row['hora_salida']));
+                          }else{
+                            echo '00:00 PM';
+                          }
+                          ?></td>
+                          <td><?php 
+                          if($row['horas_laboradas'] != null)
+                          {
+                            echo number_format($row['horas_laboradas'],1);
+                          }else{
+                            $hora_llegada = new DateTime($row['hora_llegada']);
+                            $hora = date('H:i:s');
+                            $hora_actual = new DateTime($hora);
+                            $interval = $hora_actual->diff($hora_llegada);
+                            $hrs = $interval->format('%h');
+                            $mins = $interval->format('%i');
+                            $mins = $mins/60;
+                            $int = $hrs + $mins;
+                            echo number_format($int, 1);
+                          }
+                          ?></td>
+                        </tr>
+                      <?php } ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <!-- USERS LIST -->
+                <div class="box">
+                  <div class="box-header with-border">
+                    <h3 class="box-title"><b>Empleados Nuevos Ingreso</b></h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body p-0">
+                    <ul class="users-list clearfix">  
+                      <?php 
+                        foreach($empleados_nuevo_ingreso as $row)
+                        {
+                      ?>
+                      <li>
+                        <img src="<?php echo (!empty($row['foto'])) ? '../../images/perfil/'.$row['foto'] : '../../images/perfil/profile.jpg';?>" alt="User Image">
+                        <a class="users-list-name" href="#"><?php echo $row['nombres'].' '.$row['apellidos']?></a>
+                        <span class="users-list-date">
+                          <?php
+                            $hoy = date('Y-m-d');
+                            $ayer = date('Y-m-d', strtotime('-1 day', strtotime($hoy)));
+                            if($row['fecha_ingreso'] == $hoy)
+                            {
+                              echo 'Hoy';
+                            }else if($row['fecha_ingreso'] == $ayer)
+                            {
+                              echo 'Ayer';
+                            }else{
+                            echo $row['fecha_ingreso'];
+                            }
+                          ?>
+                        </span>
+                      </li>
+                      <?php } ?>
+                    </ul>
+                    <!-- /.users-list -->
+                  </div>
+                  <!-- /.card-body -->
+                  <!-- /.card-footer -->
+                </div>
+                <!--/.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <!-- USERS LIST -->
+                <div class="box">
+                  <div class="box-header with-border">
+                    <h3 class="box-title"><b>Empleados Egresados</b></h3>
+                  </div>
+                  <!-- /.card-header -->
+                  <div class="card-body p-0">
+                    <ul class="users-list clearfix">  
+                      <?php 
+                        foreach($empleados_egreso as $row)
+                        {
+                      ?>
+                      <li>
+                        <img src="<?php echo (!empty($row['foto'])) ? '../../images/perfil/'.$row['foto'] : '../../images/perfil/profile.jpg';?>" alt="User Image">
+                        <a class="users-list-name" href="#"><?php echo $row['nombres'].' '.$row['apellidos']?></a>
+                        <span class="users-list-date">
+                          <?php
+                            $hoy = date('Y-m-d');
+                            $ayer = date('Y-m-d', strtotime('-1 day', strtotime($hoy)));
+                            if($row['fecha_ingreso'] == $hoy)
+                            {
+                              echo 'Hoy';
+                            }else if($row['fecha_ingreso'] == $ayer)
+                            {
+                              echo 'Ayer';
+                            }else{
+                            echo $row['fecha_ingreso'];
+                            }
+                          ?>
+                        </span>
+                      </li>
+                      <?php } ?>
+                    </ul>
+                    <!-- /.users-list -->
+                  </div>
+                  <!-- /.card-body -->
+                  <!-- /.card-footer -->
+                </div>
+                <!--/.card -->
+              </div>
+              <!-- /.col -->
+            </div>
+
       </section>
     </div>
   	<?php include '../includes/footer.php'; ?>
 
 </div>
+
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="../../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="../../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../../dist/js/adminlte.js"></script>
+
+<!-- OPTIONAL SCRIPTS -->
+<script src="../../dist/js/demo.js"></script>
+
+<!-- PAGE PLUGINS -->
+<!-- jQuery Mapael -->
+<script src="../../plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
+<script src="../../plugins/raphael/raphael.min.js"></script>
+<script src="../../plugins/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="../../plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<!-- ChartJS -->
+<script src="../../plugins/chart.js/Chart.min.js"></script>
+
+<!-- PAGE SCRIPTS -->
+<script src="../../dist/js/pages/dashboard2.js"></script>
 
 <?php include '../includes/scripts.php'; ?>
 <script>

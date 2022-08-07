@@ -5,14 +5,26 @@ require_once('../../config/conn.php');
 class asistencia_model 
 {
 
-    private $db;
-    private $asistencia;
 	public $conexion;
 
     public function __construct()
     {
 		$this->conexion = new Conexion;
         $this->asistencia = array();
+    }
+
+	public function asistentes_hoy()
+    {
+		include "../../admin/includes/timezone.php";
+		$today = date('Y-m-d');
+		$sql = "SELECT *, empleados.id_empleado, asistencia.id AS attid FROM public.asistencia 
+		LEFT JOIN empleados ON empleados.id_empleado=asistencia.id_empleado 
+		LEFT JOIN cargos ON cargos.id_cargo=empleados.id_cargo 
+		LEFT JOIN personas ON personas.id_persona = empleados.id_persona 
+		WHERE asistencia.fecha = '$today' ORDER BY asistencia.fecha DESC, asistencia.hora_llegada DESC";
+        $query = $this->conexion->query($sql);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+
     }
 
 	public function asistentes_atiempo_hoy()
@@ -50,7 +62,6 @@ class asistencia_model
 
     }
 
-
     public function obtener_asistencia($from, $to)
     {
 		$filtro = null;
@@ -58,7 +69,11 @@ class asistencia_model
 		{
 			$filtro = "WHERE asistencia.fecha BETWEEN '$from' AND '$to'";
 		}
-        $sql = "SELECT *, empleados.id_empleado, asistencia.id AS attid FROM public.asistencia LEFT JOIN empleados ON empleados.id_empleado=asistencia.id_empleado LEFT JOIN cargos ON cargos.id_cargo=empleados.id_cargo LEFT JOIN personas ON personas.id_persona = empleados.id_persona $filtro ORDER BY asistencia.fecha DESC, asistencia.hora_llegada DESC";
+        $sql = "SELECT *, empleados.id_empleado, asistencia.id AS attid FROM public.asistencia 
+		LEFT JOIN empleados ON empleados.id_empleado=asistencia.id_empleado 
+		LEFT JOIN cargos ON cargos.id_cargo=empleados.id_cargo 
+		LEFT JOIN personas ON personas.id_persona = empleados.id_persona 
+		$filtro ORDER BY asistencia.fecha DESC, asistencia.hora_llegada DESC";
         $query = $this->conexion->query($sql);
         return $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -67,7 +82,8 @@ class asistencia_model
 	public function insertar_asistencia_empleado($cedula, $status, $fecha)
     {
 
-		$sql = "SELECT id_empleado, id_horario, nombres, apellidos  FROM public.personas LEFT JOIN empleados ON personas.id_persona = empleados.id_personas WHERE cedula = '$cedula'";
+		$sql = "SELECT id_empleado, id_horarios, nombres, apellidos FROM public.personas 
+		LEFT JOIN empleados ON personas.id_persona = empleados.id_persona WHERE personas.cedula = '$cedula' AND empleados.estatus = 1";
 		//$query = $this->db->query($sql);
 		$query = $this->conexion->query($sql);
 		
@@ -79,7 +95,7 @@ class asistencia_model
 
 			if($status == 'in')
 			{
-				$sql = "SELECT * FROM public.asistencia WHERE id_empleado = '$id_empleado' AND date = '$fecha' AND hora_llegada IS NOT NULL";
+				$sql = "SELECT * FROM public.asistencia WHERE id_empleado = '$id_empleado' AND fecha = '$fecha' AND hora_llegada IS NOT NULL";
 				$query = $this->conexion->query($sql);
 				if($query->rowCount() > 0)
 				{
@@ -94,7 +110,8 @@ class asistencia_model
 					$srow = $squery->fetch(PDO::FETCH_ASSOC);
 					$logstatus = ($lognow > $srow['hora_llegada']) ? 0 : 1;
 					
-					$sql = "INSERT INTO public.asistencia (id_empleado, fecha, hora_llegada, estatus_llegada) VALUES ('$id_empleado', '$fecha', NOW(), '$logstatus')";
+					$sql = "INSERT INTO public.asistencia (id_empleado, fecha, hora_llegada, estatus_llegada) 
+							VALUES ('$id_empleado', '$fecha', NOW(), '$logstatus')";
 					if($this->conexion->query($sql))
 					{
 						$_SESSION['success'] = 'Llegada: '.$row['nombres'].' '.$row['apellidos'];
@@ -104,31 +121,35 @@ class asistencia_model
 					}
 				}
 			}else{
-				$sql = "SELECT *, asistencia.id AS aid FROM public.asistencia LEFT JOIN empleados ON empleados.id_empleado=asistencia.id_empleado WHERE asistencia.id_empleado = '$id_empleado' AND date = '$fecha'";
+				$sql = "SELECT *, asistencia.id AS aid FROM public.asistencia 
+				LEFT JOIN empleados ON empleados.id_empleado=asistencia.id_empleado 
+				WHERE asistencia.id_empleado = '$id_empleado' AND fecha = '$fecha'";
 				$query = $this->conexion->query($sql);
 				if($query->rowCount() < 1)
 				{
 					$_SESSION['error'] = 'No se puede registrar tu salida, sin previamente registrar tu entrada.';
 				}else{
 					$row = $query->fetch();
+					$aid = $row['aid'];
 					if($row['hora_salida'] != '00:00:00')
 					{
 						$_SESSION['success'] = 'Has registrado tu salida satisfactoriamente por el día de hoy';
 					}else{
 						
-						$sql = "UPDATE public.asistencia SET hora_salida = NOW() WHERE id = '".$row['aid']."'";
+						$sql = "UPDATE public.asistencia SET hora_salida = NOW() WHERE id = '$aid'";
 						if($this->conexion->query($sql))
 						{
-							$_SESSION['success'] = 'Salida: '.$row['nombres'].' '.$row['apelldos'];
-
-							$sql = "SELECT * FROM public.asistencia WHERE id = '".$row['aid']."'";
+							$_SESSION['success'] = 'Salida: '.$row['nombres'].' '.$row['apellidos'];
+							
+							$sql = "SELECT * FROM public.asistencia WHERE id = '$aid'";
 							$query = $this->conexion->query($sql);
 							$urow = $query->fetch();
 
 							$hora_llegada = $urow['hora_llegada'];
 							$hora_salida = $urow['hora_salida'];
 
-							$sql = "SELECT * FROM public.empleados LEFT JOIN horarios ON horarios.id_horarios=empleados.id_horarios WHERE empleados.id_empleado = '$id'";
+							$sql = "SELECT * FROM public.empleados LEFT JOIN horarios ON horarios.id_horarios=empleados.id_horarios 
+									WHERE empleados.id_empleado = '$id_empleado'";
 							$query = $this->conexion->query($sql);
 							$srow = $query->fetch();
 
@@ -167,21 +188,20 @@ class asistencia_model
 			}
 
 		}else{
-			$_SESSION['error'] = 'ID de empleado no encontrado';
+			$_SESSION['error'] = 'Empleado no encontrado o se encuentra Inactivo/Egresado.';
 		}
-		return $_SESSION;
 
 	}
 
     public function insertar_asistencia($cedula, $fecha, $hora_llegada, $hora_salida)
     {
 
-		$sql = "SELECT id_empleado, id_horarios, nombres, apellidos FROM public.personas LEFT JOIN empleados ON personas.id_persona = empleados.id_persona WHERE cedula = '$cedula'";
+		$sql = "SELECT id_empleado, id_horarios, nombres, apellidos FROM public.personas LEFT JOIN empleados ON personas.id_persona = empleados.id_persona WHERE personas.cedula = '$cedula' AND empleados.estatus = 1";
 		$query = $this->conexion->query($sql);
 
 		if($query->rowCount() < 1)
 		{
-			$_SESSION['error'] = 'Empleado no encontrado';
+			$_SESSION['error'] = 'Empleado no encontrado o se encuentra Inactivo/Egresado.';
 		}
 		else{
 			$row = $query->fetch();

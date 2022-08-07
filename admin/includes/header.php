@@ -10,6 +10,7 @@
   	<link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
   	<!-- Font Awesome -->
   	<link rel="stylesheet" href="../../bower_components/font-awesome/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/01e367f746.js" crossorigin="anonymous"></script>
   	<!-- Ionicons -->
   	<link rel="stylesheet" href="../../bower_components/Ionicons/css/ionicons.min.css">
   	<!-- Theme style -->
@@ -22,8 +23,9 @@
     <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
     <!-- bootstrap datepicker -->
     <link rel="stylesheet" href="../../bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
+
+    <!-- Theme style -->
+    <!-- folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
   	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,6 +36,14 @@
 
   	<!-- Google Font -->
   	<!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">-->
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <!-- NUEVOS. NOTA: SI SE PRESENTA PROBLEMAS, COMÉNTELOS -->
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+  
+    
 
   	<style type="text/css">
   		.mt20{

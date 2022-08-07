@@ -12,8 +12,8 @@
       <ul class="sidebar-menu" data-widget="tree">
 
         <li class="header">REPORTES GRÁFICOS</li>
-        <li class=""><a href="../home/administracion.php"><i class="fa fa-dashboard"></i> <span>Administración</span></a></li>
-        <li class=""><a href="#"><i class="fa fa-line-chart"></i> <span>Finanzas</span></a></li> <!-- ../home/finanzas.php -->
+        <li class=""><a href="../home/administracion.php"><i class="fa fa-tachometer-alt"></i> <span>Administración</span></a></li>
+        <li class=""><a href="../home/finanzas.php"><i class="fa fa-line-chart"></i> <span>Finanzas</span></a></li>
         <li class=""><a href="../home/seguridad.php"><i class="fa fa-lock"></i> <span>Seguridad</span></a></li>
         
         <li class="header">ADMINISTRACIÓN</li>
@@ -38,7 +38,7 @@
         <li><a href="#"><i class="fa fa-file-o"></i> <span>Papelería</span></a></li> -->
 
         <li class="header">SEGURIDAD</li>
-        <li><a href="#"><i class="fa fa-check-square-o"></i> <span>Bitácora</span></a></li> <!-- ../bitacora/index.php -->
+        <li><a href="#"><i class="fa fa-check-square"></i> <span>Bitácora</span></a></li> <!-- ../bitacora/index.php -->
         <li><a href="../usuarios/index.php"><i class="fa fa-user"></i> <span>Usuarios del Sistema</span></a></li>
         <li><a href="../sesion/index.php"><i class="fa fa-history"></i> <span>Historial de Sesión</span></a></li>
         <li class="treeview">
