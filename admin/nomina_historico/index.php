@@ -1,8 +1,13 @@
-<?php include '../../controllers/sesion/session.php';?>
-<?php
+<?php 
+
+  include '../../controllers/sesion/session.php';
   include '../includes/timezone.php';
   $range_to = date('m/d/Y');
   $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
+
+  if($_SESSION['perfil'] == 8000 || $_SESSION['perfil'] == 8001 || $_SESSION['perfil'] == 8002)
+  {
+
 ?>
 <?php include '../includes/header.php'; ?>
 <body class="hold-transition skin-blue sidebar-mini">
@@ -103,6 +108,12 @@
       </div>
     </section>   
   </div>
+
+  <?php 
+  }else{
+    require_once '../index.php';
+  } 
+  ?>
     
   <?php include '../includes/footer.php'; ?>
 </div>

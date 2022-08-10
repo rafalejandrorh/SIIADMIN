@@ -40,6 +40,7 @@
         <li class="header">SEGURIDAD</li>
         <li><a href="#"><i class="fa fa-check-square"></i> <span>Bitácora</span></a></li> <!-- ../bitacora/index.php -->
         <li><a href="../usuarios/index.php"><i class="fa fa-user"></i> <span>Usuarios del Sistema</span></a></li>
+        <li><a href="../perfiles/index.php"><i class="fa fa-key"></i> <span>Perfiles de Usuario</span></a></li>
         <li><a href="../sesion/index.php"><i class="fa fa-history"></i> <span>Historial de Sesión</span></a></li>
         <li class="treeview">
           <a href="#">

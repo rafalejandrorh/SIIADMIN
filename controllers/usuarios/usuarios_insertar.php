@@ -11,6 +11,7 @@
             $estatus_usuario = $_POST['estatus_usuario'];
             $id_admin = $_POST['id_usuario_administrador'];
             $contraseña_admin = $_POST['contraseña_administrador'];
+            $id_perfil = $_POST['id_perfil'];
             $id_usuario = null;
 
             $comprobacion_persona = $usuarios->validar_persona_usuario($id_persona);
@@ -24,7 +25,7 @@
                     $comprobacion_usuario = $usuarios->validar_usuario($usuario, $id_usuario);
                     if($comprobacion_usuario == 0)
                     {
-                        $insertar = $usuarios->insertar_usuario($id_persona, $usuario, $estatus_usuario, $contraseña);
+                        $insertar = $usuarios->insertar_usuario($id_persona, $usuario, $estatus_usuario, $contraseña, $id_perfil);
                     }else{
                         $_SESSION['error'] = 'El Usuario indicado ya está en uso, por favor eliga otro.';
                     }

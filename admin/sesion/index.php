@@ -1,5 +1,11 @@
-<?php include '../../controllers/sesion/session.php'; ?>
-<?php include '../includes/header.php'; ?>
+<?php 
+
+  include '../../controllers/sesion/session.php';  
+  include '../includes/header.php'; 
+  if($_SESSION['perfil'] == 8000 || $_SESSION['perfil'] == 8001 || $_SESSION['perfil'] == 8003)
+  {
+    
+?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -82,6 +88,12 @@
       </div>
     </section>   
   </div>
+
+  <?php 
+  }else{
+    require_once '../index.php';
+  } 
+  ?>
     
   <?php include '../includes/footer.php'; ?>
 </div>

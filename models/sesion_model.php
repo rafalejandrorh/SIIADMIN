@@ -16,7 +16,7 @@ class sesion_model
     public function iniciar_sesion($usuario, $contraseña)
     {
 
-        $sql = "SELECT * FROM public.usuarios WHERE usuario = '$usuario'";
+        $sql = "SELECT * FROM public.usuarios WHERE usuario = '$usuario' LEFT JOIN usuarios_perfil ON usuarios.id_perfil = usuarios_perfil.id_perfil";
         $query = $this->conexion->query($sql);
 
         if($query->rowCount() < 1)
@@ -30,7 +30,8 @@ class sesion_model
                     if(password_verify($contraseña, $row['contraseña']))
                     {
                         $id_persona = $row['id_persona'];
-                        $sql = "SELECT personas.foto, personas.nombres, personas.apellidos, personas.fecha_ingreso FROM public.personas WHERE id_persona = $id_persona";
+                        $sql = "SELECT personas.foto, personas.nombres, personas.apellidos, personas.fecha_ingreso 
+                        FROM public.personas WHERE id_persona = $id_persona";
                         $query = $this->conexion->query($sql);
                         $srow = $query->fetch();
                         $_SESSION['foto'] = $srow['foto'];
@@ -43,12 +44,13 @@ class sesion_model
                         $_SESSION['contraseña'] = $row['contraseña'];
                         $_SESSION['IP'] = $_SERVER['REMOTE_ADDR'];
                         $_SESSION['login_exitoso'] = 'Inicio de Sesión Exitoso';
+                        $_SESSION['perfil'] = $row['id_perfil'];
                     }else{
                         $_SESSION['error'] = 'Contraseña Incorrecta';
                         $intentos = $row['intentos_fallidos'];
                         $intentos++;
                         $id_usuario = $row['id_usuario'];
-                        $sql = "UPDATE public.usuarios SET intentos = '$intentos' WHERE id_usuario = '$id_usuario'";
+                        $sql = "UPDATE public.usuarios SET intentos_fallidos = '$intentos' WHERE id_usuario = '$id_usuario'";
                         $query = $this->conexion->query($sql);
                     }
                 } else if ($row['intentos_fallidos'] == 3)

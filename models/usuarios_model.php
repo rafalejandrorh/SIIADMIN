@@ -39,11 +39,12 @@ class usuarios_model
     {
 
         $sql = "SELECT personas.cedula, personas.nombres, personas.apellidos, cargos.cargo, personas.foto, 
-        usuarios.id_usuario, usuarios.usuario, usuarios.fecha_creacion, usuarios.habilitado
+        usuarios.id_usuario, usuarios.usuario, usuarios.fecha_creacion, usuarios.habilitado, usuarios_perfil.perfil
         FROM usuarios 
         LEFT JOIN personas ON usuarios.id_persona = personas.id_persona
         LEFT JOIN empleados ON personas.id_persona = empleados.id_persona 
-        LEFT JOIN cargos ON empleados.id_cargo = cargos.id_cargo";
+        LEFT JOIN cargos ON empleados.id_cargo = cargos.id_cargo
+        LEFT JOIN usuarios_perfil ON usuarios.id_perfil = usuarios_perfil.id_perfil";
         $query = $this->conexion->query($sql);
         return $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -125,10 +126,10 @@ class usuarios_model
 
     }
 
-    public function insertar_usuario($id_persona, $usuario, $estatus_usuario, $contraseña)
+    public function insertar_usuario($id_persona, $usuario, $estatus_usuario, $contraseña, $id_perfil)
     {
         $hash_contraseña = password_hash($contraseña, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO usuarios (id_persona, usuario, habilitado, fecha_creacion, contraseña, intentos_fallidos) VALUES ('$id_persona', '$usuario', '$estatus_usuario', NOW(), '$hash_contraseña', 0)";
+        $sql = "INSERT INTO usuarios (id_persona, usuario, habilitado, fecha_creacion, contraseña, intentos_fallidos, id_perfil) VALUES ('$id_persona', '$usuario', '$estatus_usuario', NOW(), '$hash_contraseña', 0, '$id_perfil')";
         $query = $this->conexion->query($sql);
         if($query->rowCount() >= 1){
             $_SESSION['success'] = 'Usuario creado satisfactoriamente';
@@ -138,19 +139,21 @@ class usuarios_model
 
     }
 
-    public function editar_usuario($id_usuario, $usuario, $estatus_usuario, $contraseña)
+    public function editar_usuario($id_usuario, $usuario, $estatus_usuario, $contraseña, $id_perfil)
     {
         $hash_contraseña = password_hash($contraseña, PASSWORD_DEFAULT);
-        $sql = "UPDATE usuarios SET usuario = '$usuario', habilitado = '$estatus_usuario', contraseña = '$hash_contraseña' WHERE id_usuario = $id_usuario";
+        $sql = "UPDATE usuarios SET usuario = '$usuario', habilitado = '$estatus_usuario', contraseña = '$hash_contraseña', id_perfil = '$id_perfil' WHERE id_usuario = $id_usuario";
         $query = $this->conexion->query($sql);
         $_SESSION['success'] = 'Usuario actualizado con éxito';
     }
 
     public function datos_usuarios($id_usuario)
 	{
-		$sql = "SELECT personas.id_persona, personas.nombres, personas.apellidos, usuarios.id_usuario, usuarios.usuario, usuarios.habilitado, usuarios.contraseña
+		$sql = "SELECT personas.id_persona, personas.nombres, personas.apellidos, usuarios.id_usuario, usuarios.usuario, usuarios.habilitado, 
+        usuarios.contraseña, usuarios_perfil.perfil, usuarios_perfil.id_perfil
         FROM usuarios 
         LEFT JOIN personas ON usuarios.id_persona = personas.id_persona
+        LEFT JOIN usuarios_perfil ON usuarios.id_perfil = usuarios_perfil.id_perfil
         WHERE usuarios.id_usuario = $id_usuario";
 		$query = $this->conexion->query($sql);
         $datos = $query->fetch();
@@ -162,8 +165,9 @@ class usuarios_model
             $datos['habilitado'] = 'Deshabilitado';
             $datos['habilitado_val'] = 'false';
         }
-		return array('nombres' => $datos['nombres'], 'apellidos' => $datos['apellidos'], 'usuario' => $datos['usuario'], 'habilitado' => $datos['habilitado'],
-        'contraseña' => $datos['contraseña'], 'id_usuario' => $datos['id_usuario'], 'habilitado_val' => $datos['habilitado_val']);
+		return array('nombres' => $datos['nombres'], 'apellidos' => $datos['apellidos'], 'usuario' => $datos['usuario'], 
+        'habilitado' => $datos['habilitado'], 'contraseña' => $datos['contraseña'], 'id_usuario' => $datos['id_usuario'], 
+        'habilitado_val' => $datos['habilitado_val'], 'id_perfil' => $datos['id_perfil'], 'perfil' => $datos['perfil']);
 	}
 
     public function bloquear_usuario($id_usuario)

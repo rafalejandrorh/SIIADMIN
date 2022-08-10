@@ -1,5 +1,11 @@
-<?php include '../../controllers/sesion/session.php'; ?>
-<?php include '../includes/header.php'; ?>
+<?php 
+
+  include '../../controllers/sesion/session.php';
+  include '../includes/header.php'; 
+  if($_SESSION['perfil'] == 8000 || $_SESSION['perfil'] == 8001 || $_SESSION['perfil'] == 8003)
+  {
+
+?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -54,6 +60,7 @@
                   <th>Nombre Completo</th>
                   <th>Cargo</th>
                   <th>Usuario</th>
+                  <th>Perfil</th>
                   <th>Estatus</th>
                   <th>Foto</th>
                   <th>Fecha de Creación</th>
@@ -71,6 +78,7 @@
                           <td><?php echo $row['nombres'].' '.$row['apellidos']; ?></td>
                           <td><?php echo $row['cargo']; ?></td>
                           <td><?php echo $row['usuario']; ?></td>
+                          <td><?php echo $row['perfil']; ?></td>
                           <td><?php if($row['habilitado'] == 1){echo '<span class="label label-success pull-right">Habilitado</span>';} else if($row['habilitado'] == null){echo '<span class="label label-danger pull-right">Deshabilitado</span>';}?></td>
                           <td><img src="<?php echo (!empty($row['foto']))? '../../images/perfil/'.$row['foto']:'../../images/perfil/profile.jpg'; ?>" width="30px" height="30px"></td>
                           <td><?php echo $row['fecha_creacion']; ?></td>
@@ -89,6 +97,12 @@
       </div>
     </section>   
   </div>
+
+  <?php 
+  }else{
+    require_once '../index.php';
+  } 
+  ?>
     
   <?php include '../includes/footer.php'; ?>
   <?php include 'usuarios_modal.php'; ?>
@@ -128,6 +142,7 @@ function getRow(id){
       $('#edit_usuario').val(response.usuario);
       $('#edit_contraseña').val(response.contraseña);
       $('#edit_habilitado').val(response.habilitado_val).html(response.habilitado);
+      $('#edit_perfil').val(response.id_perfil).html(response.perfil);
     }
   });
 }

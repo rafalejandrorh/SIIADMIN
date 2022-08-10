@@ -32,6 +32,7 @@
                     	<input type="text" class="form-control" id="" name="usuario" required>
                   	</div>
                 </div>
+
                 <div class="form-group">
                     <label for="contraseña" class="col-sm-3 control-label">Contraseña</label>
 
@@ -39,6 +40,22 @@
                       <input type="password" class="form-control" id="edit_contraseña" name="contraseña" required>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="edit_cargo" class="col-sm-3 control-label">Perfil</label>
+                    <div class="col-sm-9">
+                      <select class="form-control" name="id_perfil" id="" required>
+                        <option selected id="">--- Seleccionar ---</option>
+                        <?php
+                          foreach($perfiles as $srow)
+                          {
+                            echo "<option value='".$srow['id_perfil']."'>".$srow['perfil']."</option>";
+                          }
+                        ?>
+                      </select>
+                    </div>
+                </div>
+
                 <div class="form-group">
                   	<label for="nombres" class="col-sm-3 control-label">Estatus</label>
 
@@ -96,6 +113,7 @@
                     	<input type="text" class="form-control" id="edit_usuario" name="usuario">
                   	</div>
                 </div>
+
                 <div class="form-group">
                     <label for="contraseña" class="col-sm-3 control-label">Contraseña</label>
 
@@ -103,6 +121,22 @@
                       <input type="password" class="form-control" id="edit_contraseña" name="contraseña">
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="edit_cargo" class="col-sm-3 control-label">Perfil</label>
+                    <div class="col-sm-9">
+                      <select class="form-control" name="id_perfil" id="" required>
+                        <option selected id="edit_perfil">--- Seleccionar ---</option>
+                        <?php
+                          foreach($perfiles as $srow)
+                          {
+                            echo "<option value='".$srow['id_perfil']."'>".$srow['perfil']."</option>";
+                          }
+                        ?>
+                      </select>
+                    </div>
+                </div>
+
                 <div class="form-group">
                   	<label for="nombres" class="col-sm-3 control-label">Estatus</label>
 
@@ -120,7 +154,7 @@
                     <label for="curr_contraseña" class="col-sm-3 control-label">Contraseña Administrador:</label>
 
                     <div class="col-sm-9">
-                      <input type="password" class="form-control" id="contraseña_administrador" name="contraseña_administrador" placeholder="Ingrese su contraseña actual para guardar los cambios" required>
+                      <input type="password" class="form-control" id="" name="contraseña_administrador" placeholder="Ingrese su contraseña actual para guardar los cambios" required>
                     </div>
                 </div>
           	</div>

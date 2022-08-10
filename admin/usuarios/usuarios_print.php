@@ -18,8 +18,9 @@
 			$contents .= "
 			<tr>
         <td>".$row['cedula']."</td>
-				<td>".$row['nombres'].", ".$row['apellidos']."</td>
+				<td>".$row['nombres']." ".$row['apellidos']."</td>
         <td>".$row['usuario']."</td>
+        <td>".$row['perfil']."</td>
         <td>".$row['habilitado']."</td>
         <td>".$row['fecha_creacion']."</td>
 			</tr>
@@ -49,11 +50,12 @@
       	<h2 align="center">Lista de Usuarios - SIIADMIN</h2>
       	<table border="1" cellspacing="0" cellpadding="3">  
            <tr>
-              <th width="20%" align="center"><b>Cédula de Identidad</b></th>  
-           		<th width="20%" align="center"><b>Nombre Empleado</b></th>
-              <th width="20%" align="center"><b>Usuario</b></th>
-              <th width="20%" align="center"><b>Estatus</b></th>
-				      <th width="20%" align="center"><b>Fecha de Creación</b></th> 
+              <th width="16,6%" align="center"><b>Cédula de Identidad</b></th>  
+           		<th width="16,6%" align="center"><b>Nombre Empleado</b></th>
+              <th width="16,6%" align="center"><b>Usuario</b></th>
+              <th width="16,6%" align="center"><b>Perfil</b></th>
+              <th width="16,6%" align="center"><b>Estatus</b></th>
+				      <th width="16,6%" align="center"><b>Fecha de Creación</b></th> 
            </tr>  
       ';  
     $content .= generateRow(); 

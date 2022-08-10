@@ -3,6 +3,9 @@
   include '../includes/timezone.php';
   require_once "../../controllers/nomina/nomina_obtener.php";
 
+  if($_SESSION['perfil'] == 8000 || $_SESSION['perfil'] == 8001 || $_SESSION['perfil'] == 8002)
+  {
+
   $range_to = date('m/d/Y');
   $range_from = date('m/d/Y', strtotime('-30 day', strtotime($range_to)));
   
@@ -116,6 +119,12 @@
     </section>   
   </div>
     
+  <?php 
+  }else{
+    require_once '../index.php';
+  } 
+  ?>
+
   <?php include '../includes/footer.php'; ?>
 </div>
 <?php include '../includes/scripts.php'; ?> 

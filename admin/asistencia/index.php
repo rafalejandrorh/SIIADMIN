@@ -1,14 +1,17 @@
 <?php 
     include '../includes/header.php'; 
     include '../../controllers/sesion/session.php';
+    if($_SESSION['perfil'] == 8000 || $_SESSION['perfil'] == 8001 || $_SESSION['perfil'] == 8005)
+    {
 ?>
 
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
-<?php include '../includes/navbar.php'; 
-      include '../includes/menubar.php'; 
-      include '../includes/timezone.php';
+<?php 
+  include '../includes/navbar.php'; 
+  include '../includes/menubar.php'; 
+  include '../includes/timezone.php';
   $range_to = date('d/m/Y');
   $range_from = date('d/m/Y', strtotime('-30 day', strtotime($range_to)));
 ?>
@@ -126,6 +129,12 @@
       </div>
     </section>   
   </div>
+
+  <?php 
+  }else{
+    require_once '../index.php';
+  } 
+  ?>
     
   <?php include '../includes/footer.php'; ?>
   <?php include 'asistencia_modal.php'; ?>

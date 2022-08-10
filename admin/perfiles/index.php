@@ -1,10 +1,10 @@
 <?php 
 
-  include '../../controllers/sesion/session.php'; 
+  include '../../controllers/sesion/session.php';
   include '../includes/header.php'; 
-  if($_SESSION['perfil'] == 8000 || $_SESSION['perfil'] == 8001 || $_SESSION['perfil'] == 8002)
+  if($_SESSION['perfil'] == 8000 || $_SESSION['perfil'] == 8001 || $_SESSION['perfil'] == 8003)
   {
-    
+
 ?>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -14,13 +14,12 @@
 
   <div class="content-wrapper">
     <section class="content-header">
-      <h1><b>Tasa del Dolar</b></h1>
+    <h1><b>Usuarios del Sistema</b></h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class=""></i> Finanzas</a></li>
-        <li class="active"><i class="fa fa-dollar"></i> Tasa del Dólar</li>
+        <li><a href="#"> Seguridad</a></li>
+        <li class="active"><i class="fa fa-user"></i> Usuarios del Sistema</li>
       </ol>
     </section>
-
     <section class="content">
       <?php
         if(isset($_SESSION['error'])){
@@ -46,32 +45,39 @@
       ?>
       <div class="row">
         <div class="col-xs-12">
-        <div class="table-responsive">
           <div class="box">
+            <div class="box-header with-border">
+               <a href="#addnew" data-toggle="modal" class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i> Nuevo</a>
+              </div>
+          <div class="table-responsive">
             <div class="box-body">
               <table id="example2" class="table table-bordered">
                 <thead>
-                    <th>Dólar a Bolívar</th>
-                    <th>Observaciones</th>
-                    <th>Acciones</th>
+                  <th>ID de Perfil</th>
+                  <th>Perfil</th>
+                  <th>Acciones</th>
                 </thead>
                 <tbody>
                   <?php
-                    require_once "../../controllers/tasadolar/tasadolar_obtener.php";
+                  require_once "../../controllers/perfiles/perfiles_obtener.php";
 
-                    foreach($obtener as $row){
-                  ?>
-                      <tr>
-                        <td><?php echo '$ 1.00'." = ".'Bs '.$row['tasa_dolar']?></td>
-                        <td><?php echo $row['observaciones']?></td> 
-                        <td><button class='btn btn-success btn-sm edit btn-flat' data-id="<?php echo $row['id'] ?>"><i class='fa fa-edit'></i></button></td>
-                      </tr>
-                  <?php } ?>
+                  foreach($obtener as $row)
+                    { 
+                      ?>
+                        <tr>
+                          <td><?php echo $row['id_perfil']; ?></td>
+                          <td><?php echo $row['perfil']; ?></td>
+                          <td>
+                            <button class="btn btn-success btn-sm edit btn-flat" data-id="<?php echo $row['id_perfil']; ?>"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-danger btn-sm delete btn-flat" data-id="<?php echo $row['id_perfil']; ?>"><i class="fa fa-trash"></i></button>
+                          </td>
+                        </tr>
+                      <?php } ?>
                 </tbody>
               </table>
             </div>
           </div>
-        </div>
+          </div>
         </div>
       </div>
     </section>   
@@ -83,12 +89,13 @@
   } 
   ?>
     
-<?php include '../includes/footer.php'; ?>
-<?php include 'tasa_dolar_modal.php'; ?>
+  <?php include '../includes/footer.php'; ?>
+  <?php include 'perfiles_modal.php'; ?>
 </div>
 <?php include '../includes/scripts.php'; ?>
 <script>
 $(function(){
+
   $('.edit').click(function(e){
     e.preventDefault();
     $('#edit').modal('show');
@@ -96,18 +103,30 @@ $(function(){
     getRow(id);
   });
 
+  $('.delete').click(function(e){
+    e.preventDefault();
+    $('#delete').modal('show');
+    var id = $(this).data('id');
+    getRow(id);
+  });
+
+});
 
 function getRow(id){
   $.ajax({
     type: 'POST',
-    url: 'tasa_dolar_id.php',
+    url: 'perfiles_id.php',
     data: {id:id},
     dataType: 'json',
     success: function(response){
-    $('#attid').val(response.id);
-    $('#tasa_dolar').val(response.tasa_dolar);
-  }});
-}})
+      $('#del_perfil').html(response.perfil);
+      $('#del_id_perfil').val(response.id_perfil);
+      $('#edit_id_perfil_antiguo').val(response.id_perfil_antiguo);
+      $('#edit_id_perfil').val(response.id_perfil);
+      $('#edit_perfil').val(response.perfil);
+    }
+  });
+}
 </script>
 </body>
 </html>

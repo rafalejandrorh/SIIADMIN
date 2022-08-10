@@ -3,7 +3,11 @@
   include '../../controllers/sesion/session.php';
   include '../includes/timezone.php'; 
   require_once '../../controllers/home/graficos_administracion.php';
-  include '../includes/header.php'; ?>
+  include '../includes/header.php'; 
+  if($_SESSION['perfil'] == 8000 || $_SESSION['perfil'] == 8001 || $_SESSION['perfil'] == 8005 || $_SESSION['perfil'] == 8004)
+  {
+
+?>
 
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -317,9 +321,15 @@
               </div>
               <!-- /.col -->
             </div>
-
       </section>
     </div>
+
+    <?php 
+    }else{
+    require_once '../index.php';
+    } 
+    ?>
+
   	<?php include '../includes/footer.php'; ?>
 
 </div>
