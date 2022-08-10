@@ -16,7 +16,7 @@ class sesion_model
     public function iniciar_sesion($usuario, $contraseña)
     {
 
-        $sql = "SELECT * FROM public.usuarios WHERE usuario = '$usuario' LEFT JOIN usuarios_perfil ON usuarios.id_perfil = usuarios_perfil.id_perfil";
+        $sql = "SELECT * FROM public.usuarios LEFT JOIN usuarios_perfil ON usuarios.id_perfil = usuarios_perfil.id_perfil WHERE usuario = '$usuario' ";
         $query = $this->conexion->query($sql);
 
         if($query->rowCount() < 1)
