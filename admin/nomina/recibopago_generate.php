@@ -39,9 +39,9 @@
           <table cellspacing="0" cellpadding="3">
                   <tr>  
                     <td width="25%" align="right">Nombre Empleado: </td>
-                      <td width="25%"><b>'.$row['nombres']." ".$row['apellidos'].'</b></td>
-              <td width="25%" align="right"><b>Sueldo: </b></td>
-              <td width="25%" align="right"><b>'.'$ '.number_format(($row['sueldo']*$row['total_horas']), 2).'</b></td> 
+                    <td width="25%"><b>'.$row['nombres']." ".$row['apellidos'].'</b></td>
+                    <td width="25%" align="right"><b>Sueldo: </b></td>
+                    <td width="25%" align="right"><b>'.'$ '.number_format(($row['sueldo']*$row['total_horas']), 2).'</b></td> 
                 </tr>
                 <tr>
                   <td width="25%" align="right">Cédula de Identidad: </td>

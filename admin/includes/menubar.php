@@ -50,7 +50,7 @@
             <i class="fa fa-angle-left pull-right"></i>
           </a>
           <ul class="treeview-menu">
-          <li><a href="#"><i class="fa fa-circle-o"></i> Asistencia</a></li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Asistencia</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Empleados</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Métodos de Pago</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Histórico de Nómina</a></li>
@@ -60,7 +60,7 @@
             <li><a href="#"><i class="fa fa-circle-o"></i> Avance de Efectivo</a></li>
             <li><a href="#"><i class="fa fa-circle-o"></i> Usuarios del Sistema</a></li>
           </ul> <!-- PENDIENTE -->
-
+        </lhi>
         <li class="header">MANUALES</li>
         <li><a href="../../documents/Manuales/Manual de Usuario del Sistema - TEG Rafael Rivero y Julio Contreras.pdf"><i class="fa fa-file-pdf-o"></i> <span>Manual de Usuario</span></a></li>
       </ul>  
