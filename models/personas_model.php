@@ -47,12 +47,12 @@ class personas_model
 
     }
 
-    public function insertar_persona($cedula, $nombres, $apellidos, $direccion, $fecha_nacimiento, $numero_contacto, $genero, $foto)
+    public function insertar_persona($cedula, $nombres, $apellidos, $direccion, $fecha_nacimiento, $numero_contacto, $genero, $foto, $foto_cedula, $foto_rif)
     {
 
         $sql = "INSERT INTO personas (cedula, nombres, apellidos, direccion, fecha_nacimiento, numero_contacto, genero, foto, 
-        fecha_ingreso) VALUES ('$cedula', '$nombres', '$apellidos', '$direccion', '$fecha_nacimiento', '$numero_contacto', 
-        '$genero', '$foto', NOW())";
+        fecha_ingreso, foto_cedula, foto_rif) VALUES ('$cedula', '$nombres', '$apellidos', '$direccion', '$fecha_nacimiento', '$numero_contacto', 
+        '$genero', '$foto', NOW()), '$foto_cedula', '$foto_rif'";
         $query = $this->conexion->query($sql);
         if($query->rowCount() >= 1)
         {

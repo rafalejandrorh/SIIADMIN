@@ -101,10 +101,24 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="foto" class="col-sm-3 control-label">Foto</label>
+                    <label for="foto" class="col-sm-3 control-label">Foto del Ciudadano</label>
 
                     <div class="col-sm-9">
                       <input type="file" name="foto" id="foto">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="foto" class="col-sm-3 control-label">Foto de la Cédula</label>
+
+                    <div class="col-sm-9">
+                      <input type="file" name="foto_cedula" id="foto_cedula">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="foto" class="col-sm-3 control-label">Foto del RIF</label>
+
+                    <div class="col-sm-9">
+                      <input type="file" name="foto_rif" id="foto_rif">
                     </div>
                 </div>
           	</div>
@@ -191,6 +205,20 @@
 
                     <div class="col-sm-9">
                       <input type="text" class="form-control" id="show_horario" readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="foto" class="col-sm-3 control-label">Foto de la Cédula</label>
+
+                    <div class="col-sm-9">
+                      <input type="file" name="foto_cedula" id="foto_cedula">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="foto" class="col-sm-3 control-label">Foto del RIF</label>
+
+                    <div class="col-sm-9">
+                      <input type="file" name="foto_rif" id="foto_rif">
                     </div>
                 </div>
           	</div>
@@ -370,9 +398,39 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="photo" class="col-sm-3 control-label">Foto</label>
+                    <label for="photo" class="col-sm-3 control-label">Foto Nueva</label>
                     <div class="col-sm-9">
-                      <input type="file" id="edit_foto" name="foto" required>
+                      <input type="file" id="" name="foto_nueva">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="photo" class="col-sm-3 control-label">Foto Actual</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="foto_actual" id="edit_foto" readonly></input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="photo" class="col-sm-3 control-label">Foto Nueva de la Cédula</label>
+                    <div class="col-sm-9">
+                      <input type="file" id="" name="foto_nueva_cedula">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="photo" class="col-sm-3 control-label">Foto de la Cédula Actual</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="foto_actual_cedula" id="edit_foto_cedula" readonly></input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="photo" class="col-sm-3 control-label">Foto Nueva del RIF</label>
+                    <div class="col-sm-9">
+                      <input type="file" id="" name="foto_nueva_rif">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="photo" class="col-sm-3 control-label">Foto del RIF Actual</label>
+                    <div class="col-sm-9">
+                      <input type="text" name="foto_actual_rif" id="edit_foto_rif" readonly></input>
                     </div>
                 </div>
             </div>
@@ -384,3 +442,49 @@
         </div>
     </div>
 </div>    
+
+<!-- Mostrar Fotos -->
+<div class="modal fade" id="edit">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          	<div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              		<span aria-hidden="true">&times;</span></button>
+            	<h4 class="modal-title"><b><span class="employee_id">Mostrar Fotos del Empleado</span></b></h4>
+          	</div>
+          	<div class="modal-body">
+            	<form class="form-horizontal" method="POST" action="../../controllers/empleados/empleados_editar.php">     		
+
+                <div class="form-group">
+                    <div class="col-sm-9">
+                    <input type="hidden" class="form-control" name="id_empleado" id="edit_id_empleado">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="edit_firstname" class="col-sm-3 control-label">Foto del Empleado</label>
+                    <div class="col-sm-9">                    
+                    <input type="text" class="form-control" id="show_foto">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit_firstname" class="col-sm-3 control-label">Foto de la Cédula</label>
+
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="show_foto_cedula">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="edit_lastname" class="col-sm-3 control-label">Foto del RIF</label>
+
+                    <div class="col-sm-9">
+                      <input type="text" class="form-control" id="show_foto_rif">
+                    </div>
+                </div>
+          	<div class="modal-footer">
+            	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Cerrar</button>
+            	</form>
+          	</div>
+        </div>
+    </div>
+</div>

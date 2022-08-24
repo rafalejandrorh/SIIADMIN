@@ -96,13 +96,13 @@ class empleados_model
         $_SESSION['success'] = 'Datos del Empleado actualizados con éxito';
     }
 
-    public function editar_foto_empleados($id_persona, $foto)
+    public function editar_foto_empleados($id_persona, $foto, $foto_cedula, $foto_rif)
     {
 
-        $sql = "UPDATE personas SET foto = '$foto' WHERE id_persona = '$id_persona'";
+        $sql = "UPDATE personas SET foto = '$foto', foto_cedula = '$foto_cedula', foto_rif = '$foto_rif' WHERE id_persona = '$id_persona'";
         $query = $this->conexion->query($sql);
         if($query->rowCount() >= 1){
-            $_SESSION['success'] = 'La foto de tu empleado fue actualizada satisfactoriamente';
+            $_SESSION['success'] = 'Las fotos de tu empleado fue actualizada satisfactoriamente';
             return $query->rowCount();
         }else{
             $_SESSION['error'] = $this->conexion->error;
@@ -115,7 +115,7 @@ class empleados_model
 	{
 		$sql = "SELECT personas.nombres, personas.apellidos, personas.direccion, personas.fecha_nacimiento, personas.numero_contacto,
 		personas.genero, cargos.id_cargo, cargos.cargo, horarios.id_horarios, horarios.hora_llegada, horarios.hora_salida, 
-		personas.foto, personas.cedula, empleados.id_empleado
+		personas.foto, personas.cedula, empleados.id_empleado, personas.foto_cedula, personas.foto_rif
 		FROM empleados 
 		LEFT JOIN cargos ON cargos.id_cargo=empleados.id_cargo 
 		LEFT JOIN horarios ON horarios.id_horarios=empleados.id_horarios 

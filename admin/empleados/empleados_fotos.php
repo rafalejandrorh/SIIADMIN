@@ -113,88 +113,11 @@
   ?>
     
   <?php include '../includes/footer.php'; ?>
-  <?php include 'empleados_modal.php'; ?>
+  
 </div>
 <?php include '../includes/scripts.php'; ?>
 <script>
-$(function(){
 
-  $('.show').click(function(e){
-    e.preventDefault();
-    $('#show').modal('show');
-    var id = $(this).data('id');
-    getRow(id);
-  });
-
-  $('.edit').click(function(e){
-    e.preventDefault();
-    $('#edit').modal('show');
-    var id = $(this).data('id');
-    getRow(id);
-  });
-
-  $('.delete').click(function(e){
-    e.preventDefault();
-    $('#delete').modal('show');
-    var id = $(this).data('id');
-    getRow(id);
-  });
-
-  $('.photo').click(function(e){
-    e.preventDefault();
-    var id = $(this).data('id');
-    getRow(id);
-  });
-
-  $('#payroll').click(function(e){
-    e.preventDefault();
-    $('#payForm').attr('action', 'empleados_print.php');
-    $('#payForm').submit();
-  });
-
-  $('#payexcel').click(function(e){
-    e.preventDefault();
-    $('#payForm').attr('action', 'empleados_xlsx.php');
-    $('#payForm').submit();
-  });
-
-});
-
-function getRow(id){
-  $.ajax({
-    type: 'POST',
-    url: 'empleados_id.php',
-    data: {id:id},
-    dataType: 'json',
-    success: function(response){
-      $('#del_employee_name').html(response.nombres+' '+response.apellidos);
-      $('#del_id_empleado').val(response.id_empleado);
-      $('#edit_id_empleado').val(response.id_empleado);
-      $('#edit_cedula').val(response.cedula);
-      $('#edit_nombres').val(response.nombres);
-      $('#edit_apellidos').val(response.apellidos);
-      $('#edit_direccion').val(response.direccion);
-      $('#fecha_nacimiento_edit').val(response.fecha_nacimiento);
-      $('#edit_contacto').val(response.numero_contacto);
-      $('#edit_genero').val(response.genero);
-      $('#edit_cargo').val(response.id_cargo).html(response.cargo);
-      $('#edit_horario').val(response.id_horarios).html(response.hora_llegada+' - '+response.hora_salida);
-      $('#edit_foto').val(response.foto);
-      $('#edit_foto_cedula').val(response.foto_cedula);
-      $('#edit_foto_rif').val(response.foto_rif);
-      $('#foto_id_empleado').val(response.id_empleado);
-      $('#show_cedula').val(response.cedula);
-      $('#show_nombres').val(response.nombres);
-      $('#show_apellidos').val(response.apellidos);
-      $('#show_direccion').val(response.direccion);
-      $('#show_fecha_nacimiento').val(response.fecha_nacimiento);
-      $('#show_contacto').val(response.numero_contacto);
-      $('#show_genero').val(response.genero);
-      $('#show_cargo').val(response.cargo);
-      $('#show_horario').val(response.hora_llegada+' - '+response.hora_salida);
-    }
-  });
-}
 </script>
 </body>
 </html>
