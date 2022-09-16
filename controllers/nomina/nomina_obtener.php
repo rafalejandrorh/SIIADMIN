@@ -32,9 +32,23 @@
         $consulta_deducciones2 = $nomina->consulta_deducciones2();
         $deduction2 = $consulta_deducciones2['total_monto'];
 
-        //Se obtiene la tasa del dolar para calcular el sueldo en Bs.D
-        $tasadolar = $nomina->consulta_tasadolar();
-        $dolar = $tasadolar['tasa_dolar'];
+        //Se obtiene la tasa del BCV de su página oficial. Si existe un cambio en dicha página, 
+        //se obtendrá como contingencia la tasa del dolar manipulable desde la BBDD
+        
+        // $url = 'http://www.bcv.org.ve/';
+        // $cacheBCV = file($url);
+        // $validar_BCV = isset($cacheBCV[757]);
+        // if($validar_BCV == true)
+        // {
+        //     //$dolar = $cacheBCV[757];
+        //     $ex = explode(',',$cacheBCV[757]);
+        //     $string = $ex[0].'.'.$ex[1];
+        //     $dolar = number_format($string);
+        //     print_r($dolar);die;
+        // }else{
+            $tasadolar = $nomina->consulta_tasadolar();
+            $dolar = $tasadolar['tasa_dolar'];
+        // };
 
         //Obtiene los Empleados, sus horas trabajadas y el monto a cobrar por esas horas
         $consulta_horas_trabajadas = $nomina->consulta_obtener_nomina($from, $to);

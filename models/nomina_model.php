@@ -87,20 +87,16 @@ class nomina_model
 
     public function consulta_deducciones2()
     {
-
         $sql = "SELECT monto as total_monto FROM deducciones2";
         $query = $this->conexion->query($sql);
         return $query->fetch(PDO::FETCH_ASSOC);
-
     }
 
     public function consulta_tasadolar()
-    {
-                      
+    {          
         $sql = "SELECT *, tasa_dolar FROM tasa_dolar";
         $query = $this->conexion->query($sql);
         return $query->fetch(PDO::FETCH_ASSOC);
-
     }
 
     public function calculo_nomina($sueldo, $deduction, $deduction2, $deductionefectivo, $dolar)
